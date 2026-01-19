@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Mystery Box | DreamLloSet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #fff5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            color: #5c2c2c;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            color: #8a1616;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .mystery-box-title {
+            font-size: 3.5rem;
+            color: #8a1616;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .mystery-box-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 1px;
+            background-color: #ff9999;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #8a1616;
+            letter-spacing: 8px;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+        
+        .value-tag {
+            background-color: #ffe6e6;
+            color: #8a1616;
+            padding: 12px 30px;
+            border-radius: 2px;
+            display: inline-block;
+            font-size: 1.3rem;
+            margin-top: 15px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            border: 1px solid #ff9999;
+        }
+        
+        .limited-tag {
+            font-size: 0.95rem;
+            color: #8a1616;
+            margin-top: 15px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        /* Mystery Box Container */
+        .box-container {
+            margin: 50px 0;
+            position: relative;
+            width: 320px;
+            height: 320px;
+            perspective: 1200px;
+        }
+        
+        .mystery-box {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .box-closed {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #ffefef;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backface-visibility: hidden;
+            transform-origin: center;
+            box-shadow: 
+                0 15px 35px rgba(138, 22, 22, 0.1),
+                0 5px 15px rgba(138, 22, 22, 0.07),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border: 1px solid #ffcccc;
+            overflow: hidden;
+        }
+        
+        .box-closed:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #8a1616;
+        }
+        
+        .box-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: 
+                linear-gradient(30deg, #8a1616 12%, transparent 12.5%, transparent 87%, #8a1616 87.5%, #8a1616),
+                linear-gradient(150deg, #8a1616 12%, transparent 12.5%, transparent 87%, #8a1616 87.5%, #8a1616),
+                linear-gradient(30deg, #8a1616 12%, transparent 12.5%, transparent 87%, #8a1616 87.5%, #8a1616),
+                linear-gradient(150deg, #8a1616 12%, transparent 12.5%, transparent 87%, #8a1616 87.5%, #8a1616),
+                linear-gradient(60deg, #ff999977 25%, transparent 25.5%, transparent 75%, #ff999977 75%, #ff999977),
+                linear-gradient(60deg, #ff999977 25%, transparent 25.5%, transparent 75%, #ff999977 75%, #ff999977);
+            background-size: 80px 140px;
+            background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+        }
+        
+        .box-label {
+            background-color: transparent;
+            color: #8a1616;
+            padding: 15px 30px;
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(138, 22, 22, 0.3);
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        
+        .box-open {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #fff0f0;
+            border-radius: 8px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+            overflow: hidden;
+            box-shadow: 
+                0 15px 35px rgba(138, 22, 22, 0.15),
+                0 5px 15px rgba(138, 22, 22, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border: 1px solid #ffcccc;
+        }
+        
+        .box-open:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #8a1616;
+        }
+        
+        .gift-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 30px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .gift-icon {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8a1616;
+            font-size: 4rem;
+        }
+        
+        .gift-name {
+            font-size: 1.8rem;
+            color: #8a1616;
+            font-weight: 400;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .gift-description {
+            font-size: 1rem;
+            color: #a64141;
+            max-width: 90%;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        /* Animation Classes */
+        .shake {
+            animation: shake 0.6s ease infinite;
+        }
+        
+        .shake-hard {
+            animation: shakeHard 0.4s ease 3;
+        }
+        
+        .open {
+            animation: openBox 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            20% { transform: translateX(-8px) rotate(-1deg); }
+            40% { transform: translateX(8px) rotate(1deg); }
+            60% { transform: translateX(-5px) rotate(-0.5deg); }
+            80% { transform: translateX(5px) rotate(0.5deg); }
+        }
+        
+        @keyframes shakeHard {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(-15px) rotate(-3deg); }
+            50% { transform: translateX(15px) rotate(3deg); }
+            75% { transform: translateX(-10px) rotate(-2deg); }
+        }
+        
+        @keyframes openBox {
+            0% { transform: rotateY(0deg); }
+            70% { transform: rotateY(180deg); }
+            100% { transform: rotateY(180deg); }
+        }
+        
+        /* Valentine Text */
+        .valentine-text {
+            font-size: 2rem;
+            color: #8a1616;
+            margin: 40px 0;
+            font-weight: 300;
+            letter-spacing: 3px;
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .valentine-text:before, .valentine-text:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 1px;
+            background-color: #ff9999;
+        }
+        
+        .valentine-text:before {
+            left: calc(50% - 100px);
+        }
+        
+        .valentine-text:after {
+            right: calc(50% - 100px);
+        }
+        
+        /* Gift Items Display */
+        .gift-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0 30px;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .gift-item {
+            background-color: #fff5f5;
+            border-radius: 4px;
+            padding: 25px 20px;
+            width: 160px;
+            box-shadow: 0 5px 15px rgba(138, 22, 22, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid rgba(255, 204, 204, 0.3);
+            position: relative;
+        }
+        
+        .gift-item:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: #ffcccc;
+        }
+        
+        .gift-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(138, 22, 22, 0.1);
+        }
+        
+        .item-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8a1616;
+            font-size: 2.5rem;
+            background-color: rgba(255, 153, 153, 0.2);
+            border-radius: 50%;
+        }
+        
+        .item-name {
+            font-size: 1rem;
+            color: #8a1616;
+            font-weight: 400;
+            margin-bottom: 10px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .item-chance {
+            font-size: 0.9rem;
+            color: #a64141;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding: 30px 20px;
+            text-align: center;
+            color: #a64141;
+            width: 100%;
+            border-top: 1px solid #ffcccc;
+        }
+        
+        .made-by {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            color: #8a1616;
+            text-decoration: none;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            position: relative;
+            padding-bottom: 3px;
+        }
+        
+        .social-link:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #8a1616;
+            transition: width 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: #5c2c2c;
+        }
+        
+        .social-link:hover:after {
+            width: 100%;
+        }
+        
+        .disclaimer {
+            font-size: 0.85rem;
+            margin-top: 25px;
+            color: #8a1616;
+            font-weight: 300;
+            letter-spacing: 1px;
+            font-style: normal;
+        }
+        
+        /* Instructions */
+        .instructions {
+            background-color: #fff5f5;
+            padding: 25px 30px;
+            border-radius: 4px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            box-shadow: 0 5px 15px rgba(138, 22, 22, 0.05);
+            border: 1px solid rgba(255, 204, 204, 0.3);
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            color: #8a1616;
+            margin-bottom: 15px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            font-size: 1.2rem;
+        }
+        
+        .instructions p {
+            color: #a64141;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+        
+        /* Reset Button */
+        .reset-button {
+            background-color: transparent;
+            color: #8a1616;
+            border: 1px solid #ff9999;
+            padding: 12px 30px;
+            border-radius: 2px;
+            font-size: 1rem;
+            font-weight: 300;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+        }
+        
+        .reset-button:hover {
+            background-color: rgba(255, 153, 153, 0.1);
+            color: #5c2c2c;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mystery-box-title {
+                font-size: 2.8rem;
+                letter-spacing: 6px;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            .box-container {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .box-label {
+                font-size: 4rem;
+            }
+            
+            .gift-items {
+                gap: 20px;
+            }
+            
+            .gift-item {
+                width: 140px;
+                padding: 20px 15px;
+            }
+            
+            .valentine-text {
+                font-size: 1.7rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .mystery-box-title {
+                font-size: 2.2rem;
+                letter-spacing: 4px;
+            }
+            
+            .valentine-text {
+                font-size: 1.5rem;
+            }
+            
+            .box-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .gift-items {
+                gap: 15px;
+            }
+            
+            .gift-item {
+                width: 130px;
+                padding: 15px 10px;
+            }
+            
+            .item-name {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">DreamLloSet</div>
+            <h1 class="mystery-box-title">MYSTERY BOX</h1>
+            <div class="subtitle">VALENTINE'S SPECIAL</div>
+            <div class="value-tag">12 Hadiah Misteri</div>
+            <div class="limited-tag">Limited edition only</div>
+        </div>
+        
+        <div class="instructions">
+            <h3>Cara Bermain:</h3>
+            <p>Klik kotak misteri untuk membukanya dan lihat hadiah Valentine Anda! Setiap kotak berisi 1 dari 12 hadiah spesial untuk Valentine-mu.</p>
+        </div>
+        
+        <div class="box-container">
+            <div class="mystery-box">
+                <div class="box-closed" id="closedBox">
+                    <div class="box-pattern"></div>
+                    <div class="box-label">?</div>
+                </div>
+                <div class="box-open" id="openBox">
+                    <div class="gift-content" id="giftContent">
+                        <!-- Gift content will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="valentine-text">Be My Valentine?</div>
+        
+        <div class="gift-items">
+            <!-- 12 Item akan ditampilkan di sini -->
+            <!-- Anda bisa menambahkan nama dan foto nanti -->
+            <div class="gift-item">
+                <div class="item-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="item-name">Hadiah 1</div>
+                <div class="item-chance">8.3% Peluang</div>
+            </div>
+            <div class="gift-item">
+                <div class="item-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="item-name">Hadiah 2</div>
+                <div class="item-chance">8.3% Peluang</div>
+            </div>
+            <div class="gift-item">
+                <div class="item-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <div class="item-name">Hadiah 3</div>
+                <div class="item-chance">8.3% Peluang</div>
+            </div>
+            <div class="gift-item">
+                <div class="item-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="item-name">Hadiah 4</div>
+                <div class="item-chance">8.3% Peluang</div>
+            </div>
+            <div class="gift-item">
+                <div class="item-icon">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="item-name">Hadiah 5</div>
+                <div class="item-chance">8.3% Peluang</div>
+            </div>
+            <div class="gift-item">
+                <div class="item-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="item-name">Hadiah 6</div>
+                <div class="item-chance">8.3% Peluang</div>
+            </div>
+            <div class="gift-item">
+                <div class="item-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <div class="item-name">Hadiah 7</div>
+                <div class="item-chance">8.3% Peluang</div>
+            </div>
+            <div class="gift-item">
+                <div class="item-icon">
+                    <i class="fas fa-rainbow"></i>
+                </div>
+                <div class="item-name">Hadiah 8</div>
+                <div class="item-chance">8.3% Peluang</div>
+            </div>
+            <div class="gift-item">
+                <div class="item-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="item-name">Hadiah 9</div>
+                <div class="item-chance">8.3% Peluang</div>
+            </div>
+            <div class="gift-item">
+                <div class="item-icon">
+                    <i class="fas fa-feather"></i>
+                </div>
+                <div class="item-name">Hadiah 10</div>
+                <div class="item-chance">8.3% Peluang</div>
+            </div>
+            <div class="gift-item">
+                <div class="item-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="item-name">Hadiah 11</div>
+                <div class="item-chance">8.3% Peluang</div>
+            </div>
+            <div class="gift-item">
+                <div class="item-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="item-name">Hadiah 12</div>
+                <div class="item-chance">8.3% Peluang</div>
+            </div>
+        </div>
+        
+        <button class="reset-button" id="resetButton">Coba Lagi</button>
+        
+        <footer>
+            <div class="made-by">Made by Kachoo, 2026</div>
+            <div class="social-links">
+                <a href="https://twitter.com/thekachoo" target="_blank" class="social-link">@thekachoo</a>
+                <a href="mailto:ohkachoo@gmail.com" class="social-link">ohkachoo@gmail.com</a>
+            </div>
+            <div class="disclaimer">For roleplay purpose only</div>
+        </footer>
+    </div>
+
+    <script>
+        // Gift data - 12 items dengan probabilitas sama
+        const gifts = [
+            {
+                id: 1,
+                name: "Hadiah Valentine 1",
+                description: "Hadiah spesial Valentine pertama untukmu, sayang.",
+                icon: '<i class="fas fa-heart"></i>',
+                probability: 8.33
+            },
+            {
+                id: 2,
+                name: "Hadiah Valentine 2",
+                description: "Hadiah spesial Valentine kedua yang penuh kejutan.",
+                icon: '<i class="fas fa-star"></i>',
+                probability: 8.33
+            },
+            {
+                id: 3,
+                name: "Hadiah Valentine 3",
+                description: "Hadiah spesial Valentine ketiga dengan cinta tak terduga.",
+                icon: '<i class="fas fa-gift"></i>',
+                probability: 8.33
+            },
+            {
+                id: 4,
+                name: "Hadiah Valentine 4",
+                description: "Hadiah spesial Valentine keempat untuk memikat hatimu.",
+                icon: '<i class="fas fa-crown"></i>',
+                probability: 8.33
+            },
+            {
+                id: 5,
+                name: "Hadiah Valentine 5",
+                description: "Hadiah spesial Valentine kelima di malam yang romantis.",
+                icon: '<i class="fas fa-moon"></i>',
+                probability: 8.33
+            },
+            {
+                id: 6,
+                name: "Hadiah Valentine 6",
+                description: "Hadiah spesial Valentine keenam yang hangat seperti mentari.",
+                icon: '<i class="fas fa-sun"></i>',
+                probability: 8.33
+            },
+            {
+                id: 7,
+                name: "Hadiah Valentine 7",
+                description: "Hadiah spesial Valentine ketujuh yang lembut seperti awan.",
+                icon: '<i class="fas fa-cloud"></i>',
+                probability: 8.33
+            },
+            {
+                id: 8,
+                name: "Hadiah Valentine 8",
+                description: "Hadiah spesial Valentine kedelapan yang penuh warna pelangi.",
+                icon: '<i class="fas fa-rainbow"></i>',
+                probability: 8.33
+            },
+            {
+                id: 9,
+                name: "Hadiah Valentine 9",
+                description: "Hadiah spesial Valentine kesembulan yang indah seperti lonceng.",
+                icon: '<i class="fas fa-bell"></i>',
+                probability: 8.33
+            },
+            {
+                id: 10,
+                name: "Hadiah Valentine 10",
+                description: "Hadiah spesial Valentine kesepuluh yang ringan seperti bulu.",
+                icon: '<i class="fas fa-feather"></i>',
+                probability: 8.33
+            },
+            {
+                id: 11,
+                name: "Hadiah Valentine 11",
+                description: "Hadiah spesial Valentine kesebelas, kunci menuju hatiku.",
+                icon: '<i class="fas fa-key"></i>',
+                probability: 8.33
+            },
+            {
+                id: 12,
+                name: "Hadiah Valentine 12",
+                description: "Hadiah spesial Valentine keduabelas, terkunci untukmu saja.",
+                icon: '<i class="fas fa-lock"></i>',
+                probability: 8.36 // Sedikit lebih besar untuk rounding error
+            }
+        ];
+
+        let boxOpened = false;
+        
+        // Get DOM elements
+        const closedBox = document.getElementById('closedBox');
+        const openBox = document.getElementById('openBox');
+        const giftContent = document.getElementById('giftContent');
+        const mysteryBox = document.querySelector('.mystery-box');
+        const resetButton = document.getElementById('resetButton');
+        
+        // Add shaking animation on hover
+        closedBox.addEventListener('mouseover', function() {
+            if (!boxOpened) {
+                this.classList.add('shake');
+            }
+        });
+        
+        closedBox.addEventListener('mouseout', function() {
+            this.classList.remove('shake');
+        });
+        
+        // Open box on click
+        closedBox.addEventListener('click', openMysteryBox);
+        
+        // Reset box function
+        resetButton.addEventListener('click', resetBox);
+        
+        // Function to open the mystery box
+        function openMysteryBox() {
+            if (boxOpened) return;
+            
+            boxOpened = true;
+            
+            // Remove hover shake and add hard shake
+            closedBox.classList.remove('shake');
+            closedBox.classList.add('shake-hard');
+            
+            // After shake, open the box
+            setTimeout(() => {
+                closedBox.classList.remove('shake-hard');
+                mysteryBox.classList.add('open');
+                
+                // Show the gift after box opens
+                setTimeout(() => {
+                    // Select a random gift based on probabilities
+                    const selectedGift = selectRandomGift();
+                    
+                    // Display the selected gift
+                    displayGift(selectedGift);
+                    
+                    // Show the open box
+                    openBox.style.display = 'flex';
+                }, 600);
+            }, 1200);
+        }
+        
+        // Function to select a random gift based on probabilities
+        function selectRandomGift() {
+            // Calculate total probability
+            const totalProbability = gifts.reduce((sum, gift) => sum + gift.probability, 0);
+            
+            // Generate a random number between 0 and totalProbability
+            let random = Math.random() * totalProbability;
+            
+            // Find the gift based on probability ranges
+            let selectedGift = gifts[0];
+            let cumulativeProbability = 0;
+            
+            for (const gift of gifts) {
+                cumulativeProbability += gift.probability;
+                if (random <= cumulativeProbability) {
+                    selectedGift = gift;
+                    break;
+                }
+            }
+            
+            return selectedGift;
+        }
+        
+        // Function to display the selected gift
+        function displayGift(gift) {
+            giftContent.innerHTML = `
+                <div class="gift-icon">${gift.icon}</div>
+                <div class="gift-name">${gift.name}</div>
+                <div class="gift-description">${gift.description}</div>
+            `;
+        }
+        
+        // Reset box function
+        function resetBox() {
+            boxOpened = false;
+            mysteryBox.classList.remove('open');
+            openBox.style.display = 'none';
+            closedBox.classList.remove('shake-hard');
+            
+            // Reset animation
+            setTimeout(() => {
+                mysteryBox.style.animation = 'none';
+                setTimeout(() => {
+                    mysteryBox.style.animation = '';
+                }, 10);
+            }, 10);
+        }
+    </script>
+</body>
+</html>
