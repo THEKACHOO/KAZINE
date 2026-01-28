@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAZINE | KAZINE ON LOOP</title>
+    <title>KAZINE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <style>
         :root {
             --pure-white: #ffffff;
@@ -186,9 +185,9 @@
             z-index: 1001;
         }
 
-        /* Hero Section */
+        /* =============== PERUBAHAN UKURAN FOTO UTAMA (21:9 - 1920x823px) =============== */
         .hero-ambassador {
-            padding: 150px 0 40px;
+            padding: 150px 0 80px;
             background: var(--off-white);
             position: relative;
         }
@@ -196,7 +195,7 @@
         .ambassador-image {
             width: 100%;
             height: auto;
-            aspect-ratio: 21 / 9;
+            aspect-ratio: 21 / 9; /* Rasio 21:9 untuk 1920x823px */
             background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
             position: relative;
             overflow: hidden;
@@ -231,237 +230,39 @@
             text-transform: uppercase;
         }
 
-        /* KAZINE ON LOOP Section */
-        .kazine-section {
-            padding: 60px 0;
-            background: var(--pure-white);
-            text-align: center;
-        }
-
-        .kazine-header {
-            max-width: 800px;
-            margin: 0 auto 50px;
-        }
-
-        .kazine-header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 400;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .kazine-header p {
-            font-size: 16px;
-            color: var(--medium-gray);
-            line-height: 1.8;
-        }
-
-        /* KAZINE Items Grid - 14 Items dengan 2 foto per item */
-        .kazine-items-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 768px) {
-            .kazine-items-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 992px) {
-            .kazine-items-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .kazine-items-grid {
-                grid-template-columns: repeat(5, 1fr);
-            }
-        }
-
-        /* Product Card dengan Swiper */
-        .kazine-product-card {
-            background: var(--pure-white);
-            border-radius: 2px;
-            overflow: hidden;
-            transition: var(--transition-smooth);
-        }
-
-        .kazine-product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .product-image-slider {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-        }
-
-        .swiper-container {
-            width: 100%;
-            height: 100%;
-        }
-
-        .swiper-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--light-gray);
-        }
-
-        .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Navigation arrows untuk Swiper */
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: var(--pure-white);
-            background: rgba(0, 0, 0, 0.3);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            transition: var(--transition-smooth);
-        }
-
-        .swiper-button-next:after,
-        .swiper-button-prev:after {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .swiper-button-next:hover,
-        .swiper-button-prev:hover {
-            background: rgba(0, 0, 0, 0.6);
-        }
-
-        /* Pagination dots untuk Swiper */
-        .swiper-pagination-bullet {
-            background: var(--pure-white);
-            opacity: 0.5;
-            width: 8px;
-            height: 8px;
-        }
-
-        .swiper-pagination-bullet-active {
-            opacity: 1;
-            background: var(--pure-white);
-        }
-
-        .kazine-product-info {
-            padding: 25px 20px;
-            text-align: center;
-        }
-
-        .kazine-brand-name {
-            font-size: 11px;
-            color: var(--medium-gray);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .kazine-product-name {
-            font-size: 16px;
-            font-weight: 400;
-            margin-bottom: 15px;
-            min-height: 40px;
-        }
-
-        .kazine-product-price {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-
-        /* TOMBOL ADD TO CART - TIDAK DIUBAH */
-        .add-to-cart-btn {
-            width: 100%;
-            padding: 12px;
-            background: var(--pure-black);
-            color: var(--pure-white);
-            border: none;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .add-to-cart-btn:hover {
-            background: var(--dark-gray);
-        }
-
-        .add-to-cart-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Collection Description */
-        .collection-description {
-            max-width: 800px;
-            margin: 60px auto 40px;
-            padding: 40px;
-            background: var(--off-white);
-            border-radius: 2px;
-            text-align: center;
-        }
-
-        .collection-description h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 400;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .collection-description p {
-            font-size: 16px;
-            color: var(--dark-gray);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        /* Fashion Grid */
+        /* =============== PERUBAHAN FASHION GRID =============== */
         .fashion-grid-section {
-            padding: 50px 0;
+            padding: 80px 0;
             background: var(--pure-white);
         }
 
+        /* Layout 3x3 grid untuk desktop */
         .fashion-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, auto);
+            grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+            grid-template-rows: repeat(3, auto);   /* 3 baris */
             gap: 15px;
         }
 
+        /* Baris 1: 3 kolom atas 800x800px */
         .grid-item:nth-child(1),
         .grid-item:nth-child(2),
         .grid-item:nth-child(3) {
-            aspect-ratio: 1 / 1;
+            aspect-ratio: 1 / 1; /* Square 800x800px */
         }
 
+        /* Baris 2: 3 kolom tengah 800x1000px (portrait) */
         .grid-item:nth-child(4),
         .grid-item:nth-child(5),
         .grid-item:nth-child(6) {
-            aspect-ratio: 4 / 5;
+            aspect-ratio: 4 / 5; /* Portrait 800x1000px */
         }
 
+        /* Baris 3: 3 kolom bawah 800x800px */
         .grid-item:nth-child(7),
         .grid-item:nth-child(8),
         .grid-item:nth-child(9) {
-            aspect-ratio: 1 / 1;
+            aspect-ratio: 1 / 1; /* Square 800x800px */
         }
 
         .grid-item {
@@ -481,7 +282,115 @@
             transform: scale(1.05);
         }
 
-        /* Shop Section */
+        /* =============== PERUBAHAN KAFKAPAGES (21:9 - 1920x823px) =============== */
+        .kafkapages-preview {
+            padding: 80px 0;
+            background: var(--pure-white);
+            border-top: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .kafkapages-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .kafkapages-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .kafkapages-content p {
+            font-size: 16px;
+            color: var(--medium-gray);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .kafkapages-photo-link {
+            display: block;
+            max-width: 100%;
+            margin: 40px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .kafkapages-photo {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 21 / 9; /* Rasio 21:9 untuk 1920x823px */
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .kafkapages-photo-link:hover .kafkapages-photo {
+            transform: scale(1.03);
+        }
+
+        .photo-caption {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--medium-gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .kafkapages-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: var(--pure-white);
+            text-align: left;
+        }
+
+        .kafkapages-overlay h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .kafkapages-overlay p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0;
+        }
+
+        .kafkapages-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--pure-black);
+            color: var(--pure-black);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transition-smooth);
+            background: transparent;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .kafkapages-btn:hover {
+            background: var(--pure-black);
+            color: var(--pure-white);
+        }
+
+        /* =============== SHOP SECTION - MODIFIED =============== */
         .shop-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -519,6 +428,7 @@
             border-radius: 2px;
             overflow: hidden;
             transition: var(--transition-smooth);
+            position: relative;
         }
 
         .product-card:hover {
@@ -526,16 +436,54 @@
             box-shadow: var(--shadow-hover);
         }
 
-        .product-image {
+        .product-image-container {
             height: 350px;
             background: var(--light-gray);
             overflow: hidden;
+            position: relative;
         }
 
-        .product-image img {
+        .product-slides {
+            display: flex;
+            width: 200%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .product-slide {
+            width: 50%;
+            height: 100%;
+            flex-shrink: 0;
+        }
+
+        .product-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .product-image-nav {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: var(--pure-white);
+            transform: scale(1.2);
         }
 
         .product-info {
@@ -555,12 +503,39 @@
             font-size: 16px;
             font-weight: 400;
             margin-bottom: 15px;
+            min-height: 40px;
         }
 
         .product-price {
             font-size: 16px;
             font-weight: 500;
             margin-bottom: 20px;
+        }
+
+        /* TOMBOL ADD TO CART - TIDAK DIUBAH */
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--dark-gray);
+        }
+
+        .add-to-cart-btn:active {
+            transform: scale(0.98);
         }
 
         /* Checkout Button */
@@ -843,60 +818,11 @@
             visibility: visible;
         }
 
-        /* Buttons */
-        .kafkapages-btn {
-            display: inline-block;
-            padding: 15px 40px;
-            border: 1px solid var(--pure-black);
-            color: var(--pure-black);
-            text-decoration: none;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: var(--transition-smooth);
-            background: transparent;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .kafkapages-btn:hover {
-            background: var(--pure-black);
-            color: var(--pure-white);
-        }
-
-        /* Notification style */
-        .cart-notification {
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--pure-black);
-            color: var(--pure-white);
-            padding: 12px 24px;
-            border-radius: 2px;
-            z-index: 9999;
-            font-size: 14px;
-            white-space: nowrap;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            animation: fadeInOut 2s ease-in-out;
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-        }
-
         /* =============== RESPONSIVE DESIGN =============== */
         /* Tablet */
         @media (max-width: 1200px) {
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .kazine-items-grid {
-                grid-template-columns: repeat(4, 1fr);
             }
         }
 
@@ -963,17 +889,14 @@
                 width: 150px;
                 height: 50px;
             }
-            
-            .kazine-items-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
         }
 
-        /* Mobile */
+        /* =============== PERUBAHAN UKURAN UNTUK MOBILE =============== */
+        /* Semua foto ukuran sama untuk mobile */
         @media (max-width: 768px) {
-            /* Hero Section Mobile */
+            /* Hero Section Mobile - tetap 21:9 */
             .hero-ambassador {
-                padding: 120px 0 30px;
+                padding: 120px 0 50px;
             }
             
             .ambassador-image {
@@ -999,51 +922,9 @@
                 letter-spacing: 2px;
             }
             
-            /* KAZINE Section Mobile */
-            .kazine-section {
-                padding: 40px 0;
-            }
-            
-            .kazine-header h1 {
-                font-size: 36px;
-            }
-            
-            .kazine-header p {
-                font-size: 14px;
-            }
-            
-            /* KAZINE Items Grid Mobile */
-            .kazine-items-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-            
-            .product-image-slider {
-                height: 250px;
-            }
-            
-            .kazine-product-info {
-                padding: 20px 15px;
-            }
-            
-            .kazine-product-name {
-                font-size: 15px;
-                min-height: auto;
-            }
-            
-            /* Collection Description Mobile */
-            .collection-description {
-                padding: 30px 20px;
-                margin: 40px auto 30px;
-            }
-            
-            .collection-description h2 {
-                font-size: 28px;
-            }
-            
-            /* Fashion Grid Mobile */
+            /* Fashion Grid Mobile - 1 kolom, semua foto sama ukuran */
             .fashion-grid-section {
-                padding: 40px 0;
+                padding: 50px 0;
             }
             
             .fashion-grid {
@@ -1055,15 +936,22 @@
             
             .grid-item {
                 width: 100%;
-                aspect-ratio: 1 / 1;
+                aspect-ratio: 1 / 1; /* Semua jadi square di mobile */
                 border-radius: 4px;
                 overflow: hidden;
             }
             
+            /* Override untuk portrait di mobile */
             .grid-item:nth-child(4),
             .grid-item:nth-child(5),
             .grid-item:nth-child(6) {
-                aspect-ratio: 1 / 1;
+                aspect-ratio: 1 / 1; /* Jadi square juga di mobile */
+            }
+            
+            .grid-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
             
             /* Shop Section Mobile */
@@ -1077,7 +965,7 @@
                 margin-bottom: 0;
             }
             
-            .product-image {
+            .product-image-container {
                 height: 280px;
             }
             
@@ -1095,10 +983,42 @@
                 margin-bottom: 15px;
             }
             
-            /* TOMBOL TIDAK DIUBAH */
+            /* TOMBOL TIDAK DIUBAH - tetap seperti semula */
             .add-to-cart-btn {
                 padding: 12px;
                 font-size: 12px;
+            }
+            
+            /* KAFKAPAGES Mobile - tetap 21:9 */
+            .kafkapages-preview {
+                padding: 50px 0;
+            }
+            
+            .kafkapages-content h2 {
+                font-size: 28px;
+                letter-spacing: 1px;
+            }
+            
+            .kafkapages-content p {
+                font-size: 14px;
+                margin-bottom: 30px;
+                line-height: 1.6;
+            }
+            
+            .kafkapages-photo-link {
+                margin: 30px auto;
+            }
+            
+            .kafkapages-overlay {
+                padding: 20px;
+            }
+            
+            .kafkapages-overlay h3 {
+                font-size: 22px;
+            }
+            
+            .kafkapages-overlay p {
+                font-size: 13px;
             }
             
             /* Magazine Section Mobile */
@@ -1164,14 +1084,9 @@
                 font-size: 26px;
             }
             
-            /* KAZINE Items Mobile Kecil */
-            .kazine-items-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .product-image-slider {
-                height: 300px;
+            /* Fashion Grid Mobile Kecil */
+            .fashion-grid {
+                gap: 10px;
             }
             
             /* Logo Mobile Kecil */
@@ -1180,13 +1095,27 @@
                 height: 40px;
             }
             
+            /* KAFKAPAGES Mobile Kecil */
+            .kafkapages-overlay h3 {
+                font-size: 20px;
+            }
+            
+            /* Magazine Content Mobile Kecil */
+            .magazine-content h2 {
+                font-size: 32px;
+            }
+            
+            .magazine-content h3 {
+                font-size: 18px;
+            }
+            
             /* Products Grid Mobile Kecil */
             .products-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
             
-            .product-image {
+            .product-image-container {
                 height: 320px;
             }
         }
@@ -1215,6 +1144,30 @@
             * {
                 -webkit-tap-highlight-color: rgba(0,0,0,0);
             }
+        }
+
+        /* Notification style */
+        .cart-notification {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--pure-black);
+            color: var(--pure-white);
+            padding: 12px 24px;
+            border-radius: 2px;
+            z-index: 9999;
+            font-size: 14px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: fadeInOut 2s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
         }
     </style>
 </head>
@@ -1279,526 +1232,408 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero - Brand Ambassador -->
     <section class="hero-ambassador">
         <div class="container">
             <div class="ambassador-image">
                 <img src="kazinebanner.png" 
-                     alt="RACHEL HEARST">
+                     alt="Brand Ambassador - Elevated Style">
                 <div class="ambassador-overlay">
-                    <h2>KAZINE ON LOOP</h2>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- KAZINE ON LOOP Section -->
-    <section class="kazine-section">
-        <div class="container">
-            <div class="kazine-header">
-                <h1>KAZINE ON LOOP</h1>
-                <p>With CHOOSIC, CHOZY, and CHOFFEE!</p>
-            </div>
-            
-            <!-- 14 Items dengan 2 foto per item -->
-            <div class="kazine-items-grid">
-                <!-- Item 1 -->
-                <div class="kazine-product-card" data-product="CHOOSIC - GRAPHITE BLACK" data-price="480" data-id="CHOOSIC-01">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="CHOOSICGB1.png" alt="CHOOSIC - GRAPHITE BLACK">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="CHOOSICGB2.png" alt="CHOOSIC - GRAPHITE BLACK">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">CHOOSIC</div>
-                        <h3 class="kazine-product-name">GRAPHITE BLACK</h3>
-                        <div class="kazine-product-price">$480</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Item 2 -->
-                <div class="kazine-product-card" data-product="CHOOSIC - WHITE" data-price="480" data-id="CHOOSIC-02">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="CHOOSICWHITE1.png" alt="CHOOSIC - WHITE">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="CHOOSICWHITE2.png" alt="CHOOSIC - WHITE">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">CHOOSIC</div>
-                        <h3 class="kazine-product-name">WHITE</h3>
-                        <div class="kazine-product-price">$480</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Item 3 -->
-                <div class="kazine-product-card" data-product="CHOOSIC - SILVER" data-price="480" data-id="CHOOSIC-03">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="CHOOSICSILVER1.png" alt="CHOOSIC - SILVER">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="CHOOSICSILVER2.png" alt="CHOOSIC - SILVER">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">CHOOSIC</div>
-                        <h3 class="kazine-product-name">SILVER</h3>
-                        <div class="kazine-product-price">$480</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Item 4 -->
-                <div class="kazine-product-card" data-product="CHOZY - BLACK LEATHER" data-price="320" data-id="CHOZY-01">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="CHOZYBLACK1.png" alt="CHOZY - BLACK LEATHER">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="CHOZYBLACK2.png" alt="CHOZY - BLACK LEATHER">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">CHOZY</div>
-                        <h3 class="kazine-product-name">BLACK LEATHER</h3>
-                        <div class="kazine-product-price">$320</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Item 5 -->
-                <div class="kazine-product-card" data-product="CHOZY - BROWN SUEDE" data-price="320" data-id="CHOZY-02">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="CHOZYBROWN1.png" alt="CHOZY - BROWN SUEDE">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="CHOZYBROWN2.png" alt="CHOZY - BROWN SUEDE">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">CHOZY</div>
-                        <h3 class="kazine-product-name">BROWN SUEDE</h3>
-                        <div class="kazine-product-price">$320</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Item 6 -->
-                <div class="kazine-product-card" data-product="CHOZY - NAVY VELVET" data-price="320" data-id="CHOZY-03">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="CHOZYNAVY1.png" alt="CHOZY - NAVY VELVET">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="CHOZYNAVY2.png" alt="CHOZY - NAVY VELVET">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">CHOZY</div>
-                        <h3 class="kazine-product-name">NAVY VELVET</h3>
-                        <div class="kazine-product-price">$320</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Item 7 -->
-                <div class="kazine-product-card" data-product="CHOFFEE - CLASSIC BLEND" data-price="45" data-id="CHOFFEE-01">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="CHOFFEECLASSIC1.png" alt="CHOFFEE - CLASSIC BLEND">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="CHOFFEECLASSIC2.png" alt="CHOFFEE - CLASSIC BLEND">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">CHOFFEE</div>
-                        <h3 class="kazine-product-name">CLASSIC BLEND</h3>
-                        <div class="kazine-product-price">$45</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Item 8 -->
-                <div class="kazine-product-card" data-product="CHOFFEE - DARK ROAST" data-price="45" data-id="CHOFFEE-02">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="CHOFFEEDARK1.png" alt="CHOFFEE - DARK ROAST">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="CHOFFEEDARK2.png" alt="CHOFFEE - DARK ROAST">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">CHOFFEE</div>
-                        <h3 class="kazine-product-name">DARK ROAST</h3>
-                        <div class="kazine-product-price">$45</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Item 9 -->
-                <div class="kazine-product-card" data-product="CHOFFEE - PREMIUM ESPRESSO" data-price="55" data-id="CHOFFEE-03">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="CHOFFEEESPRESSO1.png" alt="CHOFFEE - PREMIUM ESPRESSO">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="CHOFFEEESPRESSO2.png" alt="CHOFFEE - PREMIUM ESPRESSO">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">CHOFFEE</div>
-                        <h3 class="kazine-product-name">PREMIUM ESPRESSO</h3>
-                        <div class="kazine-product-price">$55</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Item 10 -->
-                <div class="kazine-product-card" data-product="KAZINE CAP - BLACK" data-price="75" data-id="KZCAP-01">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="KZCAPBLACK1.png" alt="KAZINE CAP - BLACK">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="KZCAPBLACK2.png" alt="KAZINE CAP - BLACK">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">KAZINE ACCESSORIES</div>
-                        <h3 class="kazine-product-name">CAP - BLACK</h3>
-                        <div class="kazine-product-price">$75</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Item 11 -->
-                <div class="kazine-product-card" data-product="KAZINE CAP - WHITE" data-price="75" data-id="KZCAP-02">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="KZCAPWHITE1.png" alt="KAZINE CAP - WHITE">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="KZCAPWHITE2.png" alt="KAZINE CAP - WHITE">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">KAZINE ACCESSORIES</div>
-                        <h3 class="kazine-product-name">CAP - WHITE</h3>
-                        <div class="kazine-product-price">$75</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Item 12 -->
-                <div class="kazine-product-card" data-product="KAZINE TOTE BAG" data-price="120" data-id="KZBAG-01">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="KZBAG1.png" alt="KAZINE TOTE BAG">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="KZBAG2.png" alt="KAZINE TOTE BAG">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">KAZINE ACCESSORIES</div>
-                        <h3 class="kazine-product-name">TOTE BAG</h3>
-                        <div class="kazine-product-price">$120</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Item 13 -->
-                <div class="kazine-product-card" data-product="KAZINE HOODIE - BLACK" data-price="150" data-id="KZHOD-01">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="KZHOODIEBLACK1.png" alt="KAZINE HOODIE - BLACK">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="KZHOODIEBLACK2.png" alt="KAZINE HOODIE - BLACK">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">KAZINE APPAREL</div>
-                        <h3 class="kazine-product-name">HOODIE - BLACK</h3>
-                        <div class="kazine-product-price">$150</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <!-- Item 14 -->
-                <div class="kazine-product-card" data-product="KAZINE HOODIE - GREY" data-price="150" data-id="KZHOD-02">
-                    <div class="product-image-slider">
-                        <div class="swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="KZHOODIEGREY1.png" alt="KAZINE HOODIE - GREY">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="KZHOODIEGREY2.png" alt="KAZINE HOODIE - GREY">
-                                </div>
-                            </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                    <div class="kazine-product-info">
-                        <div class="kazine-brand-name">KAZINE APPAREL</div>
-                        <h3 class="kazine-product-name">HOODIE - GREY</h3>
-                        <div class="kazine-product-price">$150</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="collection-description">
-                <h2>KAZINE ON LOOP</h2>
-                <p>Experience the complete KAZINE lifestyle with our curated collection of premium products. From high-quality audio devices with CHOOSIC to luxurious accessories with CHOZY, and specialty coffee with CHOFFEE - each product is designed with the KAZINE ethos of excellence and style.</p>
-                <p>Join the loop and elevate your everyday experience with products that reflect sophistication, quality, and the distinctive KAZINE aesthetic.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Fashion Grid -->
+    <!-- Fashion Grid - 9 foto dengan layout baru -->
     <section class="fashion-grid-section">
         <div class="container">
             <div class="fashion-grid">
+                <!-- Baris 1: 3 kolom atas 800x800px -->
                 <div class="grid-item">
-                    <img src="grid1.png" alt="Fashion Editorial 1">
+                    <img src="grid1.png" 
+                         alt="Fashion Editorial 1">
                 </div>
                 <div class="grid-item">
-                    <img src="grid2.png" alt="Fashion Editorial 2">
+                    <img src="grid2.png" 
+                         alt="Fashion Editorial 2">
                 </div>
                 <div class="grid-item">
-                    <img src="grid3.png" alt="Fashion Editorial 3">
+                    <img src="grid3.png" 
+                         alt="Fashion Editorial 3">
+                </div>
+                
+                <!-- Baris 2: 3 kolom tengah 800x1000px (portrait) -->
+                <div class="grid-item">
+                    <img src="grid4.png" 
+                         alt="Fashion Editorial 4">
                 </div>
                 <div class="grid-item">
-                    <img src="grid4.png" alt="Fashion Editorial 4">
+                    <img src="grid5.png" 
+                         alt="Fashion Editorial 5">
                 </div>
                 <div class="grid-item">
-                    <img src="grid5.png" alt="Fashion Editorial 5">
+                    <img src="grid6.png" 
+                         alt="Fashion Editorial 6">
+                </div>
+                
+                <!-- Baris 3: 3 kolom bawah 800x800px -->
+                <div class="grid-item">
+                    <img src="grid7.png" 
+                         alt="Fashion Editorial 7">
                 </div>
                 <div class="grid-item">
-                    <img src="grid6.png" alt="Fashion Editorial 6">
+                    <img src="grid8.png" 
+                         alt="Fashion Editorial 8">
                 </div>
                 <div class="grid-item">
-                    <img src="grid7.png" alt="Fashion Editorial 7">
-                </div>
-                <div class="grid-item">
-                    <img src="grid8.png" alt="Fashion Editorial 8">
-                </div>
-                <div class="grid-item">
-                    <img src="grid9.png" alt="Fashion Editorial 9">
+                    <img src="grid9.png" 
+                         alt="Fashion Editorial 9">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Shop Section -->
+    <!-- Shop Section - MODIFIED -->
     <section class="shop-section" id="shop">
         <div class="container">
             <div class="section-title">
-                <h2>SHOP KAZINE</h2>
-                <p>Complete your look with our curated selection</p>
+                <h2>KAZINE IN LOOP!</h2>
+                <p>Time to shop! Make sure to use your voucher.</p>
             </div>
             
             <div class="products-grid">
                 <!-- Product 1 -->
-                <div class="product-card" data-product="CHOOSIC - GRAPHITE BLACK" data-price="480" data-id="CHOOSIC-01">
-                    <div class="product-image">
-                        <img src="CHOOSICGB1.png"
-                             alt="CHOOSIC GRAPHITE BLACK">
+                <div class="product-card" data-product="BLÈU BLOOM DENIM JACKET" data-price="190" data-id="KZBL-01">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="thesera1.png" alt="BLÈU BLOOM DENIM JACKET - Front">
+                            </div>
+                            <div class="product-slide">
+                                <img src="thesera1b.png" alt="BLÈU BLOOM DENIM JACKET - Back" onerror="this.src='thesera1.png'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">CHOOSIC</div>
-                        <h3 class="product-name">GRAPHITE BLACK</h3>
-                        <div class="product-price">$480</div>
+                        <div class="brand-name">KAZINE COLLECTION</div>
+                        <h3 class="product-name">BLÈU BLOOM DENIM JACKET</h3>
+                        <div class="product-price">$190</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
                 
                 <!-- Product 2 -->
-                <div class="product-card" data-product="CHOOSIC - WHITE" data-price="480" data-id="CHOOSIC-02">
-                    <div class="product-image">
-                        <img src="CHOOSICWHITE1.png" 
-                             alt="CHOOSIC WHITE">
+                <div class="product-card" data-product="BLÈU BLOOM MINI DRESS" data-price="207" data-id="KZBL-02">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="thesera2.png" alt="BLÈU BLOOM MINI DRESS - Front">
+                            </div>
+                            <div class="product-slide">
+                                <img src="thesera2b.png" alt="BLÈU BLOOM MINI DRESS - Back" onerror="this.src='thesera2.png'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">CHOOSIC</div>
-                        <h3 class="product-name">WHITE</h3>
-                        <div class="product-price">$480</div>
+                        <div class="brand-name">KAZINE COLLECTION</div>
+                        <h3 class="product-name">BLÈU BLOOM MINI DRESS</h3>
+                        <div class="product-price">$207</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
                 
                 <!-- Product 3 -->
-                <div class="product-card" data-product="CHOOSIC - SILVER" data-price="480" data-id="CHOOSIC-03">
-                    <div class="product-image">
-                        <img src="CHOOSICSILVER1.png" 
-                             alt="CHOOSIC SILVER">
+                <div class="product-card" data-product="BLÈU BLOOM DENIM JEANS" data-price="178" data-id="KZBL-03">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="thesera3.png" alt="BLÈU BLOOM DENIM JEANS - Front">
+                            </div>
+                            <div class="product-slide">
+                                <img src="thesera3b.png" alt="BLÈU BLOOM DENIM JEANS - Back" onerror="this.src='thesera3.png'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">CHOOSIC</div>
-                        <h3 class="product-name">SILVER</h3>
-                        <div class="product-price">$480</div>
+                        <div class="brand-name">KAZINE COLLECTION</div>
+                        <h3 class="product-name">BLÈU BLOOM DENIM JEANS</h3>
+                        <div class="product-price">$178</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
                 
                 <!-- Product 4 -->
-                <div class="product-card" data-product="CHOZY - BLACK LEATHER" data-price="320" data-id="CHOZY-01">
-                    <div class="product-image">
-                        <img src="CHOZYBLACK1.png" 
-                             alt="CHOZY BLACK LEATHER">
+                <div class="product-card" data-product="BLÈU BLOOM DENIM SHORTS" data-price="166" data-id="KZBL-04">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="thesera4.png" alt="BLÈU BLOOM DENIM SHORTS - Front">
+                            </div>
+                            <div class="product-slide">
+                                <img src="thesera4b.png" alt="BLÈU BLOOM DENIM SHORTS - Back" onerror="this.src='thesera4.png'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">CHOZY</div>
-                        <h3 class="product-name">BLACK LEATHER</h3>
-                        <div class="product-price">$320</div>
+                        <div class="brand-name">KAZINE COLLECTION</div>
+                        <h3 class="product-name">BLÈU BLOOM DENIM SHORTS</h3>
+                        <div class="product-price">$166</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
                 
                 <!-- Product 5 -->
-                <div class="product-card" data-product="CHOZY - BROWN SUEDE" data-price="320" data-id="CHOZY-02">
-                    <div class="product-image">
-                        <img src="CHOZYBROWN1.png" 
-                             alt="CHOZY BROWN SUEDE">
+                <div class="product-card" data-product="MINI BLÈU-DENIM BAG" data-price="107" data-id="KZBL-05">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="thesera5.png" alt="MINI BLÈU-DENIM BAG - Front">
+                            </div>
+                            <div class="product-slide">
+                                <img src="thesera5b.png" alt="MINI BLÈU-DENIM BAG - Back" onerror="this.src='thesera5.png'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">CHOZY</div>
-                        <h3 class="product-name">BROWN SUEDE</h3>
-                        <div class="product-price">$320</div>
+                        <div class="brand-name">KAZINE COLLECTION</div>
+                        <h3 class="product-name">MINI BLÈU-DENIM BAG</h3>
+                        <div class="product-price">$107</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
                 
                 <!-- Product 6 -->
-                <div class="product-card" data-product="CHOZY - NAVY VELVET" data-price="320" data-id="CHOZY-03">
-                    <div class="product-image">
-                        <img src="CHOZYNAVY1.png" 
-                             alt="CHOZY NAVY VELVET">
+                <div class="product-card" data-product="BLOOM BASEBALL CAP" data-price="50" data-id="KZBL-06">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="thesera6.png" alt="BLOOM BASEBALL CAP - Front">
+                            </div>
+                            <div class="product-slide">
+                                <img src="thesera6b.png" alt="BLOOM BASEBALL CAP - Back" onerror="this.src='thesera6.png'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">CHOZY</div>
-                        <h3 class="product-name">NAVY VELVET</h3>
-                        <div class="product-price">$320</div>
+                        <div class="brand-name">KAZINE COLLECTION</div>
+                        <h3 class="product-name">BLOOM BASEBALL CAP</h3>
+                        <div class="product-price">$50</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
 
                 <!-- Product 7 -->
-                <div class="product-card" data-product="KACHOO DAILY" data-price="30" data-id="kachoo-01">
-                    <div class="product-image">
-                        <img src="kaoffee.png" 
-                             alt="itemkachoo1">
+                <div class="product-card" data-product="KACHOO COFFEE BOX" data-price="30" data-id="KZKC-01">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="kaoffee.png" alt="KACHOO COFFEE BOX - Front">
+                            </div>
+                            <div class="product-slide">
+                                <img src="kaoffee2.png" alt="KACHOO COFFEE BOX - Back" onerror="this.src='kaoffee.png'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">KACHOO DAILY</div>
+                        <div class="brand-name">KAZINE DAILY</div>
                         <h3 class="product-name">Kachoo Coffee Box</h3>
                         <div class="product-price">$30</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card" data-product="LUXE SILK SCARF" data-price="89" data-id="KZLS-01">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="item8a.png" alt="LUXE SILK SCARF - Pattern A" onerror="this.src='https://via.placeholder.com/400x500/cccccc/333333?text=KAZINE+SCARF'">
+                            </div>
+                            <div class="product-slide">
+                                <img src="item8b.png" alt="LUXE SILK SCARF - Pattern B" onerror="this.src='https://via.placeholder.com/400x500/999999/ffffff?text=KAZINE+SCARF+BACK'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">KAZINE ACCESSORIES</div>
+                        <h3 class="product-name">LUXE SILK SCARF</h3>
+                        <div class="product-price">$89</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+
+                <!-- Product 9 -->
+                <div class="product-card" data-product="MINIMALIST LEATHER WALLET" data-price="75" data-id="KZML-01">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="item9a.png" alt="MINIMALIST LEATHER WALLET - Front" onerror="this.src='https://via.placeholder.com/400x500/8B4513/ffffff?text=KAZINE+WALLET'">
+                            </div>
+                            <div class="product-slide">
+                                <img src="item9b.png" alt="MINIMALIST LEATHER WALLET - Back" onerror="this.src='https://via.placeholder.com/400x500/654321/ffffff?text=KAZINE+WALLET+BACK'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">KAZINE LEATHER</div>
+                        <h3 class="product-name">MINIMALIST LEATHER WALLET</h3>
+                        <div class="product-price">$75</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+
+                <!-- Product 10 -->
+                <div class="product-card" data-product="COTTON OVERSIZED HOODIE" data-price="95" data-id="KZCO-01">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="item10a.png" alt="COTTON OVERSIZED HOODIE - Front" onerror="this.src='https://via.placeholder.com/400x500/2F4F4F/ffffff?text=KAZINE+HOODIE'">
+                            </div>
+                            <div class="product-slide">
+                                <img src="item10b.png" alt="COTTON OVERSIZED HOODIE - Back" onerror="this.src='https://via.placeholder.com/400x500/2F4F4F/ffffff?text=KAZINE+HOODIE+BACK'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">KAZINE CASUAL</div>
+                        <h3 class="product-name">COTTON OVERSIZED HOODIE</h3>
+                        <div class="product-price">$95</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+
+                <!-- Product 11 -->
+                <div class="product-card" data-product="PREMIUM SUNGLASSES" data-price="120" data-id="KZPS-01">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="item11a.png" alt="PREMIUM SUNGLASSES - Front" onerror="this.src='https://via.placeholder.com/400x500/000000/ffffff?text=KAZINE+SUNGLASSES'">
+                            </div>
+                            <div class="product-slide">
+                                <img src="item11b.png" alt="PREMIUM SUNGLASSES - Case" onerror="this.src='https://via.placeholder.com/400x500/333333/ffffff?text=KAZINE+SUNGLASSES+CASE'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">KAZINE OPTICS</div>
+                        <h3 class="product-name">PREMIUM SUNGLASSES</h3>
+                        <div class="product-price">$120</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+
+                <!-- Product 12 -->
+                <div class="product-card" data-product="LIMITED EDITION SNEAKERS" data-price="250" data-id="KZLS-01">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="item12a.png" alt="LIMITED EDITION SNEAKERS - Side" onerror="this.src='https://via.placeholder.com/400x500/4682B4/ffffff?text=KAZINE+SNEAKERS'">
+                            </div>
+                            <div class="product-slide">
+                                <img src="item12b.png" alt="LIMITED EDITION SNEAKERS - Top" onerror="this.src='https://via.placeholder.com/400x500/4169E1/ffffff?text=KAZINE+SNEAKERS+TOP'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">KAZINE FOOTWEAR</div>
+                        <h3 class="product-name">LIMITED EDITION SNEAKERS</h3>
+                        <div class="product-price">$250</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+
+                <!-- Product 13 -->
+                <div class="product-card" data-product="SIGNATURE PERFUME" data-price="180" data-id="KZSP-01">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="item13a.png" alt="SIGNATURE PERFUME - Bottle" onerror="this.src='https://via.placeholder.com/400x500/800080/ffffff?text=KAZINE+PERFUME'">
+                            </div>
+                            <div class="product-slide">
+                                <img src="item13b.png" alt="SIGNATURE PERFUME - Packaging" onerror="this.src='https://via.placeholder.com/400x500/4B0082/ffffff?text=KAZINE+PERFUME+BOX'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">KAZINE FRAGRANCE</div>
+                        <h3 class="product-name">SIGNATURE PERFUME</h3>
+                        <div class="product-price">$180</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+
+                <!-- Product 14 -->
+                <div class="product-card" data-product="DESIGNER BACKPACK" data-price="220" data-id="KZDB-01">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="item14a.png" alt="DESIGNER BACKPACK - Front" onerror="this.src='https://via.placeholder.com/400x500/228B22/ffffff?text=KAZINE+BACKPACK'">
+                            </div>
+                            <div class="product-slide">
+                                <img src="item14b.png" alt="DESIGNER BACKPACK - Back" onerror="this.src='https://via.placeholder.com/400x500/006400/ffffff?text=KAZINE+BACKPACK+BACK'">
+                            </div>
+                        </div>
+                        <div class="product-image-nav">
+                            <div class="nav-dot active" data-slide="0"></div>
+                            <div class="nav-dot" data-slide="1"></div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">KAZINE BAGS</div>
+                        <h3 class="product-name">DESIGNER BACKPACK</h3>
+                        <div class="product-price">$220</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
@@ -1834,6 +1669,29 @@
         </div>
     </section>
 
+    <!-- KAFKAPAGES Preview Section -->
+    <section class="kafkapages-preview" id="kafkapages">
+        <div class="container">
+            <div class="kafkapages-content">
+                <h2>EXPLORE KAFKAPAGES</h2>
+                <p>A literary journey through curated writings and visual storytelling. Immerse yourself in thought-provoking content that bridges fashion, literature, and contemporary culture.</p>
+                
+                <a href="kafkapages.html" class="kafkapages-photo-link">
+                    <img src="kafkapagespromo.png" 
+                         alt="KAFKAPAGES - Literary Collection" 
+                         class="kafkapages-photo">
+                    <div class="kafkapages-overlay">
+                        <h3>KAFKAPAGES COLLECTION</h3>
+                    </div>
+                </a>
+                
+                <a href="kafkapages.html" class="kafkapages-btn">
+                    <span>ENTER KAFKAPAGES</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1873,11 +1731,8 @@
         </div>
     </footer>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-
     <script>
-    // SIMPLE CART SYSTEM YANG BERFUNGSI - SCRIPT TIDAK DIUBAH
+    // SIMPLE CART SYSTEM YANG BERFUNGSI
     let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
     let isProcessing = false;
 
@@ -1994,7 +1849,7 @@
         });
     }
 
-    // Function untuk menangani add to cart - TIDAK DIUBAH
+    // Function untuk menangani add to cart
     function handleAddToCart(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -2003,7 +1858,7 @@
         isProcessing = true;
         
         const button = event.currentTarget;
-        const productCard = button.closest('.product-card') || button.closest('.kazine-product-card');
+        const productCard = button.closest('.product-card');
         const productTitle = productCard.getAttribute('data-product');
         const productPrice = productCard.getAttribute('data-price');
         const productId = productCard.getAttribute('data-id');
@@ -2068,6 +1923,70 @@
             
             // Ensure button has proper cursor
             button.style.cursor = 'pointer';
+        });
+    }
+
+    // Image slider functionality
+    function initializeImageSliders() {
+        document.querySelectorAll('.product-card').forEach(card => {
+            const slides = card.querySelector('.product-slides');
+            const dots = card.querySelectorAll('.nav-dot');
+            
+            if (!slides || !dots.length) return;
+            
+            let currentSlide = 0;
+            
+            // Add click events to dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    currentSlide = index;
+                    updateSlide();
+                });
+                
+                // Touch events for mobile
+                dot.addEventListener('touchstart', function(e) {
+                    if (e.cancelable) {
+                        e.preventDefault();
+                    }
+                    e.stopPropagation();
+                    
+                    currentSlide = index;
+                    updateSlide();
+                }, { passive: false });
+            });
+            
+            // Auto-slide on hover for desktop
+            if (!('ontouchstart' in window)) {
+                card.addEventListener('mouseenter', function() {
+                    this.slideInterval = setInterval(nextSlide, 3000);
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    if (this.slideInterval) {
+                        clearInterval(this.slideInterval);
+                    }
+                });
+            }
+            
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % dots.length;
+                updateSlide();
+            }
+            
+            function updateSlide() {
+                slides.style.transform = `translateX(-${currentSlide * 50}%)`;
+                
+                dots.forEach((dot, i) => {
+                    if (i === currentSlide) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
         });
     }
 
@@ -2202,42 +2121,19 @@
         });
     });
 
-    // Initialize Swiper sliders untuk semua product cards
-    function initializeSwiperSliders() {
-        document.querySelectorAll('.swiper-container').forEach((container, index) => {
-            new Swiper(container, {
-                loop: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                },
-                effect: 'slide',
-                speed: 500,
-            });
-        });
-    }
-
     // Initialize all functions when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize add to cart buttons
         initializeAddToCartButtons();
+        
+        // Initialize image sliders
+        initializeImageSliders();
         
         // Setup cart event listeners
         setupCartEventListeners();
         
         // Update cart display
         updateCartDisplay();
-        
-        // Initialize Swiper sliders
-        initializeSwiperSliders();
         
         // Reset processing flag
         isProcessing = false;
@@ -2251,9 +2147,9 @@
     // Also initialize on window load (backup)
     window.addEventListener('load', function() {
         initializeAddToCartButtons();
+        initializeImageSliders();
         setupCartEventListeners();
         updateCartDisplay();
-        initializeSwiperSliders();
     });
 
     // Fix untuk mencegah double execution
@@ -2264,7 +2160,7 @@
         // Ensure buttons work immediately
         setTimeout(() => {
             initializeAddToCartButtons();
-            initializeSwiperSliders();
+            initializeImageSliders();
         }, 100);
     }
     </script>
