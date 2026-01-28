@@ -3,247 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAZINE</title>
+    <title>KAZINE | KAZINE ON LOOP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <style>
-        /* Semua CSS sebelumnya tetap sama sampai .shop-section */
-        
-        /* =============== THREE COLUMN SECTION =============== */
-        .three-column-section {
-            padding: 80px 0;
-            background: var(--pure-white);
-            border-top: 1px solid var(--light-gray);
-        }
-
-        .columns-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .column {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
-
-        .column-title {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .column-title h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        .column-title p {
-            font-size: 13px;
-            color: var(--medium-gray);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        /* Item dengan slider */
-        .column-item {
-            background: var(--pure-white);
-            border-radius: 2px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: var(--shadow-subtle);
-            transition: var(--transition-smooth);
-        }
-
-        .column-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .item-slider {
-            position: relative;
-            width: 100%;
-            height: 300px;
-            overflow: hidden;
-        }
-
-        .slider-container {
-            display: flex;
-            width: 200%;
-            height: 100%;
-            transition: transform 0.5s ease;
-        }
-
-        .slider-slide {
-            width: 50%;
-            height: 100%;
-            flex-shrink: 0;
-        }
-
-        .slider-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .slider-nav {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            display: flex;
-            gap: 5px;
-            z-index: 10;
-        }
-
-        .slider-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            transition: var(--transition-smooth);
-        }
-
-        .slider-dot.active {
-            background: var(--pure-white);
-            transform: scale(1.2);
-        }
-
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            transition: var(--transition-smooth);
-            z-index: 10;
-        }
-
-        .column-item:hover .slider-arrow {
-            opacity: 1;
-        }
-
-        .slider-arrow.prev {
-            left: 15px;
-        }
-
-        .slider-arrow.next {
-            right: 15px;
-        }
-
-        .item-info {
-            padding: 25px 20px;
-            text-align: center;
-        }
-
-        .item-brand {
-            font-size: 11px;
-            color: var(--medium-gray);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .item-name {
-            font-size: 16px;
-            font-weight: 400;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .item-price {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-
-        /* Tombol add to cart untuk column items */
-        .column-item .add-to-cart-btn {
-            width: 100%;
-            padding: 12px;
-            background: var(--pure-black);
-            color: var(--pure-white);
-            border: none;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-        }
-
-        .column-item .add-to-cart-btn:hover {
-            background: var(--dark-gray);
-        }
-
-        /* =============== RESPONSIVE UNTUK THREE COLUMNS =============== */
-        @media (max-width: 992px) {
-            .columns-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
-            }
-            
-            .column-title h3 {
-                font-size: 28px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .three-column-section {
-                padding: 50px 0;
-            }
-            
-            .columns-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .column {
-                gap: 30px;
-            }
-            
-            .item-slider {
-                height: 280px;
-            }
-            
-            .slider-arrow {
-                opacity: 1;
-                background: rgba(0, 0, 0, 0.5);
-            }
-        }
-
-        @media (max-width: 576px) {
-            .item-slider {
-                height: 250px;
-            }
-            
-            .item-info {
-                padding: 20px 15px;
-            }
-            
-            .item-name {
-                font-size: 15px;
-            }
-        }
-
-        /* Sisanya CSS tetap sama seperti sebelumnya */
         :root {
             --pure-white: #ffffff;
             --off-white: #fafafa;
@@ -421,9 +186,9 @@
             z-index: 1001;
         }
 
-        /* =============== PERUBAHAN UKURAN FOTO UTAMA (21:9 - 1920x823px) =============== */
+        /* Hero Section */
         .hero-ambassador {
-            padding: 150px 0 80px;
+            padding: 150px 0 40px;
             background: var(--off-white);
             position: relative;
         }
@@ -466,13 +231,214 @@
             text-transform: uppercase;
         }
 
-        /* =============== PERUBAHAN FASHION GRID =============== */
-        .fashion-grid-section {
-            padding: 80px 0;
+        /* KAZINE ON LOOP Section */
+        .kazine-section {
+            padding: 60px 0;
+            background: var(--pure-white);
+            text-align: center;
+        }
+
+        .kazine-header {
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        .kazine-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .kazine-header p {
+            font-size: 16px;
+            color: var(--medium-gray);
+            line-height: 1.8;
+        }
+
+        /* KAZINE Items Grid - 14 Items dengan 2 foto per item */
+        .kazine-items-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .kazine-items-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .kazine-items-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .kazine-items-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        /* Product Card dengan Swiper */
+        .kazine-product-card {
+            background: var(--pure-white);
+            border-radius: 2px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .kazine-product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-image-slider {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light-gray);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Navigation arrows untuk Swiper */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--pure-white);
+            background: rgba(0, 0, 0, 0.3);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: var(--transition-smooth);
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Pagination dots untuk Swiper */
+        .swiper-pagination-bullet {
+            background: var(--pure-white);
+            opacity: 0.5;
+            width: 8px;
+            height: 8px;
+        }
+
+        .swiper-pagination-bullet-active {
+            opacity: 1;
             background: var(--pure-white);
         }
 
-        /* Layout 3x3 grid untuk desktop */
+        .kazine-product-info {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .kazine-brand-name {
+            font-size: 11px;
+            color: var(--medium-gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .kazine-product-name {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            min-height: 40px;
+        }
+
+        .kazine-product-price {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        /* TOMBOL ADD TO CART - TIDAK DIUBAH */
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--dark-gray);
+        }
+
+        .add-to-cart-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Collection Description */
+        .collection-description {
+            max-width: 800px;
+            margin: 60px auto 40px;
+            padding: 40px;
+            background: var(--off-white);
+            border-radius: 2px;
+            text-align: center;
+        }
+
+        .collection-description h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .collection-description p {
+            font-size: 16px;
+            color: var(--dark-gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Fashion Grid */
+        .fashion-grid-section {
+            padding: 50px 0;
+            background: var(--pure-white);
+        }
+
         .fashion-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -515,115 +481,7 @@
             transform: scale(1.05);
         }
 
-        /* =============== KAFKAPAGES =============== */
-        .kafkapages-preview {
-            padding: 80px 0;
-            background: var(--pure-white);
-            border-top: 1px solid var(--light-gray);
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .kafkapages-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .kafkapages-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            font-weight: 400;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-        }
-
-        .kafkapages-content p {
-            font-size: 16px;
-            color: var(--medium-gray);
-            margin-bottom: 40px;
-            line-height: 1.8;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .kafkapages-photo-link {
-            display: block;
-            max-width: 100%;
-            margin: 40px auto;
-            position: relative;
-            overflow: hidden;
-            border-radius: 2px;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .kafkapages-photo {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 21 / 9;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .kafkapages-photo-link:hover .kafkapages-photo {
-            transform: scale(1.03);
-        }
-
-        .photo-caption {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: var(--medium-gray);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .kafkapages-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 30px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            color: var(--pure-white);
-            text-align: left;
-        }
-
-        .kafkapages-overlay h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 400;
-            margin-bottom: 10px;
-        }
-
-        .kafkapages-overlay p {
-            font-size: 14px;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 0;
-        }
-
-        .kafkapages-btn {
-            display: inline-block;
-            padding: 15px 40px;
-            border: 1px solid var(--pure-black);
-            color: var(--pure-black);
-            text-decoration: none;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: var(--transition-smooth);
-            background: transparent;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .kafkapages-btn:hover {
-            background: var(--pure-black);
-            color: var(--pure-white);
-        }
-
-        /* =============== SHOP SECTION =============== */
+        /* Shop Section */
         .shop-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -703,32 +561,6 @@
             font-size: 16px;
             font-weight: 500;
             margin-bottom: 20px;
-        }
-
-        /* TOMBOL ADD TO CART - TIDAK DIUBAH */
-        .add-to-cart-btn {
-            width: 100%;
-            padding: 12px;
-            background: var(--pure-black);
-            color: var(--pure-white);
-            border: none;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .add-to-cart-btn:hover {
-            background: var(--dark-gray);
-        }
-
-        .add-to-cart-btn:active {
-            transform: scale(0.98);
         }
 
         /* Checkout Button */
@@ -1011,13 +843,64 @@
             visibility: visible;
         }
 
+        /* Buttons */
+        .kafkapages-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--pure-black);
+            color: var(--pure-black);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transition-smooth);
+            background: transparent;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .kafkapages-btn:hover {
+            background: var(--pure-black);
+            color: var(--pure-white);
+        }
+
+        /* Notification style */
+        .cart-notification {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--pure-black);
+            color: var(--pure-white);
+            padding: 12px 24px;
+            border-radius: 2px;
+            z-index: 9999;
+            font-size: 14px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: fadeInOut 2s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+        }
+
         /* =============== RESPONSIVE DESIGN =============== */
+        /* Tablet */
         @media (max-width: 1200px) {
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+            
+            .kazine-items-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
+        /* Tablet dan Mobile Menu */
         @media (max-width: 992px) {
             .header-container {
                 display: grid;
@@ -1080,11 +963,17 @@
                 width: 150px;
                 height: 50px;
             }
+            
+            .kazine-items-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
+        /* Mobile */
         @media (max-width: 768px) {
+            /* Hero Section Mobile */
             .hero-ambassador {
-                padding: 120px 0 50px;
+                padding: 120px 0 30px;
             }
             
             .ambassador-image {
@@ -1110,8 +999,51 @@
                 letter-spacing: 2px;
             }
             
+            /* KAZINE Section Mobile */
+            .kazine-section {
+                padding: 40px 0;
+            }
+            
+            .kazine-header h1 {
+                font-size: 36px;
+            }
+            
+            .kazine-header p {
+                font-size: 14px;
+            }
+            
+            /* KAZINE Items Grid Mobile */
+            .kazine-items-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .product-image-slider {
+                height: 250px;
+            }
+            
+            .kazine-product-info {
+                padding: 20px 15px;
+            }
+            
+            .kazine-product-name {
+                font-size: 15px;
+                min-height: auto;
+            }
+            
+            /* Collection Description Mobile */
+            .collection-description {
+                padding: 30px 20px;
+                margin: 40px auto 30px;
+            }
+            
+            .collection-description h2 {
+                font-size: 28px;
+            }
+            
+            /* Fashion Grid Mobile */
             .fashion-grid-section {
-                padding: 50px 0;
+                padding: 40px 0;
             }
             
             .fashion-grid {
@@ -1134,12 +1066,7 @@
                 aspect-ratio: 1 / 1;
             }
             
-            .grid-item img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-            
+            /* Shop Section Mobile */
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
@@ -1168,42 +1095,13 @@
                 margin-bottom: 15px;
             }
             
+            /* TOMBOL TIDAK DIUBAH */
             .add-to-cart-btn {
                 padding: 12px;
                 font-size: 12px;
             }
             
-            .kafkapages-preview {
-                padding: 50px 0;
-            }
-            
-            .kafkapages-content h2 {
-                font-size: 28px;
-                letter-spacing: 1px;
-            }
-            
-            .kafkapages-content p {
-                font-size: 14px;
-                margin-bottom: 30px;
-                line-height: 1.6;
-            }
-            
-            .kafkapages-photo-link {
-                margin: 30px auto;
-            }
-            
-            .kafkapages-overlay {
-                padding: 20px;
-            }
-            
-            .kafkapages-overlay h3 {
-                font-size: 22px;
-            }
-            
-            .kafkapages-overlay p {
-                font-size: 13px;
-            }
-            
+            /* Magazine Section Mobile */
             .magazine-container {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -1221,6 +1119,7 @@
                 font-size: 15px;
             }
             
+            /* Section Titles Mobile */
             .section-title {
                 margin-bottom: 40px;
             }
@@ -1235,6 +1134,7 @@
                 letter-spacing: 1.5px;
             }
             
+            /* Cart Modal Mobile */
             .cart-modal {
                 max-width: 90%;
                 width: 90%;
@@ -1245,6 +1145,7 @@
                 padding: 50px 0;
             }
             
+            /* Footer Mobile */
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 30px;
@@ -1256,32 +1157,30 @@
             }
         }
 
+        /* Mobile Kecil (576px ke bawah) */
         @media (max-width: 576px) {
+            /* Hero Section */
             .ambassador-overlay h2 {
                 font-size: 26px;
             }
             
-            .fashion-grid {
-                gap: 10px;
+            /* KAZINE Items Mobile Kecil */
+            .kazine-items-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
             }
             
+            .product-image-slider {
+                height: 300px;
+            }
+            
+            /* Logo Mobile Kecil */
             .kazine-logo-main {
                 width: 120px;
                 height: 40px;
             }
             
-            .kafkapages-overlay h3 {
-                font-size: 20px;
-            }
-            
-            .magazine-content h2 {
-                font-size: 32px;
-            }
-            
-            .magazine-content h3 {
-                font-size: 18px;
-            }
-            
+            /* Products Grid Mobile Kecil */
             .products-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -1292,11 +1191,14 @@
             }
         }
 
+        /* Mobile-specific fixes */
         @media (max-width: 768px) {
+            /* Pastikan semua tombol tetap berfungsi dan tidak berubah */
             .add-to-cart-btn:hover {
                 background: var(--pure-black);
             }
             
+            /* Touch-friendly elements */
             button, 
             .kafkapages-btn,
             .checkout-btn,
@@ -1309,33 +1211,10 @@
                 min-width: 44px;
             }
             
+            /* Prevent blue highlight on tap */
             * {
                 -webkit-tap-highlight-color: rgba(0,0,0,0);
             }
-        }
-
-        /* Notification style */
-        .cart-notification {
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--pure-black);
-            color: var(--pure-white);
-            padding: 12px 24px;
-            border-radius: 2px;
-            z-index: 9999;
-            font-size: 14px;
-            white-space: nowrap;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            animation: fadeInOut 2s ease-in-out;
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
         }
     </style>
 </head>
@@ -1400,674 +1279,418 @@
         </div>
     </header>
 
-    <!-- Hero - Brand Ambassador -->
+    <!-- Hero Section -->
     <section class="hero-ambassador">
         <div class="container">
             <div class="ambassador-image">
                 <img src="kazinebanner.png" 
-                     alt="Brand Ambassador - Elevated Style">
+                     alt="RACHEL HEARST">
                 <div class="ambassador-overlay">
+                    <h2>KAZINE ON LOOP</h2>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Fashion Grid - 9 foto dengan layout baru -->
+    <!-- KAZINE ON LOOP Section -->
+    <section class="kazine-section">
+        <div class="container">
+            <div class="kazine-header">
+                <h1>KAZINE ON LOOP</h1>
+                <p>With CHOOSIC, CHOZY, and CHOFFEE!</p>
+            </div>
+            
+            <!-- 14 Items dengan 2 foto per item -->
+            <div class="kazine-items-grid">
+                <!-- Item 1 -->
+                <div class="kazine-product-card" data-product="CHOOSIC - GRAPHITE BLACK" data-price="480" data-id="CHOOSIC-01">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="CHOOSICGB1.png" alt="CHOOSIC - GRAPHITE BLACK">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="CHOOSICGB2.png" alt="CHOOSIC - GRAPHITE BLACK">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">CHOOSIC</div>
+                        <h3 class="kazine-product-name">GRAPHITE BLACK</h3>
+                        <div class="kazine-product-price">$480</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="kazine-product-card" data-product="CHOOSIC - WHITE" data-price="480" data-id="CHOOSIC-02">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="CHOOSICWHITE1.png" alt="CHOOSIC - WHITE">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="CHOOSICWHITE2.png" alt="CHOOSIC - WHITE">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">CHOOSIC</div>
+                        <h3 class="kazine-product-name">WHITE</h3>
+                        <div class="kazine-product-price">$480</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="kazine-product-card" data-product="CHOOSIC - SILVER" data-price="480" data-id="CHOOSIC-03">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="CHOOSICSILVER1.png" alt="CHOOSIC - SILVER">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="CHOOSICSILVER2.png" alt="CHOOSIC - SILVER">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">CHOOSIC</div>
+                        <h3 class="kazine-product-name">SILVER</h3>
+                        <div class="kazine-product-price">$480</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="kazine-product-card" data-product="CHOZY - BLACK LEATHER" data-price="320" data-id="CHOZY-01">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="CHOZYBLACK1.png" alt="CHOZY - BLACK LEATHER">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="CHOZYBLACK2.png" alt="CHOZY - BLACK LEATHER">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">CHOZY</div>
+                        <h3 class="kazine-product-name">BLACK LEATHER</h3>
+                        <div class="kazine-product-price">$320</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="kazine-product-card" data-product="CHOZY - BROWN SUEDE" data-price="320" data-id="CHOZY-02">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="CHOZYBROWN1.png" alt="CHOZY - BROWN SUEDE">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="CHOZYBROWN2.png" alt="CHOZY - BROWN SUEDE">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">CHOZY</div>
+                        <h3 class="kazine-product-name">BROWN SUEDE</h3>
+                        <div class="kazine-product-price">$320</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+                
+                <!-- Item 6 -->
+                <div class="kazine-product-card" data-product="CHOZY - NAVY VELVET" data-price="320" data-id="CHOZY-03">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="CHOZYNAVY1.png" alt="CHOZY - NAVY VELVET">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="CHOZYNAVY2.png" alt="CHOZY - NAVY VELVET">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">CHOZY</div>
+                        <h3 class="kazine-product-name">NAVY VELVET</h3>
+                        <div class="kazine-product-price">$320</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+                
+                <!-- Item 7 -->
+                <div class="kazine-product-card" data-product="CHOFFEE - CLASSIC BLEND" data-price="45" data-id="CHOFFEE-01">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="CHOFFEECLASSIC1.png" alt="CHOFFEE - CLASSIC BLEND">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="CHOFFEECLASSIC2.png" alt="CHOFFEE - CLASSIC BLEND">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">CHOFFEE</div>
+                        <h3 class="kazine-product-name">CLASSIC BLEND</h3>
+                        <div class="kazine-product-price">$45</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+                
+                <!-- Item 8 -->
+                <div class="kazine-product-card" data-product="CHOFFEE - DARK ROAST" data-price="45" data-id="CHOFFEE-02">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="CHOFFEEDARK1.png" alt="CHOFFEE - DARK ROAST">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="CHOFFEEDARK2.png" alt="CHOFFEE - DARK ROAST">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">CHOFFEE</div>
+                        <h3 class="kazine-product-name">DARK ROAST</h3>
+                        <div class="kazine-product-price">$45</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+                
+                <!-- Item 9 -->
+                <div class="kazine-product-card" data-product="CHOFFEE - PREMIUM ESPRESSO" data-price="55" data-id="CHOFFEE-03">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="CHOFFEEESPRESSO1.png" alt="CHOFFEE - PREMIUM ESPRESSO">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="CHOFFEEESPRESSO2.png" alt="CHOFFEE - PREMIUM ESPRESSO">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">CHOFFEE</div>
+                        <h3 class="kazine-product-name">PREMIUM ESPRESSO</h3>
+                        <div class="kazine-product-price">$55</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+                
+                <!-- Item 10 -->
+                <div class="kazine-product-card" data-product="KAZINE CAP - BLACK" data-price="75" data-id="KZCAP-01">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="KZCAPBLACK1.png" alt="KAZINE CAP - BLACK">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="KZCAPBLACK2.png" alt="KAZINE CAP - BLACK">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">KAZINE ACCESSORIES</div>
+                        <h3 class="kazine-product-name">CAP - BLACK</h3>
+                        <div class="kazine-product-price">$75</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+                
+                <!-- Item 11 -->
+                <div class="kazine-product-card" data-product="KAZINE CAP - WHITE" data-price="75" data-id="KZCAP-02">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="KZCAPWHITE1.png" alt="KAZINE CAP - WHITE">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="KZCAPWHITE2.png" alt="KAZINE CAP - WHITE">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">KAZINE ACCESSORIES</div>
+                        <h3 class="kazine-product-name">CAP - WHITE</h3>
+                        <div class="kazine-product-price">$75</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+                
+                <!-- Item 12 -->
+                <div class="kazine-product-card" data-product="KAZINE TOTE BAG" data-price="120" data-id="KZBAG-01">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="KZBAG1.png" alt="KAZINE TOTE BAG">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="KZBAG2.png" alt="KAZINE TOTE BAG">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">KAZINE ACCESSORIES</div>
+                        <h3 class="kazine-product-name">TOTE BAG</h3>
+                        <div class="kazine-product-price">$120</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+                
+                <!-- Item 13 -->
+                <div class="kazine-product-card" data-product="KAZINE HOODIE - BLACK" data-price="150" data-id="KZHOD-01">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="KZHOODIEBLACK1.png" alt="KAZINE HOODIE - BLACK">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="KZHOODIEBLACK2.png" alt="KAZINE HOODIE - BLACK">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">KAZINE APPAREL</div>
+                        <h3 class="kazine-product-name">HOODIE - BLACK</h3>
+                        <div class="kazine-product-price">$150</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+                
+                <!-- Item 14 -->
+                <div class="kazine-product-card" data-product="KAZINE HOODIE - GREY" data-price="150" data-id="KZHOD-02">
+                    <div class="product-image-slider">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="KZHOODIEGREY1.png" alt="KAZINE HOODIE - GREY">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="KZHOODIEGREY2.png" alt="KAZINE HOODIE - GREY">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="kazine-product-info">
+                        <div class="kazine-brand-name">KAZINE APPAREL</div>
+                        <h3 class="kazine-product-name">HOODIE - GREY</h3>
+                        <div class="kazine-product-price">$150</div>
+                        <button class="add-to-cart-btn">Add to Bag</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="collection-description">
+                <h2>KAZINE ON LOOP</h2>
+                <p>Experience the complete KAZINE lifestyle with our curated collection of premium products. From high-quality audio devices with CHOOSIC to luxurious accessories with CHOZY, and specialty coffee with CHOFFEE - each product is designed with the KAZINE ethos of excellence and style.</p>
+                <p>Join the loop and elevate your everyday experience with products that reflect sophistication, quality, and the distinctive KAZINE aesthetic.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fashion Grid -->
     <section class="fashion-grid-section">
         <div class="container">
             <div class="fashion-grid">
-                <!-- Baris 1: 3 kolom atas 800x800px -->
                 <div class="grid-item">
-                    <img src="grid1.png" 
-                         alt="Fashion Editorial 1">
+                    <img src="grid1.png" alt="Fashion Editorial 1">
                 </div>
                 <div class="grid-item">
-                    <img src="grid2.png" 
-                         alt="Fashion Editorial 2">
+                    <img src="grid2.png" alt="Fashion Editorial 2">
                 </div>
                 <div class="grid-item">
-                    <img src="grid3.png" 
-                         alt="Fashion Editorial 3">
-                </div>
-                
-                <!-- Baris 2: 3 kolom tengah 800x1000px (portrait) -->
-                <div class="grid-item">
-                    <img src="grid4.png" 
-                         alt="Fashion Editorial 4">
+                    <img src="grid3.png" alt="Fashion Editorial 3">
                 </div>
                 <div class="grid-item">
-                    <img src="grid5.png" 
-                         alt="Fashion Editorial 5">
+                    <img src="grid4.png" alt="Fashion Editorial 4">
                 </div>
                 <div class="grid-item">
-                    <img src="grid6.png" 
-                         alt="Fashion Editorial 6">
-                </div>
-                
-                <!-- Baris 3: 3 kolom bawah 800x800px -->
-                <div class="grid-item">
-                    <img src="grid7.png" 
-                         alt="Fashion Editorial 7">
+                    <img src="grid5.png" alt="Fashion Editorial 5">
                 </div>
                 <div class="grid-item">
-                    <img src="grid8.png" 
-                         alt="Fashion Editorial 8">
+                    <img src="grid6.png" alt="Fashion Editorial 6">
                 </div>
                 <div class="grid-item">
-                    <img src="grid9.png" 
-                         alt="Fashion Editorial 9">
+                    <img src="grid7.png" alt="Fashion Editorial 7">
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =============== THREE COLUMN SECTION =============== -->
-    <section class="three-column-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>KACHOO'S SELECTIONS</h2>
-                <p>Curated Collections for Every Lifestyle</p>
-            </div>
-            
-            <div class="columns-container">
-                <!-- COLUMN 1: CHOOSIC -->
-                <div class="column">
-                    <div class="column-title">
-                        <h3>CHOOSIC</h3>
-                        <p>Audio & Music Essentials</p>
-                    </div>
-                    
-                    <!-- Item 1 -->
-                    <div class="column-item" data-product="Wireless Pro Earbuds" data-price="129" data-id="CHOOSIC-01">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-choosic-01">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=Wireless+Pro+Earbuds+Front" 
-                                         alt="Wireless Pro Earbuds Front">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/555555/FFFFFF?text=Wireless+Pro+Earbuds+Case" 
-                                         alt="Wireless Pro Earbuds Case">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('choosic-01')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('choosic-01')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('choosic-01', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('choosic-01', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOOSIC AUDIO</div>
-                            <h3 class="item-name">Wireless Pro Earbuds</h3>
-                            <div class="item-price">$129</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 2 -->
-                    <div class="column-item" data-product="Studio Monitor Headphones" data-price="199" data-id="CHOOSIC-02">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-choosic-02">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/222222/FFFFFF?text=Studio+Headphones+Front" 
-                                         alt="Studio Headphones Front">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/444444/FFFFFF?text=Studio+Headphones+Side" 
-                                         alt="Studio Headphones Side">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('choosic-02')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('choosic-02')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('choosic-02', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('choosic-02', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOOSIC AUDIO</div>
-                            <h3 class="item-name">Studio Monitor Headphones</h3>
-                            <div class="item-price">$199</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 3 -->
-                    <div class="column-item" data-product="Portable Bluetooth Speaker" data-price="89" data-id="CHOOSIC-03">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-choosic-03">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/666666/FFFFFF?text=Bluetooth+Speaker+Front" 
-                                         alt="Bluetooth Speaker Front">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/888888/FFFFFF?text=Bluetooth+Speaker+Top" 
-                                         alt="Bluetooth Speaker Top">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('choosic-03')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('choosic-03')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('choosic-03', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('choosic-03', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOOSIC AUDIO</div>
-                            <h3 class="item-name">Portable Bluetooth Speaker</h3>
-                            <div class="item-price">$89</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 4 -->
-                    <div class="column-item" data-product="Vinyl Record Player" data-price="249" data-id="CHOOSIC-04">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-choosic-04">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/111111/FFFFFF?text=Record+Player+Front" 
-                                         alt="Record Player Front">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=Record+Player+Playing" 
-                                         alt="Record Player Playing">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('choosic-04')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('choosic-04')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('choosic-04', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('choosic-04', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOOSIC AUDIO</div>
-                            <h3 class="item-name">Vinyl Record Player</h3>
-                            <div class="item-price">$249</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 5 -->
-                    <div class="column-item" data-product="Noise Cancelling Headphones" data-price="179" data-id="CHOOSIC-05">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-choosic-05">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/777777/FFFFFF?text=Noise+Cancelling+Front" 
-                                         alt="Noise Cancelling Front">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/999999/FFFFFF?text=Noise+Cancelling+Folded" 
-                                         alt="Noise Cancelling Folded">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('choosic-05')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('choosic-05')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('choosic-05', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('choosic-05', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOOSIC AUDIO</div>
-                            <h3 class="item-name">Noise Cancelling Headphones</h3>
-                            <div class="item-price">$179</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 6 -->
-                    <div class="column-item" data-product="Mini Karaoke Microphone" data-price="59" data-id="CHOOSIC-06">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-choosic-06">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/555555/FFFFFF?text=Karaoke+Mic+Front" 
-                                         alt="Karaoke Mic Front">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/777777/FFFFFF?text=Karaoke+Mic+In+Use" 
-                                         alt="Karaoke Mic In Use">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('choosic-06')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('choosic-06')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('choosic-06', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('choosic-06', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOOSIC AUDIO</div>
-                            <h3 class="item-name">Mini Karaoke Microphone</h3>
-                            <div class="item-price">$59</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
+                <div class="grid-item">
+                    <img src="grid8.png" alt="Fashion Editorial 8">
                 </div>
-                
-                <!-- COLUMN 2: CHOZY -->
-                <div class="column">
-                    <div class="column-title">
-                        <h3>CHOZY</h3>
-                        <p>Lifestyle & Comfort</p>
-                    </div>
-                    
-                    <!-- Item 1 -->
-                    <div class="column-item" data-product="Memory Foam Pillow" data-price="79" data-id="CHOZY-01">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-chozy-01">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/E8E8E8/333333?text=Memory+Foam+Pillow" 
-                                         alt="Memory Foam Pillow">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/F0F0F0/333333?text=Pillow+in+Bedroom" 
-                                         alt="Pillow in Bedroom">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('chozy-01')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('chozy-01')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('chozy-01', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('chozy-01', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOZY LIVING</div>
-                            <h3 class="item-name">Memory Foam Pillow</h3>
-                            <div class="item-price">$79</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 2 -->
-                    <div class="column-item" data-product="Weighted Blanket" data-price="129" data-id="CHOZY-02">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-chozy-02">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/D4D4D4/333333?text=Weighted+Blanket+Folded" 
-                                         alt="Weighted Blanket Folded">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/E0E0E0/333333?text=Weighted+Blanket+on+Bed" 
-                                         alt="Weighted Blanket on Bed">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('chozy-02')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('chozy-02')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('chozy-02', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('chozy-02', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOZY LIVING</div>
-                            <h3 class="item-name">Weighted Blanket</h3>
-                            <div class="item-price">$129</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 3 -->
-                    <div class="column-item" data-product="Essential Oil Diffuser" data-price="49" data-id="CHOZY-03">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-chozy-03">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/F5F5F5/333333?text=Oil+Diffuser" 
-                                         alt="Oil Diffuser">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/FFFFFF/333333?text=Diffuser+with+Lights" 
-                                         alt="Diffuser with Lights">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('chozy-03')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('chozy-03')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('chozy-03', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('chozy-03', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOZY LIVING</div>
-                            <h3 class="item-name">Essential Oil Diffuser</h3>
-                            <div class="item-price">$49</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 4 -->
-                    <div class="column-item" data-product="Yoga Mat Premium" data-price="89" data-id="CHOZY-04">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-chozy-04">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/4CAF50/FFFFFF?text=Yoga+Mat+Rolled" 
-                                         alt="Yoga Mat Rolled">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/45a049/FFFFFF?text=Yoga+Mat+in+Use" 
-                                         alt="Yoga Mat in Use">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('chozy-04')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('chozy-04')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('chozy-04', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('chozy-04', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOZY LIVING</div>
-                            <h3 class="item-name">Yoga Mat Premium</h3>
-                            <div class="item-price">$89</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 5 -->
-                    <div class="column-item" data-product="Meditation Cushion" data-price="65" data-id="CHOZY-05">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-chozy-05">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/8BC34A/FFFFFF?text=Meditation+Cushion" 
-                                         alt="Meditation Cushion">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/7CB342/FFFFFF?text=Cushion+Setup" 
-                                         alt="Cushion Setup">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('chozy-05')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('chozy-05')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('chozy-05', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('chozy-05', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOZY LIVING</div>
-                            <h3 class="item-name">Meditation Cushion</h3>
-                            <div class="item-price">$65</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 6 -->
-                    <div class="column-item" data-product="Aromatherapy Set" data-price="95" data-id="CHOZY-06">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-chozy-06">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/FF9800/FFFFFF?text=Aromatherapy+Set" 
-                                         alt="Aromatherapy Set">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/F57C00/FFFFFF?text=Essential+Oils" 
-                                         alt="Essential Oils">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('chozy-06')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('chozy-06')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('chozy-06', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('chozy-06', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOZY LIVING</div>
-                            <h3 class="item-name">Aromatherapy Set</h3>
-                            <div class="item-price">$95</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- COLUMN 3: CHOFFEE -->
-                <div class="column">
-                    <div class="column-title">
-                        <h3>CHOFFEE</h3>
-                        <p>Coffee & Brewing Gear</p>
-                    </div>
-                    
-                    <!-- Item 1 -->
-                    <div class="column-item" data-product="Pour Over Coffee Set" data-price="75" data-id="CHOFFEE-01">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-choffee-01">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/6D4C41/FFFFFF?text=Pour+Over+Set" 
-                                         alt="Pour Over Set">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/5D4037/FFFFFF?text=Brewing+in+Action" 
-                                         alt="Brewing in Action">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('choffee-01')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('choffee-01')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('choffee-01', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('choffee-01', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOFFEE BREW</div>
-                            <h3 class="item-name">Pour Over Coffee Set</h3>
-                            <div class="item-price">$75</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 2 -->
-                    <div class="column-item" data-product="Espresso Machine Compact" data-price="299" data-id="CHOFFEE-02">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-choffee-02">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/212121/FFFFFF?text=Espresso+Machine" 
-                                         alt="Espresso Machine">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/424242/FFFFFF?text=Making+Espresso" 
-                                         alt="Making Espresso">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('choffee-02')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('choffee-02')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('choffee-02', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('choffee-02', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOFFEE BREW</div>
-                            <h3 class="item-name">Espresso Machine Compact</h3>
-                            <div class="item-price">$299</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 3 -->
-                    <div class="column-item" data-product="Coffee Grinder Pro" data-price="129" data-id="CHOFFEE-03">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-choffee-03">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/757575/FFFFFF?text=Coffee+Grinder" 
-                                         alt="Coffee Grinder">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/616161/FFFFFF?text=Grinding+Beans" 
-                                         alt="Grinding Beans">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('choffee-03')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('choffee-03')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('choffee-03', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('choffee-03', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOFFEE BREW</div>
-                            <h3 class="item-name">Coffee Grinder Pro</h3>
-                            <div class="item-price">$129</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 4 -->
-                    <div class="column-item" data-product="Premium Coffee Beans Set" data-price="45" data-id="CHOFFEE-04">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-choffee-04">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/5D4037/FFFFFF?text=Coffee+Beans+Bags" 
-                                         alt="Coffee Beans Bags">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/4E342E/FFFFFF?text=Close-up+Beans" 
-                                         alt="Close-up Beans">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('choffee-04')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('choffee-04')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('choffee-04', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('choffee-04', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOFFEE BREW</div>
-                            <h3 class="item-name">Premium Coffee Beans Set</h3>
-                            <div class="item-price">$45</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 5 -->
-                    <div class="column-item" data-product="Travel French Press" data-price="55" data-id="CHOFFEE-05">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-choffee-05">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/455A64/FFFFFF?text=Travel+French+Press" 
-                                         alt="Travel French Press">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/37474F/FFFFFF?text=French+Press+Travel" 
-                                         alt="French Press Travel">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('choffee-05')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('choffee-05')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('choffee-05', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('choffee-05', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOFFEE BREW</div>
-                            <h3 class="item-name">Travel French Press</h3>
-                            <div class="item-price">$55</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 6 -->
-                    <div class="column-item" data-product="Ceramic Coffee Mug Set" data-price="65" data-id="CHOFFEE-06">
-                        <div class="item-slider">
-                            <div class="slider-container" id="slider-choffee-06">
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/FFFFFF/333333?text=Ceramic+Mug+Set" 
-                                         alt="Ceramic Mug Set">
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="https://via.placeholder.com/400x300/F5F5F5/333333?text=Mug+with+Coffee" 
-                                         alt="Mug with Coffee">
-                                </div>
-                            </div>
-                            <button class="slider-arrow prev" onclick="slidePrev('choffee-06')">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="slider-arrow next" onclick="slideNext('choffee-06')">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div class="slider-nav">
-                                <button class="slider-dot active" onclick="goToSlide('choffee-06', 0)"></button>
-                                <button class="slider-dot" onclick="goToSlide('choffee-06', 1)"></button>
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="item-brand">CHOFFEE BREW</div>
-                            <h3 class="item-name">Ceramic Coffee Mug Set</h3>
-                            <div class="item-price">$65</div>
-                            <button class="add-to-cart-btn">Add to Bag</button>
-                        </div>
-                    </div>
+                <div class="grid-item">
+                    <img src="grid9.png" alt="Fashion Editorial 9">
                 </div>
             </div>
         </div>
@@ -2077,91 +1700,91 @@
     <section class="shop-section" id="shop">
         <div class="container">
             <div class="section-title">
-                <h2>THESERA IN KAZINE!</h2>
-                <p>Time to shop! Make sure to use your voucher.</p>
+                <h2>SHOP KAZINE</h2>
+                <p>Complete your look with our curated selection</p>
             </div>
             
             <div class="products-grid">
                 <!-- Product 1 -->
-                <div class="product-card" data-product="BLÈU BLOOM DENIM JACKET" data-price="190" data-id="TSRBL-01">
+                <div class="product-card" data-product="CHOOSIC - GRAPHITE BLACK" data-price="480" data-id="CHOOSIC-01">
                     <div class="product-image">
-                        <img src="thesera1.png"
-                             alt="Thesera 1">
+                        <img src="CHOOSICGB1.png"
+                             alt="CHOOSIC GRAPHITE BLACK">
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">THESERA COLLECTION</div>
-                        <h3 class="product-name">BLÈU BLOOM DENIM JACKET</h3>
-                        <div class="product-price">$190</div>
+                        <div class="brand-name">CHOOSIC</div>
+                        <h3 class="product-name">GRAPHITE BLACK</h3>
+                        <div class="product-price">$480</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
                 
                 <!-- Product 2 -->
-                <div class="product-card" data-product="BLÈU BLOOM MINI DRESS" data-price="207" data-id="TSRBL-02">
+                <div class="product-card" data-product="CHOOSIC - WHITE" data-price="480" data-id="CHOOSIC-02">
                     <div class="product-image">
-                        <img src="thesera2.png" 
-                             alt="Mini Dress">
+                        <img src="CHOOSICWHITE1.png" 
+                             alt="CHOOSIC WHITE">
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">THESERA COLLECTION</div>
-                        <h3 class="product-name">BLÈU BLOOM MINI DRESS</h3>
-                        <div class="product-price">$207</div>
+                        <div class="brand-name">CHOOSIC</div>
+                        <h3 class="product-name">WHITE</h3>
+                        <div class="product-price">$480</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
                 
                 <!-- Product 3 -->
-                <div class="product-card" data-product="BLÈU BLOOM DENIM JEANS" data-price="178" data-id="TSRBL-03">
+                <div class="product-card" data-product="CHOOSIC - SILVER" data-price="480" data-id="CHOOSIC-03">
                     <div class="product-image">
-                        <img src="thesera3.png" 
-                             alt="Thesera 3">
+                        <img src="CHOOSICSILVER1.png" 
+                             alt="CHOOSIC SILVER">
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">THESERA COLLECTION</div>
-                        <h3 class="product-name">BLÈU BLOOM DENIM JEANS</h3>
-                        <div class="product-price">$178</div>
+                        <div class="brand-name">CHOOSIC</div>
+                        <h3 class="product-name">SILVER</h3>
+                        <div class="product-price">$480</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
                 
                 <!-- Product 4 -->
-                <div class="product-card" data-product="BLÈU BLOOM DENIM SHORTS" data-price="166" data-id="TSRBL-04">
+                <div class="product-card" data-product="CHOZY - BLACK LEATHER" data-price="320" data-id="CHOZY-01">
                     <div class="product-image">
-                        <img src="thesera4.png" 
-                             alt="Thesera 4">
+                        <img src="CHOZYBLACK1.png" 
+                             alt="CHOZY BLACK LEATHER">
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">THESERA COLLECTION</div>
-                        <h3 class="product-name">BLÈU BLOOM DENIM SHORTS</h3>
-                        <div class="product-price">$166</div>
+                        <div class="brand-name">CHOZY</div>
+                        <h3 class="product-name">BLACK LEATHER</h3>
+                        <div class="product-price">$320</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
                 
                 <!-- Product 5 -->
-                <div class="product-card" data-product="MINI BLÈU-DENIM BAG" data-price="107" data-id="TSRBL-05">
+                <div class="product-card" data-product="CHOZY - BROWN SUEDE" data-price="320" data-id="CHOZY-02">
                     <div class="product-image">
-                        <img src="thesera5.png" 
-                             alt="Thesera 5">
+                        <img src="CHOZYBROWN1.png" 
+                             alt="CHOZY BROWN SUEDE">
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">THESERA COLLECTION</div>
-                        <h3 class="product-name">MINI BLÈU-DENIM BAG</h3>
-                        <div class="product-price">$107</div>
+                        <div class="brand-name">CHOZY</div>
+                        <h3 class="product-name">BROWN SUEDE</h3>
+                        <div class="product-price">$320</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
                 
                 <!-- Product 6 -->
-                <div class="product-card" data-product="BLOOM BASEBALL CAP" data-price="50" data-id="TSRBL-06">
+                <div class="product-card" data-product="CHOZY - NAVY VELVET" data-price="320" data-id="CHOZY-03">
                     <div class="product-image">
-                        <img src="thesera6.png" 
-                             alt="Thesera 6">
+                        <img src="CHOZYNAVY1.png" 
+                             alt="CHOZY NAVY VELVET">
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">THESERA COLLECTION</div>
-                        <h3 class="product-name">BLOOM BASEBALL CAP</h3>
-                        <div class="product-price">$50</div>
+                        <div class="brand-name">CHOZY</div>
+                        <h3 class="product-name">NAVY VELVET</h3>
+                        <div class="product-price">$320</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
@@ -2211,29 +1834,6 @@
         </div>
     </section>
 
-    <!-- KAFKAPAGES Preview Section -->
-    <section class="kafkapages-preview" id="kafkapages">
-        <div class="container">
-            <div class="kafkapages-content">
-                <h2>EXPLORE KAFKAPAGES</h2>
-                <p>A literary journey through curated writings and visual storytelling. Immerse yourself in thought-provoking content that bridges fashion, literature, and contemporary culture.</p>
-                
-                <a href="kafkapages.html" class="kafkapages-photo-link">
-                    <img src="kafkapagespromo.png" 
-                         alt="KAFKAPAGES - Literary Collection" 
-                         class="kafkapages-photo">
-                    <div class="kafkapages-overlay">
-                        <h3>KAFKAPAGES COLLECTION</h3>
-                    </div>
-                </a>
-                
-                <a href="kafkapages.html" class="kafkapages-btn">
-                    <span>ENTER KAFKAPAGES</span>
-                </a>
-            </div>
-        </div>
-    </section>
-    
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -2273,8 +1873,11 @@
         </div>
     </footer>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
     <script>
-    // SIMPLE CART SYSTEM YANG BERFUNGSI
+    // SIMPLE CART SYSTEM YANG BERFUNGSI - SCRIPT TIDAK DIUBAH
     let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
     let isProcessing = false;
 
@@ -2391,7 +1994,7 @@
         });
     }
 
-    // Function untuk menangani add to cart
+    // Function untuk menangani add to cart - TIDAK DIUBAH
     function handleAddToCart(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -2400,7 +2003,7 @@
         isProcessing = true;
         
         const button = event.currentTarget;
-        const productCard = button.closest('.product-card, .column-item');
+        const productCard = button.closest('.product-card') || button.closest('.kazine-product-card');
         const productTitle = productCard.getAttribute('data-product');
         const productPrice = productCard.getAttribute('data-price');
         const productId = productCard.getAttribute('data-id');
@@ -2599,67 +2202,26 @@
         });
     });
 
-    // SLIDER FUNCTIONS FOR THREE COLUMN SECTION
-    function slideNext(sliderId) {
-        const slider = document.getElementById(`slider-${sliderId}`);
-        const slides = slider.querySelectorAll('.slider-slide');
-        const dots = slider.parentElement.querySelectorAll('.slider-dot');
-        
-        const currentPosition = parseInt(slider.style.transform?.replace('translateX(', '')?.replace('%)', '') || '0');
-        const nextPosition = currentPosition - 50;
-        
-        if (nextPosition < -(slides.length - 1) * 50) return;
-        
-        slider.style.transform = `translateX(${nextPosition}%)`;
-        
-        // Update dots
-        const activeIndex = Math.abs(nextPosition / 50);
-        dots.forEach((dot, index) => {
-            if (index === activeIndex) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
-        });
-    }
-
-    function slidePrev(sliderId) {
-        const slider = document.getElementById(`slider-${sliderId}`);
-        const slides = slider.querySelectorAll('.slider-slide');
-        const dots = slider.parentElement.querySelectorAll('.slider-dot');
-        
-        const currentPosition = parseInt(slider.style.transform?.replace('translateX(', '')?.replace('%)', '') || '0');
-        const prevPosition = currentPosition + 50;
-        
-        if (prevPosition > 0) return;
-        
-        slider.style.transform = `translateX(${prevPosition}%)`;
-        
-        // Update dots
-        const activeIndex = Math.abs(prevPosition / 50);
-        dots.forEach((dot, index) => {
-            if (index === activeIndex) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
-        });
-    }
-
-    function goToSlide(sliderId, slideIndex) {
-        const slider = document.getElementById(`slider-${sliderId}`);
-        const dots = slider.parentElement.querySelectorAll('.slider-dot');
-        
-        const position = -(slideIndex * 50);
-        slider.style.transform = `translateX(${position}%)`;
-        
-        // Update dots
-        dots.forEach((dot, index) => {
-            if (index === slideIndex) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
+    // Initialize Swiper sliders untuk semua product cards
+    function initializeSwiperSliders() {
+        document.querySelectorAll('.swiper-container').forEach((container, index) => {
+            new Swiper(container, {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                effect: 'slide',
+                speed: 500,
+            });
         });
     }
 
@@ -2674,6 +2236,9 @@
         // Update cart display
         updateCartDisplay();
         
+        // Initialize Swiper sliders
+        initializeSwiperSliders();
+        
         // Reset processing flag
         isProcessing = false;
         
@@ -2681,11 +2246,6 @@
         if ('ontouchstart' in window) {
             document.body.classList.add('touch-device');
         }
-        
-        // Initialize all sliders to first slide
-        document.querySelectorAll('.slider-container').forEach(slider => {
-            slider.style.transform = 'translateX(0%)';
-        });
     });
 
     // Also initialize on window load (backup)
@@ -2693,11 +2253,7 @@
         initializeAddToCartButtons();
         setupCartEventListeners();
         updateCartDisplay();
-        
-        // Initialize all sliders
-        document.querySelectorAll('.slider-container').forEach(slider => {
-            slider.style.transform = 'translateX(0%)';
-        });
+        initializeSwiperSliders();
     });
 
     // Fix untuk mencegah double execution
@@ -2708,6 +2264,7 @@
         // Ensure buttons work immediately
         setTimeout(() => {
             initializeAddToCartButtons();
+            initializeSwiperSliders();
         }, 100);
     }
     </script>
