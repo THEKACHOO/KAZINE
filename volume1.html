@@ -61,13 +61,10 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            height: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            height: 300px;
             position: relative;
             border: 1px solid #f0f0f0;
+            cursor: pointer;
         }
         
         .grid-item:hover {
@@ -77,27 +74,58 @@
         }
         
         .grid-item-content {
-            padding: 20px;
-            text-align: center;
             width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
         
-        .grid-item h3 {
+        .grid-item-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .grid-item:hover .grid-item-image {
+            transform: scale(1.05);
+        }
+        
+        .grid-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .grid-item:hover .grid-item-overlay {
+            opacity: 1;
+        }
+        
+        .grid-item-overlay h3 {
             font-size: 18px;
             font-weight: 700;
-            margin-bottom: 10px;
-            color: #000000;
+            margin-bottom: 5px;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
         
-        .grid-item p {
+        .grid-item-overlay p {
             font-size: 14px;
-            color: #555555;
-            margin-bottom: 15px;
+            color: #e0e0e0;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
         }
         
         .grid-item-number {
@@ -114,22 +142,34 @@
             position: absolute;
             top: 15px;
             left: 15px;
+            z-index: 2;
         }
         
         .grid-item-secret {
-            font-size: 22px;
-            font-weight: 700;
-            color: #000000;
-            letter-spacing: 1px;
-            opacity: 0.7;
-            text-transform: uppercase;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
         }
         
         .secret-icon {
             font-size: 40px;
-            color: #000000;
-            opacity: 0.7;
+            color: #ffffff;
             margin-bottom: 15px;
+        }
+        
+        .secret-text {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
         
         /* Button Styles */
@@ -218,7 +258,7 @@
             }
             
             .grid-item {
-                height: 200px;
+                height: 250px;
             }
             
             .logo {
@@ -236,6 +276,10 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
+            .grid-item {
+                height: 200px;
+            }
+            
             .logo {
                 width: 200px;
             }
@@ -243,6 +287,14 @@
             .audition-btn {
                 padding: 12px 25px;
                 font-size: 14px;
+            }
+            
+            .grid-item-overlay h3 {
+                font-size: 16px;
+            }
+            
+            .grid-item-overlay p {
+                font-size: 12px;
             }
         }
     </style>
@@ -273,82 +325,116 @@
     </div>
 
     <script>
-        // Data untuk grid items
+        // Data untuk grid items dengan nama file PNG dan halaman tujuan
         const gridItems = [
             {
                 number: 1,
                 title: "Issue 1",
                 description: "New Year New Vibes",
                 isSecret: false,
-                pageUrl: "https://thekachoo.github.io/Home/kazinevol1.html" // Halaman untuk Issue 1
+                imageFile: "issue1.png", // Nama file PNG untuk Issue 1
+                pageUrl: "https://thekachoo.github.io/Home/kazinevol1.html"
             },
             {
                 number: 2,
                 title: "Issue 2",
-                description: "",
-                isSecret: true
+                description: "Coming Soon",
+                isSecret: true,
+                imageFile: "issue2.png", // Nama file PNG untuk Issue 2
+                pageUrl: "#"
             },
             {
                 number: 3,
                 title: "Issue 3",
-                description: "",
-                isSecret: true
+                description: "Coming Soon",
+                isSecret: true,
+                imageFile: "issue3.png", // Nama file PNG untuk Issue 3
+                pageUrl: "#"
             },
             {
                 number: 4,
                 title: "Issue 4",
-                description: "",
-                isSecret: true
+                description: "Coming Soon",
+                isSecret: true,
+                imageFile: "issue4.png", // Nama file PNG untuk Issue 4
+                pageUrl: "#"
             },
             {
                 number: 5,
                 title: "Issue 5",
-                description: "",
-                isSecret: true
+                description: "Coming Soon",
+                isSecret: true,
+                imageFile: "issue5.png", // Nama file PNG untuk Issue 5
+                pageUrl: "#"
             },
             {
                 number: 6,
                 title: "Issue 6",
-                description: "",
-                isSecret: true
+                description: "Coming Soon",
+                isSecret: true,
+                imageFile: "issue6.png", // Nama file PNG untuk Issue 6
+                pageUrl: "#"
             },
             {
                 number: 7,
                 title: "Issue 7",
-                description: "",
-                isSecret: true
+                description: "Coming Soon",
+                isSecret: true,
+                imageFile: "issue7.png", // Nama file PNG untuk Issue 7
+                pageUrl: "#"
             },
             {
                 number: 8,
                 title: "Issue 8",
-                description: "",
-                isSecret: true
+                description: "Coming Soon",
+                isSecret: true,
+                imageFile: "issue8.png", // Nama file PNG untuk Issue 8
+                pageUrl: "#"
             },
             {
                 number: 9,
                 title: "Issue 9",
-                description: "",
-                isSecret: true
+                description: "Coming Soon",
+                isSecret: true,
+                imageFile: "issue9.png", // Nama file PNG untuk Issue 9
+                pageUrl: "#"
             },
             {
                 number: 10,
                 title: "Issue 10",
-                description: "",
-                isSecret: true
+                description: "Coming Soon",
+                isSecret: true,
+                imageFile: "issue10.png", // Nama file PNG untuk Issue 10
+                pageUrl: "#"
             },
             {
                 number: 11,
                 title: "Issue 11",
-                description: "",
-                isSecret: true
+                description: "Coming Soon",
+                isSecret: true,
+                imageFile: "issue11.png", // Nama file PNG untuk Issue 11
+                pageUrl: "#"
             },
             {
                 number: 12,
                 title: "Issue 12",
-                description: "",
-                isSecret: true
+                description: "Coming Soon",
+                isSecret: true,
+                imageFile: "issue12.png", // Nama file PNG untuk Issue 12
+                pageUrl: "#"
             }
         ];
+
+        // Konfigurasi folder untuk gambar
+        const imageConfig = {
+            basePath: "images/", // Folder tempat menyimpan gambar PNG
+            defaultImage: "default.png" // Gambar default jika file tidak ditemukan
+        };
+        
+        // Fungsi untuk mendapatkan path gambar yang lengkap
+        function getImagePath(filename) {
+            return imageConfig.basePath + filename;
+        }
         
         // Fungsi untuk membuat grid items
         function createGridItems() {
@@ -358,6 +444,16 @@
                 const gridItem = document.createElement('div');
                 gridItem.className = 'grid-item';
                 
+                // Tambahkan event click untuk mengarahkan ke halaman
+                gridItem.addEventListener('click', function() {
+                    if (item.pageUrl && item.pageUrl !== '#') {
+                        window.location.href = item.pageUrl;
+                    } else if (item.isSecret) {
+                        // Tampilkan pesan untuk item yang masih secret
+                        alert(`${item.title} akan segera hadir!`);
+                    }
+                });
+                
                 const numberSpan = document.createElement('span');
                 numberSpan.className = 'grid-item-number';
                 numberSpan.textContent = item.number;
@@ -365,42 +461,46 @@
                 const contentDiv = document.createElement('div');
                 contentDiv.className = 'grid-item-content';
                 
+                // Tambahkan gambar PNG
+                const image = document.createElement('img');
+                image.className = 'grid-item-image';
+                image.src = getImagePath(item.imageFile);
+                image.alt = item.title;
+                image.loading = 'lazy';
+                
+                // Overlay untuk teks
+                const overlay = document.createElement('div');
+                overlay.className = 'grid-item-overlay';
+                
                 const title = document.createElement('h3');
                 title.textContent = item.title;
                 
-                contentDiv.appendChild(title);
+                const description = document.createElement('p');
+                description.textContent = item.description;
+                
+                overlay.appendChild(title);
+                overlay.appendChild(description);
+                
+                contentDiv.appendChild(image);
                 
                 if (item.isSecret) {
+                    const secretOverlay = document.createElement('div');
+                    secretOverlay.className = 'grid-item-secret';
+                    
                     const secretIcon = document.createElement('div');
                     secretIcon.className = 'secret-icon';
                     secretIcon.innerHTML = '<i class="fas fa-lock"></i>';
-                    contentDiv.appendChild(secretIcon);
                     
                     const secretText = document.createElement('div');
-                    secretText.className = 'grid-item-secret';
-                    secretText.textContent = 'SECRET';
-                    contentDiv.appendChild(secretText);
-                } else {
-                    const description = document.createElement('p');
-                    description.textContent = item.description;
-                    contentDiv.appendChild(description);
+                    secretText.className = 'secret-text';
+                    secretText.textContent = 'COMING SOON';
                     
-                    // Untuk grid pertama yang tidak secret, tambahkan placeholder untuk PNG
-                    const imagePlaceholder = document.createElement('div');
-                    imagePlaceholder.style.cssText = `
-                        width: 120px;
-                        height: 120px;
-                        background-color: #f5f5f5;
-                        border-radius: 5px;
-                        margin: 10px 0;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        color: #999;
-                        font-size: 12px;
-                    `;
-                    imagePlaceholder.textContent = 'PNG akan dimasukkan di sini';
-                    contentDiv.appendChild(imagePlaceholder);
+                    secretOverlay.appendChild(secretIcon);
+                    secretOverlay.appendChild(secretText);
+                    
+                    contentDiv.appendChild(secretOverlay);
+                } else {
+                    contentDiv.appendChild(overlay);
                 }
                 
                 gridItem.appendChild(numberSpan);
@@ -412,13 +512,11 @@
         
         // Fungsi untuk menangani klik tombol Open Audition
         function goToOpenAudition() {
-            // Tambahkan animasi pada tombol saat diklik
             const btn = document.querySelector('.audition-btn');
             btn.style.transform = 'scale(0.95)';
             
             setTimeout(() => {
                 btn.style.transform = '';
-                // Arahkan ke halaman openaudition.html
                 window.location.href = 'openaudition.html';
             }, 200);
         }
@@ -429,6 +527,19 @@
             logo.onerror = null;
             logo.src = 'https://via.placeholder.com/300x100/000000/FFFFFF?text=KAZINE+LOGO';
             logo.alt = 'Kazine Logo Placeholder';
+        }
+        
+        // Fungsi untuk menangani error pada gambar grid
+        function handleGridImageError(img, filename) {
+            img.onerror = null;
+            console.warn(`Gambar ${filename} tidak ditemukan, menggunakan gambar default`);
+            img.src = getImagePath(imageConfig.defaultImage);
+            
+            // Jika gambar default juga tidak ada, gunakan placeholder online
+            img.onerror = function() {
+                this.onerror = null;
+                this.src = `https://via.placeholder.com/800x800/333333/FFFFFF?text=${encodeURIComponent(filename)}`;
+            };
         }
         
         // Inisialisasi saat halaman dimuat
@@ -444,8 +555,21 @@
                 handleLogoError();
             }
             
+            // Tambahkan error handler untuk gambar grid
+            const gridImages = document.querySelectorAll('.grid-item-image');
+            gridImages.forEach((img, index) => {
+                const item = gridItems[index];
+                img.onerror = function() {
+                    handleGridImageError(this, item.imageFile);
+                };
+                
+                // Preload gambar untuk performa yang lebih baik
+                const preloadImage = new Image();
+                preloadImage.src = img.src;
+            });
+            
             // Tambahkan animasi saat scroll
-            const gridItems = document.querySelectorAll('.grid-item');
+            const gridItemsElements = document.querySelectorAll('.grid-item');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -455,7 +579,7 @@
                 });
             }, { threshold: 0.1 });
             
-            gridItems.forEach(item => {
+            gridItemsElements.forEach(item => {
                 item.style.opacity = '0';
                 item.style.transform = 'translateY(20px)';
                 item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
