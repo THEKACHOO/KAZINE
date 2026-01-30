@@ -305,7 +305,7 @@
             resize: vertical;
         }
 
-        /* Payment Methods Responsive */
+        /* Payment Methods Responsive - HANYA 2 METODE SEKARANG */
         .payment-methods {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -747,6 +747,61 @@
         .voucher-info strong {
             color: var(--dark-gray);
         }
+        
+        /* CHOBANK Form Styling */
+        .account-number-input {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+        
+        .account-number-input::placeholder {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            letter-spacing: normal;
+        }
+        
+        .chobank-info {
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 15px;
+            border-left: 4px solid var(--info-color);
+        }
+        
+        .chobank-info p {
+            margin: 5px 0;
+            font-size: 13px;
+            color: var(--dark-gray);
+        }
+        
+        /* QRIS Styling */
+        .qris-container {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .qris-code {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            background: #f8f9fa;
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--medium-gray);
+        }
+        
+        .qris-instructions {
+            font-size: 13px;
+            color: var(--medium-gray);
+            margin-top: 15px;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
@@ -861,13 +916,14 @@
                     <div class="form-group">
                         <label class="form-label">Select Payment Method *</label>
                         <div class="payment-methods">
+                            <!-- HANYA CHOBANK DAN QRIS SAJA -->
                             <div class="payment-method">
-                                <input type="radio" id="paypal" name="paymentMethod" value="paypal">
-                                <label class="payment-label" for="paypal">
-                                    <div class="payment-icon"><i class="fab fa-paypal"></i></div>
+                                <input type="radio" id="chobank" name="paymentMethod" value="chobank">
+                                <label class="payment-label" for="chobank">
+                                    <div class="payment-icon"><i class="fas fa-university"></i></div>
                                     <div>
-                                        <div>PayPal</div>
-                                        <div class="payment-details">Pay with PayPal account</div>
+                                        <div>CHOBANK</div>
+                                        <div class="payment-details">Transfer via CHOBANK</div>
                                     </div>
                                 </label>
                             </div>
@@ -882,57 +938,48 @@
                                     </div>
                                 </label>
                             </div>
-                            
-                            <div class="payment-method">
-                                <input type="radio" id="debit-credit" name="paymentMethod" value="debit-credit">
-                                <label class="payment-label" for="debit-credit">
-                                    <div class="payment-icon"><i class="fas fa-credit-card"></i></div>
-                                    <div>
-                                        <div>Debit & Credit Card</div>
-                                        <div class="payment-details">Local bank cards</div>
-                                    </div>
-                                </label>
-                            </div>
-                            
-                            <div class="payment-method">
-                                <input type="radio" id="international" name="paymentMethod" value="international">
-                                <label class="payment-label" for="international">
-                                    <div class="payment-icon"><i class="fas fa-globe"></i></div>
-                                    <div>
-                                        <div>International Card</div>
-                                        <div class="payment-details">VISA, MasterCard, etc.</div>
-                                    </div>
-                                </label>
+                        </div>
+                    </div>
+
+                    <!-- CHOBANK Payment Form -->
+                    <div class="payment-specific" id="chobankSelection">
+                        <div class="form-group">
+                            <label class="form-label" for="chobankAccountNumber">CHOBANK Account Number *</label>
+                            <input type="text" 
+                                   class="form-input account-number-input" 
+                                   id="chobankAccountNumber" 
+                                   placeholder="1234 5678 9012 3456"
+                                   maxlength="19"
+                                   inputmode="numeric"
+                                   pattern="[0-9\s]{16,19}">
+                            <div class="chobank-info">
+                                <p><strong>CHOBANK Information:</strong></p>
+                                <p>• Enter 16-digit account number</p>
+                                <p>• No letters or special characters</p>
+                                <p>• Example: 1234 5678 9012 3456</p>
+                                <p>• Transfer to this number to complete payment</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="payment-specific" id="bankSelection">
-                        <div class="form-group">
-                            <label class="form-label">Select Bank *</label>
-                            <select class="form-input" id="selectedBank">
-                                <option value="">Choose your bank</option>
-                                <option value="bca">BCA</option>
-                                <option value="bni">BNI</option>
-                                <option value="bri">BRI</option>
-                                <option value="mandiri">Mandiri</option>
-                                <option value="cimb">CIMB Niaga</option>
-                                <option value="permata">Permata</option>
-                                <option value="danamon">Danamon</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="payment-specific" id="cardSelection">
-                        <div class="form-group">
-                            <label class="form-label">Select Card Type *</label>
-                            <select class="form-input" id="selectedCard">
-                                <option value="">Choose card type</option>
-                                <option value="visa">VISA</option>
-                                <option value="mastercard">MasterCard</option>
-                                <option value="amex">American Express</option>
-                                <option value="discover">Discover</option>
-                            </select>
+                    <!-- QRIS Payment Form -->
+                    <div class="payment-specific" id="qrisSelection">
+                        <div class="qris-container">
+                            <div class="qris-code">
+                                <!-- Placeholder for QR Code -->
+                                <div style="text-align: center;">
+                                    <i class="fas fa-qrcode" style="font-size: 40px; margin-bottom: 10px; color: var(--medium-gray);"></i>
+                                    <div>QR CODE</div>
+                                </div>
+                            </div>
+                            <div class="qris-instructions">
+                                <p><strong>How to pay with QRIS:</strong></p>
+                                <p>1. Open your mobile banking app</p>
+                                <p>2. Select "Scan QR Code" or "QRIS"</p>
+                                <p>3. Scan the QR code above</p>
+                                <p>4. Confirm the payment amount</p>
+                                <p>5. Complete the transaction</p>
+                            </div>
                         </div>
                     </div>
 
@@ -1151,21 +1198,19 @@
 
         function setupPaymentMethods() {
             const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
-            const bankSelection = document.getElementById('bankSelection');
-            const cardSelection = document.getElementById('cardSelection');
+            const chobankSelection = document.getElementById('chobankSelection');
+            const qrisSelection = document.getElementById('qrisSelection');
             
             // NO DEFAULT SELECTION - User must choose
-            // Remove checked attribute from all payment methods
-            
             paymentMethods.forEach(method => {
                 method.addEventListener('change', function() {
-                    bankSelection.classList.remove('active');
-                    cardSelection.classList.remove('active');
+                    chobankSelection.classList.remove('active');
+                    qrisSelection.classList.remove('active');
                     
-                    if (this.value === 'debit-credit') {
-                        bankSelection.classList.add('active');
-                    } else if (this.value === 'international') {
-                        cardSelection.classList.add('active');
+                    if (this.value === 'chobank') {
+                        chobankSelection.classList.add('active');
+                    } else if (this.value === 'qris') {
+                        qrisSelection.classList.add('active');
                     }
                     
                     // Highlight the selected payment method
@@ -1178,6 +1223,33 @@
                     // The radio button change event will handle the rest
                 });
             });
+            
+            // Format CHOBANK account number input
+            const accountNumberInput = document.getElementById('chobankAccountNumber');
+            if (accountNumberInput) {
+                accountNumberInput.addEventListener('input', function(e) {
+                    // Remove all non-digits
+                    let value = this.value.replace(/\D/g, '');
+                    
+                    // Limit to 16 digits
+                    if (value.length > 16) {
+                        value = value.substring(0, 16);
+                    }
+                    
+                    // Add space every 4 digits
+                    value = value.replace(/(.{4})/g, '$1 ').trim();
+                    
+                    this.value = value;
+                });
+                
+                // Prevent non-numeric input
+                accountNumberInput.addEventListener('keypress', function(e) {
+                    const char = String.fromCharCode(e.keyCode || e.which);
+                    if (!/[\d]/.test(char)) {
+                        e.preventDefault();
+                    }
+                });
+            }
             
             // Initialize - no payment method selected by default
             highlightSelectedPayment();
@@ -1208,8 +1280,7 @@
             const email = document.getElementById('email').value.trim();
             const country = document.getElementById('country').value.trim();
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
-            const selectedBank = document.getElementById('selectedBank').value;
-            const selectedCard = document.getElementById('selectedCard').value;
+            const chobankAccountNumber = document.getElementById('chobankAccountNumber')?.value.replace(/\s/g, '');
             
             // Clear previous errors
             document.querySelectorAll('.form-input').forEach(input => {
@@ -1251,16 +1322,17 @@
                 });
             }
             
-            if (paymentMethod && paymentMethod.value === 'debit-credit' && !selectedBank) {
-                document.getElementById('selectedBank').style.borderColor = 'var(--discount-color)';
-                isValid = false;
-                errorMessage = errorMessage || 'Please select your bank';
-            }
-            
-            if (paymentMethod && paymentMethod.value === 'international' && !selectedCard) {
-                document.getElementById('selectedCard').style.borderColor = 'var(--discount-color)';
-                isValid = false;
-                errorMessage = errorMessage || 'Please select your card type';
+            // Validate CHOBANK account number if selected
+            if (paymentMethod && paymentMethod.value === 'chobank') {
+                if (!chobankAccountNumber || chobankAccountNumber.length !== 16) {
+                    document.getElementById('chobankAccountNumber').style.borderColor = 'var(--discount-color)';
+                    isValid = false;
+                    errorMessage = errorMessage || 'Please enter a valid 16-digit CHOBANK account number';
+                } else if (!/^\d+$/.test(chobankAccountNumber)) {
+                    document.getElementById('chobankAccountNumber').style.borderColor = 'var(--discount-color)';
+                    isValid = false;
+                    errorMessage = errorMessage || 'CHOBANK account number should contain only numbers';
+                }
             }
             
             if (cartItems.length === 0) {
@@ -1293,8 +1365,7 @@
             const twitterUsername = document.getElementById('twitterUsername').value.trim();
             const otherRequest = document.getElementById('otherRequest').value.trim();
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
-            const selectedBank = document.getElementById('selectedBank').value;
-            const selectedCard = document.getElementById('selectedCard').value;
+            const chobankAccountNumber = document.getElementById('chobankAccountNumber')?.value;
             
             const total = subtotal - discount + serviceFee;
             const itemCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
@@ -1316,8 +1387,7 @@
                 total: total,
                 itemCount: itemCount,
                 paymentMethod: paymentMethod.value,
-                selectedBank: paymentMethod.value === 'debit-credit' ? selectedBank : null,
-                selectedCard: paymentMethod.value === 'international' ? selectedCard : null,
+                chobankAccountNumber: paymentMethod.value === 'chobank' ? chobankAccountNumber : null,
                 voucherCode: voucherCode,
                 paymentDate: new Date().toISOString(),
                 status: 'pending'
@@ -1347,7 +1417,7 @@
                     "Shipping Fee": "0.00",
                     "Tax": "0.00",
                     "Total Amount": total.toFixed(2),
-                    "Payment Method": getPaymentMethodDisplay(paymentMethod.value, selectedBank, selectedCard),
+                    "Payment Method": getPaymentMethodDisplay(paymentMethod.value, chobankAccountNumber),
                     "Payment Status": "PAID",
                     "Order Date": new Date().toLocaleString()
                 };
@@ -1402,16 +1472,12 @@
             }
         }
         
-        function getPaymentMethodDisplay(method, bank, card) {
+        function getPaymentMethodDisplay(method, accountNumber) {
             switch(method) {
-                case 'paypal':
-                    return 'PAYPAL';
+                case 'chobank':
+                    return `CHOBANK - ${accountNumber || 'Not provided'}`;
                 case 'qris':
                     return 'QRIS';
-                case 'debit-credit':
-                    return `DEBIT/CREDIT - ${bank.toUpperCase()}`;
-                case 'international':
-                    return `INTERNATIONAL - ${card.toUpperCase()}`;
                 default:
                     return method.toUpperCase();
             }
