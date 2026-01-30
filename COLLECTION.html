@@ -354,12 +354,12 @@
             object-fit: cover;
         }
 
-        /* TOMBOL SLIDE KIRI-KANAN YANG BARU */
+        /* TOMBOL SLIDE KIRI-KANAN YANG BARU - LEBIH TRANSPARAN */
         .slide-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.15); /* LEBIH TRANSPARAN */
             color: white;
             border: none;
             width: 36px;
@@ -381,7 +381,7 @@
         }
 
         .slide-btn:hover {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.25);
         }
 
         .slide-btn.prev {
@@ -396,8 +396,18 @@
             font-size: 14px;
         }
 
-        /* Indikator stok */
-        .stock-indicator {
+        /* Tombol disabled */
+        .slide-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slide-btn:disabled:hover {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        /* Label LIMITED EDITION */
+        .limited-edition-label {
             position: absolute;
             top: 10px;
             right: 10px;
@@ -408,10 +418,7 @@
             font-size: 11px;
             z-index: 5;
             font-weight: 500;
-        }
-
-        .stock-low {
-            background: rgba(220, 53, 69, 0.8);
+            letter-spacing: 0.5px;
         }
 
         .product-info {
@@ -909,10 +916,11 @@
             
             /* Tombol slide selalu terlihat di mobile */
             .slide-btn {
-                opacity: 0.6;
+                opacity: 0.4;
                 visibility: visible;
                 width: 32px;
                 height: 32px;
+                background: rgba(0, 0, 0, 0.1); /* Lebih transparan di mobile */
             }
             
             .slide-btn i {
@@ -1228,7 +1236,7 @@
             
             <div class="products-grid">
                 <!-- Product 1 -->
-                <div class="product-card" data-product="CHOOSIC GRAPHITE BLACK" data-price="480" data-id="CGB-01" data-stock="30">
+                <div class="product-card" data-product="CHOOSIC GRAPHITE BLACK" data-price="480" data-id="CGB-01">
                     <div class="product-image-container">
                         <div class="product-slides">
                             <div class="product-slide">
@@ -1245,20 +1253,19 @@
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Indikator stok -->
-                        <div class="stock-indicator">Stock: <span class="stock-count">30</span></div>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">CHOOSIC</div>
                         <h3 class="product-name">GRAPHITE BLACK</h3>
                         <div class="product-price">$480</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
-                        <div class="out-of-stock-text" style="display: none;"></div>
                     </div>
                 </div>
                 
                 <!-- Product 2 -->
-                <div class="product-card" data-product="CHOOSIC WHITE" data-price="480" data-id="CW-02" data-stock="30">
+                <div class="product-card" data-product="CHOOSIC WHITE" data-price="480" data-id="CW-02">
                     <div class="product-image-container">
                         <div class="product-slides">
                             <div class="product-slide">
@@ -1275,20 +1282,19 @@
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Indikator stok -->
-                        <div class="stock-indicator">Stock: <span class="stock-count">30</span></div>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">CHOOSIC</div>
                         <h3 class="product-name">WHITE</h3>
                         <div class="product-price">$480</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
-                        <div class="out-of-stock-text" style="display: none;"></div>
                     </div>
                 </div>
                 
                 <!-- Product 3 -->
-                <div class="product-card" data-product="CHOOSIC ESPRESSO BROWN" data-price="480" data-id="CEB-03" data-stock="30">
+                <div class="product-card" data-product="CHOOSIC ESPRESSO BROWN" data-price="480" data-id="CEB-03">
                     <div class="product-image-container">
                         <div class="product-slides">
                             <div class="product-slide">
@@ -1305,20 +1311,19 @@
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Indikator stok -->
-                        <div class="stock-indicator">Stock: <span class="stock-count">30</span></div>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">CHOOSIC</div>
                         <h3 class="product-name">ESPRESSO BROWN</h3>
                         <div class="product-price">$480</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
-                        <div class="out-of-stock-text" style="display: none;"></div>
                     </div>
                 </div>
                 
                 <!-- Product 4 -->
-                <div class="product-card" data-product="CHOOSIC VANILLA HAZE" data-price="480" data-id="CVH-04" data-stock="30">
+                <div class="product-card" data-product="CHOOSIC VANILLA HAZE" data-price="480" data-id="CVH-04">
                     <div class="product-image-container">
                         <div class="product-slides">
                             <div class="product-slide">
@@ -1335,20 +1340,19 @@
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Indikator stok -->
-                        <div class="stock-indicator">Stock: <span class="stock-count">30</span></div>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">CHOOSIC</div>
                         <h3 class="product-name">VANILLA HAZE</h3>
                         <div class="product-price">$480</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
-                        <div class="out-of-stock-text" style="display: none;"></div>
                     </div>
                 </div>
                 
                 <!-- Product 5 -->
-                <div class="product-card" data-product="CHOOSIC MULBERY-WINE" data-price="480" data-id="CMW-05" data-stock="30">
+                <div class="product-card" data-product="CHOOSIC MULBERY-WINE" data-price="480" data-id="CMW-05">
                     <div class="product-image-container">
                         <div class="product-slides">
                             <div class="product-slide">
@@ -1365,20 +1369,19 @@
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Indikator stok -->
-                        <div class="stock-indicator">Stock: <span class="stock-count">30</span></div>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">CHOOSIC</div>
                         <h3 class="product-name">MULBERY-WINE</h3>
                         <div class="product-price">$480</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
-                        <div class="out-of-stock-text" style="display: none;"></div>
                     </div>
                 </div>
                 
                 <!-- Product 6 -->
-                <div class="product-card" data-product="CHOOSIC ROSE NOIR" data-price="480" data-id="CRN-06" data-stock="30">
+                <div class="product-card" data-product="CHOOSIC ROSE NOIR" data-price="480" data-id="CRN-06">
                     <div class="product-image-container">
                         <div class="product-slides">
                             <div class="product-slide">
@@ -1395,20 +1398,19 @@
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Indikator stok -->
-                        <div class="stock-indicator">Stock: <span class="stock-count">30</span></div>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">CHOOSIC</div>
                         <h3 class="product-name">ROSE NOIR</h3>
                         <div class="product-price">$480</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
-                        <div class="out-of-stock-text" style="display: none;"></div>
                     </div>
                 </div>
 
                 <!-- Product 7 -->
-                <div class="product-card" data-product="CHOZY BLACK" data-price="30" data-id="MUGB-01" data-stock="30">
+                <div class="product-card" data-product="CHOZY BLACK" data-price="30" data-id="MUGB-01">
                     <div class="product-image-container">
                         <div class="product-slides">
                             <div class="product-slide">
@@ -1425,20 +1427,19 @@
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Indikator stok -->
-                        <div class="stock-indicator">Stock: <span class="stock-count">30</span></div>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">CHOZY</div>
                         <h3 class="product-name">BLACK</h3>
                         <div class="product-price">$30</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
-                        <div class="out-of-stock-text" style="display: none;"></div>
                     </div>
                 </div>
 
                 <!-- Product 8 -->
-                <div class="product-card" data-product="CHOZY WHITE" data-price="30" data-id="MUGW-02" data-stock="30">
+                <div class="product-card" data-product="CHOZY WHITE" data-price="30" data-id="MUGW-02">
                     <div class="product-image-container">
                         <div class="product-slides">
                             <div class="product-slide">
@@ -1455,20 +1456,19 @@
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Indikator stok -->
-                        <div class="stock-indicator">Stock: <span class="stock-count">30</span></div>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">CHOZY</div>
                         <h3 class="product-name">WHITE</h3>
                         <div class="product-price">$30</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
-                        <div class="out-of-stock-text" style="display: none;"></div>
                     </div>
                 </div>
 
                 <!-- Product 9 -->
-                <div class="product-card" data-product="CHOZY BLUE" data-price="30" data-id="MUGBLU-03" data-stock="30">
+                <div class="product-card" data-product="CHOZY BLUE" data-price="30" data-id="MUGBLU-03">
                     <div class="product-image-container">
                         <div class="product-slides">
                             <div class="product-slide">
@@ -1485,20 +1485,19 @@
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Indikator stok -->
-                        <div class="stock-indicator">Stock: <span class="stock-count">30</span></div>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">CHOZY</div>
                         <h3 class="product-name">BLUE</h3>
                         <div class="product-price">$30</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
-                        <div class="out-of-stock-text" style="display: none;"></div>
                     </div>
                 </div>
 
                 <!-- Product 10 -->
-                <div class="product-card" data-product="CHOZY ORANGE" data-price="30" data-id="MUGOR-04" data-stock="30">
+                <div class="product-card" data-product="CHOZY ORANGE" data-price="30" data-id="MUGOR-04">
                     <div class="product-image-container">
                         <div class="product-slides">
                             <div class="product-slide">
@@ -1515,20 +1514,19 @@
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Indikator stok -->
-                        <div class="stock-indicator">Stock: <span class="stock-count">30</span></div>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">CHOZY</div>
                         <h3 class="product-name">ORANGE</h3>
                         <div class="product-price">$30</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
-                        <div class="out-of-stock-text" style="display: none;"></div>
                     </div>
                 </div>
 
                 <!-- Product 11 -->
-                <div class="product-card" data-product="CHOZY GREEN" data-price="30" data-id="MUGG1-05" data-stock="30">
+                <div class="product-card" data-product="CHOZY GREEN" data-price="30" data-id="MUGG1-05">
                     <div class="product-image-container">
                         <div class="product-slides">
                             <div class="product-slide">
@@ -1545,20 +1543,19 @@
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Indikator stok -->
-                        <div class="stock-indicator">Stock: <span class="stock-count">30</span></div>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">CHOZY</div>
                         <h3 class="product-name">GREEN</h3>
                         <div class="product-price">$30</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
-                        <div class="out-of-stock-text" style="display: none;"></div>
                     </div>
                 </div>
 
                 <!-- Product 12 -->
-                <div class="product-card" data-product="CHOZY YELLOW" data-price="30" data-id="MUGY-06" data-stock="30">
+                <div class="product-card" data-product="CHOZY YELLOW" data-price="30" data-id="MUGY-06">
                     <div class="product-image-container">
                         <div class="product-slides">
                             <div class="product-slide">
@@ -1575,20 +1572,19 @@
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Indikator stok -->
-                        <div class="stock-indicator">Stock: <span class="stock-count">30</span></div>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
                         <div class="brand-name">CHOZY</div>
                         <h3 class="product-name">YELLOW</h3>
                         <div class="product-price">$30</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
-                        <div class="out-of-stock-text" style="display: none;"></div>
                     </div>
                 </div>
 
-                <!-- Product 13 -->
-                <div class="product-card" data-product="CHOFFEE" data-price="25" data-id="CHOFFEE-01" data-stock="30">
+                <!-- Product 13 - CHOFFEE (TANPA LIMITED EDITION) -->
+                <div class="product-card" data-product="CHOFFEE" data-price="25" data-id="CHOFFEE-01">
                     <div class="product-image-container">
                         <div class="product-slides">
                             <div class="product-slide">
@@ -1605,15 +1601,13 @@
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Indikator stok -->
-                        <div class="stock-indicator">Stock: <span class="stock-count">30</span></div>
+                        <!-- CHOFFEE TIDAK PAKAI LIMITED EDITION LABEL -->
                     </div>
                     <div class="product-info">
                         <div class="brand-name">CHOFFEE</div>
                         <h3 class="product-name">POUCH</h3>
                         <div class="product-price">$25</div>
                         <button class="add-to-cart-btn">Add to Bag</button>
-                        <div class="out-of-stock-text" style="display: none;"></div>
                     </div>
                 </div>
             </div>
@@ -1687,22 +1681,9 @@
     </footer>
 
     <script>
-    // SIMPLE CART SYSTEM YANG BERFUNGSI DENGAN STOK
+    // SIMPLE CART SYSTEM
     let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
-    let stockData = JSON.parse(localStorage.getItem('kazineStock')) || {};
     let isProcessing = false;
-
-    // Inisialisasi stok jika belum ada
-    function initializeStock() {
-        if (Object.keys(stockData).length === 0) {
-            document.querySelectorAll('.product-card').forEach(card => {
-                const productId = card.getAttribute('data-id');
-                const initialStock = parseInt(card.getAttribute('data-stock') || '30');
-                stockData[productId] = initialStock;
-            });
-            localStorage.setItem('kazineStock', JSON.stringify(stockData));
-        }
-    }
 
     // DOM Elements
     const cartModal = document.getElementById('cartModal');
@@ -1717,10 +1698,8 @@
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mainNav = document.getElementById('mainNav');
 
-    // Initialize
-    initializeStock();
+    // Initialize cart display
     updateCartDisplay();
-    updateStockDisplays();
 
     // Mobile menu toggle
     if (mobileMenuBtn && mainNav) {
@@ -1764,61 +1743,6 @@
         cartModal.classList.remove('active');
         cartOverlay.classList.remove('active');
         document.body.style.overflow = 'auto';
-    }
-
-    function updateStockDisplays() {
-        document.querySelectorAll('.product-card').forEach(card => {
-            const productId = card.getAttribute('data-id');
-            const currentStock = stockData[productId] || 0;
-            const stockCountElement = card.querySelector('.stock-count');
-            const stockIndicator = card.querySelector('.stock-indicator');
-            const addToCartBtn = card.querySelector('.add-to-cart-btn');
-            const outOfStockText = card.querySelector('.out-of-stock-text');
-            
-            if (stockCountElement) {
-                stockCountElement.textContent = currentStock;
-            }
-            
-            if (currentStock <= 0) {
-                if (stockIndicator) {
-                    stockIndicator.classList.add('stock-low');
-                    stockIndicator.textContent = 'OUT OF STOCK';
-                }
-                if (addToCartBtn) {
-                    addToCartBtn.disabled = true;
-                    addToCartBtn.textContent = 'Out of Stock';
-                    addToCartBtn.classList.add('out-of-stock');
-                }
-                if (outOfStockText) {
-                    outOfStockText.textContent = 'This item is out of stock';
-                    outOfStockText.style.display = 'block';
-                }
-            } else if (currentStock <= 5) {
-                if (stockIndicator) {
-                    stockIndicator.classList.add('stock-low');
-                    stockIndicator.textContent = `Low Stock: ${currentStock}`;
-                }
-                if (addToCartBtn) {
-                    addToCartBtn.disabled = false;
-                }
-                if (outOfStockText) {
-                    outOfStockText.style.display = 'none';
-                }
-            } else {
-                if (stockIndicator) {
-                    stockIndicator.classList.remove('stock-low');
-                    stockIndicator.textContent = `Stock: ${currentStock}`;
-                }
-                if (addToCartBtn) {
-                    addToCartBtn.disabled = false;
-                    addToCartBtn.textContent = 'Add to Bag';
-                    addToCartBtn.classList.remove('out-of-stock');
-                }
-                if (outOfStockText) {
-                    outOfStockText.style.display = 'none';
-                }
-            }
-        });
     }
 
     function updateCartDisplay() {
@@ -1866,19 +1790,9 @@
                 e.preventDefault();
                 e.stopPropagation();
                 const index = parseInt(this.getAttribute('data-index'));
-                const removedItem = cart[index];
-                
-                // Kembalikan stok
-                const productId = removedItem.id;
-                stockData[productId] = (stockData[productId] || 0) + (removedItem.quantity || 1);
-                localStorage.setItem('kazineStock', JSON.stringify(stockData));
-                
-                // Hapus dari keranjang
                 cart.splice(index, 1);
                 localStorage.setItem('kazineCart', JSON.stringify(cart));
-                
                 updateCartDisplay();
-                updateStockDisplays();
                 showNotification('Item removed from cart');
             });
         });
@@ -1898,24 +1812,10 @@
         const productPrice = productCard.getAttribute('data-price');
         const productId = productCard.getAttribute('data-id');
         
-        // Check stock
-        const currentStock = stockData[productId] || 0;
-        if (currentStock <= 0) {
-            showNotification(`${productTitle} is out of stock`);
-            isProcessing = false;
-            return;
-        }
-        
         // Check if item already in cart
         const existingItem = cart.find(item => item.id === productId);
         
         if (existingItem) {
-            // Check if we have enough stock
-            if (existingItem.quantity >= currentStock) {
-                showNotification(`Only ${currentStock} items left in stock`);
-                isProcessing = false;
-                return;
-            }
             existingItem.quantity = (existingItem.quantity || 1) + 1;
             showNotification(`${productTitle} quantity updated`);
         } else {
@@ -1928,26 +1828,23 @@
             showNotification(`${productTitle} added to cart`);
         }
         
-        // Kurangi stok
-        stockData[productId] = currentStock - 1;
-        
         // Save to localStorage
         localStorage.setItem('kazineCart', JSON.stringify(cart));
-        localStorage.setItem('kazineStock', JSON.stringify(stockData));
         
         // Update display
         updateCartDisplay();
-        updateStockDisplays();
         
         // Visual feedback
         const originalText = button.innerHTML;
         button.innerHTML = '<i class="fas fa-check"></i> Added';
         button.style.backgroundColor = '#27ae60';
+        button.disabled = true;
         
         // Reset button after delay
         setTimeout(() => {
             button.innerHTML = originalText;
             button.style.backgroundColor = '';
+            button.disabled = false;
             isProcessing = false;
         }, 1000);
     }
@@ -1978,7 +1875,7 @@
         });
     }
 
-    // Image slider functionality dengan tombol kiri-kanan
+    // Image slider functionality dengan tombol kiri-kanan (HANYA 2 SLIDE)
     function initializeImageSliders() {
         document.querySelectorAll('.product-card').forEach(card => {
             const slides = card.querySelector('.product-slides');
@@ -1988,73 +1885,99 @@
             if (!slides || !prevBtn || !nextBtn) return;
             
             let currentSlide = 0;
-            const totalSlides = card.querySelectorAll('.product-slide').length;
+            const totalSlides = 2; // HANYA 2 SLIDE
             
-            // Function untuk update slide
+            // Function untuk update slide dan tombol
             function updateSlide() {
+                // Pindah slide
                 slides.style.transform = `translateX(-${currentSlide * 50}%)`;
+                
+                // Update state tombol
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+                
+                // Update opacity berdasarkan state
+                if (prevBtn.disabled) {
+                    prevBtn.style.opacity = '0.3';
+                } else {
+                    prevBtn.style.opacity = card.querySelector('.product-image-container:hover') ? '1' : '0';
+                }
+                
+                if (nextBtn.disabled) {
+                    nextBtn.style.opacity = '0.3';
+                } else {
+                    nextBtn.style.opacity = card.querySelector('.product-image-container:hover') ? '1' : '0';
+                }
             }
             
             // Previous button
             prevBtn.addEventListener('click', function(e) {
+                if (this.disabled) return;
+                
                 e.preventDefault();
                 e.stopPropagation();
                 
-                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                currentSlide = Math.max(0, currentSlide - 1);
                 updateSlide();
             });
             
             // Next button
             nextBtn.addEventListener('click', function(e) {
+                if (this.disabled) return;
+                
                 e.preventDefault();
                 e.stopPropagation();
                 
-                currentSlide = (currentSlide + 1) % totalSlides;
+                currentSlide = Math.min(totalSlides - 1, currentSlide + 1);
                 updateSlide();
             });
             
             // Touch events untuk mobile
             prevBtn.addEventListener('touchstart', function(e) {
+                if (this.disabled) {
+                    if (e.cancelable) e.preventDefault();
+                    return;
+                }
+                
                 if (e.cancelable) {
                     e.preventDefault();
                 }
                 e.stopPropagation();
                 
-                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                currentSlide = Math.max(0, currentSlide - 1);
                 updateSlide();
             }, { passive: false });
             
             nextBtn.addEventListener('touchstart', function(e) {
+                if (this.disabled) {
+                    if (e.cancelable) e.preventDefault();
+                    return;
+                }
+                
                 if (e.cancelable) {
                     e.preventDefault();
                 }
                 e.stopPropagation();
                 
-                currentSlide = (currentSlide + 1) % totalSlides;
+                currentSlide = Math.min(totalSlides - 1, currentSlide + 1);
                 updateSlide();
             }, { passive: false });
             
-            // Juga bisa di-klik pada gambar untuk berpindah
+            // Juga bisa di-klik pada gambar untuk berpindah (toggle antara 0 dan 1)
             slides.addEventListener('click', function(e) {
                 if (e.target.closest('.product-slide')) {
-                    currentSlide = (currentSlide + 1) % totalSlides;
+                    currentSlide = currentSlide === 0 ? 1 : 0;
                     updateSlide();
                 }
             });
             
-            // Auto-slide on hover for desktop
+            // Initialize state awal
+            updateSlide();
+            
+            // Auto-slide on hover for desktop (optional)
             if (!('ontouchstart' in window)) {
                 card.addEventListener('mouseenter', function() {
-                    this.slideInterval = setInterval(() => {
-                        currentSlide = (currentSlide + 1) % totalSlides;
-                        updateSlide();
-                    }, 3000);
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    if (this.slideInterval) {
-                        clearInterval(this.slideInterval);
-                    }
+                    // Tidak ada auto-slide karena hanya 2 slide
                 });
             }
         });
@@ -2205,9 +2128,6 @@
         // Update cart display
         updateCartDisplay();
         
-        // Update stock displays
-        updateStockDisplays();
-        
         // Reset processing flag
         isProcessing = false;
         
@@ -2223,7 +2143,6 @@
         initializeImageSliders();
         setupCartEventListeners();
         updateCartDisplay();
-        updateStockDisplays();
     });
 
     // Fix untuk mencegah double execution
@@ -2235,7 +2154,6 @@
         setTimeout(() => {
             initializeAddToCartButtons();
             initializeImageSliders();
-            updateStockDisplays();
         }, 100);
     }
     </script>
