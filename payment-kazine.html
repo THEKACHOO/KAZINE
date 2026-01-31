@@ -781,27 +781,6 @@
             text-align: center;
             padding: 20px;
         }
-        
-        .qris-code {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 20px;
-            background: #f8f9fa;
-            border: 1px solid var(--light-gray);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: var(--medium-gray);
-        }
-        
-        .qris-instructions {
-            font-size: 13px;
-            color: var(--medium-gray);
-            margin-top: 15px;
-            line-height: 1.5;
-        }
     </style>
 </head>
 <body>
@@ -972,14 +951,6 @@
                                     <div>QR CODE</div>
                                 </div>
                             </div>
-                            <div class="qris-instructions">
-                                <p><strong>How to pay with QRIS:</strong></p>
-                                <p>1. Open your mobile banking app</p>
-                                <p>2. Select "Scan QR Code" or "QRIS"</p>
-                                <p>3. Scan the QR code above</p>
-                                <p>4. Confirm the payment amount</p>
-                                <p>5. Complete the transaction</p>
-                            </div>
                         </div>
                     </div>
 
@@ -1015,8 +986,8 @@
         
         // Valid voucher codes with their discounts
         const validVouchers = {
-            "WELCOMEKACHOO": 30,  // 30% discount
-            "KACHOOBESTIE": 50    // 50% discount
+            "CHOBATKU": 50,  // 50% discount
+            "SOBATKACHOO": 70    // 70% discount
         };
 
         function calculateDiscount(code, amount) {
