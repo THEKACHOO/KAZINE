@@ -502,6 +502,11 @@
                 <p class="confirmation-subtitle">Your payment has been successfully processed.</p>
                 <p class="confirmation-subtitle">Please wait for your order to be delivered.</p>
                 
+                <div id="discountApplied" class="discount-applied" style="display: none;">
+                    <i class="fas fa-tag"></i>
+                    <span id="discountText">Discount Applied!</span>
+                </div>
+                
                 <div id="spreadsheetStatus" class="spreadsheet-status" style="display: none;">
                     <i class="fas fa-sync-alt fa-spin"></i>
                     <span>Sending data to spreadsheet...</span>
@@ -594,7 +599,7 @@
                 </div>
                 
                 <div class="action-buttons">
-                    <a href="COLLECTION.html" class="btn btn-primary">
+                    <a href="kazine.html" class="btn btn-primary">
                         <i class="fas fa-store"></i>
                         Back to Store
                     </a>
@@ -614,7 +619,7 @@
                 <h3>Oops! Something went wrong</h3>
                 <p id="errorMessage">We couldn't process your order. Please try again or contact us.</p>
                 <div class="action-buttons">
-                    <a href="kazine.html" class="btn btn-primary">
+                    <a href="COLLECTION.html" class="btn btn-primary">
                         <i class="fas fa-home"></i>
                         Back to Store
                     </a>
@@ -650,7 +655,9 @@
                     display = 'Debit & Credit Card';
                     if (bank) {
                         const banks = {
-                            'CHOBANK'
+                            'bca': 'BCA', 'bni': 'BNI', 'bri': 'BRI',
+                            'mandiri': 'Mandiri', 'cimb': 'CIMB Niaga',
+                            'permata': 'Permata', 'danamon': 'Danamon'
                         };
                         display += ` (${banks[bank] || bank})`;
                     }
