@@ -332,7 +332,7 @@
                 title: "Issue 1",
                 description: "New Year New Vibes",
                 isSecret: false,
-                imageFile: "issue1.png", // Nama file PNG untuk Issue 1
+                imageFile: "issue1.png",
                 pageUrl: "https://thekachoo.github.io/Home/kazinevol1.html"
             },
             {
@@ -340,7 +340,7 @@
                 title: "Issue 2",
                 description: "Coming Soon",
                 isSecret: true,
-                imageFile: "issue2.png", // Nama file PNG untuk Issue 2
+                imageFile: "issue2.png",
                 pageUrl: "#"
             },
             {
@@ -348,7 +348,7 @@
                 title: "Issue 3",
                 description: "Coming Soon",
                 isSecret: true,
-                imageFile: "issue3.png", // Nama file PNG untuk Issue 3
+                imageFile: "issue3.png",
                 pageUrl: "#"
             },
             {
@@ -356,7 +356,7 @@
                 title: "Issue 4",
                 description: "Coming Soon",
                 isSecret: true,
-                imageFile: "issue4.png", // Nama file PNG untuk Issue 4
+                imageFile: "issue4.png",
                 pageUrl: "#"
             },
             {
@@ -364,63 +364,7 @@
                 title: "Issue 5",
                 description: "Coming Soon",
                 isSecret: true,
-                imageFile: "issue5.png", // Nama file PNG untuk Issue 5
-                pageUrl: "#"
-            },
-            {
-                number: 6,
-                title: "Issue 6",
-                description: "Coming Soon",
-                isSecret: true,
-                imageFile: "issue6.png", // Nama file PNG untuk Issue 6
-                pageUrl: "#"
-            },
-            {
-                number: 7,
-                title: "Issue 7",
-                description: "Coming Soon",
-                isSecret: true,
-                imageFile: "issue7.png", // Nama file PNG untuk Issue 7
-                pageUrl: "#"
-            },
-            {
-                number: 8,
-                title: "Issue 8",
-                description: "Coming Soon",
-                isSecret: true,
-                imageFile: "issue8.png", // Nama file PNG untuk Issue 8
-                pageUrl: "#"
-            },
-            {
-                number: 9,
-                title: "Issue 9",
-                description: "Coming Soon",
-                isSecret: true,
-                imageFile: "issue9.png", // Nama file PNG untuk Issue 9
-                pageUrl: "#"
-            },
-            {
-                number: 10,
-                title: "Issue 10",
-                description: "Coming Soon",
-                isSecret: true,
-                imageFile: "issue10.png", // Nama file PNG untuk Issue 10
-                pageUrl: "#"
-            },
-            {
-                number: 11,
-                title: "Issue 11",
-                description: "Coming Soon",
-                isSecret: true,
-                imageFile: "issue11.png", // Nama file PNG untuk Issue 11
-                pageUrl: "#"
-            },
-            {
-                number: 12,
-                title: "Issue 12",
-                description: "Coming Soon",
-                isSecret: true,
-                imageFile: "issue12.png", // Nama file PNG untuk Issue 12
+                imageFile: "issue5.png",
                 pageUrl: "#"
             }
         ];
@@ -428,7 +372,7 @@
         // Konfigurasi folder untuk gambar
         const imageConfig = {
             basePath: "images/", // Folder tempat menyimpan gambar PNG
-            defaultImage: "default.png" // Gambar default jika file tidak ditemukan
+            defaultImage: "default.png"
         };
         
         // Fungsi untuk mendapatkan path gambar yang lengkap
@@ -439,6 +383,7 @@
         // Fungsi untuk membuat grid items
         function createGridItems() {
             const gridContainer = document.getElementById('gridContainer');
+            gridContainer.innerHTML = ''; // Kosongkan container sebelum menambahkan item baru
             
             gridItems.forEach(item => {
                 const gridItem = document.createElement('div');
@@ -535,10 +480,10 @@
             console.warn(`Gambar ${filename} tidak ditemukan, menggunakan gambar default`);
             img.src = getImagePath(imageConfig.defaultImage);
             
-            // Jika gambar default juga tidak ada, gunakan placeholder online
+            // Jika gambar default juga tidak ada, gunakan placeholder online dengan ukuran 400x400
             img.onerror = function() {
                 this.onerror = null;
-                this.src = `https://via.placeholder.com/800x800/333333/FFFFFF?text=${encodeURIComponent(filename)}`;
+                this.src = `https://via.placeholder.com/400x400/333333/FFFFFF?text=${encodeURIComponent(filename.replace('.png', ''))}`;
             };
         }
         
