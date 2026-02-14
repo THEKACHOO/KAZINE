@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAZINE COLLECTION OFFICIAL</title>
+    <title>KAZINE | all sold out</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
@@ -471,55 +471,7 @@
             margin-top: 50px;
         }
 
-        .magazine-section {
-            padding: 80px 0;
-            background: var(--pure-white);
-        }
-
-        .magazine-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .magazine-cover img {
-            width: 100%;
-            height: auto;
-        }
-
-        .magazine-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 400;
-            margin-bottom: 20px;
-        }
-
-        .magazine-content h3 {
-            font-size: 24px;
-            font-weight: 400;
-            color: var(--medium-gray);
-            margin-bottom: 30px;
-        }
-
-        .magazine-content p {
-            font-size: 16px;
-            color: var(--dark-gray);
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-        .coming-soon-tag {
-            display: inline-block;
-            padding: 8px 20px;
-            background: var(--pure-black);
-            color: var(--pure-white);
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 20px;
-            text-decoration: none;
-        }
+        /* magazine section dihapus sesuai permintaan */
 
         footer {
             background: var(--pure-black);
@@ -787,7 +739,7 @@
             .products-grid { grid-template-columns:repeat(2,1fr); gap:15px; }
             .product-image-container { height:280px; }
             .slide-btn { opacity:0.4; visibility:visible; }
-            .magazine-container { grid-template-columns:1fr; }
+            /* magazine dihapus */
             .section-title h2 { font-size:28px; }
             .cart-modal { max-width:90%; }
         }
@@ -827,7 +779,7 @@
                 <ul>
                     <li><a href="https://thekachoo.github.io/Home/index.html">THE KACHOO</a></li>
                     <li><a href="#shop">SHOP</a></li>
-                    <li><a href="#magazine">MAGAZINE</a></li>
+                    <!-- link magazine dihapus -->
                 </ul>
             </nav>
         </div>
@@ -853,12 +805,12 @@
         </div>
     </section>
 
-    <!-- Valentine with Kazine : HANYA Kriya Nusaca (Luna & Sol, Amare, Simple Bouquet) yang aktif. Amère (Heart Melt) sekarang SOLD OUT -->
+    <!-- Valentine with Kazine : SEMUA PRODUK SOLD OUT -->
     <section class="shop-section" id="valentine">
         <div class="container">
             <div class="section-title"><h2>VALENTINE WITH KAZINE</h2><p>Special Valentine's Day Collection</p></div>
             <div class="products-grid">
-                <!-- Luna & Sol (Kriya Nusaca) - AKTIF -->
+                <!-- Luna & Sol - SOLD OUT -->
                 <div class="product-card" data-product="Luna & Sol" data-price="700" data-id="VAL-04">
                     <div class="product-image-container">
                         <div class="product-slides"><div class="product-slide"><img src="lunasol.png" alt="Luna & Sol"></div></div>
@@ -868,10 +820,10 @@
                         <div class="brand-name">Kachoo x Kriya Nusaca</div>
                         <h3 class="product-name">Luna & Sol</h3>
                         <div class="product-price">$700</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
+                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
                     </div>
                 </div>
-                <!-- Amare (Kriya Nusaca) - AKTIF -->
+                <!-- Amare - SOLD OUT -->
                 <div class="product-card" data-product="Amare" data-price="427" data-id="VAL-03">
                     <div class="product-image-container">
                         <div class="product-slides"><div class="product-slide"><img src="amare.png" alt="Amare"></div></div>
@@ -881,10 +833,10 @@
                         <div class="brand-name">Kachoo x Kriya Nusaca</div>
                         <h3 class="product-name">Amare</h3>
                         <div class="product-price">$427</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
+                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
                     </div>
                 </div>
-                <!-- Simple Bouquet (Kriya Nusaca) - AKTIF -->
+                <!-- Simple Bouquet - SOLD OUT -->
                 <div class="product-card" data-product="Simple Bouquet" data-price="294" data-id="VAL-02">
                     <div class="product-image-container">
                         <div class="product-slides"><div class="product-slide"><img src="simplebouquet.png" alt="Simple Bouquet"></div></div>
@@ -894,10 +846,10 @@
                         <div class="brand-name">Kachoo x Kriya Nusaca</div>
                         <h3 class="product-name">Simple Bouquet</h3>
                         <div class="product-price">$294</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
+                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
                     </div>
                 </div>
-                <!-- Kazine Special, Woman Dress (biasa) => SOLD OUT -->
+                <!-- Woman Dress - SOLD OUT -->
                 <div class="product-card" data-product="Kazine Special, Woman Dress" data-price="200" data-id="VAL-08">
                     <div class="product-image-container">
                         <div class="product-slides"><div class="product-slide"><img src="womandress.png" alt="Woman Dress"></div></div>
@@ -907,10 +859,10 @@
                         <div class="brand-name">KAZINE SPECIAL</div>
                         <h3 class="product-name">Valentine Dress</h3>
                         <div class="product-price">$200</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled style="pointer-events:none;"></button>
+                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
                     </div>
                 </div>
-                <!-- Kazine Special, Man Suit => SOLD OUT -->
+                <!-- Man Suit - SOLD OUT -->
                 <div class="product-card" data-product="Kazine Special, Man Suit" data-price="120" data-id="VAL-07">
                     <div class="product-image-container">
                         <div class="product-slides"><div class="product-slide"><img src="mansuit.png" alt="Man Suit"></div></div>
@@ -923,7 +875,7 @@
                         <button class="add-to-cart-btn sold-out-btn" disabled></button>
                     </div>
                 </div>
-                <!-- Eternal Heart => SOLD OUT -->
+                <!-- Eternal Heart - SOLD OUT -->
                 <div class="product-card" data-product="Eternal Heart" data-price="30" data-id="VAL-09">
                     <div class="product-image-container">
                         <div class="product-slides"><div class="product-slide"><img src="eternalheart.png" alt="Eternal Heart"></div></div>
@@ -936,7 +888,7 @@
                         <button class="add-to-cart-btn sold-out-btn" disabled></button>
                     </div>
                 </div>
-                <!-- Tender Bloom => SOLD OUT -->
+                <!-- Tender Bloom - SOLD OUT -->
                 <div class="product-card" data-product="Tender Bloom" data-price="20" data-id="VAL-10">
                     <div class="product-image-container">
                         <div class="product-slides"><div class="product-slide"><img src="tenderbloom.png" alt="Tender Bloom"></div></div>
@@ -949,7 +901,7 @@
                         <button class="add-to-cart-btn sold-out-btn" disabled></button>
                     </div>
                 </div>
-                <!-- Timeless Red => SOLD OUT -->
+                <!-- Timeless Red - SOLD OUT -->
                 <div class="product-card" data-product="Timeless Red" data-price="20" data-id="VAL-11">
                     <div class="product-image-container">
                         <div class="product-slides"><div class="product-slide"><img src="timelessred.png" alt="Timeless Red"></div></div>
@@ -962,7 +914,7 @@
                         <button class="add-to-cart-btn sold-out-btn" disabled></button>
                     </div>
                 </div>
-                <!-- Scarlet Grandeur => SOLD OUT -->
+                <!-- Scarlet Grandeur - SOLD OUT -->
                 <div class="product-card" data-product="Scarlet Grandeur" data-price="15" data-id="VAL-12">
                     <div class="product-image-container">
                         <div class="product-slides"><div class="product-slide"><img src="scarletgrandeur.png" alt="Scarlet Grandeur"></div></div>
@@ -975,7 +927,7 @@
                         <button class="add-to-cart-btn sold-out-btn" disabled></button>
                     </div>
                 </div>
-                <!-- Blooming Grace => SOLD OUT -->
+                <!-- Blooming Grace - SOLD OUT -->
                 <div class="product-card" data-product="Blooming Grace" data-price="15" data-id="VAL-13">
                     <div class="product-image-container">
                         <div class="product-slides"><div class="product-slide"><img src="bloominggrace.png" alt="Blooming Grace"></div></div>
@@ -988,7 +940,7 @@
                         <button class="add-to-cart-btn sold-out-btn" disabled></button>
                     </div>
                 </div>
-                <!-- Heart Melt (Kachoo x Amére) - AMÈRE → SEKARANG SOLD OUT sesuai permintaan -->
+                <!-- Heart Melt - SOLD OUT -->
                 <div class="product-card" data-product="Heart Melt" data-price="14" data-id="VAL-01">
                     <div class="product-image-container">
                         <div class="product-slides"><div class="product-slide"><img src="heartmelt2.png" alt="Heart Melt"></div></div>
@@ -1001,7 +953,7 @@
                         <button class="add-to-cart-btn sold-out-btn" disabled></button>
                     </div>
                 </div>
-                <!-- Choco Bar (CHOCO) => SOLD OUT -->
+                <!-- Choco Bar - SOLD OUT -->
                 <div class="product-card" data-product="Choco Bar" data-price="5" data-id="VAL-05">
                     <div class="product-image-container">
                         <div class="product-slides"><div class="product-slide"><img src="chocobar.png" alt="Choco Bar"></div></div>
@@ -1014,7 +966,7 @@
                         <button class="add-to-cart-btn sold-out-btn" disabled></button>
                     </div>
                 </div>
-                <!-- Chookies Choco (CHOOKIES) => SOLD OUT -->
+                <!-- Chookies Choco - SOLD OUT -->
                 <div class="product-card" data-product="Chookies Choco" data-price="5" data-id="VAL-06">
                     <div class="product-image-container">
                         <div class="product-slides"><div class="product-slide"><img src="chookies.png" alt="Chookies Choco"></div></div>
@@ -1032,7 +984,7 @@
         </div>
     </section>
 
-    <!-- KAZINE IN LOOP section: semua brand selain Kriya Nusaca (CHOOSIC,CHOZY,dress,dll, Amère sudah dimatikan di atas) SOLD OUT -->
+    <!-- KAZINE IN LOOP section: SEMUA PRODUK SOLD OUT -->
     <section class="shop-section" id="shop">
         <div class="container">
             <div class="section-title"><h2>KAZINE IN LOOP!</h2><p>Time to shop! Make sure to use your voucher.</p></div>
@@ -1051,32 +1003,20 @@
                 <div class="product-card" data-product="CHOZY ORANGE" data-price="30" data-id="MUGOR-04"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="MUGOR1.png" alt="OR"></div><div class="product-slide"><img src="MUGOR2.png" alt="OR2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOZY</div><h3 class="product-name">ORANGE</h3><div class="product-price">$30</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
                 <div class="product-card" data-product="CHOZY GREEN" data-price="30" data-id="MUGG1-05"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="MUGG1.png" alt="GR"></div><div class="product-slide"><img src="MUGG2.png" alt="GR2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOZY</div><h3 class="product-name">GREEN</h3><div class="product-price">$30</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
                 <div class="product-card" data-product="CHOZY YELLOW" data-price="30" data-id="MUGY-06"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="MUGY1.png" alt="YEL"></div><div class="product-slide"><img src="MUGY2.png" alt="YEL2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOZY</div><h3 class="product-name">YELLOW</h3><div class="product-price">$30</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
-                <!-- CHOFFEE (bukan amere/kriya) => SOLD OUT -->
+                <!-- CHOFFEE - SOLD OUT -->
                 <div class="product-card" data-product="CHOFFEE" data-price="25" data-id="CHOFFEE-01"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="CHOFFEE1.png" alt="CHOFFEE"></div><div class="product-slide"><img src="CHOFFEE2.png" alt="CHOFFEE2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button></div><div class="product-info"><div class="brand-name">CHOFFEE</div><h3 class="product-name">POUCH</h3><div class="product-price">$25</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
             </div>
             <div class="checkout-container"><a href="payment-kazine.html" class="coming-soon-tag">PROCEED TO CHECKOUT</a></div>
         </div>
     </section>
     
-    <section class="magazine-section" id="magazine">
-        <div class="container">
-            <div class="magazine-container">
-                <div class="magazine-cover"><a href="https://thekachoo.github.io/Home/kazinevol1.html"><img src="kazinevol1s1.png" alt="KAZINE"></a></div>
-                <div class="magazine-content">
-                    <h2>KAZINE!</h2><h3>NEW YEAR NEW VIBES</h3>
-                    <p>Experience the inaugural edition of KAZINE... </p><p>Discover the stories.</p>
-                    <a href="https://thekachoo.github.io/Home/kazinevol1.html" class="coming-soon-tag">VIEW VOLUME 1</a>
-                    <div class="coming-soon-tag">VOLUME 2 COMING SOON</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
+    <!-- MAGAZINE SECTION DIHAPUS -->
+
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section"><h3>KAZINE</h3><p>A premium fashion and lifestyle brand under THE KACHOO...</p></div>
-                <div class="footer-section"><h3>Quick Links</h3><p><a href="https://thekachoo.github.io/Home/index.html" style="color:var(--medium-gray);text-decoration:none;">THE KACHOO</a></p><p><a href="#shop" style="color:var(--medium-gray);text-decoration:none;">SHOP</a></p><p><a href="#magazine" style="color:var(--medium-gray);text-decoration:none;">MAGAZINE</a></p></div>
+                <div class="footer-section"><h3>Quick Links</h3><p><a href="https://thekachoo.github.io/Home/index.html" style="color:var(--medium-gray);text-decoration:none;">THE KACHOO</a></p><p><a href="#shop" style="color:var(--medium-gray);text-decoration:none;">SHOP</a></p></div>
                 <div class="footer-section"><h3>Contact</h3><p>Official Account (X): <strong>@TheKachoo</strong></p><p>Email: ohkachoo@gmail.com</p><div class="social-links"><a href="https://twitter.com/TheKachoo" target="_blank"><i class="fab fa-twitter"></i></a><a href="mailto:ohkachoo@gmail.com"><i class="fas fa-envelope"></i></a></div></div>
             </div>
             <div class="disclaimer"><p><strong>IMPORTANT NOTICE:</strong> All payments and transactions on this website are fictional...</p><p>&copy; 2026 KAZINE | The Project of THE KACHOO. All rights reserved.</p></div>
@@ -1085,7 +1025,7 @@
 
     <script>
     (function() {
-        // CART SYSTEM (diadaptasi dari aslinya, hanya untuk tombol aktif)
+        // CART SYSTEM (hanya untuk update display, semua tombol disabled)
         let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
         const cartModal = document.getElementById('cartModal');
         const cartOverlay = document.getElementById('cartOverlay');
@@ -1142,39 +1082,9 @@
         closeCartBtn.addEventListener('click',closeCart);
         cartOverlay.addEventListener('click',closeCart);
 
-        // Handler Add to Cart hanya untuk tombol yang TIDAK punya class 'sold-out-btn'
-        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-            if (btn.classList.contains('sold-out-btn')) return;
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const card = this.closest('.product-card');
-                if (!card) return;
-                const id = card.dataset.id;
-                const title = card.dataset.product;
-                const price = card.dataset.price;
-                const existing = cart.find(item => item.id === id);
-                if (existing) {
-                    existing.quantity = (existing.quantity||1)+1;
-                } else {
-                    cart.push({ id, title, price, quantity:1 });
-                }
-                localStorage.setItem('kazineCart', JSON.stringify(cart));
-                updateCartDisplay();
-                showNotif(title+' added');
-                // feedback visual
-                const orig = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-check"></i> Added';
-                this.style.backgroundColor='#27ae60';
-                this.disabled=true;
-                setTimeout(()=>{
-                    this.innerHTML = orig;
-                    this.style.backgroundColor='';
-                    this.disabled=false;
-                },800);
-            });
-        });
+        // Tidak ada tombol aktif karena semua sudah .sold-out-btn
 
-        // slider hanya untuk kazine in loop (opsional, tapi biarkan)
+        // slider hanya untuk kazine in loop 
         document.querySelectorAll('.product-card').forEach(card => {
             const slides = card.querySelector('.product-slides');
             const prev = card.querySelector('.slide-btn.prev');
