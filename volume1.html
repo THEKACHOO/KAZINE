@@ -49,7 +49,7 @@
         /* Grid Styles */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(5, 1fr);
             gap: 20px;
             margin: 40px 0;
             animation: slideUp 1s ease-out;
@@ -64,7 +64,9 @@
             height: 300px;
             position: relative;
             border: 1px solid #f0f0f0;
-            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
         
         .grid-item:hover {
@@ -81,6 +83,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            position: relative;
         }
         
         .grid-item-image {
@@ -157,6 +160,7 @@
             justify-content: center;
             align-items: center;
             color: #ffffff;
+            pointer-events: none;
         }
         
         .secret-icon {
@@ -196,6 +200,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             letter-spacing: 1px;
             text-transform: uppercase;
+            text-decoration: none;
         }
         
         .audition-btn:hover {
@@ -253,7 +258,7 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .grid-container {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
             }
             
@@ -302,19 +307,84 @@
 <body>
     <div class="container">
         <header>
-            <!-- Logo Kazine akan dimasukkan di sini -->
-            <img src="KAZINE.png" alt="Kazine Logo" class="logo" id="logo">
+            <img src="KAZINE.png" alt="Kazine Logo" class="logo" id="logo" onerror="this.src='https://via.placeholder.com/300x100/000000/FFFFFF?text=KAZINE+LOGO'">
         </header>
         
         <main>
-            <div class="grid-container" id="gridContainer">
-                <!-- Grid items akan di-generate oleh JavaScript -->
+            <div class="grid-container">
+                <!-- Issue 1 - dengan HREF -->
+                <a href="https://thekachoo.github.io/Home/kazinevol1.html" class="grid-item">
+                    <span class="grid-item-number">1</span>
+                    <div class="grid-item-content">
+                        <img src="issue1.png" alt="Issue 1" class="grid-item-image" onerror="this.src='https://via.placeholder.com/400x400/333333/FFFFFF?text=Issue+1'">
+                        <div class="grid-item-overlay">
+                            <h3>Issue 1</h3>
+                            <p>New Year New Vibes</p>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Issue 2 - Coming Soon -->
+                <a href="#" class="grid-item" onclick="alert('Issue 2 akan segera hadir!'); return false;">
+                    <span class="grid-item-number">2</span>
+                    <div class="grid-item-content">
+                        <img src="issue2.png" alt="Issue 2" class="grid-item-image" onerror="this.src='https://via.placeholder.com/400x400/333333/FFFFFF?text=Issue+2'">
+                        <div class="grid-item-secret">
+                            <div class="secret-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="secret-text">COMING SOON</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Issue 3 - Coming Soon -->
+                <a href="#" class="grid-item" onclick="alert('Issue 3 akan segera hadir!'); return false;">
+                    <span class="grid-item-number">3</span>
+                    <div class="grid-item-content">
+                        <img src="issue3.png" alt="Issue 3" class="grid-item-image" onerror="this.src='https://via.placeholder.com/400x400/333333/FFFFFF?text=Issue+3'">
+                        <div class="grid-item-secret">
+                            <div class="secret-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="secret-text">COMING SOON</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Issue 4 - Coming Soon -->
+                <a href="#" class="grid-item" onclick="alert('Issue 4 akan segera hadir!'); return false;">
+                    <span class="grid-item-number">4</span>
+                    <div class="grid-item-content">
+                        <img src="issue4.png" alt="Issue 4" class="grid-item-image" onerror="this.src='https://via.placeholder.com/400x400/333333/FFFFFF?text=Issue+4'">
+                        <div class="grid-item-secret">
+                            <div class="secret-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="secret-text">COMING SOON</div>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Issue 5 - Coming Soon -->
+                <a href="#" class="grid-item" onclick="alert('Issue 5 akan segera hadir!'); return false;">
+                    <span class="grid-item-number">5</span>
+                    <div class="grid-item-content">
+                        <img src="issue5.png" alt="Issue 5" class="grid-item-image" onerror="this.src='https://via.placeholder.com/400x400/333333/FFFFFF?text=Issue+5'">
+                        <div class="grid-item-secret">
+                            <div class="secret-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="secret-text">COMING SOON</div>
+                        </div>
+                    </div>
+                </a>
             </div>
             
             <div class="button-container">
-                <button class="audition-btn" onclick="goToOpenAudition()">
+                <a href="openaudition.html" class="audition-btn">
                     KAZINE OPEN AUDITION <i class="fas fa-arrow-right"></i>
-                </button>
+                </a>
             </div>
         </main>
         
@@ -323,214 +393,5 @@
             <p>Kazine Volume 1</p>
         </footer>
     </div>
-
-    <script>
-        // Data untuk grid items dengan nama file PNG dan halaman tujuan
-        const gridItems = [
-            {
-                number: 1,
-                title: "Issue 1",
-                description: "New Year New Vibes",
-                isSecret: false,
-                imageFile: "issue1.png",
-                pageUrl: "https://thekachoo.github.io/Home/kazinevol1.html"
-            },
-            {
-                number: 2,
-                title: "Issue 2",
-                description: "Coming Soon",
-                isSecret: true,
-                imageFile: "issue2.png",
-                pageUrl: "#"
-            },
-            {
-                number: 3,
-                title: "Issue 3",
-                description: "Coming Soon",
-                isSecret: true,
-                imageFile: "issue3.png",
-                pageUrl: "#"
-            },
-            {
-                number: 4,
-                title: "Issue 4",
-                description: "Coming Soon",
-                isSecret: true,
-                imageFile: "issue4.png",
-                pageUrl: "#"
-            },
-            {
-                number: 5,
-                title: "Issue 5",
-                description: "Coming Soon",
-                isSecret: true,
-                imageFile: "issue5.png",
-                pageUrl: "#"
-            }
-        ];
-
-        // Konfigurasi folder untuk gambar
-        const imageConfig = {
-            basePath: "images/", // Folder tempat menyimpan gambar PNG
-            defaultImage: "default.png"
-        };
-        
-        // Fungsi untuk mendapatkan path gambar yang lengkap
-        function getImagePath(filename) {
-            return imageConfig.basePath + filename;
-        }
-        
-        // Fungsi untuk membuat grid items
-        function createGridItems() {
-            const gridContainer = document.getElementById('gridContainer');
-            gridContainer.innerHTML = ''; // Kosongkan container sebelum menambahkan item baru
-            
-            gridItems.forEach(item => {
-                const gridItem = document.createElement('div');
-                gridItem.className = 'grid-item';
-                
-                // Tambahkan event click untuk mengarahkan ke halaman
-                gridItem.addEventListener('click', function() {
-                    if (item.pageUrl && item.pageUrl !== '#') {
-                        window.location.href = item.pageUrl;
-                    } else if (item.isSecret) {
-                        // Tampilkan pesan untuk item yang masih secret
-                        alert(`${item.title} akan segera hadir!`);
-                    }
-                });
-                
-                const numberSpan = document.createElement('span');
-                numberSpan.className = 'grid-item-number';
-                numberSpan.textContent = item.number;
-                
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'grid-item-content';
-                
-                // Tambahkan gambar PNG
-                const image = document.createElement('img');
-                image.className = 'grid-item-image';
-                image.src = getImagePath(item.imageFile);
-                image.alt = item.title;
-                image.loading = 'lazy';
-                
-                // Overlay untuk teks
-                const overlay = document.createElement('div');
-                overlay.className = 'grid-item-overlay';
-                
-                const title = document.createElement('h3');
-                title.textContent = item.title;
-                
-                const description = document.createElement('p');
-                description.textContent = item.description;
-                
-                overlay.appendChild(title);
-                overlay.appendChild(description);
-                
-                contentDiv.appendChild(image);
-                
-                if (item.isSecret) {
-                    const secretOverlay = document.createElement('div');
-                    secretOverlay.className = 'grid-item-secret';
-                    
-                    const secretIcon = document.createElement('div');
-                    secretIcon.className = 'secret-icon';
-                    secretIcon.innerHTML = '<i class="fas fa-lock"></i>';
-                    
-                    const secretText = document.createElement('div');
-                    secretText.className = 'secret-text';
-                    secretText.textContent = 'COMING SOON';
-                    
-                    secretOverlay.appendChild(secretIcon);
-                    secretOverlay.appendChild(secretText);
-                    
-                    contentDiv.appendChild(secretOverlay);
-                } else {
-                    contentDiv.appendChild(overlay);
-                }
-                
-                gridItem.appendChild(numberSpan);
-                gridItem.appendChild(contentDiv);
-                
-                gridContainer.appendChild(gridItem);
-            });
-        }
-        
-        // Fungsi untuk menangani klik tombol Open Audition
-        function goToOpenAudition() {
-            const btn = document.querySelector('.audition-btn');
-            btn.style.transform = 'scale(0.95)';
-            
-            setTimeout(() => {
-                btn.style.transform = '';
-                window.location.href = 'openaudition.html';
-            }, 200);
-        }
-        
-        // Fungsi untuk menangani placeholder logo jika file tidak ditemukan
-        function handleLogoError() {
-            const logo = document.getElementById('logo');
-            logo.onerror = null;
-            logo.src = 'https://via.placeholder.com/300x100/000000/FFFFFF?text=KAZINE+LOGO';
-            logo.alt = 'Kazine Logo Placeholder';
-        }
-        
-        // Fungsi untuk menangani error pada gambar grid
-        function handleGridImageError(img, filename) {
-            img.onerror = null;
-            console.warn(`Gambar ${filename} tidak ditemukan, menggunakan gambar default`);
-            img.src = getImagePath(imageConfig.defaultImage);
-            
-            // Jika gambar default juga tidak ada, gunakan placeholder online dengan ukuran 400x400
-            img.onerror = function() {
-                this.onerror = null;
-                this.src = `https://via.placeholder.com/400x400/333333/FFFFFF?text=${encodeURIComponent(filename.replace('.png', ''))}`;
-            };
-        }
-        
-        // Inisialisasi saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', function() {
-            createGridItems();
-            
-            // Tambahkan event listener untuk logo
-            const logo = document.getElementById('logo');
-            logo.onerror = handleLogoError;
-            
-            // Jika logo tidak ada, gunakan placeholder
-            if (!logo.complete || logo.naturalWidth === 0) {
-                handleLogoError();
-            }
-            
-            // Tambahkan error handler untuk gambar grid
-            const gridImages = document.querySelectorAll('.grid-item-image');
-            gridImages.forEach((img, index) => {
-                const item = gridItems[index];
-                img.onerror = function() {
-                    handleGridImageError(this, item.imageFile);
-                };
-                
-                // Preload gambar untuk performa yang lebih baik
-                const preloadImage = new Image();
-                preloadImage.src = img.src;
-            });
-            
-            // Tambahkan animasi saat scroll
-            const gridItemsElements = document.querySelectorAll('.grid-item');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            gridItemsElements.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(20px)';
-                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(item);
-            });
-        });
-    </script>
 </body>
-</html>
+    </html>
