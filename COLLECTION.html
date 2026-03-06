@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAZINE | all sold out</title>
+    <title>KAZINE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
     <style>
-        /* ===== CSS sepenuhnya sama seperti asli, hanya ditambahkan class untuk sold out ===== */
         :root {
             --pure-white: #ffffff;
             --off-white: #fafafa;
@@ -51,7 +50,7 @@
             padding: 0 20px;
         }
 
-        /* ================= HEADER SEPERTI WEB LAMA ================= */
+        /* ================= HEADER SEPERTI WEB LAMA (TANPA IKON KERANJANG) ================= */
         header {
             background: var(--pure-white);
             padding: 15px 0;
@@ -92,6 +91,7 @@
             filter: contrast(1.1);
         }
 
+        /* Navigation */
         nav ul {
             display: flex;
             list-style: none;
@@ -129,45 +129,7 @@
             width: 100%;
         }
 
-        .cart-icon-container {
-            position: relative;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .cart-icon {
-            font-size: 18px;
-            color: var(--pure-black);
-            transition: var(--transition-smooth);
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-        }
-
-        .cart-icon:hover {
-            opacity: 0.7;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: var(--pure-black);
-            color: var(--pure-white);
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: 600;
-            pointer-events: none;
-            z-index: 1002;
-        }
+        /* Ikon keranjang dan semua elemen terkait telah DIHAPUS */
 
         .mobile-menu-btn {
             display: none;
@@ -184,7 +146,7 @@
             z-index: 1001;
         }
 
-        /* hero */
+        /* =============== PERUBAHAN UKURAN FOTO UTAMA (21:9 - 1920x823px) =============== */
         .hero-ambassador {
             padding: 100px 0 80px;
             background: var(--off-white);
@@ -207,11 +169,13 @@
             object-fit: cover;
         }
 
+        /* =============== PERUBAHAN FASHION GRID =============== */
         .fashion-grid-section {
             padding: 80px 0;
             background: var(--pure-white);
         }
 
+        /* Layout 3x3 grid untuk desktop */
         .fashion-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -219,18 +183,21 @@
             gap: 15px;
         }
 
+        /* Baris 1: 3 kolom atas 800x800px */
         .grid-item:nth-child(1),
         .grid-item:nth-child(2),
         .grid-item:nth-child(3) {
             aspect-ratio: 1 / 1;
         }
 
+        /* Baris 2: 3 kolom tengah 800x1000px (portrait) */
         .grid-item:nth-child(4),
         .grid-item:nth-child(5),
         .grid-item:nth-child(6) {
             aspect-ratio: 4 / 5;
         }
 
+        /* Baris 3: 3 kolom bawah 800x800px */
         .grid-item:nth-child(7),
         .grid-item:nth-child(8),
         .grid-item:nth-child(9) {
@@ -254,6 +221,7 @@
             transform: scale(1.05);
         }
 
+        /* =============== SHOP SECTION - MODIFIED (TANPA TOMBOL ADD TO CART) =============== */
         .shop-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -325,6 +293,7 @@
             object-fit: cover;
         }
 
+        /* TOMBOL SLIDE KIRI-KANAN YANG BARU - LEBIH TRANSPARAN */
         .slide-btn {
             position: absolute;
             top: 50%;
@@ -366,11 +335,17 @@
             font-size: 14px;
         }
 
+        /* Tombol disabled */
         .slide-btn:disabled {
             opacity: 0.3;
             cursor: not-allowed;
         }
 
+        .slide-btn:disabled:hover {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        /* Label LIMITED EDITION */
         .limited-edition-label {
             position: absolute;
             top: 10px;
@@ -411,68 +386,66 @@
             margin-bottom: 20px;
         }
 
-        .add-to-cart-btn {
-            width: 100%;
-            padding: 12px;
-            background: var(--pure-black);
-            color: var(--pure-white);
-            border: none;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            position: relative;
-            overflow: hidden;
-        }
+        /* TOMBOL ADD TO CART TELAH DIHAPUS */
 
-        .add-to-cart-btn:hover {
-            background: var(--dark-gray);
-        }
-
-        .add-to-cart-btn:disabled {
-            background: var(--medium-gray);
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-
-        .add-to-cart-btn:disabled:hover {
-            background: var(--medium-gray);
-        }
-
-        /* ===== class untuk produk SOLD OUT ===== */
-        .sold-out-btn {
-            background: #9e9e9e !important;
-            color: #eeeeee !important;
-            cursor: not-allowed !important;
-            pointer-events: none;
-            border: 1px solid #ccc;
-            position: relative;
-        }
-        .sold-out-btn::after {
-            content: "SOLD OUT";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            letter-spacing: 2px;
-            font-size: 14px;
-            border-radius: 2px;
-        }
-
+        /* Checkout Button (diubah menjadi "VIEW COLLECTION" atau tetap sebagai placeholder visual) */
         .checkout-container {
             text-align: center;
             margin-top: 50px;
         }
 
-        /* magazine section dihapus sesuai permintaan */
+        /* Magazine Section */
+        .magazine-section {
+            padding: 80px 0;
+            background: var(--pure-white);
+        }
 
+        .magazine-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .magazine-cover img {
+            width: 100%;
+            height: auto;
+        }
+
+        .magazine-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .magazine-content h3 {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--medium-gray);
+            margin-bottom: 30px;
+        }
+
+        .magazine-content p {
+            font-size: 16px;
+            color: var(--dark-gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .coming-soon-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        /* Footer */
         footer {
             background: var(--pure-black);
             padding: 60px 0 30px;
@@ -533,585 +506,990 @@
             line-height: 1.6;
         }
 
-        /* cart modal */
-        .cart-modal {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: var(--pure-white);
-            z-index: 2000;
-            transition: right 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
-        }
+        /* Cart Modal dan semua komponen terkait keranjang telah DIHAPUS */
 
-        .cart-modal.active {
-            right: 0;
-        }
-
-        .cart-header {
-            padding: 20px;
-            border-bottom: 1px solid var(--light-gray);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .cart-header h3 {
-            font-size: 16px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            color: var(--pure-black);
-            font-size: 20px;
-            cursor: pointer;
-            padding: 5px;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .cart-items {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .item-info h4 {
-            font-size: 14px;
-            font-weight: 400;
-            margin-bottom: 5px;
-        }
-
-        .item-info p {
-            font-size: 12px;
-            color: var(--medium-gray);
-        }
-
-        .item-price {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .remove-item {
-            background: none;
-            border: none;
-            color: var(--medium-gray);
-            cursor: pointer;
-            font-size: 12px;
-            padding: 8px;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .remove-item:hover {
-            color: var(--pure-black);
-        }
-
-        .cart-footer {
-            padding: 20px;
-            border-top: 1px solid var(--light-gray);
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .cart-modal .checkout-btn {
-            width: 100%;
-            padding: 15px;
-            background: var(--pure-black);
-            color: var(--pure-white);
-            border: none;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-
-        .cart-modal .checkout-btn:hover {
-            background: var(--dark-gray);
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--medium-gray);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-        }
-
-        .empty-cart i {
-            font-size: 40px;
-            margin-bottom: 20px;
-            opacity: 0.5;
-        }
-
-        .cart-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1999;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .cart-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .cart-notification {
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--pure-black);
-            color: var(--pure-white);
-            padding: 12px 24px;
-            border-radius: 2px;
-            z-index: 9999;
-            font-size: 14px;
-            white-space: nowrap;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            animation: fadeInOut 2s ease-in-out;
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-        }
-
+        /* =============== RESPONSIVE DESIGN - SAMA SEPERTI WEB LAMA =============== */
+        /* Tablet */
         @media (max-width: 1200px) {
-            .products-grid { grid-template-columns: repeat(3, 1fr); }
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
+
+        /* Tablet dan Mobile Menu - SAMA SEPERTI WEB LAMA */
         @media (max-width: 992px) {
-            .header-container { display: grid; grid-template-columns: auto 1fr auto; gap:15px; }
-            .logo-section { position: static; transform: none; justify-self: center; }
-            .cart-icon-container { order:0; }
-            .mobile-menu-btn { display: flex; order:2; }
-            nav { position: fixed; top:70px; left:0; width:100%; background:var(--pure-white); padding:20px; transform:translateY(-100%); opacity:0; transition:var(--transition-smooth); z-index:999; border-bottom:1px solid var(--light-gray); box-shadow:0 5px 15px rgba(0,0,0,0.1); }
-            nav.active { transform:translateY(0); opacity:1; }
-            nav ul { flex-direction: column; gap:20px; }
-            .kazine-logo-main { width:120px; height:35px; }
+            .header-container {
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+                align-items: center;
+            }
+            
+            .logo-section {
+                position: static;
+                transform: none;
+                grid-column: 2;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+                grid-column: 3;
+                justify-self: end;
+            }
+            
+            /* Spacer untuk keseimbangan grid */
+            .header-container::before {
+                content: '';
+                grid-column: 1;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--pure-white);
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition-smooth);
+                z-index: 999;
+                border-bottom: 1px solid var(--light-gray);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav a {
+                font-size: 14px;
+                padding: 10px;
+                text-align: center;
+                display: block;
+            }
+            
+            .kazine-logo-main {
+                width: 120px;
+                height: 35px;
+            }
         }
+
+        /* =============== PERUBAHAN UKURAN UNTUK MOBILE =============== */
         @media (max-width: 768px) {
-            .hero-ambassador { padding:90px 0 50px; }
-            .ambassador-image { margin:0 -20px; width:calc(100% + 40px); border-radius:0; }
-            .fashion-grid { grid-template-columns:1fr; }
-            .grid-item, .grid-item:nth-child(4), .grid-item:nth-child(5), .grid-item:nth-child(6) { aspect-ratio:1/1; }
-            .products-grid { grid-template-columns:repeat(2,1fr); gap:15px; }
-            .product-image-container { height:280px; }
-            .slide-btn { opacity:0.4; visibility:visible; }
-            /* magazine dihapus */
-            .section-title h2 { font-size:28px; }
-            .cart-modal { max-width:90%; }
+            /* Hero Section Mobile */
+            .hero-ambassador {
+                padding: 90px 0 50px;
+            }
+            
+            .ambassador-image {
+                margin: 0 -20px;
+                width: calc(100% + 40px);
+                border-radius: 0;
+            }
+            
+            /* Fashion Grid Mobile - 1 kolom, semua foto sama ukuran */
+            .fashion-grid-section {
+                padding: 50px 0;
+            }
+            
+            .fashion-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(9, auto);
+                gap: 12px;
+            }
+            
+            .grid-item {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                border-radius: 4px;
+                overflow: hidden;
+            }
+            
+            .grid-item:nth-child(4),
+            .grid-item:nth-child(5),
+            .grid-item:nth-child(6) {
+                aspect-ratio: 1 / 1;
+            }
+            
+            .grid-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            
+            /* Shop Section Mobile */
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                margin-bottom: 40px;
+            }
+            
+            .product-card {
+                margin-bottom: 0;
+            }
+            
+            .product-image-container {
+                height: 280px;
+            }
+            
+            /* Tombol slide selalu terlihat di mobile */
+            .slide-btn {
+                opacity: 0.4;
+                visibility: visible;
+                width: 32px;
+                height: 32px;
+                background: rgba(0, 0, 0, 0.1);
+            }
+            
+            .slide-btn i {
+                font-size: 12px;
+            }
+            
+            .product-info {
+                padding: 20px 15px;
+            }
+            
+            .product-name {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+            
+            .product-price {
+                font-size: 15px;
+                margin-bottom: 15px;
+            }
+            
+            /* Magazine Section Mobile */
+            .magazine-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .magazine-content h2 {
+                font-size: 36px;
+            }
+            
+            .magazine-content h3 {
+                font-size: 20px;
+            }
+            
+            .magazine-content p {
+                font-size: 15px;
+            }
+            
+            /* Section Titles Mobile */
+            .section-title {
+                margin-bottom: 40px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+                letter-spacing: 2px;
+            }
+            
+            .section-title p {
+                font-size: 13px;
+                letter-spacing: 1.5px;
+            }
+            
+            .shop-section,
+            .magazine-section {
+                padding: 50px 0;
+            }
+            
+            /* Footer Mobile */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .disclaimer {
+                padding-top: 30px;
+                font-size: 10px;
+            }
         }
+
+        /* Mobile Kecil (576px ke bawah) */
         @media (max-width: 576px) {
-            .products-grid { grid-template-columns:1fr; }
-            .product-image-container { height:320px; }
+            /* Logo Mobile Kecil */
+            .kazine-logo-main {
+                width: 100px;
+                height: 30px;
+            }
+            
+            /* Products Grid Mobile Kecil */
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .product-image-container {
+                height: 320px;
+            }
         }
+
+        /* Mobile-specific fixes */
         @media (max-width: 768px) {
-            button, .slide-btn, .checkout-btn, .remove-item, .close-cart, .mobile-menu-btn, .social-links a, .cart-icon { min-height:44px; min-width:44px; }
+            /* Touch-friendly elements */
+            button, 
+            .slide-btn,
+            .mobile-menu-btn,
+            .social-links a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Prevent blue highlight on tap */
+            * {
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
+            }
         }
+
+        /* Semua style terkait cart (notifikasi, modal, dll) telah dihapus */
     </style>
 </head>
 <body>
-    <div class="cart-overlay" id="cartOverlay"></div>
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-header">
-            <h3>Shopping Bag</h3>
-            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="cart-items" id="cartItems"><div class="empty-cart" id="emptyCart"><i class="fas fa-shopping-bag"></i><p>Your bag is empty</p></div></div>
-        <div class="cart-footer">
-            <div class="cart-total"><span>Total</span><span id="cartTotal">$0.00</span></div>
-            <button class="checkout-btn" id="checkoutBtn">Proceed to Payment</button>
-        </div>
-    </div>
-
+    <!-- Header - SAMA PERSIS SEPERTI WEB LAMA TANPA IKON KERANJANG -->
     <header>
         <div class="container header-container">
-            <div class="cart-icon-container" id="openCart">
-                <div class="cart-icon"><i class="fas fa-shopping-bag"></i><div class="cart-count" id="cartCount">0</div></div>
-            </div>
+            <!-- Tombol menu mobile (tetap ada) -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
             <div class="logo-section">
-                <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html"><div class="kazine-logo-main"><img src="KAZINE.png" alt="KAZINE Logo" onerror="this.src='KAZINE.png'"></div></a>
+                <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html">
+                    <div class="kazine-logo-main">
+                        <img src="KAZINE.png" alt="KAZINE Logo" 
+                             onerror="this.src='KAZINE.png'">
+                    </div>
+                </a>
             </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+            
+            <!-- Ikon keranjang telah dihapus -->
+            
             <nav id="mainNav">
                 <ul>
                     <li><a href="https://thekachoo.github.io/Home/index.html">THE KACHOO</a></li>
                     <li><a href="#shop">SHOP</a></li>
-                    <!-- link magazine dihapus -->
+                    <li><a href="#magazine">MAGAZINE</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!-- Hero - Brand Ambassador -->
     <section class="hero-ambassador">
-        <div class="container"><div class="ambassador-image"><img src="kazinebanner.png" alt="Brand Ambassador"></div></div>
+        <div class="container">
+            <div class="ambassador-image">
+                <img src="kazinebanner.png" 
+                     alt="Brand Ambassador - Elevated Style">
+            </div>
+        </div>
     </section>
 
+    <!-- Fashion Grid - 9 foto dengan layout baru -->
     <section class="fashion-grid-section">
         <div class="container">
             <div class="fashion-grid">
-                <div class="grid-item"><img src="grid1.png" alt="1"></div>
-                <div class="grid-item"><img src="grid2.png" alt="2"></div>
-                <div class="grid-item"><img src="grid3.png" alt="3"></div>
-                <div class="grid-item"><img src="grid4.png" alt="4"></div>
-                <div class="grid-item"><img src="grid5.png" alt="5"></div>
-                <div class="grid-item"><img src="grid6.png" alt="6"></div>
-                <div class="grid-item"><img src="grid7.png" alt="7"></div>
-                <div class="grid-item"><img src="grid8.png" alt="8"></div>
-                <div class="grid-item"><img src="grid9.png" alt="9"></div>
+                <!-- Baris 1: 3 kolom atas 800x800px -->
+                <div class="grid-item">
+                    <img src="grid1.png" 
+                         alt="Fashion Editorial 1">
+                </div>
+                <div class="grid-item">
+                    <img src="grid2.png" 
+                         alt="Fashion Editorial 2">
+                </div>
+                <div class="grid-item">
+                    <img src="grid3.png" 
+                         alt="Fashion Editorial 3">
+                </div>
+                
+                <!-- Baris 2: 3 kolom tengah 800x1000px (portrait) -->
+                <div class="grid-item">
+                    <img src="grid4.png" 
+                         alt="Fashion Editorial 4">
+                </div>
+                <div class="grid-item">
+                    <img src="grid5.png" 
+                         alt="Fashion Editorial 5">
+                </div>
+                <div class="grid-item">
+                    <img src="grid6.png" 
+                         alt="Fashion Editorial 6">
+                </div>
+                
+                <!-- Baris 3: 3 kolom bawah 800x800px -->
+                <div class="grid-item">
+                    <img src="grid7.png" 
+                         alt="Fashion Editorial 7">
+                </div>
+                <div class="grid-item">
+                    <img src="grid8.png" 
+                         alt="Fashion Editorial 8">
+                </div>
+                <div class="grid-item">
+                    <img src="grid9.png" 
+                         alt="Fashion Editorial 9">
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- Valentine with Kazine : SEMUA PRODUK SOLD OUT -->
-    <section class="shop-section" id="valentine">
-        <div class="container">
-            <div class="section-title"><h2>VALENTINE WITH KAZINE</h2><p>Special Valentine's Day Collection</p></div>
-            <div class="products-grid">
-                <!-- Luna & Sol - SOLD OUT -->
-                <div class="product-card" data-product="Luna & Sol" data-price="700" data-id="VAL-04">
-                    <div class="product-image-container">
-                        <div class="product-slides"><div class="product-slide"><img src="lunasol.png" alt="Luna & Sol"></div></div>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">Kachoo x Kriya Nusaca</div>
-                        <h3 class="product-name">Luna & Sol</h3>
-                        <div class="product-price">$700</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
-                    </div>
-                </div>
-                <!-- Amare - SOLD OUT -->
-                <div class="product-card" data-product="Amare" data-price="427" data-id="VAL-03">
-                    <div class="product-image-container">
-                        <div class="product-slides"><div class="product-slide"><img src="amare.png" alt="Amare"></div></div>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">Kachoo x Kriya Nusaca</div>
-                        <h3 class="product-name">Amare</h3>
-                        <div class="product-price">$427</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
-                    </div>
-                </div>
-                <!-- Simple Bouquet - SOLD OUT -->
-                <div class="product-card" data-product="Simple Bouquet" data-price="294" data-id="VAL-02">
-                    <div class="product-image-container">
-                        <div class="product-slides"><div class="product-slide"><img src="simplebouquet.png" alt="Simple Bouquet"></div></div>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">Kachoo x Kriya Nusaca</div>
-                        <h3 class="product-name">Simple Bouquet</h3>
-                        <div class="product-price">$294</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
-                    </div>
-                </div>
-                <!-- Woman Dress - SOLD OUT -->
-                <div class="product-card" data-product="Kazine Special, Woman Dress" data-price="200" data-id="VAL-08">
-                    <div class="product-image-container">
-                        <div class="product-slides"><div class="product-slide"><img src="womandress.png" alt="Woman Dress"></div></div>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">KAZINE SPECIAL</div>
-                        <h3 class="product-name">Valentine Dress</h3>
-                        <div class="product-price">$200</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
-                    </div>
-                </div>
-                <!-- Man Suit - SOLD OUT -->
-                <div class="product-card" data-product="Kazine Special, Man Suit" data-price="120" data-id="VAL-07">
-                    <div class="product-image-container">
-                        <div class="product-slides"><div class="product-slide"><img src="mansuit.png" alt="Man Suit"></div></div>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">KAZINE SPECIAL</div>
-                        <h3 class="product-name">Formal Suit</h3>
-                        <div class="product-price">$120</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
-                    </div>
-                </div>
-                <!-- Eternal Heart - SOLD OUT -->
-                <div class="product-card" data-product="Eternal Heart" data-price="30" data-id="VAL-09">
-                    <div class="product-image-container">
-                        <div class="product-slides"><div class="product-slide"><img src="eternalheart.png" alt="Eternal Heart"></div></div>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">KAZINE SPECIAL</div>
-                        <h3 class="product-name">Eternal Heart</h3>
-                        <div class="product-price">$30</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
-                    </div>
-                </div>
-                <!-- Tender Bloom - SOLD OUT -->
-                <div class="product-card" data-product="Tender Bloom" data-price="20" data-id="VAL-10">
-                    <div class="product-image-container">
-                        <div class="product-slides"><div class="product-slide"><img src="tenderbloom.png" alt="Tender Bloom"></div></div>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">KAZINE SPECIAL</div>
-                        <h3 class="product-name">Tender Bloom</h3>
-                        <div class="product-price">$20</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
-                    </div>
-                </div>
-                <!-- Timeless Red - SOLD OUT -->
-                <div class="product-card" data-product="Timeless Red" data-price="20" data-id="VAL-11">
-                    <div class="product-image-container">
-                        <div class="product-slides"><div class="product-slide"><img src="timelessred.png" alt="Timeless Red"></div></div>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">KAZINE SPECIAL</div>
-                        <h3 class="product-name">Timeless Red</h3>
-                        <div class="product-price">$20</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
-                    </div>
-                </div>
-                <!-- Scarlet Grandeur - SOLD OUT -->
-                <div class="product-card" data-product="Scarlet Grandeur" data-price="15" data-id="VAL-12">
-                    <div class="product-image-container">
-                        <div class="product-slides"><div class="product-slide"><img src="scarletgrandeur.png" alt="Scarlet Grandeur"></div></div>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">KAZINE SPECIAL</div>
-                        <h3 class="product-name">Scarlet Grandeur</h3>
-                        <div class="product-price">$15</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
-                    </div>
-                </div>
-                <!-- Blooming Grace - SOLD OUT -->
-                <div class="product-card" data-product="Blooming Grace" data-price="15" data-id="VAL-13">
-                    <div class="product-image-container">
-                        <div class="product-slides"><div class="product-slide"><img src="bloominggrace.png" alt="Blooming Grace"></div></div>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">KAZINE SPECIAL</div>
-                        <h3 class="product-name">Blooming Grace</h3>
-                        <div class="product-price">$15</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
-                    </div>
-                </div>
-                <!-- Heart Melt - SOLD OUT -->
-                <div class="product-card" data-product="Heart Melt" data-price="14" data-id="VAL-01">
-                    <div class="product-image-container">
-                        <div class="product-slides"><div class="product-slide"><img src="heartmelt2.png" alt="Heart Melt"></div></div>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">Kachoo x Amére</div>
-                        <h3 class="product-name">Heart Melt</h3>
-                        <div class="product-price">$14</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
-                    </div>
-                </div>
-                <!-- Choco Bar - SOLD OUT -->
-                <div class="product-card" data-product="Choco Bar" data-price="5" data-id="VAL-05">
-                    <div class="product-image-container">
-                        <div class="product-slides"><div class="product-slide"><img src="chocobar.png" alt="Choco Bar"></div></div>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">CHOCO</div>
-                        <h3 class="product-name">Choco Bar</h3>
-                        <div class="product-price">$5</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
-                    </div>
-                </div>
-                <!-- Chookies Choco - SOLD OUT -->
-                <div class="product-card" data-product="Chookies Choco" data-price="5" data-id="VAL-06">
-                    <div class="product-image-container">
-                        <div class="product-slides"><div class="product-slide"><img src="chookies.png" alt="Chookies Choco"></div></div>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">CHOCO</div>
-                        <h3 class="product-name">Chookies Choco</h3>
-                        <div class="product-price">$5</div>
-                        <button class="add-to-cart-btn sold-out-btn" disabled></button>
-                    </div>
-                </div>
-            </div>
-            <div class="checkout-container"><a href="payment-kazine.html" class="coming-soon-tag">PROCEED TO CHECKOUT</a></div>
-        </div>
-    </section>
-
-    <!-- KAZINE IN LOOP section: SEMUA PRODUK SOLD OUT -->
+                
+    <!-- KAZINE IN LOOP Section - MASIH DENGAN SLIDE (TANPA TOMBOL ADD TO CART) -->
     <section class="shop-section" id="shop">
         <div class="container">
-            <div class="section-title"><h2>KAZINE IN LOOP!</h2><p>Time to shop! Make sure to use your voucher.</p></div>
-            <div class="products-grid">
-                <!-- CHOOSIC semua varian SOLD OUT -->
-                <div class="product-card" data-product="CHOOSIC GRAPHITE BLACK" data-price="480" data-id="CGB-01"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="CGB1.png" alt="CGB"></div><div class="product-slide"><img src="CGB2.png" alt="CGB2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOOSIC</div><h3 class="product-name">GRAPHITE BLACK</h3><div class="product-price">$480</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
-                <div class="product-card" data-product="CHOOSIC WHITE" data-price="480" data-id="CW-02"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="CW1.png" alt="CW"></div><div class="product-slide"><img src="CW2.png" alt="CW2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOOSIC</div><h3 class="product-name">WHITE</h3><div class="product-price">$480</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
-                <div class="product-card" data-product="CHOOSIC ESPRESSO BROWN" data-price="480" data-id="CEB-03"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="CEB1.png" alt="CEB"></div><div class="product-slide"><img src="CEB2.png" alt="CEB2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOOSIC</div><h3 class="product-name">ESPRESSO BROWN</h3><div class="product-price">$480</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
-                <div class="product-card" data-product="CHOOSIC VANILLA HAZE" data-price="480" data-id="CVH-04"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="CVH1.png" alt="CVH"></div><div class="product-slide"><img src="CVH2.png" alt="CVH2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOOSIC</div><h3 class="product-name">VANILLA HAZE</h3><div class="product-price">$480</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
-                <div class="product-card" data-product="CHOOSIC MULBERY-WINE" data-price="480" data-id="CMW-05"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="CMW1.png" alt="CMW"></div><div class="product-slide"><img src="CMW2.png" alt="CMW2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOOSIC</div><h3 class="product-name">MULBERY-WINE</h3><div class="product-price">$480</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
-                <div class="product-card" data-product="CHOOSIC ROSE NOIR" data-price="480" data-id="CRN-06"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="CRN1.png" alt="CRN"></div><div class="product-slide"><img src="CRN2.png" alt="CRN2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOOSIC</div><h3 class="product-name">ROSE NOIR</h3><div class="product-price">$480</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
-                <!-- CHOZY semua varian SOLD OUT -->
-                <div class="product-card" data-product="CHOZY BLACK" data-price="30" data-id="MUGB-01"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="MUGB1.png" alt="MUG"></div><div class="product-slide"><img src="MUGB2.png" alt="MUG2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOZY</div><h3 class="product-name">BLACK</h3><div class="product-price">$30</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
-                <div class="product-card" data-product="CHOZY WHITE" data-price="30" data-id="MUGW-02"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="MUGW1.png" alt="MUGW"></div><div class="product-slide"><img src="MUGW2.png" alt="MUGW2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOZY</div><h3 class="product-name">WHITE</h3><div class="product-price">$30</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
-                <div class="product-card" data-product="CHOZY BLUE" data-price="30" data-id="MUGBLU-03"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="MUGBLU1.png" alt="BLU"></div><div class="product-slide"><img src="MUGBLU2.png" alt="BLU2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOZY</div><h3 class="product-name">BLUE</h3><div class="product-price">$30</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
-                <div class="product-card" data-product="CHOZY ORANGE" data-price="30" data-id="MUGOR-04"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="MUGOR1.png" alt="OR"></div><div class="product-slide"><img src="MUGOR2.png" alt="OR2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOZY</div><h3 class="product-name">ORANGE</h3><div class="product-price">$30</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
-                <div class="product-card" data-product="CHOZY GREEN" data-price="30" data-id="MUGG1-05"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="MUGG1.png" alt="GR"></div><div class="product-slide"><img src="MUGG2.png" alt="GR2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOZY</div><h3 class="product-name">GREEN</h3><div class="product-price">$30</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
-                <div class="product-card" data-product="CHOZY YELLOW" data-price="30" data-id="MUGY-06"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="MUGY1.png" alt="YEL"></div><div class="product-slide"><img src="MUGY2.png" alt="YEL2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button><div class="limited-edition-label">LIMITED EDITION</div></div><div class="product-info"><div class="brand-name">CHOZY</div><h3 class="product-name">YELLOW</h3><div class="product-price">$30</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
-                <!-- CHOFFEE - SOLD OUT -->
-                <div class="product-card" data-product="CHOFFEE" data-price="25" data-id="CHOFFEE-01"><div class="product-image-container"><div class="product-slides"><div class="product-slide"><img src="CHOFFEE1.png" alt="CHOFFEE"></div><div class="product-slide"><img src="CHOFFEE2.png" alt="CHOFFEE2"></div></div><button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button><button class="slide-btn next"><i class="fas fa-chevron-right"></i></button></div><div class="product-info"><div class="brand-name">CHOFFEE</div><h3 class="product-name">POUCH</h3><div class="product-price">$25</div><button class="add-to-cart-btn sold-out-btn" disabled></button></div></div>
+            <div class="section-title">
+                <h2>KAZINE IN LOOP!</h2>
+                <p>Time to shop! Make sure to use your voucher.</p>
             </div>
-            <div class="checkout-container"><a href="payment-kazine.html" class="coming-soon-tag">PROCEED TO CHECKOUT</a></div>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="CGB1.png" alt="CHOOSIC GB FRONT">
+                            </div>
+                            <div class="product-slide">
+                                <img src="CGB2.png" alt="CHOOSIC GB BACK" onerror="this.src='CGB2.png'">
+                            </div>
+                        </div>
+                        <!-- Tombol slide kiri-kanan -->
+                        <button class="slide-btn prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">CHOOSIC</div>
+                        <h3 class="product-name">GRAPHITE BLACK</h3>
+                        <div class="product-price">$480</div>
+                        <!-- Tombol Add to Cart dihapus -->
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="CW1.png" alt="CHOOSIC W FRONT">
+                            </div>
+                            <div class="product-slide">
+                                <img src="CW2.png" alt="CHOOSIC W BACK" onerror="this.src='CW2.png'">
+                            </div>
+                        </div>
+                        <!-- Tombol slide kiri-kanan -->
+                        <button class="slide-btn prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">CHOOSIC</div>
+                        <h3 class="product-name">WHITE</h3>
+                        <div class="product-price">$480</div>
+                        <!-- Tombol Add to Cart dihapus -->
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="CEB1.png" alt="CHOOSIC EB FRONT">
+                            </div>
+                            <div class="product-slide">
+                                <img src="CEB2.png" alt="CHOOSIC EB BACK" onerror="this.src='CEB2.png'">
+                            </div>
+                        </div>
+                        <!-- Tombol slide kiri-kanan -->
+                        <button class="slide-btn prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">CHOOSIC</div>
+                        <h3 class="product-name">ESPRESSO BROWN</h3>
+                        <div class="product-price">$480</div>
+                        <!-- Tombol Add to Cart dihapus -->
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="CVH1.png" alt="CHOOSIC VH FRONT">
+                            </div>
+                            <div class="product-slide">
+                                <img src="CVH2.png" alt="CHOOSIC VH BACK" onerror="this.src='CVH2.png'">
+                            </div>
+                        </div>
+                        <!-- Tombol slide kiri-kanan -->
+                        <button class="slide-btn prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">CHOOSIC</div>
+                        <h3 class="product-name">VANILLA HAZE</h3>
+                        <div class="product-price">$480</div>
+                        <!-- Tombol Add to Cart dihapus -->
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="CMW1.png" alt="CHOOSIC MW FRONT">
+                            </div>
+                            <div class="product-slide">
+                                <img src="CMW2.png" alt="CHOOSIC MW BACK" onerror="this.src='CMW2.png'">
+                            </div>
+                        </div>
+                        <!-- Tombol slide kiri-kanan -->
+                        <button class="slide-btn prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">CHOOSIC</div>
+                        <h3 class="product-name">MULBERY-WINE</h3>
+                        <div class="product-price">$480</div>
+                        <!-- Tombol Add to Cart dihapus -->
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="CRN1.png" alt="CHOOSIC RN FRONT">
+                            </div>
+                            <div class="product-slide">
+                                <img src="CRN2.png" alt="CHOOSIC RN BACK" onerror="this.src='CRN2.png'">
+                            </div>
+                        </div>
+                        <!-- Tombol slide kiri-kanan -->
+                        <button class="slide-btn prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">CHOOSIC</div>
+                        <h3 class="product-name">ROSE NOIR</h3>
+                        <div class="product-price">$480</div>
+                        <!-- Tombol Add to Cart dihapus -->
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="MUGB1.png" alt="CHOZY BLACK - Front">
+                            </div>
+                            <div class="product-slide">
+                                <img src="MUGB2.png" alt="CHOZY BLACK - Back" onerror="this.src='MUGB2.png'">
+                            </div>
+                        </div>
+                        <!-- Tombol slide kiri-kanan -->
+                        <button class="slide-btn prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">CHOZY</div>
+                        <h3 class="product-name">BLACK</h3>
+                        <div class="product-price">$30</div>
+                        <!-- Tombol Add to Cart dihapus -->
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="MUGW1.png" alt="CHOZY WHITE - FRONT" onerror="this.src='MUGW1.png'">
+                            </div>
+                            <div class="product-slide">
+                                <img src="MUGW2.png" alt="CHOZY WHITE- BACK" onerror="this.src='MUGW2.png'">
+                            </div>
+                        </div>
+                        <!-- Tombol slide kiri-kanan -->
+                        <button class="slide-btn prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">CHOZY</div>
+                        <h3 class="product-name">WHITE</h3>
+                        <div class="product-price">$30</div>
+                        <!-- Tombol Add to Cart dihapus -->
+                    </div>
+                </div>
+
+                <!-- Product 9 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="MUGBLU1.png" alt="CHOZY BLUE - Front">
+                            </div>
+                            <div class="product-slide">
+                                <img src="MUGBLU2.png" alt="CHOZY BLUE - Back">
+                            </div>
+                        </div>
+                        <!-- Tombol slide kiri-kanan -->
+                        <button class="slide-btn prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">CHOZY</div>
+                        <h3 class="product-name">BLUE</h3>
+                        <div class="product-price">$30</div>
+                        <!-- Tombol Add to Cart dihapus -->
+                    </div>
+                </div>
+
+                <!-- Product 10 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="MUGOR1.png" alt="CHOZY ORANGE - Front">
+                            </div>
+                            <div class="product-slide">
+                                <img src="MUGOR2.png" alt="CHOZY ORANGE - Back">
+                            </div>
+                        </div>
+                        <!-- Tombol slide kiri-kanan -->
+                        <button class="slide-btn prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">CHOZY</div>
+                        <h3 class="product-name">ORANGE</h3>
+                        <div class="product-price">$30</div>
+                        <!-- Tombol Add to Cart dihapus -->
+                    </div>
+                </div>
+
+                <!-- Product 11 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="MUGG1.png" alt="CHOZY GREEN - Front">
+                            </div>
+                            <div class="product-slide">
+                                <img src="MUGG2.png" alt="CHOZY GREEN - Back">
+                            </div>
+                        </div>
+                        <!-- Tombol slide kiri-kanan -->
+                        <button class="slide-btn prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">CHOZY</div>
+                        <h3 class="product-name">GREEN</h3>
+                        <div class="product-price">$30</div>
+                        <!-- Tombol Add to Cart dihapus -->
+                    </div>
+                </div>
+
+                <!-- Product 12 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="MUGY1.png" alt="CHOZY YELLOW - Front">
+                            </div>
+                            <div class="product-slide">
+                                <img src="MUGY2.png" alt="CHOZY YELLOW- Back">
+                            </div>
+                        </div>
+                        <!-- Tombol slide kiri-kanan -->
+                        <button class="slide-btn prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- Label LIMITED EDITION -->
+                        <div class="limited-edition-label">LIMITED EDITION</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">CHOZY</div>
+                        <h3 class="product-name">YELLOW</h3>
+                        <div class="product-price">$30</div>
+                        <!-- Tombol Add to Cart dihapus -->
+                    </div>
+                </div>
+
+                <!-- Product 13 - CHOFFEE (TANPA LIMITED EDITION) -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide">
+                                <img src="CHOFFEE1.png" alt="CHOFFEE FRONT">
+                            </div>
+                            <div class="product-slide">
+                                <img src="CHOFFEE2.png" alt="CHOFFEE BACK">
+                            </div>
+                        </div>
+                        <!-- Tombol slide kiri-kanan -->
+                        <button class="slide-btn prev" aria-label="Previous image">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-btn next" aria-label="Next image">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <!-- CHOFFEE TIDAK PAKAI LIMITED EDITION LABEL -->
+                    </div>
+                    <div class="product-info">
+                        <div class="brand-name">CHOFFEE</div>
+                        <h3 class="product-name">POUCH</h3>
+                        <div class="product-price">$25</div>
+                        <!-- Tombol Add to Cart dihapus -->
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     
-    <!-- MAGAZINE SECTION DIHAPUS -->
-
+    <!-- Magazine Section -->
+    <section class="magazine-section" id="magazine">
+        <div class="container">
+            <div class="magazine-container">
+                <div class="magazine-cover">
+                    <a href="https://thekachoo.github.io/KAZINE/vol1issue2.html">
+                        <img src="kazinevol1s2.png" 
+                             alt="KAZINE Magazine">
+                    </a>
+                </div>
+                <div class="magazine-content">
+                    <h2>KAZINE!</h2>
+                    <h3>MAGAZINE</h3>
+                    <p>Experience the inaugural edition of KAZINE, where fashion, culture, and lifestyle converge.</p>
+                    <a href="https://thekachoo.github.io/KAZINE/vol1issue2.html" class="coming-soon-tag">VIEW KAZINE SPECIAL VALENTINE</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section"><h3>KAZINE</h3><p>A premium fashion and lifestyle brand under THE KACHOO...</p></div>
-                <div class="footer-section"><h3>Quick Links</h3><p><a href="https://thekachoo.github.io/Home/index.html" style="color:var(--medium-gray);text-decoration:none;">THE KACHOO</a></p><p><a href="#shop" style="color:var(--medium-gray);text-decoration:none;">SHOP</a></p></div>
-                <div class="footer-section"><h3>Contact</h3><p>Official Account (X): <strong>@TheKachoo</strong></p><p>Email: ohkachoo@gmail.com</p><div class="social-links"><a href="https://twitter.com/TheKachoo" target="_blank"><i class="fab fa-twitter"></i></a><a href="mailto:ohkachoo@gmail.com"><i class="fas fa-envelope"></i></a></div></div>
+                <div class="footer-section">
+                    <h3>KAZINE</h3>
+                    <p>A premium fashion and lifestyle brand under THE KACHOO, specializing in curated collaborations and exclusive magazine publications.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="https://thekachoo.github.io/Home/index.html" style="color: var(--medium-gray); text-decoration: none;">THE KACHOO</a></p>
+                    <p><a href="#shop" style="color: var(--medium-gray); text-decoration: none;">SHOP</a></p>
+                    <p><a href="#magazine" style="color: var(--medium-gray); text-decoration: none;">MAGAZINE</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Official Account (X): <strong>@TheKachoo</strong></p>
+                    <p>Email: ohkachoo@gmail.com</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/TheKachoo" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="mailto:ohkachoo@gmail.com">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="disclaimer"><p><strong>IMPORTANT NOTICE:</strong> All payments and transactions on this website are fictional...</p><p>&copy; 2026 KAZINE | The Project of THE KACHOO. All rights reserved.</p></div>
+            
+            <div class="disclaimer">
+                <p><strong>IMPORTANT NOTICE:</strong> All payments and transactions on this website are fictional and for roleplay purposes only. No real money will be charged, and no physical products will be shipped. This is a conceptual showcase of the KAZINE brand experience.</p>
+                <p>&copy; 2026 KAZINE | The Project of THE KACHOO. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
     <script>
-    (function() {
-        // CART SYSTEM (hanya untuk update display, semua tombol disabled)
-        let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
-        const cartModal = document.getElementById('cartModal');
-        const cartOverlay = document.getElementById('cartOverlay');
-        const cartCount = document.getElementById('cartCount');
-        const cartItems = document.getElementById('cartItems');
-        const cartTotal = document.getElementById('cartTotal');
-        const emptyCart = document.getElementById('emptyCart');
-        const checkoutBtn = document.getElementById('checkoutBtn');
-        const openCartBtn = document.getElementById('openCart');
-        const closeCartBtn = document.getElementById('closeCart');
+    // Simple script hanya untuk mobile menu dan slider (SEMUA FITUR CART DIHAPUS)
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
 
-        function updateCartDisplay() {
-            const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
-            cartCount.textContent = totalItems;
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<div class="empty-cart" id="emptyCart"><i class="fas fa-shopping-bag"></i><p>Your bag is empty</p></div>';
-                checkoutBtn.style.display = 'none';
-                cartTotal.textContent = '$0.00';
-                return;
-            }
-            let total = 0;
-            let html = '';
-            cart.forEach((item, idx) => {
-                const subtotal = parseFloat(item.price) * (item.quantity||1);
-                total += subtotal;
-                html += `<div class="cart-item"><div class="item-info"><h4>${item.title}</h4><p>Qty: ${item.quantity||1}</p></div><div class="item-price">$${subtotal.toFixed(2)}</div><button class="remove-item" data-index="${idx}"><i class="fas fa-trash-alt"></i></button></div>`;
-            });
-            cartItems.innerHTML = html;
-            cartTotal.textContent = `$${total.toFixed(2)}`;
-            checkoutBtn.style.display = 'block';
-            document.querySelectorAll('.remove-item').forEach(btn => {
-                btn.addEventListener('click', function(e){
-                    const idx = this.dataset.index;
-                    cart.splice(idx,1);
-                    localStorage.setItem('kazineCart', JSON.stringify(cart));
-                    updateCartDisplay();
-                    showNotif('Item removed');
-                });
-            });
-        }
-
-        function showNotif(msg) {
-            const n = document.createElement('div');
-            n.className = 'cart-notification';
-            n.textContent = msg;
-            document.body.appendChild(n);
-            setTimeout(()=> n.remove(),2000);
-        }
-
-        function openCart(){ cartModal.classList.add('active'); cartOverlay.classList.add('active'); document.body.style.overflow='hidden'; updateCartDisplay(); }
-        function closeCart(){ cartModal.classList.remove('active'); cartOverlay.classList.remove('active'); document.body.style.overflow='auto'; }
-
-        openCartBtn.addEventListener('click',openCart);
-        closeCartBtn.addEventListener('click',closeCart);
-        cartOverlay.addEventListener('click',closeCart);
-
-        // Tidak ada tombol aktif karena semua sudah .sold-out-btn
-
-        // slider hanya untuk kazine in loop 
-        document.querySelectorAll('.product-card').forEach(card => {
-            const slides = card.querySelector('.product-slides');
-            const prev = card.querySelector('.slide-btn.prev');
-            const next = card.querySelector('.slide-btn.next');
-            if (!slides || !prev || !next) return;
-            let cur = 0;
-            const upd = ()=>{
-                slides.style.transform = `translateX(-${cur*50}%)`;
-                prev.disabled = cur===0;
-                next.disabled = cur===1;
-            };
-            prev.addEventListener('click', (e)=>{ e.preventDefault(); if(!prev.disabled){ cur=0; upd(); } });
-            next.addEventListener('click', (e)=>{ e.preventDefault(); if(!next.disabled){ cur=1; upd(); } });
-            upd();
+    if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            mainNav.classList.toggle('active');
+            this.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
         });
 
-        // mobile menu
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const nav = document.getElementById('mainNav');
-        if(mobileBtn) {
-            mobileBtn.addEventListener('click', ()=>{
-                nav.classList.toggle('active');
-                mobileBtn.innerHTML = nav.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (mainNav.classList.contains('active')) {
+                if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            }
+        });
+
+        // Close menu when clicking links
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             });
+        });
+    }
+
+    // Image slider functionality hanya untuk KAZINE IN LOOP
+    function initializeImageSliders() {
+        document.querySelectorAll('.product-card').forEach(card => {
+            const slides = card.querySelector('.product-slides');
+            const prevBtn = card.querySelector('.slide-btn.prev');
+            const nextBtn = card.querySelector('.slide-btn.next');
+            
+            // Hanya inisialisasi slider jika ada tombol slide (untuk KAZINE IN LOOP)
+            if (!slides || !prevBtn || !nextBtn) return;
+            
+            let currentSlide = 0;
+            const totalSlides = 2; // HANYA 2 SLIDE
+            
+            // Function untuk update slide dan tombol
+            function updateSlide() {
+                // Pindah slide
+                slides.style.transform = `translateX(-${currentSlide * 50}%)`;
+                
+                // Update state tombol
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+                
+                // Update opacity berdasarkan state
+                if (prevBtn.disabled) {
+                    prevBtn.style.opacity = '0.3';
+                } else {
+                    prevBtn.style.opacity = card.querySelector('.product-image-container:hover') ? '1' : '0';
+                }
+                
+                if (nextBtn.disabled) {
+                    nextBtn.style.opacity = '0.3';
+                } else {
+                    nextBtn.style.opacity = card.querySelector('.product-image-container:hover') ? '1' : '0';
+                }
+            }
+            
+            // Previous button
+            prevBtn.addEventListener('click', function(e) {
+                if (this.disabled) return;
+                
+                e.preventDefault();
+                e.stopPropagation();
+                
+                currentSlide = Math.max(0, currentSlide - 1);
+                updateSlide();
+            });
+            
+            // Next button
+            nextBtn.addEventListener('click', function(e) {
+                if (this.disabled) return;
+                
+                e.preventDefault();
+                e.stopPropagation();
+                
+                currentSlide = Math.min(totalSlides - 1, currentSlide + 1);
+                updateSlide();
+            });
+            
+            // Touch events untuk mobile
+            prevBtn.addEventListener('touchstart', function(e) {
+                if (this.disabled) {
+                    if (e.cancelable) e.preventDefault();
+                    return;
+                }
+                
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+                e.stopPropagation();
+                
+                currentSlide = Math.max(0, currentSlide - 1);
+                updateSlide();
+            }, { passive: false });
+            
+            nextBtn.addEventListener('touchstart', function(e) {
+                if (this.disabled) {
+                    if (e.cancelable) e.preventDefault();
+                    return;
+                }
+                
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+                e.stopPropagation();
+                
+                currentSlide = Math.min(totalSlides - 1, currentSlide + 1);
+                updateSlide();
+            }, { passive: false });
+            
+            // Juga bisa di-klik pada gambar untuk berpindah (toggle antara 0 dan 1)
+            slides.addEventListener('click', function(e) {
+                if (e.target.closest('.product-slide')) {
+                    currentSlide = currentSlide === 0 ? 1 : 0;
+                    updateSlide();
+                }
+            });
+            
+            // Initialize state awal
+            updateSlide();
+            
+            // Auto-slide on hover for desktop (optional)
+            if (!('ontouchstart' in window)) {
+                card.addEventListener('mouseenter', function() {
+                    // Tidak ada auto-slide karena hanya 2 slide
+                });
+            }
+        });
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href.includes('.html')) return;
+            
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (mainNav && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            }
+        });
+    });
+
+    // Initialize all functions when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize image sliders (hanya untuk KAZINE IN LOOP)
+        initializeImageSliders();
+        
+        // Add hover effect removal for mobile
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch-device');
         }
-        updateCartDisplay();
-    })();
+    });
+
+    // Also initialize on window load (backup)
+    window.addEventListener('load', function() {
+        initializeImageSliders();
+    });
+
+    // Fix untuk mencegah double execution
+    let initialized = false;
+    if (!initialized) {
+        initialized = true;
+        
+        // Ensure sliders work immediately
+        setTimeout(() => {
+            initializeImageSliders();
+        }, 100);
+    }
     </script>
 </body>
     </html>
