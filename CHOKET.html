@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>CHOKET - Pick Up Your Order</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOKET</title>
     <style>
         * {
             margin: 0;
@@ -12,515 +12,352 @@
         }
 
         body {
-            background-color: #FFFFFF;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: #000000;
-            line-height: 1.4;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: white;
+            color: black;
+            padding: 30px 20px;
         }
 
-        .choket-container {
-            max-width: 550px;
-            width: 100%;
+        .container {
+            max-width: 1300px;
             margin: 0 auto;
-            background: #FFFFFF;
-            border: 1px solid #000000;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-            border-radius: 0px;
-            overflow: hidden;
+            background: white;
+            border: 1px solid black;
+            padding: 30px 28px 40px 28px;
         }
 
-        /* Header dengan logo */
-        .choket-header {
-            padding: 24px 24px 16px 24px;
-            text-align: center;
-            border-bottom: 1px solid #000000;
-            background: #FFFFFF;
-        }
-
-        .logo-image {
-            max-width: 400px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-
-        /* Bag section (clickable) */
-        .bag-section {
-            padding: 48px 24px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-bottom: 1px solid #EEEEEE;
-        }
-
-        .bag-section:active {
-            background-color: #F5F5F5;
-        }
-
-        .bag-icon {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .bag-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .bag-text {
-            font-size: 16px;
-            font-weight: 500;
-            color: #000000;
-            letter-spacing: 0.5px;
-        }
-
-        .bag-hint {
-            font-size: 12px;
-            color: #555555;
-            margin-top: 8px;
-        }
-
-        /* Orders Panel */
-        .orders-panel {
-            display: none;
-            background: #FFFFFF;
-            border-top: 1px solid #000000;
-            animation: fadeSlideUp 0.25s ease-out;
-        }
-
-        .orders-panel.active {
-            display: block;
-        }
-
-        @keyframes fadeSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Order items - style baru dengan foto besar di atas */
-        .order-list {
-            padding: 20px 20px 12px 20px;
-        }
-
-        .order-headline {
-            font-size: 14px;
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #000000;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            color: #000000;
+            color: black;
+            border-bottom: 2px solid black;
+            display: inline-block;
+            padding-bottom: 8px;
         }
 
-        .order-item-card {
+        .sub {
+            color: black;
+            margin-bottom: 32px;
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+
+        /* Grid item - gambar diperbesar */
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        /* Card item */
+        .item-card {
+            background: white;
+            border: 1px solid black;
+        }
+
+        /* Area gambar BESAR - diperbesar */
+        .image-area {
+            background: white;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 24px 16px;
-            border-bottom: 1px solid #E5E5E5;
-            margin-bottom: 8px;
-        }
-
-        .order-item-card:last-child {
-            border-bottom: none;
-        }
-
-        .order-image-large {
-            width: 200px;
-            height: 200px;
-            margin-bottom: 20px;
-            background-color: #F8F8F8;
-            border: 1px solid #DDDDDD;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            overflow: hidden;
+            align-items: center;
+            padding: 24px 20px;
+            min-height: 380px;
+            border-bottom: 1px solid black;
         }
 
-        .order-image-large img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        .item-img {
+            max-width: 100%;
+            height: auto;
+            max-height: 360px;
+            width: auto;
+            object-fit: contain;
+            cursor: pointer;
         }
 
-        .order-details {
-            width: 100%;
+        .item-info {
+            padding: 18px 20px 22px;
         }
 
-        .order-item-name {
-            font-size: 18px;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 10px;
-            letter-spacing: -0.2px;
-        }
-
-        .order-item-quantity {
-            font-size: 15px;
-            color: #333333;
+        .item-title {
+            font-size: 1.4rem;
+            font-weight: 600;
             margin-bottom: 8px;
+            color: black;
         }
 
-        .order-item-price {
-            font-size: 14px;
+        .item-price {
+            font-size: 1.2rem;
             font-weight: 500;
-            color: #111111;
-            margin-top: 5px;
+            margin-bottom: 20px;
+            color: black;
         }
 
-        /* Total section dengan payment info */
+        /* Tombol unduh - hitam putih */
+        .download-btn {
+            background: black;
+            color: white;
+            border: 1px solid black;
+            padding: 12px 20px;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            text-align: center;
+        }
+
+        .download-btn:hover {
+            background: white;
+            color: black;
+        }
+
+        .download-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Total section + ucapan terima kasih */
         .total-section {
-            padding: 20px 20px 24px 20px;
-            border-top: 2px solid #000000;
-            margin-top: 8px;
-            background: #FFFFFF;
-        }
-
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            font-size: 18px;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 12px;
-        }
-
-        .total-label {
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 16px;
+            margin-top: 20px;
+            padding-top: 28px;
+            border-top: 2px solid black;
+            text-align: center;
         }
 
         .total-amount {
-            font-size: 20px;
+            font-size: 2rem;
             font-weight: 800;
+            display: inline-block;
+            padding: 12px 32px;
+            margin-bottom: 20px;
+            color: black;
+            border: 1px solid black;
         }
 
-        .payment-info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            font-size: 14px;
-            color: #444444;
-            padding-top: 8px;
-            border-top: 1px solid #EEEEEE;
-            margin-top: 8px;
-        }
-
-        .payment-label {
+        .thankyou-message {
+            font-size: 1.5rem;
             font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .payment-value {
-            font-weight: 600;
-            text-transform: capitalize;
-        }
-
-        .empty-message {
+            color: black;
+            padding: 20px 20px;
             text-align: center;
-            padding: 40px 20px;
-            color: #555555;
-            font-size: 14px;
-            border: 1px dashed #CCCCCC;
-            margin: 16px;
+            border: 1px solid black;
+            background: white;
         }
 
-        .footer-note {
-            padding: 20px 24px;
+        footer {
+            margin-top: 24px;
+            font-size: 0.7rem;
             text-align: center;
-            font-size: 11px;
-            color: #666666;
-            border-top: 1px solid #EEEEEE;
-            background: #FFFFFF;
+            color: black;
+            border-top: 1px solid black;
+            padding-top: 16px;
         }
 
-        @media (max-width: 550px) {
-            body {
-                padding: 12px;
+        @media (max-width: 700px) {
+            .container {
+                padding: 20px 16px;
             }
-            .order-image-large {
-                width: 160px;
-                height: 160px;
+            .item-title {
+                font-size: 1.2rem;
             }
-            .order-item-name {
-                font-size: 16px;
+            .thankyou-message {
+                font-size: 1.2rem;
             }
             .total-amount {
-                font-size: 18px;
+                font-size: 1.5rem;
             }
-            .logo-image {
-                max-width: 140px;
+            .image-area {
+                min-height: 280px;
+            }
+            .item-img {
+                max-height: 260px;
             }
         }
 
-        @media (max-width: 400px) {
-            .order-image-large {
-                width: 130px;
-                height: 130px;
-            }
+        /* notifikasi sukses unduh */
+        .toast-msg {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: black;
+            color: white;
+            padding: 10px 24px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            border: 1px solid white;
         }
     </style>
 </head>
 <body>
 
-<div class="choket-container">
-    <!-- Header dengan logo CHOKET.png -->
-    <div class="choket-header">
-        <img src="Choket.png" alt="CHOKET" class="logo-image" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22180%22%20height%3D%2260%22%20viewBox%3D%220%200%20180%2060%22%3E%3Ctext%20x%3D%2290%22%20y%3D%2238%22%20font-size%3D%2224%22%20text-anchor%3D%22middle%22%20fill%3D%22%23000%22%3ECHOKET%3C%2Ftext%3E%3C%2Fsvg%3E';">
-    </div>
+<div class="container">
+    <h1>CHOKET</h1>
+    <div class="sub">Klik gambar untuk melihat lebih besar | Tekan tombol unduh untuk menyimpan foto</div>
 
-    <!-- Bag section dengan icon Orderbag.png -->
-    <div class="bag-section" id="bagTrigger">
-        <div class="bag-icon">
-            <img src="Orderbag.png" alt="Bag" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2280%22%20height%3D%2280%22%20viewBox%3D%220%200%2080%2080%22%3E%3Crect%20width%3D%2280%22%20height%3D%2280%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%2240%22%20y%3D%2245%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%23999%22%3Ebag%3C%2Ftext%3E%3C%2Fsvg%3E';">
-        </div>
-        <div class="bag-text">PLEASE TAKE YOUR ORDER</div>
-        <div class="bag-hint">click the bag</div>
-    </div>
+    <div class="items-grid" id="itemsGrid"></div>
 
-    <!-- Orders Panel -->
-    <div class="orders-panel" id="ordersPanel">
-        <div class="order-list">
-            <div class="order-headline">YOUR PACKAGES</div>
-            <div id="orderItemsContainer"></div>
-        </div>
-        <div class="total-section">
-            <div class="total-row">
-                <span class="total-label">TOTAL PURCHASE</span>
-                <span class="total-amount" id="totalAmountDisplay">$0.00</span>
-            </div>
-            <div class="payment-info-row" id="paymentInfoRow" style="display: none;">
-                <span class="payment-label">PAID WITH</span>
-                <span class="payment-value" id="paymentMethodDisplay">-</span>
-            </div>
-        </div>
-        <div class="footer-note">
-            <span>2026 Kazine, featured by Kachoo</span>
-        </div>
+    <div class="total-section">
+        <div class="total-amount" id="totalPriceDisplay">Rp0</div>
+        <div class="thankyou-message" id="thankyouMsg">Thank you for your order in Kazine Collection</div>
     </div>
+    <footer>Setiap item memiliki tombol unduh | Klik unduh untuk menyimpan foto</footer>
 </div>
+<div id="toastMsg" class="toast-msg"></div>
 
 <script>
-    // Product image mapping
-    const imageMap = {
-        "Choosic Graphite Black": "Order1.png",
-        "Choosic White": "Order2.png",
-        "Choosic Espresso Brown": "Order3.png",
-        "Choosic Vanilla Haze": "Order4.png",
-        "Choosic Mulberry Wine": "Order5.png",
-        "Choosic Rose Noir": "Order6.png",
-        "Chozy Black": "Order7.png",
-        "Chozy White": "Order8.png",
-        "Chozy Blue": "Order9.png",
-        "Chozy Orange": "Order10.png",
-        "Chozy Green": "Order11.png",
-        "Chozy Yellow": "Order12.png"
-    };
-
-    function getImageForItem(itemName) {
-        if (!itemName) return null;
-        if (imageMap[itemName]) return imageMap[itemName];
-        
-        const lowerName = itemName.toLowerCase().trim();
-        for (let [key, filename] of Object.entries(imageMap)) {
-            if (key.toLowerCase() === lowerName) return filename;
+    // DATA ITEM (tas)
+    const itemsData = [
+        {
+            id: 1,
+            name: "Leather Tote Bag - Black",
+            price: 549000,
+            imageUrl: "https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop",
+            fileName: "kazine_tote_bag_black.jpg"
+        },
+        {
+            id: 2,
+            name: "Mini Crossbody Bag",
+            price: 425000,
+            imageUrl: "https://images.pexels.com/photos/909786/pexels-photo-909786.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop",
+            fileName: "kazine_crossbody.jpg"
+        },
+        {
+            id: 3,
+            name: "Vintage Shoulder Bag",
+            price: 679000,
+            imageUrl: "https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop",
+            fileName: "kazine_vintage_shoulder.jpg"
+        },
+        {
+            id: 4,
+            name: "Canvas Tote Bag",
+            price: 299000,
+            imageUrl: "https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop",
+            fileName: "kazine_canvas_tote.jpg"
         }
-        return null;
+    ];
+
+    function calculateTotal() {
+        return itemsData.reduce((sum, item) => sum + item.price, 0);
     }
 
-    function isValidItem(itemName) {
-        return getImageForItem(itemName) !== null;
+    function formatRupiah(amount) {
+        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(amount);
     }
 
-    // Get payment method from order data
-    function getPaymentMethodFromOrder(order) {
-        if (order && order.paymentMethod) {
-            const method = order.paymentMethod;
-            if (method === 'chobank') return 'CHOBANK';
-            if (method === 'qris') return 'QRIS';
-            return method.toUpperCase();
-        }
-        return null;
-    }
-
-    // Fetch order data from localStorage
-    function fetchValidOrderItems() {
+    async function downloadImage(imageUrl, fileName) {
+        const toast = document.getElementById('toastMsg');
         try {
-            const orderDataRaw = localStorage.getItem('kazineOrder');
-            let paymentMethod = null;
+            toast.style.opacity = '1';
+            toast.innerText = 'Mengunduh gambar...';
+            setTimeout(() => {
+                if(toast.style.opacity === '1') toast.style.opacity = '0';
+            }, 1200);
             
-            if (orderDataRaw) {
-                const order = JSON.parse(orderDataRaw);
-                paymentMethod = getPaymentMethodFromOrder(order);
-                
-                if (order.items && Array.isArray(order.items) && order.items.length > 0) {
-                    const validItems = [];
-                    for (let item of order.items) {
-                        const itemTitle = item.title || item.name;
-                        if (itemTitle && isValidItem(itemTitle)) {
-                            validItems.push({
-                                name: itemTitle,
-                                quantity: item.quantity || 1,
-                                price: parseFloat(item.price) || 0,
-                                imageFile: getImageForItem(itemTitle)
-                            });
-                        }
-                    }
-                    if (validItems.length > 0) {
-                        return { items: validItems, paymentMethod: paymentMethod };
-                    }
-                }
-            }
+            const response = await fetch(imageUrl, { mode: 'cors' });
+            if (!response.ok) throw new Error('Gagal mengambil gambar');
+            const blob = await response.blob();
+            const blobUrl = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = blobUrl;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(blobUrl);
             
-            const cartRaw = localStorage.getItem('kazineCart');
-            if (cartRaw) {
-                const cart = JSON.parse(cartRaw);
-                if (Array.isArray(cart) && cart.length > 0) {
-                    const validItems = [];
-                    for (let item of cart) {
-                        const itemTitle = item.title || item.name;
-                        if (itemTitle && isValidItem(itemTitle)) {
-                            validItems.push({
-                                name: itemTitle,
-                                quantity: item.quantity || 1,
-                                price: parseFloat(item.price) || 0,
-                                imageFile: getImageForItem(itemTitle)
-                            });
-                        }
-                    }
-                    if (validItems.length > 0) {
-                        return { items: validItems, paymentMethod: paymentMethod };
-                    }
-                }
-            }
-            
-            return { items: [], paymentMethod: null };
-        } catch (err) {
-            console.error("Error reading order data:", err);
-            return { items: [], paymentMethod: null };
+            toast.innerText = 'Berhasil diunduh';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 1500);
+        } catch (error) {
+            console.error(error);
+            toast.innerText = 'Gagal mengunduh, coba lagi';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 2000);
         }
     }
 
-    function computeTotal(validItems) {
-        let total = 0;
-        for (let item of validItems) {
-            total += (item.price * item.quantity);
-        }
-        return total;
+    function openFullImage(imageUrl) {
+        window.open(imageUrl, '_blank');
     }
 
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
+    function renderItems() {
+        const gridContainer = document.getElementById('itemsGrid');
+        if (!gridContainer) return;
+
+        gridContainer.innerHTML = '';
+        
+        itemsData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'item-card';
+            
+            const imageArea = document.createElement('div');
+            imageArea.className = 'image-area';
+            
+            const img = document.createElement('img');
+            img.src = item.imageUrl;
+            img.alt = item.name;
+            img.className = 'item-img';
+            img.loading = 'lazy';
+            img.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openFullImage(item.imageUrl);
+            });
+            imageArea.appendChild(img);
+            
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'item-info';
+            
+            const title = document.createElement('div');
+            title.className = 'item-title';
+            title.innerText = item.name;
+            
+            const price = document.createElement('div');
+            price.className = 'item-price';
+            price.innerText = formatRupiah(item.price);
+            
+            const downloadBtn = document.createElement('button');
+            downloadBtn.className = 'download-btn';
+            downloadBtn.innerText = 'UNDUH FOTO';
+            downloadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                downloadImage(item.imageUrl, item.fileName);
+            });
+            
+            infoDiv.appendChild(title);
+            infoDiv.appendChild(price);
+            infoDiv.appendChild(downloadBtn);
+            
+            card.appendChild(imageArea);
+            card.appendChild(infoDiv);
+            gridContainer.appendChild(card);
         });
-    }
-
-    function renderOrders(validItems, paymentMethod) {
-        const container = document.getElementById('orderItemsContainer');
-        const totalSpan = document.getElementById('totalAmountDisplay');
-        const paymentInfoRow = document.getElementById('paymentInfoRow');
-        const paymentMethodDisplay = document.getElementById('paymentMethodDisplay');
         
-        if (!validItems.length) {
-            container.innerHTML = `<div class="empty-message">No valid order found.<br>Please complete your purchase first at KAZINE payment page.</div>`;
-            totalSpan.textContent = "$0.00";
-            paymentInfoRow.style.display = 'none';
-            return;
-        }
-        
-        let html = '';
-        let totalSum = 0;
-        
-        for (let item of validItems) {
-            const itemTotal = item.price * item.quantity;
-            totalSum += itemTotal;
-            const imgSrc = `./${item.imageFile}`;
-            
-            html += `
-                <div class="order-item-card">
-                    <div class="order-image-large">
-                        <img src="${imgSrc}" alt="${escapeHtml(item.name)}" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22200%22%20viewBox%3D%220%200%20200%20200%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22110%22%20font-size%3D%2214%22%20text-anchor%3D%22middle%22%20fill%3D%22%23999%22%3E${escapeHtml(item.name)}%3C%2Ftext%3E%3C%2Fsvg%3E';">
-                    </div>
-                    <div class="order-details">
-                        <div class="order-item-name">${escapeHtml(item.name)}</div>
-                        <div class="order-item-quantity">Quantity: ${item.quantity}</div>
-                        <div class="order-item-price">$${item.price.toFixed(2)} each</div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        container.innerHTML = html;
-        totalSpan.textContent = `$${totalSum.toFixed(2)}`;
-        
-        // Tampilkan payment method jika ada
-        if (paymentMethod) {
-            paymentMethodDisplay.textContent = paymentMethod;
-            paymentInfoRow.style.display = 'flex';
-        } else {
-            paymentInfoRow.style.display = 'none';
+        const totalElement = document.getElementById('totalPriceDisplay');
+        if (totalElement) {
+            totalElement.innerText = formatRupiah(calculateTotal());
         }
     }
     
-    function loadAndShowOrders() {
-        const panel = document.getElementById('ordersPanel');
-        const { items, paymentMethod } = fetchValidOrderItems();
-        renderOrders(items, paymentMethod);
-        if (!panel.classList.contains('active')) {
-            panel.classList.add('active');
+    function init() {
+        renderItems();
+        const thankyouDiv = document.getElementById('thankyouMsg');
+        if (thankyouDiv) {
+            thankyouDiv.innerText = 'Thank you for your order in Kazine Collection';
         }
-        setTimeout(() => {
-            panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
     }
     
-    // Event listener untuk bag
-    document.getElementById('bagTrigger').addEventListener('click', function(e) {
-        loadAndShowOrders();
-    });
-    
-    // Panel hidden at start
-    const panel = document.getElementById('ordersPanel');
-    panel.classList.remove('active');
-    
-    // Listen for storage changes
-    window.addEventListener('storage', function(e) {
-        if (e.key === 'kazineOrder' || e.key === 'kazineCart') {
-            if (panel.classList.contains('active')) {
-                const { items, paymentMethod } = fetchValidOrderItems();
-                renderOrders(items, paymentMethod);
-            }
-        }
-    });
-    
-    console.log("CHOKET ready - connected to KAZINE payment system");
+    init();
 </script>
 </body>
-</html>
+    </html>
