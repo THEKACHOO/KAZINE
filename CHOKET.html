@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>CHOKET - Pick Up Your Order</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #000000;
+            line-height: 1.4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .choket-container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border: 1px solid #000000;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            border-radius: 0px;
+            overflow: hidden;
+        }
+
+        .choket-header {
+            padding: 32px 24px 16px 24px;
+            text-align: center;
+            border-bottom: 1px solid #000000;
+        }
+
+        .choket-title {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #000000;
+            margin-bottom: 8px;
+        }
+
+        .choket-sub {
+            font-size: 13px;
+            color: #333333;
+            font-weight: 400;
+        }
+
+        .cart-section {
+            padding: 48px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #EEEEEE;
+        }
+
+        .cart-section:active {
+            background-color: #F5F5F5;
+        }
+
+        .cart-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border: 2px solid #000000;
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-icon svg {
+            width: 48px;
+            height: 48px;
+            stroke: #000000;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .cart-icon svg path {
+            fill: #FFFFFF;
+            stroke: #000000;
+        }
+
+        .cart-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: #000000;
+            letter-spacing: 0.5px;
+        }
+
+        .cart-hint {
+            font-size: 12px;
+            color: #555555;
+            margin-top: 8px;
+        }
+
+        .orders-panel {
+            display: none;
+            background: #FFFFFF;
+            border-top: 1px solid #000000;
+            animation: fadeSlideUp 0.25s ease-out;
+        }
+
+        .orders-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .order-list {
+            padding: 20px 20px 12px 20px;
+        }
+
+        .order-headline {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #000000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .order-item-card {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        .order-item-card:last-child {
+            border-bottom: none;
+        }
+
+        .order-image {
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+            background-color: #F8F8F8;
+            border: 1px solid #DDDDDD;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .order-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .order-details {
+            flex: 1;
+        }
+
+        .order-item-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 6px;
+            letter-spacing: -0.2px;
+        }
+
+        .order-item-quantity {
+            font-size: 14px;
+            color: #333333;
+            margin-bottom: 4px;
+        }
+
+        .order-item-price {
+            font-size: 13px;
+            font-weight: 500;
+            color: #111111;
+            margin-top: 4px;
+        }
+
+        .total-section {
+            padding: 20px 20px 24px 20px;
+            border-top: 2px solid #000000;
+            margin-top: 8px;
+            background: #FFFFFF;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 18px;
+            font-weight: 700;
+            color: #000000;
+        }
+
+        .total-label {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 16px;
+        }
+
+        .total-amount {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #555555;
+            font-size: 14px;
+            border: 1px dashed #CCCCCC;
+            margin: 16px;
+        }
+
+        .footer-note {
+            padding: 20px 24px;
+            text-align: center;
+            font-size: 11px;
+            color: #666666;
+            border-top: 1px solid #EEEEEE;
+            background: #FFFFFF;
+        }
+
+        @media (max-width: 550px) {
+            body {
+                padding: 12px;
+            }
+            .order-image {
+                width: 70px;
+                height: 70px;
+            }
+            .order-item-name {
+                font-size: 15px;
+            }
+            .total-amount {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="choket-container">
+    <div class="choket-header">
+        <div class="choket-title">CHOKET</div>
+        <div class="choket-sub">pickup point</div>
+    </div>
+
+    <div class="cart-section" id="cartTrigger">
+        <div class="cart-icon">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+        </div>
+        <div class="cart-text">PLEASE TAKE YOUR ORDER</div>
+        <div class="cart-hint">click the basket to view</div>
+    </div>
+
+    <div class="orders-panel" id="ordersPanel">
+        <div class="order-list">
+            <div class="order-headline">YOUR PACKAGES</div>
+            <div id="orderItemsContainer"></div>
+        </div>
+        <div class="total-section">
+            <div class="total-row">
+                <span class="total-label">TOTAL PURCHASE</span>
+                <span class="total-amount" id="totalAmountDisplay">$0.00</span>
+            </div>
+        </div>
+        <div class="footer-note">
+            <span>CHOKET · pick up only valid items</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Product image mapping - berdasarkan daftar produk dari payment-kazine.html
+    const imageMap = {
+        "Choosic Graphite Black": "CGB-Order1.png",
+        "Choosic White": "Order2.png",
+        "Choosic Espresso Brown": "Order3.png",
+        "Choosic Vanilla Haze": "Order4.png",
+        "Choosic Mulberry Wine": "Order5.png",
+        "Choosic rose noir": "Order6.png",
+        "Chozy black": "Order7.png",
+        "Chozy White": "Order8.png",
+        "Chozy Blue": "Order9.png",
+        "Chozy Orange": "Order10.png",
+        "Chozy Green": "Order11.png",
+        "Chozy Yellow": "Order12.png"
+    };
+
+    function getImageForItem(itemName) {
+        if (!itemName) return null;
+        if (imageMap[itemName]) return imageMap[itemName];
+        
+        const lowerName = itemName.toLowerCase().trim();
+        for (let [key, filename] of Object.entries(imageMap)) {
+            if (key.toLowerCase() === lowerName) return filename;
+        }
+        return null;
+    }
+
+    function isValidItem(itemName) {
+        return getImageForItem(itemName) !== null;
+    }
+
+    // Baca data dari localStorage yang disimpan oleh payment-kazine.html
+    function fetchValidOrderItems() {
+        try {
+            // Prioritas 1: kazineOrder (disimpan oleh payment)
+            const orderDataRaw = localStorage.getItem('kazineOrder');
+            
+            if (orderDataRaw) {
+                const order = JSON.parse(orderDataRaw);
+                
+                // Format dari payment: { items: [{ title, quantity, price }] }
+                if (order.items && Array.isArray(order.items) && order.items.length > 0) {
+                    const validItems = [];
+                    for (let item of order.items) {
+                        const itemTitle = item.title || item.name;
+                        if (itemTitle && isValidItem(itemTitle)) {
+                            validItems.push({
+                                name: itemTitle,
+                                quantity: item.quantity || 1,
+                                price: parseFloat(item.price) || 0,
+                                imageFile: getImageForItem(itemTitle)
+                            });
+                        }
+                    }
+                    if (validItems.length > 0) return validItems;
+                }
+            }
+            
+            // Prioritas 2: kazineCart (cart sebelum payment)
+            const cartRaw = localStorage.getItem('kazineCart');
+            if (cartRaw) {
+                const cart = JSON.parse(cartRaw);
+                if (Array.isArray(cart) && cart.length > 0) {
+                    const validItems = [];
+                    for (let item of cart) {
+                        const itemTitle = item.title || item.name;
+                        if (itemTitle && isValidItem(itemTitle)) {
+                            validItems.push({
+                                name: itemTitle,
+                                quantity: item.quantity || 1,
+                                price: parseFloat(item.price) || 0,
+                                imageFile: getImageForItem(itemTitle)
+                            });
+                        }
+                    }
+                    if (validItems.length > 0) return validItems;
+                }
+            }
+            
+            return [];
+        } catch (err) {
+            console.error("Error reading order data:", err);
+            return [];
+        }
+    }
+
+    function computeTotal(validItems) {
+        let total = 0;
+        for (let item of validItems) {
+            total += (item.price * item.quantity);
+        }
+        return total;
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    function renderOrders(validItems) {
+        const container = document.getElementById('orderItemsContainer');
+        const totalSpan = document.getElementById('totalAmountDisplay');
+        
+        if (!validItems.length) {
+            container.innerHTML = `<div class="empty-message">No valid order found.<br>Please complete your purchase first at KAZINE payment page.</div>`;
+            totalSpan.textContent = "$0.00";
+            return;
+        }
+        
+        let html = '';
+        let totalSum = 0;
+        
+        for (let item of validItems) {
+            const itemTotal = item.price * item.quantity;
+            totalSum += itemTotal;
+            const imgSrc = `./${item.imageFile}`;
+            
+            html += `
+                <div class="order-item-card">
+                    <div class="order-image">
+                        <img src="${imgSrc}" alt="${escapeHtml(item.name)}" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2280%22%20height%3D%2280%22%20viewBox%3D%220%200%2080%2080%22%3E%3Crect%20width%3D%2280%22%20height%3D%2280%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%2240%22%20y%3D%2245%22%20font-size%3D%2210%22%20text-anchor%3D%22middle%22%20fill%3D%22%23999%22%3Eno%20img%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    </div>
+                    <div class="order-details">
+                        <div class="order-item-name">${escapeHtml(item.name)}</div>
+                        <div class="order-item-quantity">Quantity: ${item.quantity}</div>
+                        <div class="order-item-price">$${item.price.toFixed(2)} each</div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        container.innerHTML = html;
+        totalSpan.textContent = `$${totalSum.toFixed(2)}`;
+    }
+    
+    function loadAndShowOrders() {
+        const panel = document.getElementById('ordersPanel');
+        const validItems = fetchValidOrderItems();
+        renderOrders(validItems);
+        if (!panel.classList.contains('active')) {
+            panel.classList.add('active');
+        }
+        setTimeout(() => {
+            panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }
+    
+    // Event listener
+    document.getElementById('cartTrigger').addEventListener('click', function(e) {
+        loadAndShowOrders();
+    });
+    
+    // Panel hidden at start
+    const panel = document.getElementById('ordersPanel');
+    panel.classList.remove('active');
+    
+    // Optional: jika ada perubahan storage (misal dari tab lain), refresh saat panel aktif
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'kazineOrder' || e.key === 'kazineCart') {
+            if (panel.classList.contains('active')) {
+                const validItems = fetchValidOrderItems();
+                renderOrders(validItems);
+            }
+        }
+    });
+    
+    console.log("CHOKET ready - connected to KAZINE payment system");
+</script>
+</body>
+</html>
