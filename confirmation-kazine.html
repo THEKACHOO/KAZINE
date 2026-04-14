@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>KAZINE - Order Confirmation</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
@@ -417,7 +417,6 @@
             display: none;
         }
 
-        /* style untuk area receipt yang akan di-capture */
         #receiptCaptureArea {
             background: #FFFFFF;
             padding: 30px;
@@ -567,17 +566,13 @@
     </div>
 </footer>
 
-<!-- hidden area untuk capture receipt PNG -->
-<div id="receiptCaptureArea" style="position: absolute; left: -9999px; top: 0; width: 700px; background: white;">
-    <!-- akan diisi dynamic -->
-</div>
+<div id="receiptCaptureArea" style="position: absolute; left: -9999px; top: 0; width: 700px; background: white;"></div>
 
 <script>
     function formatCurrency(amount) {
         return `$${parseFloat(amount).toFixed(2)}`;
     }
 
-    // HANYA CHOBANK dan QRIS
     function formatPaymentMethod(method) {
         if (method === 'chobank') return 'CHOBANK';
         if (method === 'qris') return 'QRIS';
@@ -590,64 +585,85 @@
     function displayOrderData(orderData) {
         currentOrderData = orderData;
         currentOrderNumber = `KAZINE-${Date.now().toString().slice(-6)}`;
-        document.getElementById('orderNumber').textContent = currentOrderNumber;
+        
+        const orderNumberEl = document.getElementById('orderNumber');
+        if (orderNumberEl) orderNumberEl.textContent = currentOrderNumber;
         
         const orderDate = orderData.paymentDate ? new Date(orderData.paymentDate) : new Date();
-        document.getElementById('orderDate').textContent = orderDate.toLocaleDateString('en-US', {
-            year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
-        });
+        const orderDateEl = document.getElementById('orderDate');
+        if (orderDateEl) {
+            orderDateEl.textContent = orderDate.toLocaleDateString('en-US', {
+                year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+            });
+        }
         
         if (orderData.customer) {
-            document.getElementById('customerName').textContent = orderData.customer.fullName || 'Customer';
-            document.getElementById('customerEmailDisplay').textContent = orderData.customer.email || 'No email provided';
-            document.getElementById('customerTwitter').textContent = orderData.customer.twitter || 'Not provided';
-            document.getElementById('customerCountry').textContent = orderData.customer.country || 'Not provided';
-        } else {
-            document.getElementById('customerEmailDisplay').textContent = 'customer@example.com';
+            const customerNameEl = document.getElementById('customerName');
+            if (customerNameEl) customerNameEl.textContent = orderData.customer.fullName || 'Customer';
+            
+            const twitterEl = document.getElementById('customerTwitter');
+            if (twitterEl) twitterEl.textContent = orderData.customer.twitter || 'Not provided';
+            
+            const countryEl = document.getElementById('customerCountry');
+            if (countryEl) countryEl.textContent = orderData.customer.country || 'Not provided';
         }
         
         const paymentMethodValue = orderData.paymentMethod || 'chobank';
-        document.getElementById('paymentMethod').textContent = formatPaymentMethod(paymentMethodValue);
+        const paymentMethodEl = document.getElementById('paymentMethod');
+        if (paymentMethodEl) paymentMethodEl.textContent = formatPaymentMethod(paymentMethodValue);
         
         const discountDiv = document.getElementById('discountApplied');
         const discountRow = document.getElementById('discountRow');
         if (orderData.voucherCode && orderData.discount > 0) {
             const discountPercent = Math.round((orderData.discount / orderData.subtotal) * 100);
-            document.getElementById('discountText').textContent = `VOUCHER "${orderData.voucherCode}" - ${discountPercent}% OFF`;
-            discountDiv.classList.remove('hidden');
-            document.getElementById('discountCode').textContent = `(${orderData.voucherCode})`;
-            document.getElementById('discountAmount').textContent = `-${formatCurrency(orderData.discount)}`;
-            discountRow.classList.remove('hidden');
+            const discountTextEl = document.getElementById('discountText');
+            if (discountTextEl) discountTextEl.textContent = `VOUCHER "${orderData.voucherCode}" - ${discountPercent}% OFF`;
+            if (discountDiv) discountDiv.classList.remove('hidden');
+            
+            const discountCodeEl = document.getElementById('discountCode');
+            if (discountCodeEl) discountCodeEl.textContent = `(${orderData.voucherCode})`;
+            
+            const discountAmountEl = document.getElementById('discountAmount');
+            if (discountAmountEl) discountAmountEl.textContent = `-${formatCurrency(orderData.discount)}`;
+            
+            if (discountRow) discountRow.classList.remove('hidden');
         } else {
-            discountDiv.classList.add('hidden');
-            discountRow.classList.add('hidden');
+            if (discountDiv) discountDiv.classList.add('hidden');
+            if (discountRow) discountRow.classList.add('hidden');
         }
         
         const orderItemsList = document.getElementById('orderItemsList');
-        orderItemsList.innerHTML = '';
-        if (orderData.items && orderData.items.length > 0) {
-            orderData.items.forEach(item => {
-                const quantity = item.quantity || 1;
-                const price = parseFloat(item.price) || 0;
-                const total = price * quantity;
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'order-item';
-                itemDiv.innerHTML = `
-                    <div>
-                        <div class="item-name">${escapeHtml(item.title || 'Magazine Item')}</div>
-                        <div class="item-details">Quantity: ${quantity}</div>
-                    </div>
-                    <div class="item-price">${formatCurrency(total)}</div>
-                `;
-                orderItemsList.appendChild(itemDiv);
-            });
-        } else {
-            orderItemsList.innerHTML = '<div class="order-item"><span>No items found</span></div>';
+        if (orderItemsList) {
+            orderItemsList.innerHTML = '';
+            if (orderData.items && orderData.items.length > 0) {
+                orderData.items.forEach(item => {
+                    const quantity = item.quantity || 1;
+                    const price = parseFloat(item.price) || 0;
+                    const total = price * quantity;
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'order-item';
+                    itemDiv.innerHTML = `
+                        <div>
+                            <div class="item-name">${escapeHtml(item.title || 'Magazine Item')}</div>
+                            <div class="item-details">Quantity: ${quantity}</div>
+                        </div>
+                        <div class="item-price">${formatCurrency(total)}</div>
+                    `;
+                    orderItemsList.appendChild(itemDiv);
+                });
+            } else {
+                orderItemsList.innerHTML = '<div class="order-item"><span>No items found</span></div>';
+            }
         }
         
-        document.getElementById('subtotal').textContent = formatCurrency(orderData.subtotal || 0);
-        document.getElementById('serviceFee').textContent = formatCurrency(orderData.serviceFee || 2.50);
-        document.getElementById('totalAmount').textContent = formatCurrency(orderData.total || 0);
+        const subtotalEl = document.getElementById('subtotal');
+        if (subtotalEl) subtotalEl.textContent = formatCurrency(orderData.subtotal || 0);
+        
+        const serviceFeeEl = document.getElementById('serviceFee');
+        if (serviceFeeEl) serviceFeeEl.textContent = formatCurrency(orderData.serviceFee || 2.50);
+        
+        const totalAmountEl = document.getElementById('totalAmount');
+        if (totalAmountEl) totalAmountEl.textContent = formatCurrency(orderData.total || 0);
         
         localStorage.setItem('kazineLastOrderNumber', currentOrderNumber);
         localStorage.setItem('kazineLastOrderData', JSON.stringify(orderData));
@@ -663,7 +679,6 @@
         });
     }
     
-    // Fungsi untuk download receipt sebagai PNG
     async function downloadReceiptAsPNG() {
         if (!currentOrderData) {
             alert('No order data found.');
@@ -671,10 +686,11 @@
         }
         
         const captureContainer = document.getElementById('receiptCaptureArea');
+        if (!captureContainer) return;
+        
         const orderDate = currentOrderData.paymentDate ? new Date(currentOrderData.paymentDate) : new Date();
         const paymentDisplay = formatPaymentMethod(currentOrderData.paymentMethod || 'chobank');
         
-        // Build items HTML
         let itemsHtml = '';
         if (currentOrderData.items && currentOrderData.items.length > 0) {
             currentOrderData.items.forEach(item => {
@@ -784,8 +800,8 @@
             localStorage.removeItem('kazineCart');
             localStorage.removeItem('kazineVoucher');
             
-            loadingDiv.classList.add('hidden');
-            successDiv.classList.remove('hidden');
+            if (loadingDiv) loadingDiv.classList.add('hidden');
+            if (successDiv) successDiv.classList.remove('hidden');
             
             const printBtn = document.getElementById('printReceiptBtn');
             if (printBtn) {
@@ -797,8 +813,8 @@
             
         } catch (err) {
             console.error('Order error:', err);
-            loadingDiv.classList.add('hidden');
-            errorDiv.classList.remove('hidden');
+            if (loadingDiv) loadingDiv.classList.add('hidden');
+            if (errorDiv) errorDiv.classList.remove('hidden');
             const errorMsgSpan = document.getElementById('errorMessage');
             if (errorMsgSpan) errorMsgSpan.textContent = err.message;
         }
