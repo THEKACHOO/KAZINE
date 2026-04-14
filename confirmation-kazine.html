@@ -85,27 +85,6 @@
             text-align: center;
         }
 
-        .success-mark {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: #000000;
-            margin: 0 auto 28px;
-            position: relative;
-        }
-
-        .success-mark::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -60%) rotate(45deg);
-            width: 28px;
-            height: 14px;
-            border-left: 3px solid #FFFFFF;
-            border-bottom: 3px solid #FFFFFF;
-        }
-
         .confirmation-title {
             font-size: 32px;
             font-weight: 700;
@@ -490,11 +469,9 @@
         </div>
 
         <div id="successState" class="hidden">
-            <div class="success-mark"></div>
             <h1 class="confirmation-title">THANK YOU FOR YOUR ORDER</h1>
             <p class="confirmation-subtitle">Your payment has been successfully processed.</p>
-            <p class="confirmation-subtitle">Please wait for your order to be delivered.</p>
-            
+            <p class="confirmation-subtitle">Please wait for your order to be delivered.</p>            
             <div class="divider-light"></div>
 
             <div id="discountApplied" class="discount-applied hidden">
