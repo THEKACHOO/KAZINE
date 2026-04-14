@@ -77,7 +77,7 @@
         }
 
         .kazine-logo-main {
-            width: 140px; /* UKURAN NORMAL, TIDAK BESAR */
+            width: 140px;
             height: 40px;
             display: flex;
             align-items: center;
@@ -187,7 +187,7 @@
 
         /* =============== PERUBAHAN UKURAN FOTO UTAMA (21:9 - 1920x823px) =============== */
         .hero-ambassador {
-            padding: 100px 0 80px; /* Dikurangi dari 150px ke 100px */
+            padding: 100px 0 80px;
             background: var(--off-white);
             position: relative;
         }
@@ -195,7 +195,7 @@
         .ambassador-image {
             width: 100%;
             height: auto;
-            aspect-ratio: 21 / 9; /* Rasio 21:9 untuk 1920x823px */
+            aspect-ratio: 21 / 9;
             background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
             position: relative;
             overflow: hidden;
@@ -217,30 +217,27 @@
         /* Layout 3x3 grid untuk desktop */
         .fashion-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 kolom */
-            grid-template-rows: repeat(3, auto);   /* 3 baris */
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, auto);
             gap: 15px;
         }
 
-        /* Baris 1: 3 kolom atas 800x800px */
         .grid-item:nth-child(1),
         .grid-item:nth-child(2),
         .grid-item:nth-child(3) {
-            aspect-ratio: 1 / 1; /* Square 800x800px */
+            aspect-ratio: 1 / 1;
         }
 
-        /* Baris 2: 3 kolom tengah 800x1000px (portrait) */
         .grid-item:nth-child(4),
         .grid-item:nth-child(5),
         .grid-item:nth-child(6) {
-            aspect-ratio: 4 / 5; /* Portrait 800x1000px */
+            aspect-ratio: 4 / 5;
         }
 
-        /* Baris 3: 3 kolom bawah 800x800px */
         .grid-item:nth-child(7),
         .grid-item:nth-child(8),
         .grid-item:nth-child(9) {
-            aspect-ratio: 1 / 1; /* Square 800x800px */
+            aspect-ratio: 1 / 1;
         }
 
         .grid-item {
@@ -260,7 +257,81 @@
             transform: scale(1.05);
         }
 
-        /* =============== SHOP SECTION - MODIFIED =============== */
+        /* =============== MAGAZINE SECTION (VOLUME 1) =============== */
+        .magazine-volume-section {
+            padding: 80px 0;
+            background: var(--pure-white);
+        }
+
+        .magazine-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .magazine-card {
+            background: var(--pure-white);
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .magazine-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .magazine-cover {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            background: var(--light-gray);
+        }
+
+        .magazine-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .magazine-card:hover .magazine-cover img {
+            transform: scale(1.03);
+        }
+
+        .magazine-info {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .magazine-issue {
+            font-size: 11px;
+            color: var(--medium-gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .magazine-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .magazine-desc {
+            font-size: 13px;
+            color: var(--dark-gray);
+            line-height: 1.5;
+        }
+
+        /* =============== SHOP SECTION =============== */
         .shop-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -332,12 +403,11 @@
             object-fit: cover;
         }
 
-        /* TOMBOL SLIDE KIRI-KANAN YANG BARU - LEBIH TRANSPARAN */
         .slide-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.15); /* LEBIH TRANSPARAN */
+            background: rgba(0, 0, 0, 0.15);
             color: white;
             border: none;
             width: 36px;
@@ -374,7 +444,6 @@
             font-size: 14px;
         }
 
-        /* Tombol disabled */
         .slide-btn:disabled {
             opacity: 0.3;
             cursor: not-allowed;
@@ -384,7 +453,6 @@
             background: rgba(0, 0, 0, 0.15);
         }
 
-        /* Label LIMITED EDITION */
         .limited-edition-label {
             position: absolute;
             top: 10px;
@@ -425,7 +493,6 @@
             margin-bottom: 20px;
         }
 
-        /* TOMBOL ADD TO CART - TIDAK DIUBAH */
         .add-to-cart-btn {
             width: 100%;
             padding: 12px;
@@ -461,61 +528,9 @@
             transform: scale(0.98);
         }
 
-        /* Checkout Button */
         .checkout-container {
             text-align: center;
             margin-top: 50px;
-        }
-
-        /* Magazine Section */
-        .magazine-section {
-            padding: 80px 0;
-            background: var(--pure-white);
-        }
-
-        .magazine-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .magazine-cover img {
-            width: 100%;
-            height: auto;
-        }
-
-        .magazine-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 400;
-            margin-bottom: 20px;
-        }
-
-        .magazine-content h3 {
-            font-size: 24px;
-            font-weight: 400;
-            color: var(--medium-gray);
-            margin-bottom: 30px;
-        }
-
-        .magazine-content p {
-            font-size: 16px;
-            color: var(--dark-gray);
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-        .coming-soon-tag {
-            display: inline-block;
-            padding: 8px 20px;
-            background: var(--pure-black);
-            color: var(--pure-white);
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 20px;
-            text-decoration: none;
         }
 
         /* Footer */
@@ -741,15 +756,29 @@
             visibility: visible;
         }
 
-        /* =============== RESPONSIVE DESIGN - SAMA SEPERTI WEB LAMA =============== */
-        /* Tablet */
+        .coming-soon-tag {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .coming-soon-tag:hover {
+            background: var(--dark-gray);
+        }
+
+        /* Responsive */
         @media (max-width: 1200px) {
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        /* Tablet dan Mobile Menu - SAMA SEPERTI WEB LAMA */
         @media (max-width: 992px) {
             .header-container {
                 display: grid;
@@ -778,7 +807,7 @@
             
             nav {
                 position: fixed;
-                top: 70px; /* Disesuaikan dengan tinggi header mobile */
+                top: 70px;
                 left: 0;
                 width: 100%;
                 background: var(--pure-white);
@@ -809,16 +838,19 @@
             }
             
             .kazine-logo-main {
-                width: 120px; /* Logo lebih kecil di mobile */
+                width: 120px;
                 height: 35px;
+            }
+
+            .magazine-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
             }
         }
 
-        /* =============== PERUBAHAN UKURAN UNTUK MOBILE =============== */
         @media (max-width: 768px) {
-            /* Hero Section Mobile */
             .hero-ambassador {
-                padding: 90px 0 50px; /* Disesuaikan dengan header mobile */
+                padding: 90px 0 50px;
             }
             
             .ambassador-image {
@@ -827,7 +859,6 @@
                 border-radius: 0;
             }
             
-            /* Fashion Grid Mobile - 1 kolom, semua foto sama ukuran */
             .fashion-grid-section {
                 padding: 50px 0;
             }
@@ -841,174 +872,50 @@
             
             .grid-item {
                 width: 100%;
-                aspect-ratio: 1 / 1; /* Semua jadi square di mobile */
+                aspect-ratio: 1 / 1;
                 border-radius: 4px;
                 overflow: hidden;
             }
             
-            /* Override untuk portrait di mobile */
             .grid-item:nth-child(4),
             .grid-item:nth-child(5),
             .grid-item:nth-child(6) {
-                aspect-ratio: 1 / 1; /* Jadi square juga di mobile */
+                aspect-ratio: 1 / 1;
             }
             
-            .grid-item img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-            
-            /* Shop Section Mobile */
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
-                margin-bottom: 40px;
-            }
-            
-            .product-card {
-                margin-bottom: 0;
             }
             
             .product-image-container {
                 height: 280px;
             }
             
-            /* Tombol slide selalu terlihat di mobile */
             .slide-btn {
                 opacity: 0.4;
                 visibility: visible;
-                width: 32px;
-                height: 32px;
-                background: rgba(0, 0, 0, 0.1); /* Lebih transparan di mobile */
             }
             
-            .slide-btn i {
-                font-size: 12px;
+            .magazine-volume-section {
+                padding: 50px 0;
             }
             
-            .product-info {
-                padding: 20px 15px;
-            }
-            
-            .product-name {
-                font-size: 15px;
-                margin-bottom: 12px;
-            }
-            
-            .product-price {
-                font-size: 15px;
-                margin-bottom: 15px;
-            }
-            
-            /* TOMBOL TIDAK DIUBAH - tetap seperti semula */
-            .add-to-cart-btn {
-                padding: 12px;
-                font-size: 12px;
-            }
-            
-            /* Magazine Section Mobile */
-            .magazine-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .magazine-content h2 {
-                font-size: 36px;
-            }
-            
-            .magazine-content h3 {
-                font-size: 20px;
-            }
-            
-            .magazine-content p {
-                font-size: 15px;
-            }
-            
-            /* Section Titles Mobile */
-            .section-title {
-                margin-bottom: 40px;
+            .shop-section {
+                padding: 50px 0;
             }
             
             .section-title h2 {
                 font-size: 28px;
-                letter-spacing: 2px;
-            }
-            
-            .section-title p {
-                font-size: 13px;
-                letter-spacing: 1.5px;
-            }
-            
-            /* Cart Modal Mobile */
-            .cart-modal {
-                max-width: 90%;
-                width: 90%;
-            }
-            
-            .shop-section,
-            .magazine-section {
-                padding: 50px 0;
-            }
-            
-            /* Footer Mobile */
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .disclaimer {
-                padding-top: 30px;
-                font-size: 10px;
             }
         }
 
-        /* Mobile Kecil (576px ke bawah) */
         @media (max-width: 576px) {
-            /* Logo Mobile Kecil */
-            .kazine-logo-main {
-                width: 100px;
-                height: 30px;
-            }
-            
-            /* Products Grid Mobile Kecil */
             .products-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .product-image-container {
-                height: 320px;
             }
         }
 
-        /* Mobile-specific fixes */
-        @media (max-width: 768px) {
-            /* Pastikan semua tombol tetap berfungsi dan tidak berubah */
-            .add-to-cart-btn:hover {
-                background: var(--pure-black);
-            }
-            
-            /* Touch-friendly elements */
-            button, 
-            .slide-btn,
-            .checkout-btn,
-            .remove-item,
-            .close-cart,
-            .mobile-menu-btn,
-            .social-links a,
-            .cart-icon {
-                min-height: 44px;
-                min-width: 44px;
-            }
-            
-            /* Prevent blue highlight on tap */
-            * {
-                -webkit-tap-highlight-color: rgba(0,0,0,0);
-            }
-        }
-
-        /* Notification style */
         .cart-notification {
             position: fixed;
             top: 100px;
@@ -1031,26 +938,11 @@
             85% { opacity: 1; transform: translateX(-50%) translateY(0); }
             100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
         }
-
-        /* Out of stock style */
-        .out-of-stock {
-            background: var(--light-gray);
-            color: var(--medium-gray);
-        }
-
-        .out-of-stock-text {
-            font-size: 12px;
-            color: #dc3545;
-            margin-top: 5px;
-            font-weight: 500;
-        }
     </style>
 </head>
 <body>
-    <!-- Cart Overlay -->
     <div class="cart-overlay" id="cartOverlay"></div>
 
-    <!-- Shopping Cart Modal -->
     <div class="cart-modal" id="cartModal">
         <div class="cart-header">
             <h3>Shopping Bag</h3>
@@ -1073,7 +965,6 @@
         </div>
     </div>
 
-    <!-- Header - SAMA PERSIS SEPERTI WEB LAMA -->
     <header>
         <div class="container header-container">
             <div class="cart-icon-container" id="openCart">
@@ -1106,7 +997,6 @@
         </div>
     </header>
 
-    <!-- Hero - Brand Ambassador -->
     <section class="hero-ambassador">
         <div class="container">
             <div class="ambassador-image">
@@ -1116,65 +1006,76 @@
         </div>
     </section>
 
-    <!-- Fashion Grid - 9 foto dengan layout baru -->
     <section class="fashion-grid-section">
         <div class="container">
             <div class="fashion-grid">
-                <!-- Baris 1: 3 kolom atas 800x800px -->
                 <div class="grid-item">
-                    <img src="grid1.png" 
-                         alt="Fashion Editorial 1">
+                    <img src="grid1.png" alt="Fashion Editorial 1">
                 </div>
                 <div class="grid-item">
-                    <img src="grid2.png" 
-                         alt="Fashion Editorial 2">
+                    <img src="grid2.png" alt="Fashion Editorial 2">
                 </div>
                 <div class="grid-item">
-                    <img src="grid3.png" 
-                         alt="Fashion Editorial 3">
-                </div>
-                
-                <!-- Baris 2: 3 kolom tengah 800x1000px (portrait) -->
-                <div class="grid-item">
-                    <img src="grid4.png" 
-                         alt="Fashion Editorial 4">
+                    <img src="grid3.png" alt="Fashion Editorial 3">
                 </div>
                 <div class="grid-item">
-                    <img src="grid5.png" 
-                         alt="Fashion Editorial 5">
+                    <img src="grid4.png" alt="Fashion Editorial 4">
                 </div>
                 <div class="grid-item">
-                    <img src="grid6.png" 
-                         alt="Fashion Editorial 6">
-                </div>
-                
-                <!-- Baris 3: 3 kolom bawah 800x800px -->
-                <div class="grid-item">
-                    <img src="grid7.png" 
-                         alt="Fashion Editorial 7">
+                    <img src="grid5.png" alt="Fashion Editorial 5">
                 </div>
                 <div class="grid-item">
-                    <img src="grid8.png" 
-                         alt="Fashion Editorial 8">
+                    <img src="grid6.png" alt="Fashion Editorial 6">
                 </div>
                 <div class="grid-item">
-                    <img src="grid9.png" 
-                         alt="Fashion Editorial 9">
+                    <img src="grid7.png" alt="Fashion Editorial 7">
+                </div>
+                <div class="grid-item">
+                    <img src="grid8.png" alt="Fashion Editorial 8">
+                </div>
+                <div class="grid-item">
+                    <img src="grid9.png" alt="Fashion Editorial 9">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Shop Section - MODIFIED -->
+    <!-- MAGAZINE VOLUME 1 SECTION - DITAMBAHKAN SETELAH FASHION GRID -->
+    <section class="magazine-volume-section" id="magazine">
+        <div class="container">
+            <div class="magazine-grid">
+                <a href="https://thekachoo.github.io/Home/kazinevol1.html" class="magazine-card">
+                    <div class="magazine-cover">
+                        <img src="issue1.png" alt="Issue 1" onerror="this.src='https://via.placeholder.com/400x500/333333/FFFFFF?text=ISSUE+1'">
+                    </div>
+                    <div class="magazine-info">
+                        <div class="magazine-issue">Volume 1 - Issue 1</div>
+                        <div class="magazine-title">New Year New Vibes</div>
+                        <div class="magazine-desc">Menjelajahi semangat baru di tahun yang baru melalui fashion, seni, dan budaya.</div>
+                    </div>
+                </a>
+                <a href="https://thekachoo.github.io/KAZINE/vol1issue2.html" class="magazine-card" target="_blank">
+                    <div class="magazine-cover">
+                        <img src="issue2.png" alt="Issue 2" onerror="this.src='https://via.placeholder.com/400x500/333333/FFFFFF?text=ISSUE+2'">
+                    </div>
+                    <div class="magazine-info">
+                        <div class="magazine-issue">Volume 1 - Issue 2</div>
+                        <div class="magazine-title">Be My Valentine</div>
+                        <div class="magazine-desc">Merayakan cinta dan kasih sayang dalam berbagai bentuknya yang indah.</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <section class="shop-section" id="shop">
         <div class="container">
             <div class="section-title">
-                <h2>KAZINE IN LOOP!</h2>
+                <h2>KAZINE MOOD</h2>
                 <p>Time to shop! Make sure to use your voucher.</p>
             </div>
             
             <div class="products-grid">
-                <!-- Product 1 -->
                 <div class="product-card" data-product="CHOOSIC GRAPHITE BLACK" data-price="480" data-id="CGB-01">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1185,14 +1086,12 @@
                                 <img src="CGB2.png" alt="CHOOSIC GB BACK" onerror="this.src='CGB2.png'">
                             </div>
                         </div>
-                        <!-- Tombol slide kiri-kanan -->
                         <button class="slide-btn prev" aria-label="Previous image">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Label LIMITED EDITION -->
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1203,7 +1102,6 @@
                     </div>
                 </div>
                 
-                <!-- Product 2 -->
                 <div class="product-card" data-product="CHOOSIC WHITE" data-price="480" data-id="CW-02">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1214,14 +1112,12 @@
                                 <img src="CW2.png" alt="CHOOSIC W BACK" onerror="this.src='CW2.png'">
                             </div>
                         </div>
-                        <!-- Tombol slide kiri-kanan -->
                         <button class="slide-btn prev" aria-label="Previous image">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Label LIMITED EDITION -->
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1232,7 +1128,6 @@
                     </div>
                 </div>
                 
-                <!-- Product 3 -->
                 <div class="product-card" data-product="CHOOSIC ESPRESSO BROWN" data-price="480" data-id="CEB-03">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1243,14 +1138,12 @@
                                 <img src="CEB2.png" alt="CHOOSIC EB BACK" onerror="this.src='CEB2.png'">
                             </div>
                         </div>
-                        <!-- Tombol slide kiri-kanan -->
                         <button class="slide-btn prev" aria-label="Previous image">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Label LIMITED EDITION -->
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1261,7 +1154,6 @@
                     </div>
                 </div>
                 
-                <!-- Product 4 -->
                 <div class="product-card" data-product="CHOOSIC VANILLA HAZE" data-price="480" data-id="CVH-04">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1272,14 +1164,12 @@
                                 <img src="CVH2.png" alt="CHOOSIC VH BACK" onerror="this.src='CVH2.png'">
                             </div>
                         </div>
-                        <!-- Tombol slide kiri-kanan -->
                         <button class="slide-btn prev" aria-label="Previous image">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Label LIMITED EDITION -->
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1290,7 +1180,6 @@
                     </div>
                 </div>
                 
-                <!-- Product 5 -->
                 <div class="product-card" data-product="CHOOSIC MULBERY-WINE" data-price="480" data-id="CMW-05">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1301,14 +1190,12 @@
                                 <img src="CMW2.png" alt="CHOOSIC MW BACK" onerror="this.src='CMW2.png'">
                             </div>
                         </div>
-                        <!-- Tombol slide kiri-kanan -->
                         <button class="slide-btn prev" aria-label="Previous image">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Label LIMITED EDITION -->
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1319,7 +1206,6 @@
                     </div>
                 </div>
                 
-                <!-- Product 6 -->
                 <div class="product-card" data-product="CHOOSIC ROSE NOIR" data-price="480" data-id="CRN-06">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1330,14 +1216,12 @@
                                 <img src="CRN2.png" alt="CHOOSIC RN BACK" onerror="this.src='CRN2.png'">
                             </div>
                         </div>
-                        <!-- Tombol slide kiri-kanan -->
                         <button class="slide-btn prev" aria-label="Previous image">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Label LIMITED EDITION -->
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1348,7 +1232,6 @@
                     </div>
                 </div>
 
-                <!-- Product 7 -->
                 <div class="product-card" data-product="CHOZY BLACK" data-price="30" data-id="MUGB-01">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1359,14 +1242,12 @@
                                 <img src="MUGB2.png" alt="CHOZY BLACK - Back" onerror="this.src='MUGB2.png'">
                             </div>
                         </div>
-                        <!-- Tombol slide kiri-kanan -->
                         <button class="slide-btn prev" aria-label="Previous image">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Label LIMITED EDITION -->
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1377,7 +1258,6 @@
                     </div>
                 </div>
 
-                <!-- Product 8 -->
                 <div class="product-card" data-product="CHOZY WHITE" data-price="30" data-id="MUGW-02">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1388,14 +1268,12 @@
                                 <img src="MUGW2.png" alt="CHOZY WHITE- BACK" onerror="this.src='MUGW2.png'">
                             </div>
                         </div>
-                        <!-- Tombol slide kiri-kanan -->
                         <button class="slide-btn prev" aria-label="Previous image">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Label LIMITED EDITION -->
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1406,7 +1284,6 @@
                     </div>
                 </div>
 
-                <!-- Product 9 -->
                 <div class="product-card" data-product="CHOZY BLUE" data-price="30" data-id="MUGBLU-03">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1417,14 +1294,12 @@
                                 <img src="MUGBLU2.png" alt="CHOZY BLUE - Back">
                             </div>
                         </div>
-                        <!-- Tombol slide kiri-kanan -->
                         <button class="slide-btn prev" aria-label="Previous image">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Label LIMITED EDITION -->
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1435,7 +1310,6 @@
                     </div>
                 </div>
 
-                <!-- Product 10 -->
                 <div class="product-card" data-product="CHOZY ORANGE" data-price="30" data-id="MUGOR-04">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1446,14 +1320,12 @@
                                 <img src="MUGOR2.png" alt="CHOZY ORANGE - Back">
                             </div>
                         </div>
-                        <!-- Tombol slide kiri-kanan -->
                         <button class="slide-btn prev" aria-label="Previous image">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Label LIMITED EDITION -->
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1464,7 +1336,6 @@
                     </div>
                 </div>
 
-                <!-- Product 11 -->
                 <div class="product-card" data-product="CHOZY GREEN" data-price="30" data-id="MUGG1-05">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1475,14 +1346,12 @@
                                 <img src="MUGG2.png" alt="CHOZY GREEN - Back">
                             </div>
                         </div>
-                        <!-- Tombol slide kiri-kanan -->
                         <button class="slide-btn prev" aria-label="Previous image">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Label LIMITED EDITION -->
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1493,7 +1362,6 @@
                     </div>
                 </div>
 
-                <!-- Product 12 -->
                 <div class="product-card" data-product="CHOZY YELLOW" data-price="30" data-id="MUGY-06">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1504,14 +1372,12 @@
                                 <img src="MUGY2.png" alt="CHOZY YELLOW- Back">
                             </div>
                         </div>
-                        <!-- Tombol slide kiri-kanan -->
                         <button class="slide-btn prev" aria-label="Previous image">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                         <button class="slide-btn next" aria-label="Next image">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        <!-- Label LIMITED EDITION -->
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1523,8 +1389,6 @@
                 </div>
             </div>
 
-                        <!-- Tombol slide kiri-kanan -->
-                        
             <div class="checkout-container">
                 <a href="payment-kazine.html" class="coming-soon-tag">
                     <span>PROCEED TO CHECKOUT</span>
@@ -1533,7 +1397,6 @@
         </div>
     </section>
     
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1551,7 +1414,7 @@
                 
                 <div class="footer-section">
                     <h3>Contact</h3>
-                    <p>Official Account (X): <strong>@TheKachoo</strong></p>
+                    <p>Official Account (X): <strong>TheKachoo</strong></p>
                     <p>Email: ohkachoo@gmail.com</p>
                     <div class="social-links">
                         <a href="https://twitter.com/TheKachoo" target="_blank">
@@ -1566,17 +1429,15 @@
             
             <div class="disclaimer">
                 <p><strong>IMPORTANT NOTICE:</strong> All payments and transactions on this website are fictional and for roleplay purposes only. No real money will be charged, and no physical products will be shipped. This is a conceptual showcase of the KAZINE brand experience.</p>
-                <p>&copy; 2026 KAZINE | The Project of THE KACHOO. All rights reserved.</p>
+                <p>2026 KAZINE | The Project of THE KACHOO. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-    // SIMPLE CART SYSTEM
     let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
     let isProcessing = false;
 
-    // DOM Elements
     const cartModal = document.getElementById('cartModal');
     const cartOverlay = document.getElementById('cartOverlay');
     const cartCount = document.getElementById('cartCount');
@@ -1588,53 +1449,6 @@
     const closeCartBtn = document.getElementById('closeCart');
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mainNav = document.getElementById('mainNav');
-
-    // Initialize cart display
-    updateCartDisplay();
-
-    // Mobile menu toggle
-    if (mobileMenuBtn && mainNav) {
-        mobileMenuBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            mainNav.classList.toggle('active');
-            this.innerHTML = mainNav.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (mainNav.classList.contains('active')) {
-                if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                    mainNav.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            }
-        });
-
-        // Close menu when clicking links
-        mainNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-    }
-
-    // Cart functions
-    function openCart() {
-        cartModal.classList.add('active');
-        cartOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        updateCartDisplay();
-    }
-
-    function closeCart() {
-        cartModal.classList.remove('active');
-        cartOverlay.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
 
     function updateCartDisplay() {
         const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
@@ -1675,11 +1489,9 @@
         cartItems.innerHTML = itemsHTML;
         cartTotal.textContent = `$${total.toFixed(2)}`;
         
-        // Add event listeners to remove buttons
         document.querySelectorAll('.remove-item').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
-                e.stopPropagation();
                 const index = parseInt(this.getAttribute('data-index'));
                 cart.splice(index, 1);
                 localStorage.setItem('kazineCart', JSON.stringify(cart));
@@ -1689,7 +1501,20 @@
         });
     }
 
-    // Function untuk menangani add to cart
+    function showNotification(message) {
+        const existing = document.querySelector('.cart-notification');
+        if (existing) existing.remove();
+        
+        const notification = document.createElement('div');
+        notification.className = 'cart-notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            if (notification.parentNode) notification.remove();
+        }, 2000);
+    }
+
     function handleAddToCart(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -1703,7 +1528,6 @@
         const productPrice = productCard.getAttribute('data-price');
         const productId = productCard.getAttribute('data-id');
         
-        // Check if item already in cart
         const existingItem = cart.find(item => item.id === productId);
         
         if (existingItem) {
@@ -1719,19 +1543,14 @@
             showNotification(`${productTitle} added to cart`);
         }
         
-        // Save to localStorage
         localStorage.setItem('kazineCart', JSON.stringify(cart));
-        
-        // Update display
         updateCartDisplay();
         
-        // Visual feedback
         const originalText = button.innerHTML;
         button.innerHTML = '<i class="fas fa-check"></i> Added';
         button.style.backgroundColor = '#27ae60';
         button.disabled = true;
         
-        // Reset button after delay
         setTimeout(() => {
             button.innerHTML = originalText;
             button.style.backgroundColor = '';
@@ -1740,33 +1559,18 @@
         }, 1000);
     }
 
-    // Initialize semua tombol Add to Cart
     function initializeAddToCartButtons() {
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            // Remove existing listeners by cloning
             const newButton = button.cloneNode(true);
             button.parentNode.replaceChild(newButton, button);
         });
         
-        // Add new listeners to all buttons
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            // Standard click event for desktop
             button.addEventListener('click', handleAddToCart);
-            
-            // Touch event for mobile with proper handling
-            button.addEventListener('touchstart', function(e) {
-                if (e.cancelable) {
-                    e.preventDefault();
-                }
-                handleAddToCart(e);
-            }, { passive: false });
-            
-            // Ensure button has proper cursor
             button.style.cursor = 'pointer';
         });
     }
 
-    // Image slider functionality dengan tombol kiri-kanan (HANYA 2 SLIDE)
     function initializeImageSliders() {
         document.querySelectorAll('.product-card').forEach(card => {
             const slides = card.querySelector('.product-slides');
@@ -1776,227 +1580,92 @@
             if (!slides || !prevBtn || !nextBtn) return;
             
             let currentSlide = 0;
-            const totalSlides = 2; // HANYA 2 SLIDE
+            const totalSlides = 2;
             
-            // Function untuk update slide dan tombol
             function updateSlide() {
-                // Pindah slide
                 slides.style.transform = `translateX(-${currentSlide * 50}%)`;
-                
-                // Update state tombol
                 prevBtn.disabled = currentSlide === 0;
                 nextBtn.disabled = currentSlide === totalSlides - 1;
-                
-                // Update opacity berdasarkan state
-                if (prevBtn.disabled) {
-                    prevBtn.style.opacity = '0.3';
-                } else {
-                    prevBtn.style.opacity = card.querySelector('.product-image-container:hover') ? '1' : '0';
-                }
-                
-                if (nextBtn.disabled) {
-                    nextBtn.style.opacity = '0.3';
-                } else {
-                    nextBtn.style.opacity = card.querySelector('.product-image-container:hover') ? '1' : '0';
-                }
             }
             
-            // Previous button
             prevBtn.addEventListener('click', function(e) {
-                if (this.disabled) return;
-                
                 e.preventDefault();
                 e.stopPropagation();
-                
-                currentSlide = Math.max(0, currentSlide - 1);
-                updateSlide();
-            });
-            
-            // Next button
-            nextBtn.addEventListener('click', function(e) {
-                if (this.disabled) return;
-                
-                e.preventDefault();
-                e.stopPropagation();
-                
-                currentSlide = Math.min(totalSlides - 1, currentSlide + 1);
-                updateSlide();
-            });
-            
-            // Touch events untuk mobile
-            prevBtn.addEventListener('touchstart', function(e) {
-                if (this.disabled) {
-                    if (e.cancelable) e.preventDefault();
-                    return;
-                }
-                
-                if (e.cancelable) {
-                    e.preventDefault();
-                }
-                e.stopPropagation();
-                
-                currentSlide = Math.max(0, currentSlide - 1);
-                updateSlide();
-            }, { passive: false });
-            
-            nextBtn.addEventListener('touchstart', function(e) {
-                if (this.disabled) {
-                    if (e.cancelable) e.preventDefault();
-                    return;
-                }
-                
-                if (e.cancelable) {
-                    e.preventDefault();
-                }
-                e.stopPropagation();
-                
-                currentSlide = Math.min(totalSlides - 1, currentSlide + 1);
-                updateSlide();
-            }, { passive: false });
-            
-            // Juga bisa di-klik pada gambar untuk berpindah (toggle antara 0 dan 1)
-            slides.addEventListener('click', function(e) {
-                if (e.target.closest('.product-slide')) {
-                    currentSlide = currentSlide === 0 ? 1 : 0;
+                if (!this.disabled) {
+                    currentSlide = Math.max(0, currentSlide - 1);
                     updateSlide();
                 }
             });
             
-            // Initialize state awal
-            updateSlide();
+            nextBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (!this.disabled) {
+                    currentSlide = Math.min(totalSlides - 1, currentSlide + 1);
+                    updateSlide();
+                }
+            });
             
-            // Auto-slide on hover for desktop (optional)
-            if (!('ontouchstart' in window)) {
-                card.addEventListener('mouseenter', function() {
-                    // Tidak ada auto-slide karena hanya 2 slide
-                });
+            updateSlide();
+        });
+    }
+
+    function openCart() {
+        cartModal.classList.add('active');
+        cartOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        updateCartDisplay();
+    }
+
+    function closeCart() {
+        cartModal.classList.remove('active');
+        cartOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    openCartBtn.addEventListener('click', (e) => { e.preventDefault(); openCart(); });
+    closeCartBtn.addEventListener('click', (e) => { e.preventDefault(); closeCart(); });
+    cartOverlay.addEventListener('click', () => closeCart());
+
+    if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            mainNav.classList.toggle('active');
+            this.innerHTML = mainNav.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        document.addEventListener('click', function(e) {
+            if (mainNav.classList.contains('active') && !mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             }
         });
     }
 
-    // Simple notification
-    function showNotification(message) {
-        // Remove existing notification
-        const existing = document.querySelector('.cart-notification');
-        if (existing) existing.remove();
-        
-        // Create notification
-        const notification = document.createElement('div');
-        notification.className = 'cart-notification';
-        notification.textContent = message;
-        
-        document.body.appendChild(notification);
-        
-        // Remove after animation
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.remove();
-            }
-        }, 2000);
-    }
-
-    // Event listeners untuk cart
-    function setupCartEventListeners() {
-        // Open cart button
-        openCartBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            openCart();
-        });
-        
-        // Close cart button
-        closeCartBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeCart();
-        });
-        
-        // Close cart on overlay click
-        cartOverlay.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeCart();
-        });
-        
-        // Touch events for mobile
-        openCartBtn.addEventListener('touchstart', function(e) {
-            if (e.cancelable) {
-                e.preventDefault();
-            }
-            e.stopPropagation();
-            openCart();
-        }, { passive: false });
-        
-        closeCartBtn.addEventListener('touchstart', function(e) {
-            if (e.cancelable) {
-                e.preventDefault();
-            }
-            e.stopPropagation();
-            closeCart();
-        }, { passive: false });
-        
-        cartOverlay.addEventListener('touchstart', function(e) {
-            if (e.cancelable) {
-                e.preventDefault();
-            }
-            e.stopPropagation();
-            closeCart();
-        }, { passive: false });
-    }
-
-    // Checkout button
     checkoutBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        
         if (cart.length === 0) {
             showNotification('Your cart is empty');
             return;
         }
-        
-        // Calculate total
         let subtotal = 0;
-        cart.forEach(item => {
-            subtotal += parseFloat(item.price) * (item.quantity || 1);
-        });
-        
-        // Save order data
-        const orderData = {
-            items: cart,
-            subtotal: subtotal,
-            total: subtotal + 2.50,
-            store: 'KAZINE',
-            orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
-        };
-        
+        cart.forEach(item => { subtotal += parseFloat(item.price) * (item.quantity || 1); });
+        const orderData = { items: cart, subtotal: subtotal, total: subtotal + 2.50, store: 'KAZINE', orderId: 'KZ-' + Date.now().toString(36).toUpperCase() };
         localStorage.setItem('kazineOrder', JSON.stringify(orderData));
         closeCart();
-        
-        // Redirect to payment page
-        setTimeout(() => {
-            window.location.href = 'payment-kazine.html';
-        }, 300);
+        setTimeout(() => { window.location.href = 'payment-kazine.html'; }, 300);
     });
 
-    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             if (href === '#' || href.includes('.html')) return;
-            
             e.preventDefault();
             const targetId = href.substring(1);
             const targetElement = document.getElementById(targetId);
-            
             if (targetElement) {
                 const headerHeight = document.querySelector('header').offsetHeight;
-                const targetPosition = targetElement.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
+                window.scrollTo({ top: targetElement.offsetTop - headerHeight, behavior: 'smooth' });
                 if (mainNav && mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
@@ -2005,48 +1674,11 @@
         });
     });
 
-    // Initialize all functions when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
-        // Initialize add to cart buttons
-        initializeAddToCartButtons();
-        
-        // Initialize image sliders
-        initializeImageSliders();
-        
-        // Setup cart event listeners
-        setupCartEventListeners();
-        
-        // Update cart display
-        updateCartDisplay();
-        
-        // Reset processing flag
-        isProcessing = false;
-        
-        // Add hover effect removal for mobile
-        if ('ontouchstart' in window) {
-            document.body.classList.add('touch-device');
-        }
-    });
-
-    // Also initialize on window load (backup)
-    window.addEventListener('load', function() {
         initializeAddToCartButtons();
         initializeImageSliders();
-        setupCartEventListeners();
         updateCartDisplay();
     });
-
-    // Fix untuk mencegah double execution
-    let initialized = false;
-    if (!initialized) {
-        initialized = true;
-        
-        // Ensure buttons work immediately
-        setTimeout(() => {
-            initializeAddToCartButtons();
-            initializeImageSliders();
-        }, 100);
-    }
     </script>
 </body>
     </html>
