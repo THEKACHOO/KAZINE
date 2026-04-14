@@ -20,7 +20,6 @@
             min-height: 100vh;
         }
 
-        /* HITAM PUTIH SAJA - TIDAK ADA WARNA LAIN, TIDAK ADA ICON */
         .container {
             max-width: 800px;
             width: 100%;
@@ -28,7 +27,6 @@
             padding: 0 24px;
         }
 
-        /* HEADER */
         .header {
             background: #FFFFFF;
             padding: 32px 0;
@@ -81,13 +79,11 @@
             margin-top: 2px;
         }
 
-        /* MAIN CONTENT */
         .confirmation-section {
             padding: 60px 0 80px;
             text-align: center;
         }
 
-        /* success mark - tanpa icon, hanya garis dan lingkaran hitam putih */
         .success-mark {
             width: 80px;
             height: 80px;
@@ -133,7 +129,6 @@
             margin: 28px auto 20px;
         }
 
-        /* discount applied - tanpa warna merah, hanya hitam putih */
         .discount-applied {
             display: inline-flex;
             align-items: center;
@@ -147,7 +142,6 @@
             letter-spacing: 0.3px;
         }
 
-        /* delivery instructions - tanpa icon, border hitam */
         .delivery-instructions {
             background: #FFFFFF;
             padding: 28px 24px;
@@ -215,7 +209,6 @@
             font-weight: 700;
         }
 
-        /* ORDER SUMMARY - putih hitam */
         .order-summary {
             background: #FFFFFF;
             padding: 28px;
@@ -334,7 +327,6 @@
             color: #000000;
         }
 
-        /* ACTION BUTTONS - tanpa icon */
         .action-buttons {
             display: flex;
             gap: 16px;
@@ -375,7 +367,6 @@
             background: #F5F5F5;
         }
 
-        /* TOMBOL TAKE YOUR ORDER - PALING AKHIR, WARNA HITAM PUTIH */
         .take-order-container {
             margin-top: 48px;
             margin-bottom: 20px;
@@ -413,7 +404,6 @@
             margin-top: 20px;
         }
 
-        /* loading / error state - hitam putih */
         .loading-state, .error-state {
             padding: 60px 20px;
             text-align: center;
@@ -463,13 +453,11 @@
 
 <main class="container">
     <div class="confirmation-section" id="confirmationRoot">
-        <!-- LOADING STATE -->
         <div id="loadingState" class="loading-state">
             <div class="spinner"></div>
             <p style="font-weight: 500; margin-top: 16px;">Processing order details...</p>
         </div>
 
-        <!-- SUCCESS STATE -->
         <div id="successState" class="hidden">
             <div class="success-mark"></div>
             <h1 class="confirmation-title">THANK YOU FOR YOUR ORDER</h1>
@@ -478,12 +466,10 @@
             
             <div class="divider-light"></div>
 
-            <!-- DISCOUNT INFO (hanya jika ada) -->
             <div id="discountApplied" class="discount-applied hidden">
                 <span id="discountText">Discount Applied</span>
             </div>
 
-            <!-- DELIVERY INSTRUCTION tanpa icon -->
             <div class="delivery-instructions">
                 <h3>DELIVERY INSTRUCTION</h3>
                 <p>Your order details and download links will be sent to your email:</p>
@@ -498,7 +484,6 @@
                 Your order has been recorded in our system. The admin has been notified and will prepare your download links.
             </div>
 
-            <!-- ORDER SUMMARY -->
             <div class="order-summary">
                 <h2 class="summary-title">ORDER DETAILS</h2>
                 
@@ -554,20 +539,17 @@
                 </div>
             </div>
 
-            <!-- BOTTOM BUTTONS (tanpa icon) -->
             <div class="action-buttons">
                 <a href="kazine.html" class="btn btn-primary">BACK TO STORE</a>
                 <a href="#" id="printReceiptBtn" class="btn btn-secondary">PRINT RECEIPT</a>
                 <a href="payment-kazine.html" class="btn btn-secondary">NEW ORDER</a>
             </div>
 
-            <!-- TAKE YOUR ORDER - PALING AKHIR, PINDAH KE CHOKET.HTML -->
             <div class="take-order-container">
                 <a href="Choket.html" class="btn-take-order">TAKE YOUR ORDER</a>
             </div>
         </div>
 
-        <!-- ERROR STATE -->
         <div id="errorState" class="error-state hidden">
             <h3>PROCESSING ERROR</h3>
             <p id="errorMessage">We couldn't process your order. Please complete payment first.</p>
@@ -587,41 +569,18 @@
 </footer>
 
 <script>
-    // Helper: format currency
     function formatCurrency(amount) {
         return `$${parseFloat(amount).toFixed(2)}`;
     }
 
-    // format payment method (tanpa icon / emoticon)
-    function formatPaymentMethod(method, bank, card) {
-        let display = '';
-        switch(method) {
-            case 'paypal': display = 'PayPal'; break;
-            case 'qris': display = 'QRIS'; break;
-            case 'debit-credit': 
-                display = 'Debit & Credit Card';
-                if (bank) {
-                    const banks = { 'bca': 'BCA', 'bni': 'BNI', 'bri': 'BRI',
-                        'mandiri': 'Mandiri', 'cimb': 'CIMB Niaga',
-                        'permata': 'Permata', 'danamon': 'Danamon' };
-                    display += ` (${banks[bank] || bank})`;
-                }
-                break;
-            case 'international': 
-                display = 'International Card';
-                if (card) {
-                    const cards = { 'black': 'Black Card', 'jp-morgan': 'JP Morgan Reserve',
-                        'dubai-first': 'Dubai First Royale', 'coutts': 'Coutts World Silk' };
-                    display += ` (${cards[card] || card})`;
-                }
-                break;
-            default: display = method || 'Standard';
-        }
-        return display;
+    // HANYA CHOBANK dan QRIS - TIDAK ADA BANK LAIN
+    function formatPaymentMethod(method) {
+        if (method === 'chobank') return 'CHOBANK';
+        if (method === 'qris') return 'QRIS';
+        return 'CHOBANK';
     }
 
     function displayOrderData(orderData) {
-        // order number
         const orderNumber = `KAZINE-${Date.now().toString().slice(-6)}`;
         document.getElementById('orderNumber').textContent = orderNumber;
         
@@ -630,7 +589,6 @@
             year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
         });
         
-        // customer
         if (orderData.customer) {
             document.getElementById('customerName').textContent = orderData.customer.fullName || 'Customer';
             document.getElementById('customerEmailDisplay').textContent = orderData.customer.email || 'No email provided';
@@ -640,11 +598,10 @@
             document.getElementById('customerEmailDisplay').textContent = 'customer@example.com';
         }
         
-        // payment method
-        const paymentDisplay = formatPaymentMethod(orderData.paymentMethod, orderData.selectedBank, orderData.selectedCard);
-        document.getElementById('paymentMethod').textContent = paymentDisplay;
+        // HANYA CHOBANK ATAU QRIS
+        const paymentMethodValue = orderData.paymentMethod || 'chobank';
+        document.getElementById('paymentMethod').textContent = formatPaymentMethod(paymentMethodValue);
         
-        // discount
         const discountDiv = document.getElementById('discountApplied');
         const discountRow = document.getElementById('discountRow');
         if (orderData.voucherCode && orderData.discount > 0) {
@@ -659,7 +616,6 @@
             discountRow.classList.add('hidden');
         }
         
-        // items
         const orderItemsList = document.getElementById('orderItemsList');
         orderItemsList.innerHTML = '';
         if (orderData.items && orderData.items.length > 0) {
@@ -682,12 +638,10 @@
             orderItemsList.innerHTML = '<div class="order-item"><span>No items found</span></div>';
         }
         
-        // totals
         document.getElementById('subtotal').textContent = formatCurrency(orderData.subtotal || 0);
         document.getElementById('serviceFee').textContent = formatCurrency(orderData.serviceFee || 2.50);
         document.getElementById('totalAmount').textContent = formatCurrency(orderData.total || 0);
         
-        // save for print
         localStorage.setItem('kazineLastOrderNumber', orderNumber);
         localStorage.setItem('kazineLastOrderData', JSON.stringify(orderData));
     }
@@ -715,6 +669,7 @@
             const orderData = JSON.parse(orderDataRaw);
             const orderNumber = localStorage.getItem('kazineLastOrderNumber') || `KAZINE-${Date.now().toString().slice(-6)}`;
             const printWindow = window.open('', '_blank');
+            const paymentDisplay = formatPaymentMethod(orderData.paymentMethod || 'chobank');
             printWindow.document.write(`
                 <html>
                 <head><title>KAZINE Receipt</title>
@@ -730,11 +685,18 @@
                 </head>
                 <body>
                 <div class="receipt-header"><h2>KAZINE</h2><p>ORDER RECEIPT #${orderNumber}</p></div>
-                <div class="order-info"><div><strong>Customer:</strong> ${orderData.customer?.fullName || '-'}</div><div><strong>Email:</strong> ${orderData.customer?.email || '-'}</div>
-                <div><strong>Date:</strong> ${new Date().toLocaleString()}</div><div><strong>Payment:</strong> ${orderData.paymentMethod || '-'}</div></div>
-                <table><thead><tr><th>Item</th><th>Qty</th><th>Total</th></tr></thead><tbody>
-                ${orderData.items ? orderData.items.map(item => `<tr><td>${item.title}</td><td>${item.quantity || 1}</td><td>$${((item.price||0)*(item.quantity||1)).toFixed(2)}</td></tr>`).join('') : '<tr><td colspan="3">-</td></tr>'}
-                </tbody></table>
+                <div class="order-info">
+                    <div><strong>Customer:</strong> ${orderData.customer?.fullName || '-'}</div>
+                    <div><strong>Email:</strong> ${orderData.customer?.email || '-'}</div>
+                    <div><strong>Date:</strong> ${new Date().toLocaleString()}</div>
+                    <div><strong>Payment:</strong> ${paymentDisplay}</div>
+                </div>
+                <table>
+                    <thead><tr><th>Item</th><th>Qty</th><th>Total</th></tr></thead>
+                    <tbody>
+                        ${orderData.items ? orderData.items.map(item => `<tr><td>${escapeHtml(item.title || 'Magazine Item')}</td><td>${item.quantity || 1}</td><td>$${((item.price||0)*(item.quantity||1)).toFixed(2)}</td></tr>`).join('') : '<tr><td colspan="3">-</td></tr>'}
+                    </tbody>
+                </table>
                 <div><strong>Subtotal:</strong> ${formatCurrency(orderData.subtotal)}</div>
                 ${orderData.discount ? `<div><strong>Discount:</strong> -${formatCurrency(orderData.discount)}</div>` : ''}
                 <div><strong>Service Fee:</strong> ${formatCurrency(orderData.serviceFee || 2.5)}</div>
@@ -747,7 +709,6 @@
         });
     }
     
-    // main controller
     document.addEventListener('DOMContentLoaded', function() {
         const loadingDiv = document.getElementById('loadingState');
         const successDiv = document.getElementById('successState');
@@ -763,10 +724,8 @@
                 throw new Error('Your cart is empty. Please add items before checkout.');
             }
             
-            // display data
             displayOrderData(orderData);
             
-            // clear cart after confirmation
             localStorage.removeItem('kazineCart');
             localStorage.removeItem('kazineVoucher');
             
@@ -784,4 +743,4 @@
     });
 </script>
 </body>
-                        </html>
+    </html>
