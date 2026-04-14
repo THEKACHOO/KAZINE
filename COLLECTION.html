@@ -50,7 +50,7 @@
             padding: 0 20px;
         }
 
-        /* ================= HEADER ================= */
+        /* ================= HEADER SEPERTI WEB LAMA ================= */
         header {
             background: var(--pure-white);
             padding: 15px 0;
@@ -91,6 +91,7 @@
             filter: contrast(1.1);
         }
 
+        /* Navigation */
         nav ul {
             display: flex;
             list-style: none;
@@ -128,6 +129,7 @@
             width: 100%;
         }
 
+        /* Cart Icon */
         .cart-icon-container {
             position: relative;
             cursor: pointer;
@@ -183,7 +185,7 @@
             z-index: 1001;
         }
 
-        /* =============== HERO =============== */
+        /* =============== PERUBAHAN UKURAN FOTO UTAMA (21:9 - 1920x823px) =============== */
         .hero-ambassador {
             padding: 100px 0 80px;
             background: var(--off-white);
@@ -206,12 +208,13 @@
             object-fit: cover;
         }
 
-        /* =============== FASHION GRID =============== */
+        /* =============== PERUBAHAN FASHION GRID =============== */
         .fashion-grid-section {
             padding: 80px 0;
             background: var(--pure-white);
         }
 
+        /* Layout 3x3 grid untuk desktop */
         .fashion-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -219,18 +222,21 @@
             gap: 15px;
         }
 
+        /* Baris 1: 3 kolom atas 800x800px */
         .grid-item:nth-child(1),
         .grid-item:nth-child(2),
         .grid-item:nth-child(3) {
             aspect-ratio: 1 / 1;
         }
 
+        /* Baris 2: 3 kolom tengah 800x1000px (portrait) */
         .grid-item:nth-child(4),
         .grid-item:nth-child(5),
         .grid-item:nth-child(6) {
             aspect-ratio: 4 / 5;
         }
 
+        /* Baris 3: 3 kolom bawah 800x800px */
         .grid-item:nth-child(7),
         .grid-item:nth-child(8),
         .grid-item:nth-child(9) {
@@ -254,10 +260,29 @@
             transform: scale(1.05);
         }
 
-        /* =============== MAGAZINE SECTION - BERDERET SAMPING =============== */
+        /* =============== MAGAZINE VOLUME 1 SECTION =============== */
         .magazine-volume-section {
             padding: 60px 0;
             background: var(--pure-white);
+        }
+
+        .magazine-section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .magazine-section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: 3px;
+        }
+
+        .magazine-section-title p {
+            font-size: 12px;
+            color: var(--medium-gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .magazine-grid {
@@ -324,7 +349,7 @@
             display: none;
         }
 
-        /* =============== SHOP SECTION =============== */
+        /* =============== SHOP SECTION - MODIFIED =============== */
         .shop-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -396,6 +421,7 @@
             object-fit: cover;
         }
 
+        /* TOMBOL SLIDE KIRI-KANAN */
         .slide-btn {
             position: absolute;
             top: 50%;
@@ -442,6 +468,11 @@
             cursor: not-allowed;
         }
 
+        .slide-btn:disabled:hover {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        /* Label LIMITED EDITION */
         .limited-edition-label {
             position: absolute;
             top: 10px;
@@ -482,6 +513,7 @@
             margin-bottom: 20px;
         }
 
+        /* TOMBOL ADD TO CART */
         .add-to-cart-btn {
             width: 100%;
             padding: 12px;
@@ -495,31 +527,32 @@
             transition: var(--transition-smooth);
             font-family: 'Inter', sans-serif;
             font-weight: 500;
+            position: relative;
+            overflow: hidden;
         }
 
         .add-to-cart-btn:hover {
             background: var(--dark-gray);
         }
 
+        .add-to-cart-btn:disabled {
+            background: var(--medium-gray);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .add-to-cart-btn:disabled:hover {
+            background: var(--medium-gray);
+        }
+
+        .add-to-cart-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Checkout Button */
         .checkout-container {
             text-align: center;
             margin-top: 50px;
-        }
-
-        .coming-soon-tag {
-            display: inline-block;
-            padding: 15px 40px;
-            background: var(--pure-black);
-            color: var(--pure-white);
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: var(--transition-smooth);
-        }
-
-        .coming-soon-tag:hover {
-            background: var(--dark-gray);
         }
 
         /* Footer */
@@ -745,6 +778,22 @@
             visibility: visible;
         }
 
+        .coming-soon-tag {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .coming-soon-tag:hover {
+            background: var(--dark-gray);
+        }
+
         .cart-notification {
             position: fixed;
             top: 100px;
@@ -768,7 +817,7 @@
             100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
         }
 
-        /* =============== RESPONSIVE =============== */
+        /* =============== RESPONSIVE DESIGN =============== */
         @media (max-width: 1200px) {
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -785,21 +834,25 @@
                 align-items: center;
                 gap: 15px;
             }
+            
             .logo-section {
                 position: static;
                 transform: none;
                 order: 1;
                 justify-self: center;
             }
+            
             .cart-icon-container {
                 order: 0;
                 z-index: 1001;
             }
+            
             .mobile-menu-btn {
                 display: flex;
                 order: 2;
                 z-index: 1001;
             }
+            
             nav {
                 position: fixed;
                 top: 70px;
@@ -814,24 +867,29 @@
                 border-bottom: 1px solid var(--light-gray);
                 box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             }
+            
             nav.active {
                 transform: translateY(0);
                 opacity: 1;
             }
+            
             nav ul {
                 flex-direction: column;
                 gap: 20px;
             }
+            
             nav a {
                 font-size: 14px;
                 padding: 10px;
                 text-align: center;
                 display: block;
             }
+            
             .kazine-logo-main {
                 width: 120px;
                 height: 35px;
             }
+
             .magazine-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -841,68 +899,77 @@
             .hero-ambassador {
                 padding: 90px 0 50px;
             }
+            
             .ambassador-image {
                 margin: 0 -20px;
                 width: calc(100% + 40px);
                 border-radius: 0;
             }
+            
             .fashion-grid-section {
                 padding: 50px 0;
             }
+            
             .fashion-grid {
                 display: grid;
                 grid-template-columns: 1fr;
+                grid-template-rows: repeat(9, auto);
                 gap: 12px;
             }
+            
             .grid-item {
+                width: 100%;
                 aspect-ratio: 1 / 1;
+                border-radius: 4px;
+                overflow: hidden;
             }
+            
             .grid-item:nth-child(4),
             .grid-item:nth-child(5),
             .grid-item:nth-child(6) {
                 aspect-ratio: 1 / 1;
             }
-            .magazine-volume-section {
-                padding: 40px 0;
-            }
-            .magazine-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
+            
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
             }
+            
             .product-image-container {
                 height: 280px;
             }
+            
             .slide-btn {
                 opacity: 0.4;
                 visibility: visible;
             }
-            .shop-section {
+            
+            .shop-section,
+            .magazine-section {
                 padding: 50px 0;
             }
+            
             .section-title h2 {
                 font-size: 28px;
             }
-            .magazine-info {
-                padding: 10px 5px;
+
+            .magazine-volume-section {
+                padding: 40px 0;
             }
-            .magazine-issue {
-                font-size: 8px;
+
+            .magazine-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
             }
-            .magazine-title {
-                font-size: 11px;
+
+            .magazine-section-title h2 {
+                font-size: 22px;
             }
         }
 
         @media (max-width: 576px) {
             .products-grid {
                 grid-template-columns: 1fr;
-            }
-            .magazine-grid {
-                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -957,8 +1024,8 @@
             <nav id="mainNav">
                 <ul>
                     <li><a href="https://thekachoo.github.io/Home/index.html">THE KACHOO</a></li>
-                    <li><a href="#shop">SHOP</a></li>
                     <li><a href="#magazine">MAGAZINE</a></li>
+                    <li><a href="#shop">SHOP</a></li>
                 </ul>
             </nav>
         </div>
@@ -1007,9 +1074,13 @@
         </div>
     </section>
 
-    <!-- MAGAZINE VOLUME 1 - BERDERET KE SAMPING -->
+    <!-- MAGAZINE VOLUME 1 - SETELAH FASHION GRID -->
     <section class="magazine-volume-section" id="magazine">
         <div class="container">
+            <div class="magazine-section-title">
+                <h2>KAZINE VOLUME 1</h2>
+                <p>ISSUE 01 - ISSUE 02</p>
+            </div>
             <div class="magazine-grid">
                 <a href="https://thekachoo.github.io/Home/kazinevol1.html" class="magazine-card">
                     <div class="magazine-cover">
@@ -1036,7 +1107,7 @@
     <section class="shop-section" id="shop">
         <div class="container">
             <div class="section-title">
-                <h2>KAZINE MOOD</h2>
+                <h2>KAZINE IN LOOP</h2>
                 <p>Time to shop! Make sure to use your voucher.</p>
             </div>
             
