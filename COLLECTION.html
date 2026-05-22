@@ -49,7 +49,6 @@
             padding: 0 20px;
         }
 
-        /* ================= HEADER SEPERTI WEB LAMA ================= */
         header {
             background: var(--pure-white);
             padding: 15px 0;
@@ -90,7 +89,6 @@
             filter: contrast(1.1);
         }
 
-        /* Navigation */
         nav ul {
             display: flex;
             list-style: none;
@@ -129,7 +127,6 @@
             width: 100%;
         }
 
-        /* Cart Icon */
         .cart-icon-container {
             position: relative;
             cursor: pointer;
@@ -186,7 +183,6 @@
             z-index: 1001;
         }
 
-        /* =============== PERUBAHAN UKURAN FOTO UTAMA (21:9 - 1920x823px) =============== */
         .hero-ambassador {
             padding: 100px 0 80px;
             background: var(--off-white);
@@ -209,13 +205,11 @@
             object-fit: cover;
         }
 
-        /* =============== PERUBAHAN FASHION GRID =============== */
         .fashion-grid-section {
             padding: 80px 0;
             background: var(--pure-white);
         }
 
-        /* Layout 3x3 grid untuk desktop */
         .fashion-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -223,21 +217,18 @@
             gap: 15px;
         }
 
-        /* Baris 1: 3 kolom atas 800x800px */
         .grid-item:nth-child(1),
         .grid-item:nth-child(2),
         .grid-item:nth-child(3) {
             aspect-ratio: 1 / 1;
         }
 
-        /* Baris 2: 3 kolom tengah 800x1000px (portrait) */
         .grid-item:nth-child(4),
         .grid-item:nth-child(5),
         .grid-item:nth-child(6) {
             aspect-ratio: 4 / 5;
         }
 
-        /* Baris 3: 3 kolom bawah 800x800px */
         .grid-item:nth-child(7),
         .grid-item:nth-child(8),
         .grid-item:nth-child(9) {
@@ -261,7 +252,6 @@
             transform: scale(1.05);
         }
 
-        /* =============== MAGAZINE VOLUME 1 SECTION =============== */
         .magazine-volume-section {
             padding: 60px 0;
             background: var(--pure-white);
@@ -347,7 +337,6 @@
             font-family: 'Outfit', sans-serif;
         }
 
-        /* =============== SHOP SECTION - MODIFIED =============== */
         .shop-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -421,7 +410,6 @@
             object-fit: cover;
         }
 
-        /* TOMBOL SLIDE KIRI-KANAN */
         .slide-btn {
             position: absolute;
             top: 50%;
@@ -468,11 +456,6 @@
             cursor: not-allowed;
         }
 
-        .slide-btn:disabled:hover {
-            background: rgba(0, 0, 0, 0.15);
-        }
-
-        /* Label LIMITED EDITION */
         .limited-edition-label {
             position: absolute;
             top: 10px;
@@ -518,7 +501,6 @@
             font-family: 'Outfit', sans-serif;
         }
 
-        /* TOMBOL ADD TO CART */
         .add-to-cart-btn {
             width: 100%;
             padding: 12px;
@@ -546,21 +528,11 @@
             opacity: 0.7;
         }
 
-        .add-to-cart-btn:disabled:hover {
-            background: var(--medium-gray);
-        }
-
-        .add-to-cart-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Checkout Button */
         .checkout-container {
             text-align: center;
             margin-top: 50px;
         }
 
-        /* Footer */
         footer {
             background: var(--pure-black);
             padding: 60px 0 30px;
@@ -588,10 +560,6 @@
             color: var(--medium-gray);
             line-height: 1.8;
             margin-bottom: 20px;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        .footer-section p a {
             font-family: 'Outfit', sans-serif;
         }
 
@@ -628,7 +596,6 @@
             font-family: 'Outfit', sans-serif;
         }
 
-        /* Cart Modal */
         .cart-modal {
             position: fixed;
             top: 0;
@@ -779,10 +746,6 @@
             opacity: 0.5;
         }
 
-        .empty-cart p {
-            font-family: 'Outfit', sans-serif;
-        }
-
         .cart-overlay {
             position: fixed;
             top: 0;
@@ -799,6 +762,43 @@
         .cart-overlay.active {
             opacity: 1;
             visibility: visible;
+        }
+
+        .cart-notification {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--pure-black);
+            color: var(--pure-white);
+            padding: 12px 24px;
+            border-radius: 2px;
+            z-index: 9999;
+            font-size: 14px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: fadeInOut 2s ease-in-out;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+        }
+
+        .coming-soon-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
         }
 
         /* =============== RESPONSIVE DESIGN =============== */
@@ -879,6 +879,7 @@
             }
         }
 
+        /* =============== PERUBAHAN UTAMA DI MOBILE =============== */
         @media (max-width: 768px) {
             .hero-ambassador {
                 padding: 90px 0 50px;
@@ -894,24 +895,18 @@
                 padding: 50px 0;
             }
             
+            /* GRID 9 FOTO: 3 KOLOM, PAS DI MOBILE */
             .fashion-grid {
                 display: grid;
-                grid-template-columns: 1fr;
-                grid-template-rows: repeat(9, auto);
-                gap: 12px;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
             }
             
             .grid-item {
+                aspect-ratio: 1 / 1 !important;
                 width: 100%;
-                aspect-ratio: 1 / 1;
                 border-radius: 4px;
                 overflow: hidden;
-            }
-            
-            .grid-item:nth-child(4),
-            .grid-item:nth-child(5),
-            .grid-item:nth-child(6) {
-                aspect-ratio: 1 / 1;
             }
             
             .grid-item img {
@@ -920,6 +915,7 @@
                 object-fit: cover;
             }
             
+            /* SHOP SECTION: 2x2 GRID */
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
@@ -1010,25 +1006,7 @@
             .magazine-section-title h2 {
                 font-size: 22px;
             }
-        }
-
-        @media (max-width: 576px) {
-            .kazine-logo-main {
-                width: 100px;
-                height: 30px;
-            }
             
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .product-image-container {
-                height: 320px;
-            }
-        }
-
-        @media (max-width: 768px) {
             .add-to-cart-btn:hover {
                 background: var(--pure-black);
             }
@@ -1044,68 +1022,41 @@
                 min-height: 44px;
                 min-width: 44px;
             }
-            
-            * {
-                -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+
+        @media (max-width: 576px) {
+            .kazine-logo-main {
+                width: 100px;
+                height: 30px;
             }
-        }
-
-        .cart-notification {
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--pure-black);
-            color: var(--pure-white);
-            padding: 12px 24px;
-            border-radius: 2px;
-            z-index: 9999;
-            font-size: 14px;
-            white-space: nowrap;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            animation: fadeInOut 2s ease-in-out;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-        }
-
-        .out-of-stock {
-            background: var(--light-gray);
-            color: var(--medium-gray);
-        }
-
-        .out-of-stock-text {
-            font-size: 12px;
-            color: #dc3545;
-            margin-top: 5px;
-            font-weight: 500;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        .coming-soon-tag {
-            display: inline-block;
-            padding: 8px 20px;
-            background: var(--pure-black);
-            color: var(--pure-white);
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 20px;
-            text-decoration: none;
-            font-family: 'Outfit', sans-serif;
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .product-image-container {
+                height: 250px;
+            }
+            
+            .product-name {
+                font-size: 13px;
+            }
+            
+            .product-price {
+                font-size: 13px;
+            }
+            
+            .add-to-cart-btn {
+                font-size: 10px;
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Cart Overlay -->
     <div class="cart-overlay" id="cartOverlay"></div>
 
-    <!-- Shopping Cart Modal -->
     <div class="cart-modal" id="cartModal">
         <div class="cart-header">
             <h3>Shopping Bag</h3>
@@ -1128,7 +1079,6 @@
         </div>
     </div>
 
-    <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="cart-icon-container" id="openCart">
@@ -1141,8 +1091,7 @@
             <div class="logo-section">
                 <a href="https://thekachoo.github.io/KAZINE/COLLECTION.html">
                     <div class="kazine-logo-main">
-                        <img src="KAZINE.png" alt="KAZINE Logo" 
-                             onerror="this.src='KAZINE.png'">
+                        <img src="KAZINE.png" alt="KAZINE Logo">
                     </div>
                 </a>
             </div>
@@ -1161,52 +1110,30 @@
         </div>
     </header>
 
-    <!-- Hero - Brand Ambassador -->
     <section class="hero-ambassador">
         <div class="container">
             <div class="ambassador-image">
-                <img src="kazinebanner.png" 
-                     alt="Brand Ambassador - Elevated Style">
+                <img src="kazinebanner.png" alt="Brand Ambassador - Elevated Style">
             </div>
         </div>
     </section>
 
-    <!-- Fashion Grid - 9 foto -->
     <section class="fashion-grid-section">
         <div class="container">
             <div class="fashion-grid">
-                <div class="grid-item">
-                    <img src="grid1.png" alt="Fashion Editorial 1">
-                </div>
-                <div class="grid-item">
-                    <img src="grid2.png" alt="Fashion Editorial 2">
-                </div>
-                <div class="grid-item">
-                    <img src="grid3.png" alt="Fashion Editorial 3">
-                </div>
-                <div class="grid-item">
-                    <img src="grid4.png" alt="Fashion Editorial 4">
-                </div>
-                <div class="grid-item">
-                    <img src="grid5.png" alt="Fashion Editorial 5">
-                </div>
-                <div class="grid-item">
-                    <img src="grid6.png" alt="Fashion Editorial 6">
-                </div>
-                <div class="grid-item">
-                    <img src="grid7.png" alt="Fashion Editorial 7">
-                </div>
-                <div class="grid-item">
-                    <img src="grid8.png" alt="Fashion Editorial 8">
-                </div>
-                <div class="grid-item">
-                    <img src="grid9.png" alt="Fashion Editorial 9">
-                </div>
+                <div class="grid-item"><img src="grid1.png" alt="Fashion Editorial 1"></div>
+                <div class="grid-item"><img src="grid2.png" alt="Fashion Editorial 2"></div>
+                <div class="grid-item"><img src="grid3.png" alt="Fashion Editorial 3"></div>
+                <div class="grid-item"><img src="grid4.png" alt="Fashion Editorial 4"></div>
+                <div class="grid-item"><img src="grid5.png" alt="Fashion Editorial 5"></div>
+                <div class="grid-item"><img src="grid6.png" alt="Fashion Editorial 6"></div>
+                <div class="grid-item"><img src="grid7.png" alt="Fashion Editorial 7"></div>
+                <div class="grid-item"><img src="grid8.png" alt="Fashion Editorial 8"></div>
+                <div class="grid-item"><img src="grid9.png" alt="Fashion Editorial 9"></div>
             </div>
         </div>
     </section>
 
-    <!-- MAGAZINE VOLUME 1 -->
     <section class="magazine-volume-section" id="magazine">
         <div class="container">
             <div class="magazine-section-title">
@@ -1216,7 +1143,7 @@
             <div class="magazine-grid">
                 <a href="https://thekachoo.github.io/Home/kazinevol1.html" class="magazine-card">
                     <div class="magazine-cover">
-                        <img src="issue1.png" alt="Issue 1" onerror="this.src='https://via.placeholder.com/300x400/333333/FFFFFF?text=ISSUE+1'">
+                        <img src="issue1.png" alt="Issue 1">
                     </div>
                     <div class="magazine-info">
                         <div class="magazine-issue">ISSUE 01</div>
@@ -1225,7 +1152,7 @@
                 </a>
                 <a href="https://thekachoo.github.io/KAZINE/vol1issue2.html" class="magazine-card" target="_blank">
                     <div class="magazine-cover">
-                        <img src="issue2.png" alt="Issue 2" onerror="this.src='https://via.placeholder.com/300x400/333333/FFFFFF?text=ISSUE+2'">
+                        <img src="issue2.png" alt="Issue 2">
                     </div>
                     <div class="magazine-info">
                         <div class="magazine-issue">ISSUE 02</div>
@@ -1236,7 +1163,6 @@
         </div>
     </section>
 
-    <!-- Shop Section -->
     <section class="shop-section" id="shop">
         <div class="container">
             <div class="section-title">
@@ -1245,23 +1171,14 @@
             </div>
             
             <div class="products-grid">
-                <!-- Product 1 -->
                 <div class="product-card" data-product="CHOOSIC GRAPHITE BLACK" data-price="480" data-id="CGB-01">
                     <div class="product-image-container">
                         <div class="product-slides">
-                            <div class="product-slide">
-                                <img src="CGB1.png" alt="CHOOSIC GB FRONT">
-                            </div>
-                            <div class="product-slide">
-                                <img src="CGB2.png" alt="CHOOSIC GB BACK" onerror="this.src='CGB2.png'">
-                            </div>
+                            <div class="product-slide"><img src="CGB1.png" alt="CHOOSIC GB FRONT"></div>
+                            <div class="product-slide"><img src="CGB2.png" alt="CHOOSIC GB BACK"></div>
                         </div>
-                        <button class="slide-btn prev" aria-label="Previous image">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="slide-btn next" aria-label="Next image">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
+                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1272,23 +1189,14 @@
                     </div>
                 </div>
                 
-                <!-- Product 2 -->
                 <div class="product-card" data-product="CHOOSIC WHITE" data-price="480" data-id="CW-02">
                     <div class="product-image-container">
                         <div class="product-slides">
-                            <div class="product-slide">
-                                <img src="CW1.png" alt="CHOOSIC W FRONT">
-                            </div>
-                            <div class="product-slide">
-                                <img src="CW2.png" alt="CHOOSIC W BACK" onerror="this.src='CW2.png'">
-                            </div>
+                            <div class="product-slide"><img src="CW1.png" alt="CHOOSIC W FRONT"></div>
+                            <div class="product-slide"><img src="CW2.png" alt="CHOOSIC W BACK"></div>
                         </div>
-                        <button class="slide-btn prev" aria-label="Previous image">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="slide-btn next" aria-label="Next image">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
+                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1299,23 +1207,14 @@
                     </div>
                 </div>
             
-                <!-- Product 7 -->
                 <div class="product-card" data-product="CHOZY BLACK" data-price="30" data-id="MUGB-01">
                     <div class="product-image-container">
                         <div class="product-slides">
-                            <div class="product-slide">
-                                <img src="MUGB1.png" alt="CHOZY BLACK - Front">
-                            </div>
-                            <div class="product-slide">
-                                <img src="MUGB2.png" alt="CHOZY BLACK - Back" onerror="this.src='MUGB2.png'">
-                            </div>
+                            <div class="product-slide"><img src="MUGB1.png" alt="CHOZY BLACK - Front"></div>
+                            <div class="product-slide"><img src="MUGB2.png" alt="CHOZY BLACK - Back"></div>
                         </div>
-                        <button class="slide-btn prev" aria-label="Previous image">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="slide-btn next" aria-label="Next image">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
+                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1326,23 +1225,14 @@
                     </div>
                 </div>
 
-                <!-- Product 8 -->
                 <div class="product-card" data-product="CHOZY WHITE" data-price="30" data-id="MUGW-02">
                     <div class="product-image-container">
                         <div class="product-slides">
-                            <div class="product-slide">
-                                <img src="MUGW1.png" alt="CHOZY WHITE - FRONT" onerror="this.src='MUGW1.png'">
-                            </div>
-                            <div class="product-slide">
-                                <img src="MUGW2.png" alt="CHOZY WHITE- BACK" onerror="this.src='MUGW2.png'">
-                            </div>
+                            <div class="product-slide"><img src="MUGW1.png" alt="CHOZY WHITE - FRONT"></div>
+                            <div class="product-slide"><img src="MUGW2.png" alt="CHOZY WHITE- BACK"></div>
                         </div>
-                        <button class="slide-btn prev" aria-label="Previous image">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="slide-btn next" aria-label="Next image">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
+                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
                         <div class="limited-edition-label">LIMITED EDITION</div>
                     </div>
                     <div class="product-info">
@@ -1352,6 +1242,7 @@
                         <button class="add-to-cart-btn">Add to Bag</button>
                     </div>
                 </div>
+            </div>
 
             <div class="checkout-container">
                 <a href="payment-kazine.html" class="coming-soon-tag">
@@ -1361,7 +1252,6 @@
         </div>
     </section>
     
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1382,12 +1272,8 @@
                     <p>Official Account (X): <strong>@TheKachoo</strong></p>
                     <p>Email: ohkachoo@gmail.com</p>
                     <div class="social-links">
-                        <a href="https://twitter.com/TheKachoo" target="_blank">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="mailto:ohkachoo@gmail.com">
-                            <i class="fas fa-envelope"></i>
-                        </a>
+                        <a href="https://twitter.com/TheKachoo" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:ohkachoo@gmail.com"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
