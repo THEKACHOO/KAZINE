@@ -1,650 +1,1402 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAZINE VOLUME 1</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #ffffff;
-            color: #111;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
-        /* Animated Background Elements */
-        .bg-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.03);
-            animation: float 20s infinite linear;
-        }
-        
-        .line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
-            animation: slide 15s infinite linear;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-            100% { transform: translateY(0px) rotate(360deg); }
-        }
-        
-        @keyframes slide {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100vw); }
-        }
-        
-        /* Header Styles */
-        header {
-            text-align: center;
-            padding: 3rem 2rem 2rem;
-            position: relative;
-        }
-        
-        /* Back to Home Button */
-        .back-to-home {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 10;
-        }
-        
-        .home-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background-color: #000;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .home-btn:hover {
-            background-color: #333;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        }
-        
-        .home-btn i {
-            font-size: 0.9rem;
-        }
-        
-        .logo-container {
-            margin-bottom: 2rem;
-        }
-        
-        .logo-img {
-            max-width: 300px;
-            height: auto;
-            margin-bottom: 1.5rem;
-            animation: fadeInDown 1.2s ease-out;
-        }
-        
-        .volume-link {
-            display: inline-block;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-        
-        .volume-link:hover {
-            transform: scale(1.05);
-        }
-        
-        .volume-img {
-            max-width: 500px;
-            width: 90%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
-        }
-        
-        .volume-img:hover {
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 4px;
-            color: #555;
-            margin-bottom: 2rem;
-            animation: fadeIn 1.5s ease-out 0.3s both;
-        }
-        
-        .volume-badge {
-            display: inline-block;
-            background-color: #000;
-            color: #fff;
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-            margin-bottom: 3rem;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2); }
-            70% { box-shadow: 0 0 0 15px rgba(0, 0, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
-        }
-        
-        /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem 5rem;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-            color: #000;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background-color: #000;
-            animation: expand 1s ease-out 0.5s both;
-        }
-        
-        @keyframes expand {
-            0% { width: 0; }
-            100% { width: 60px; }
-        }
-        
-        .intro-text {
-            font-size: 1.4rem;
-            line-height: 1.6;
-            margin-bottom: 3rem;
-            color: #333;
-            max-width: 800px;
-            animation: fadeInUp 1s ease-out 0.7s both;
-        }
-        
-        .highlight {
-            color: #000;
-            font-weight: 700;
-            position: relative;
-        }
-        
-        .highlight:after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background-color: rgba(0, 0, 0, 0.1);
-            z-index: -1;
-        }
-        
-        /* Cards */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .card {
-            background-color: #fff;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: cardAppear 0.8s ease-out forwards;
-        }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .card:nth-child(1) { animation-delay: 0.5s; }
-        .card:nth-child(2) { animation-delay: 0.7s; }
-        .card:nth-child(3) { animation-delay: 0.9s; }
-        .card:nth-child(4) { animation-delay: 1.1s; }
-        .card:nth-child(5) { animation-delay: 1.3s; }
-        .card:nth-child(6) { animation-delay: 1.5s; }
-        
-        @keyframes cardAppear {
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .card-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #000;
-            display: flex;
-            align-items: center;
-        }
-        
-        .card-title i {
-            margin-right: 10px;
-            color: #000;
-        }
-        
-        .card-content {
-            line-height: 1.6;
-            color: #444;
-        }
-        
-        /* Requirements List */
-        .requirements-list {
-            list-style-type: none;
-            margin: 2rem 0;
-        }
-        
-        .requirements-list li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: flex-start;
-            opacity: 0;
-            animation: listItemAppear 0.5s ease-out forwards;
-        }
-        
-        .requirements-list li:nth-child(1) { animation-delay: 1s; }
-        .requirements-list li:nth-child(2) { animation-delay: 1.2s; }
-        .requirements-list li:nth-child(3) { animation-delay: 1.4s; }
-        .requirements-list li:nth-child(4) { animation-delay: 1.6s; }
-        .requirements-list li:nth-child(5) { animation-delay: 1.8s; }
-        .requirements-list li:nth-child(6) { animation-delay: 2s; }
-        .requirements-list li:nth-child(7) { animation-delay: 2.2s; }
-        
-        @keyframes listItemAppear {
-            100% {
-                opacity: 1;
-            }
-        }
-        
-        .requirement-number {
-            display: inline-block;
-            background-color: #000;
-            color: #fff;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 28px;
-            font-weight: 700;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        
-        /* How to Apply */
-        .apply-section {
-            background-color: #f9f9f9;
-            border-radius: 15px;
-            padding: 3rem;
-            margin: 4rem 0;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            opacity: 0;
-            animation: fadeIn 1s ease-out 2.5s forwards;
-        }
-        
-        .apply-section:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 8px;
-            height: 100%;
-            background-color: #000;
-        }
-        
-        .copy-box {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-        
-        .copy-text {
-            font-family: 'Courier New', monospace;
-            font-size: 1.1rem;
-            color: #000;
-            line-height: 1.6;
-        }
-        
-        .copy-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background-color: #000;
-            color: #fff;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .copy-btn:hover {
-            background-color: #333;
-        }
-        
-        .social-link {
-            color: #000;
-            font-weight: 700;
-            text-decoration: none;
-            border-bottom: 2px solid #000;
-            transition: all 0.3s;
-        }
-        
-        .social-link:hover {
-            color: #555;
-            border-bottom-color: #555;
-        }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            color: #777;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            margin-top: 2rem;
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .cards-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .apply-section {
-                padding: 2rem 1.5rem;
-            }
-            
-            .logo-img {
-                max-width: 200px;
-            }
-            
-            .volume-img {
-                max-width: 100%;
-            }
-            
-            .section-title {
-                font-size: 1.7rem;
-            }
-            
-            .intro-text {
-                font-size: 1.2rem;
-            }
-            
-            .back-to-home {
-                position: relative;
-                top: 0;
-                left: 0;
-                margin-bottom: 1.5rem;
-            }
-            
-            .home-btn {
-                padding: 8px 16px;
-                font-size: 0.85rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kazine · Proposal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffffff;
+      font-family: 'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: #000000;
+      line-height: 1.5;
+      font-weight: 400;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    h1, h2, h3, h4, p, li, a, button, div, span {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+      width: 100%;
+    }
+
+    /* ----- SPLASH (sesi 1) - FULLSCREEN, NO HEADER/FOOTER ----- */
+    #splashScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+      visibility: visible;
+      pointer-events: none;
+    }
+    #splashScreen.hide-splash {
+      opacity: 0;
+      visibility: hidden;
+    }
+    #splashScreen img {
+      max-width: 220px;
+      width: 80%;
+      height: auto;
+      display: block;
+      filter: grayscale(0%) contrast(1);
+    }
+
+    /* ----- SEMUA HALAMAN (page) ADALAH FULL VIEWPORT ----- */
+    .page {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 1;
+      overflow-y: auto;
+    }
+    .page.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 10;
+    }
+
+    /* ----- HEADER (LOGO KACHOO, tanpa tombol home) ----- */
+    .page-header {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 18px 0;
+      flex-shrink: 0;
+      width: 100%;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+    }
+    .logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 200px;
+      object-fit: contain;
+      filter: grayscale(100%) contrast(1.1);
+      cursor: pointer;
+    }
+
+    /* ----- ISI HALAMAN (flexible) ----- */
+    .page-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px 40px 20px;
+      width: 100%;
+    }
+    .page-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* PAGE NUMBER */
+    .page-number {
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: #888;
+      letter-spacing: 2px;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+
+    /* intro page */
+    .intro-logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .intro-logo img {
+      max-width: 180px;
+      width: 80%;
+      height: auto;
+    }
+    .intro-text {
+      font-size: 1.3rem;
+      font-weight: 400;
+      max-width: 800px;
+      margin: 0 auto 20px auto;
+      color: #000000;
+      line-height: 1.6;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    .intro-text a {
+      color: #000000;
+      font-weight: 700;
+      text-decoration: none !important;
+      transition: opacity 0.2s;
+    }
+    .intro-text a:hover {
+      opacity: 0.6;
+      text-decoration: none !important;
+    }
+
+    /* products slider */
+    .products-headline {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .slider-product-wrapper {
+      position: relative;
+      margin: 10px 0 25px;
+      padding: 0 50px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .slider-product-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      will-change: transform;
+      width: 100%;
+    }
+    .product-slide {
+      flex: 0 0 100%;
+      text-align: center;
+      padding: 0 5px;
+    }
+    .product-slide img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      background: #f8f8f8;
+      border-radius: 24px;
+      border: 1px solid #eaeaea;
+      display: block;
+      margin: 0 auto;
+    }
+    .product-slide .slide-label {
+      margin-top: 14px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #000;
+      letter-spacing: 0.3px;
+    }
+
+    .slider-btn-out {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.85);
+      border: 1px solid #ccc;
+      color: #000;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: 60px;
+      font-weight: 300;
+      transition: 0.2s;
+      z-index: 10;
+      line-height: 1;
+      backdrop-filter: blur(2px);
+    }
+    .slider-btn-out:hover {
+      background: rgba(0,0,0,0.06);
+      border-color: #888;
+    }
+    .slider-btn-out.btn-left-out { left: 0px; }
+    .slider-btn-out.btn-right-out { right: 0px; }
+    .slider-btn-out.disabled {
+      opacity: 0.2;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .product-dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .product-dots .dot {
+      width: 9px;
+      height: 9px;
+      background: #bbb;
+      border-radius: 50%;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .product-dots .dot.active-dot {
+      background: #000;
+      transform: scale(1.25);
+    }
+
+    /* navigation buttons (back & next) */
+    .nav-btn-wrap {
+      text-align: center;
+      margin-top: 18px;
+      padding-bottom: 6px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .nav-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #000;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 300;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-decoration: none;
+    }
+    .nav-circle:hover {
+      transform: scale(1.04);
+      background: #1a1a1a;
+    }
+    .nav-circle i {
+      font-size: 20px;
+    }
+    .nav-circle.back {
+      background: #e0e0e0;
+      color: #000;
+    }
+    .nav-circle.back:hover {
+      background: #cccccc;
+    }
+
+    /* kosong (sesi 6) */
+    .empty-placeholder {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #333;
+      padding: 40px 0;
+      font-weight: 300;
+      letter-spacing: 0.3px;
+      background: #fafafa;
+      border-radius: 40px;
+      border: 1px dashed #ccc;
+      margin: 10px 0 20px;
+    }
+
+    /* ----- MAGAZINE GRID (sesi 4) - PAKAI POPPINS ----- */
+    .magazine-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+      margin: 5px 0 15px;
+    }
+
+    .magazine-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.4s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .magazine-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .magazine-cover {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: #f0f0f0;
+      border-radius: 4px;
+    }
+
+    .magazine-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .magazine-card:hover .magazine-cover img {
+      transform: scale(1.03);
+    }
+
+    .magazine-info {
+      padding: 14px 8px 4px;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .magazine-issue {
+      font-size: 10px;
+      color: #8a8a8a;
+      letter-spacing: 1px;
+      text-transform: none;
+      font-weight: 400;
+      margin-bottom: 4px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .magazine-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 0px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 11px;
+      color: #8a8a8a;
+      letter-spacing: 1px;
+      text-transform: none;
+      font-weight: 400;
+      margin-top: -6px;
+      margin-bottom: 20px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* ----- VIBE PAGE (sesi 5) - TEXT JUSTIFY ----- */
+    .vibe-content {
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: #000;
+      max-width: 850px;
+      margin: 0 auto;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    .vibe-content p {
+      margin-bottom: 14px;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    .vibe-content strong {
+      font-weight: 700;
+    }
+    .vibe-content a {
+      color: #000000;
+      font-weight: 700;
+      text-decoration: none !important;
+      transition: opacity 0.2s;
+    }
+    .vibe-content a:hover {
+      opacity: 0.6;
+      text-decoration: none !important;
+    }
+    .vibe-content ul {
+      list-style: none;
+      padding-left: 6px;
+      margin: 8px 0 12px 0;
+    }
+    .vibe-content ul li {
+      padding: 2px 0 2px 18px;
+      position: relative;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    .vibe-content ul li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #000;
+    }
+    .vibe-headline {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 16px 0 8px 0;
+      text-align: left;
+    }
+    .vibe-divider {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 16px 0;
+    }
+
+    /* ----- THANK YOU PAGE (sesi 6) ----- */
+    .thankyou-content {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+    .thankyou-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .thankyou-sub {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #333;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    .thankyou-sub a {
+      color: #000000;
+      font-weight: 700;
+      text-decoration: none !important;
+      transition: opacity 0.2s;
+    }
+    .thankyou-sub a:hover {
+      opacity: 0.6;
+      text-decoration: none !important;
+    }
+    .thankyou-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 30px;
+      text-align: left;
+      margin: 20px 0 10px;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+    .thankyou-grid .label {
+      font-weight: 600;
+      color: #000;
+    }
+    .thankyou-grid .value {
+      font-weight: 400;
+      color: #222;
+    }
+    .thankyou-grid .full-width {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 30px;
+      text-align: left;
+      margin-top: 6px;
+      padding-top: 10px;
+      border-top: 1px solid #eee;
+    }
+    .thankyou-grid .full-width .label {
+      font-weight: 600;
+      color: #000;
+    }
+    .thankyou-grid .full-width .value {
+      font-weight: 400;
+      color: #222;
+    }
+
+    /* ----- FOOTER - SAMA UNTUK SEMUA PAGE ----- */
+    .page-footer {
+      background: #000000;
+      color: #ffffff;
+      padding: 30px 0 16px;
+      flex-shrink: 0;
+      width: 100%;
+      margin-top: 12px;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .footer-section h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+      display: inline-block;
+    }
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      background: #ffffff;
+    }
+    .footer-section p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      font-size: 14px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .footer-links a:hover {
+      color: #ffffff;
+      transform: translateX(4px);
+    }
+    .social-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: #ffffff;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-size: 14px;
+    }
+    .social-link:hover {
+      background: #ffffff;
+      color: #000000;
+      transform: translateY(-3px);
+    }
+    .x-logo {
+      font-weight: 900;
+      font-size: 14px;
+    }
+    .footer-links i {
+      color: rgba(255,255,255,0.6);
+      width: 14px;
+      font-size: 14px;
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 11px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 30px;
+      }
+    }
+    
+    @media (max-width: 700px) {
+      .magazine-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .container {
+        padding: 0 14px;
+      }
+      .products-headline {
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+      }
+      .magazine-title {
+        font-size: 15px;
+      }
+      .magazine-info {
+        padding: 10px 4px 2px;
+      }
+      .section-subtitle {
+        font-size: 10px;
+        margin-bottom: 14px;
+      }
+      .slider-product-wrapper {
+        padding: 0 35px;
+        margin: 5px 0 16px;
+      }
+      .slider-btn-out {
+        font-size: 1.6rem;
+        padding: 4px 10px;
+      }
+      .page-body {
+        padding: 40px 10px 30px 10px;
+      }
+      .intro-text {
+        font-size: 1.1rem;
+        margin-bottom: 14px;
+      }
+      .intro-logo {
+        margin-bottom: 20px;
+      }
+      .intro-logo img {
+        max-width: 140px;
+      }
+      .vibe-content {
+        font-size: 0.95rem;
+      }
+      .vibe-headline {
+        font-size: 1.3rem;
+      }
+      .nav-btn-wrap {
+        gap: 14px;
+        margin-top: 14px;
+      }
+      .nav-circle {
+        width: 46px;
+        height: 46px;
+        font-size: 18px;
+      }
+      .nav-circle i {
+        font-size: 17px;
+      }
+      .thankyou-title {
+        font-size: 2.5rem;
+      }
+      .thankyou-grid {
+        grid-template-columns: 1fr;
+        gap: 4px 0;
+        font-size: 0.9rem;
+      }
+      .thankyou-grid .full-width {
+        grid-column: 1;
+        grid-template-columns: 1fr;
+        gap: 4px 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px 16px;
+      }
+      .footer-section h3 {
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+      .footer-section h3::after {
+        width: 16px;
+        bottom: -3px;
+      }
+      .footer-links li {
+        font-size: 11px;
+        margin-bottom: 4px;
+        gap: 5px;
+      }
+      .footer-links a {
+        font-size: 11px;
+      }
+      .footer-links i {
+        font-size: 11px;
+        width: 12px;
+      }
+      .footer-section p {
+        font-size: 11px;
+      }
+      .social-link {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+      }
+      .social-links {
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .x-logo {
+        font-size: 12px;
+      }
+      .copyright {
+        font-size: 10px;
+        padding-top: 12px;
+      }
+      .page-footer {
+        padding: 20px 0 12px;
+        margin-top: 8px;
+      }
+      .footer-content {
+        margin-bottom: 12px;
+      }
+      .page-body {
+        padding: 34px 8px 24px 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slider-product-wrapper {
+        padding: 0 28px;
+        margin: 0px 0 12px;
+      }
+      .slider-btn-out {
+        font-size: 1.3rem;
+        padding: 3px 8px;
+      }
+      .product-slide img {
+        max-height: 280px;
+        border-radius: 16px;
+      }
+      .product-slide .slide-label {
+        font-size: 1rem;
+        margin-top: 10px;
+      }
+      .product-dots {
+        gap: 8px;
+        margin-top: 4px;
+      }
+      .product-dots .dot {
+        width: 7px;
+        height: 7px;
+      }
+      .magazine-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .magazine-title {
+        font-size: 12px;
+      }
+      .magazine-issue {
+        font-size: 8px;
+        letter-spacing: 0.5px;
+      }
+      .magazine-info {
+        padding: 6px 2px 0px;
+      }
+      .magazine-cover {
+        border-radius: 3px;
+      }
+      .section-subtitle {
+        font-size: 9px;
+        margin-bottom: 10px;
+        margin-top: -4px;
+      }
+      .products-headline {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+      }
+      .page-body {
+        padding: 28px 6px 20px 6px;
+      }
+      .intro-text {
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+      .intro-logo img {
+        max-width: 120px;
+      }
+      .intro-logo {
+        margin-bottom: 14px;
+      }
+      .nav-btn-wrap {
+        gap: 12px;
+        margin-top: 12px;
+        padding-bottom: 2px;
+      }
+      .nav-circle {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+      }
+      .nav-circle i {
+        font-size: 15px;
+      }
+      .page-number {
+        font-size: 0.7rem;
+        margin-top: 6px;
+        margin-bottom: 2px;
+      }
+      .empty-placeholder {
+        padding: 24px 0;
+        font-size: 1rem;
+        margin: 4px 0 12px;
+      }
+      .vibe-content {
+        font-size: 0.88rem;
+        line-height: 1.6;
+      }
+      .vibe-content p {
+        margin-bottom: 10px;
+      }
+      .vibe-headline {
+        font-size: 1.1rem;
+        margin: 10px 0 4px 0;
+      }
+      .vibe-content ul li {
+        padding: 1px 0 1px 14px;
+        font-size: 0.88rem;
+      }
+      .vibe-divider {
+        margin: 12px 0;
+      }
+      .page-footer {
+        padding: 16px 0 10px;
+        margin-top: 6px;
+      }
+      .thankyou-title {
+        font-size: 2rem;
+        margin-bottom: 12px;
+      }
+      .thankyou-sub {
+        font-size: 0.95rem;
+        margin-bottom: 18px;
+      }
+      .thankyou-grid {
+        font-size: 0.82rem;
+        gap: 2px 0;
+        line-height: 1.6;
+      }
+      .thankyou-grid .full-width {
+        grid-template-columns: 1fr;
+        gap: 2px 0;
+        padding-top: 8px;
+        margin-top: 4px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Animated Background Elements -->
-    <div class="bg-elements" id="bgElements"></div>
-    
-    <!-- Header Section -->
-    <header>
-        <!-- Back to Home Button -->
-        <div class="back-to-home">
-            <a href="index.html" class="home-btn">
-                <i class="fas fa-arrow-left"></i>
-                Back to Home
-            </a>
-        </div>
-        
-        <div class="logo-container">
-            <!-- Ganti dengan gambar KAZINE.png -->
-            <img src="KAZINE.png" alt="KAZINE" class="logo-img">
-        </div>
-        
-        <!-- Note: Link dan gambar volume 1 issue 1 telah dihapus sesuai permintaan -->
-        
-        <h2 class="section-title" style="margin-top: 3rem;">Open Audition for Campaign & Commercial Models</h2>
-    </header>
-    
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Introduction -->
-        <section class="intro-section">
-            <p class="intro-text">
-                For <span class="highlight">Kachoo</span>, creativity knows no bounds. Creativity is about <span class="highlight">YOU</span> and how you show <span class="highlight">YOURSELF</span> to the world. We're searching for fresh faces with unique personalities to feature in our upcoming campaigns and commercial projects.
-            </p>
-        </section>
-        
-        <!-- Requirements -->
-        <section class="requirements-section">
-            <h2 class="section-title">Requirements</h2>
-            <ul class="requirements-list">
-                <li>
-                    <span class="requirement-number">1</span>
-                    <span class="requirement-text">Have a <strong>great, attractive, and unique portfolio</strong>. You can create a portfolio that's <strong>THE MOST VERSION OF YOURSELF</strong>. Whether it's aesthetic, elegant, calm, bold, eccentric, metal, fun, or anything else that represents YOU.</span>
-                </li>
-                <li>
-                    <span class="requirement-number">2</span>
-                    <span class="requirement-text">Submit your <strong>full name and stage name (IC ONLY)</strong>.</span>
-                </li>
-                <li>
-                    <span class="requirement-number">3</span>
-                    <span class="requirement-text"><strong>No experience? NOT A PROBLEM!</strong> We open BIG OPPORTUNITIES for those who want to start a career as a model. We will help you! Just be honest if you're new to the modeling world and that's never be a weakness!</span>
-                </li>
-                <li>
-                    <span class="requirement-number">4</span>
-                    <span class="requirement-text"><strong>No multi-character/face claim</strong>.</span>
-                </li>
-                <li>
-                    <span class="requirement-number">5</span>
-                    <span class="requirement-text"><strong>No agency representation? NOT A PROBLEM!</strong></span>
-                </li>
-                <li>
-                    <span class="requirement-number">6</span>
-                    <span class="requirement-text"><strong>Consistent and serious in appropriate situations</strong>.</span>
-                </li>
-                <li>
-                    <span class="requirement-number">7</span>
-                    <span class="requirement-text"><strong>THAT'S ALL! Easy, right?</strong></span>
-                </li>
-            </ul>
-        </section>
-        
-        <!-- Benefits -->
-        <section class="benefits-section">
-            <h2 class="section-title">What's in it for you?</h2>
-            <div class="cards-container">
-                <div class="card">
-                    <h3 class="card-title"><i class="fas fa-money-bill-wave"></i> Payment Per Project & Content</h3>
-                    <p class="card-content">Payment per project AND per social media content! We're willing to give extra bonuses if you're a good fit working with us!</p>
-                </div>
-                <div class="card">
-                    <h3 class="card-title"><i class="fas fa-bullhorn"></i> Promotion on Our Official Account</h3>
-                    <p class="card-content">Get promoted on our official social media accounts to boost your visibility and reach.</p>
-                </div>
-                <div class="card">
-                    <h3 class="card-title"><i class="fas fa-chart-line"></i> Add to Your Portfolio</h3>
-                    <p class="card-content">Gain valuable experience to enhance your modeling portfolio for future opportunities.</p>
-                </div>
-                <div class="card">
-                    <h3 class="card-title"><i class="fas fa-network-wired"></i> New Connections</h3>
-                    <p class="card-content">Build relationships with fellow models, photographers, and internal Kachoo team connections.</p>
-                </div>
-                <div class="card">
-                    <h3 class="card-title"><i class="fas fa-book-open"></i> Featured in Kazine</h3>
-                    <p class="card-content">Get featured in <strong>Kazine Volume 1 Issue 2</strong> - our exclusive digital publication.</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- How to Apply -->
-        <section class="apply-section">
-            <h2 class="section-title">How to Apply</h2>
-            <p>Just send your portfolio to <a href="https://twitter.com/Haikachoo" target="_blank" class="social-link">@Haikachoo</a> with the following format:</p>
-            
-            <div class="copy-box">
-                <p class="copy-text">You stole my attention! I want to join KAZINE's model audition!<br><br>
-                Here is my portfolio:<br></p>
-                <button class="copy-btn" onclick="copyToClipboard()">COPY TEXT</button>
-            </div>
-            
-            <p><strong>We'll be waiting! Show us YOUR most authentic self!</strong></p>
-        </section>
-    </div>
-    
-    <!-- Footer -->
-    <footer>
-        <p>KAZINE VOLUME 1 • KACHOO</p>
-        <p>© 2026 Kachoo Creative. All rights reserved.</p>
-    </footer>
 
-    <script>
-        // Create animated background elements
-        const bgElements = document.getElementById('bgElements');
-        const colors = ['0,0,0', '20,20,20', '40,40,40'];
+<!-- SESI 1: SPLASH (logo Kazine) - FULLSCREEN, NO HEADER/FOOTER -->
+<div id="splashScreen">
+  <img src="https://thekachoo.github.io/Home/KAZINE.png" alt="Kazine">
+</div>
+
+<!-- ============================================================ -->
+<!-- SESI 2: INTRODUCTION (Page 1) -->
+<!-- ============================================================ -->
+<div class="page" id="pageIntro">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo" onerror="this.src='https://placehold.co/200x60/eeeeee/333333?text=KACHOO'">
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <div class="intro-logo">
+        <img src="https://thekachoo.github.io/Home/KAZINE.png" alt="Kazine">
+      </div>
+      <div class="intro-text">
+        Kazine is a lifestyle brand owned by <a href="https://thekachoo.github.io/Office/About.html" target="_blank">The Kachoo</a>, officially launched in early January 2026. Currently, Kazine has two released products, Choosic and Chozy, which are sold through the <a href="COLLECTION.html" target="_blank">Kazine Collection</a> online shop platform.<br><br>
+        Kazine also releases magazines focusing on lifestyle topics and promotional content in partnership with collaborators as sponsors. As of now, Kazine has published two magazines for its Vol 1.
+      </div>
+      <div class="page-number">PAGE 1</div>
+      <div class="nav-btn-wrap">
+        <div style="width:52px;"></div>
+        <button class="nav-circle" onclick="goToPage('pageProducts')"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SESI 3: OUR PRODUCTS (Page 2) -->
+<!-- ============================================================ -->
+<div class="page" id="pageProducts">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo" onerror="this.src='https://placehold.co/200x60/eeeeee/333333?text=KACHOO'">
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <h2 class="products-headline">Our Products</h2>
+      <div class="slider-product-wrapper" id="productSlider">
+        <div class="slider-product-track" id="productTrack"></div>
+        <button class="slider-btn-out btn-left-out" id="prodLeft">‹</button>
+        <button class="slider-btn-out btn-right-out" id="prodRight">›</button>
+        <div class="product-dots" id="productDots"></div>
+      </div>
+      <div class="page-number">PAGE 2</div>
+      <div class="nav-btn-wrap">
+        <button class="nav-circle back" onclick="goToPage('pageIntro')"><i class="fas fa-arrow-left"></i></button>
+        <button class="nav-circle" onclick="goToPage('pageMagazines')"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SESI 4: OUR MAGAZINE ISSUES (Page 3) - PAKAI POPPINS -->
+<!-- ============================================================ -->
+<div class="page" id="pageMagazines">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo" onerror="this.src='https://placehold.co/200x60/eeeeee/333333?text=KACHOO'">
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <h2 class="products-headline" style="margin-bottom:4px; font-family:'Poppins', sans-serif;">Kazine Volume 1</h2>
+      <div class="section-subtitle">Issue 01 — Issue 02</div>
+      
+      <div class="magazine-grid">
+        <a href="https://thekachoo.github.io/Home/kazinevol1.html" target="_blank" class="magazine-card">
+          <div class="magazine-cover">
+            <img src="https://thekachoo.github.io/KAZINE/issue1.png" alt="Issue 1 - New Year New Vibes" onerror="this.src='https://placehold.co/600x800/eeeeee/222?text=ISSUE+01'">
+          </div>
+          <div class="magazine-info">
+            <div class="magazine-issue">Issue 01</div>
+            <div class="magazine-title">New Year New Vibes</div>
+          </div>
+        </a>
+        <a href="https://thekachoo.github.io/KAZINE/vol1issue2.html" target="_blank" class="magazine-card">
+          <div class="magazine-cover">
+            <img src="https://thekachoo.github.io/KAZINE/issue2.png" alt="Issue 2 - Be My Valentine" onerror="this.src='https://placehold.co/600x800/eeeeee/222?text=ISSUE+02'">
+          </div>
+          <div class="magazine-info">
+            <div class="magazine-issue">Issue 02</div>
+            <div class="magazine-title">Be My Valentine</div>
+          </div>
+        </a>
+      </div>
+      
+      <div class="page-number">PAGE 3</div>
+      <div class="nav-btn-wrap">
+        <button class="nav-circle back" onclick="goToPage('pageProducts')"><i class="fas fa-arrow-left"></i></button>
+        <button class="nav-circle" onclick="goToPage('pageVibe')"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SESI 5: THIS ISSUE VIBE (Page 4) - TEXT JUSTIFY -->
+<!-- ============================================================ -->
+<div class="page" id="pageVibe">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo" onerror="this.src='https://placehold.co/200x60/eeeeee/333333?text=KACHOO'">
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <h2 class="products-headline" style="margin-bottom:16px;">This Issue Vibe</h2>
+      
+      <div class="vibe-content">
+        <p>KAZINE is getting ready to drop Vol. 1 Issue 3, featuring two new products: <strong>Chooler</strong> (Tumbler) and <strong>Choffee</strong> (With New Design for Kachoo's Coffee Box).</p>
         
-        for (let i = 0; i < 15; i++) {
-            // Create circles
-            const circle = document.createElement('div');
-            circle.classList.add('circle');
-            const size = Math.random() * 100 + 20;
-            circle.style.width = `${size}px`;
-            circle.style.height = `${size}px`;
-            circle.style.left = `${Math.random() * 100}%`;
-            circle.style.top = `${Math.random() * 100}%`;
-            circle.style.backgroundColor = `rgba(${colors[Math.floor(Math.random() * colors.length)]}, ${Math.random() * 0.05})`;
-            circle.style.animationDuration = `${Math.random() * 30 + 20}s`;
-            bgElements.appendChild(circle);
-            
-            // Create lines
-            if (i < 8) {
-                const line = document.createElement('div');
-                line.classList.add('line');
-                line.style.width = `${Math.random() * 300 + 100}px`;
-                line.style.left = `${Math.random() * 100}%`;
-                line.style.top = `${Math.random() * 100}%`;
-                line.style.animationDuration = `${Math.random() * 20 + 10}s`;
-                line.style.animationDelay = `${Math.random() * 5}s`;
-                bgElements.appendChild(line);
-            }
-        }
+        <p>This issue is all about healthy living and connecting with nature. The magazine will focus on nature, outdoor travel, wellness, and practical healthy lifestyle tips.</p>
         
-        // Copy to clipboard function
-        function copyToClipboard() {
-            const text = `"You stole my attention! I want to join Kachoo's model audition!\n\nHere is my portfolio:\n(can be sent via link or PDF through DM)"`;
-            
-            navigator.clipboard.writeText(text).then(() => {
-                const btn = document.querySelector('.copy-btn');
-                const originalText = btn.textContent;
-                btn.textContent = 'COPIED!';
-                btn.style.backgroundColor = '#555';
-                
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.backgroundColor = '#000';
-                }, 2000);
-            });
-        }
+        <p>We are looking for models, influencers, and actors whose personal brand fits this issue's vibe. We are also open to collaborations with brands, places, or services that align with our theme.</p>
         
-        // Add scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        <p><strong>Target Release:</strong> Late August or Early September 2026</p>
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+        <hr class="vibe-divider">
         
-        // Observe cards for animation
-        document.querySelectorAll('.card').forEach(card => {
-            observer.observe(card);
+        <div class="vibe-headline">Editorial and Technical Guidelines</div>
+        <p>1. All magazine editing is fully handled by the KAZINE Team.<br>
+        2. Core content is produced by the KAZINE Team. Sponsors should provide their own promotional copy, which our editorial team will refine for the final draft.<br>
+        3. Product sponsors must send their products as gifts for the featured talent and the Kachoo Team involved in the production. Service sponsors can discuss terms directly with the KAZINE Team.<br>
+        4. Selected talent must participate in the photoshoot, detailed info can be accessed <a href="PhotoshootGuideline.html" target="_blank"><strong>here</strong></a>. Talent must also retweet or create at least one post when Vol. 1 Issue 3 drops.</p>
+        
+        <hr class="vibe-divider">
+        
+        <div class="vibe-headline">Talent Requirements</div>
+        <ul>
+          <li>No age limit</li>
+          <li>Open to everyone, including talent who worked with us on previous issues</li>
+          <li>Fits the concept of Issue 3 or can adapt well to the theme</li>
+          <li>All character vibes and styles are welcome, as long as content avoids sensitive topics (SARA) and stays relevant</li>
+          <li>Must not be involved in active controversies. If a controversy comes up, the talent agrees to step down from this issue (while remaining eligible for future ones). KAZINE reserves the right to fill or leave the spot open</li>
+          <li>Open to both agency-represented and independent talent</li>
+          <li>Available for the scheduled photoshoot</li>
+          <li>Willing to post at least one piece of promotional content upon release</li>
+        </ul>
+        
+        <hr class="vibe-divider">
+        
+        <div class="vibe-headline">How to Apply</div>
+        <p>Selection will be made directly from replies to our <a href="#" target="_blank"><strong>tweet</strong></a>, so make sure your response stands out.</p>
+      </div>
+      
+      <div class="page-number">PAGE 4</div>
+      <div class="nav-btn-wrap">
+        <button class="nav-circle back" onclick="goToPage('pageMagazines')"><i class="fas fa-arrow-left"></i></button>
+        <button class="nav-circle" onclick="goToPage('pageThankyou')"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SESI 6: THANK YOU (Page 5) -->
+<!-- ============================================================ -->
+<div class="page" id="pageThankyou">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo" onerror="this.src='https://placehold.co/200x60/eeeeee/333333?text=KACHOO'">
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <div class="thankyou-content">
+        <div class="thankyou-title">Thank You</div>
+        
+        <div class="thankyou-sub">
+          This Issue handled by Kazine Team<br>
+          Official Account : <a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a><br>
+          Contact Person : <a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a>
+        </div>
+        
+        <div class="thankyou-grid">
+          <div><span class="label">Concept Issue by</span></div>
+          <div><span class="value">Gathur Delano Kafka</span></div>
+          
+          <div><span class="label">Magazine Design by</span></div>
+          <div><span class="value">Ashraffi Yudha & Shirinazar Arunika Yasminn</span></div>
+          
+          <div><span class="label">Design Product Choosic & Chozy</span></div>
+          <div><span class="value">Shirinazar Arunika Yasminn</span></div>
+          
+          <div><span class="label">Design Product Chooler & Choffee</span></div>
+          <div><span class="value">Lucius Vincent</span></div>
+          
+          <div><span class="label">Color Palette by</span></div>
+          <div><span class="value">Nona Rengganis</span></div>
+          
+          <div><span class="label">Partnership by</span></div>
+          <div><span class="value">Vivianne Jamila & Geriel Rakhastra</span></div>
+          
+          <div><span class="label">Payment by</span></div>
+          <div><span class="value">Ningrum Anindita Kafka</span></div>
+          
+          <div class="full-width">
+            <span class="label">Photographer :</span>
+            <span class="value">The Kadio by Kachoo</span>
+          </div>
+          
+          <div class="full-width">
+            <span class="label">Make Up Artist :</span>
+            <span class="value">Ayu Merona by Nona Rengganis</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="page-number">PAGE 5</div>
+      <div class="nav-btn-wrap">
+        <button class="nav-circle back" onclick="goToPage('pageVibe')"><i class="fas fa-arrow-left"></i></button>
+        <div style="width:52px;"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ----- SPLASH (fade out setelah 2 detik) -----
+  const splash = document.getElementById('splashScreen');
+  setTimeout(() => {
+    splash.classList.add('hide-splash');
+    document.getElementById('pageIntro').classList.add('active');
+  }, 2000);
+
+  // ----- FUNGSI PINDAH HALAMAN (PISAH HALAMAN) -----
+  function goToPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById(pageId);
+    if (target) target.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  // ----- PRODUCT SLIDER (4 slide) -----
+  const products = [
+    { img: 'https://thekachoo.github.io/KAZINE/CGB1.png', label: 'Choosic Graphite Black' },
+    { img: 'https://thekachoo.github.io/KAZINE/CW1.png', label: 'Choosic White' },
+    { img: 'https://thekachoo.github.io/KAZINE/MUGB1.png', label: 'Chozy Black' },
+    { img: 'https://thekachoo.github.io/KAZINE/MUGW1.png', label: 'Chozy White' }
+  ];
+
+  const track = document.getElementById('productTrack');
+  const dotsContainer = document.getElementById('productDots');
+  const leftBtn = document.getElementById('prodLeft');
+  const rightBtn = document.getElementById('prodRight');
+
+  if (track) {
+    products.forEach((p) => {
+      const slide = document.createElement('div');
+      slide.className = 'product-slide';
+      const img = document.createElement('img');
+      img.src = p.img;
+      img.alt = p.label;
+      img.onerror = function() { this.src = 'https://placehold.co/800x500/eeeeee/222?text=' + encodeURIComponent(p.label); };
+      slide.appendChild(img);
+      const label = document.createElement('div');
+      label.className = 'slide-label';
+      label.textContent = p.label;
+      slide.appendChild(label);
+      track.appendChild(slide);
+    });
+
+    const total = products.length;
+    let current = 0;
+
+    function updateSlider(instant = false) {
+      const shift = -current * 100;
+      track.style.transition = instant ? 'none' : 'transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1)';
+      track.style.transform = `translateX(${shift}%)`;
+      updateDots();
+      updateButtons();
+    }
+
+    function updateDots() {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === current ? ' active-dot' : '');
+        dot.addEventListener('click', () => {
+          if (i !== current) {
+            current = i;
+            updateSlider(false);
+          }
         });
-        
-        // Initial animations
-        document.addEventListener('DOMContentLoaded', () => {
-            // Trigger animations for elements
-            const animatedElements = document.querySelectorAll('.logo-img, .volume-img, .section-title, .intro-text');
-            animatedElements.forEach(el => {
-                el.style.animationPlayState = 'running';
-            });
-        });
-    </script>
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateButtons() {
+      if (leftBtn) {
+        if (current === 0) leftBtn.classList.add('disabled');
+        else leftBtn.classList.remove('disabled');
+      }
+      if (rightBtn) {
+        if (current === total - 1) rightBtn.classList.add('disabled');
+        else rightBtn.classList.remove('disabled');
+      }
+    }
+
+    if (leftBtn) leftBtn.addEventListener('click', () => { if (current > 0) { current--; updateSlider(false); } });
+    if (rightBtn) rightBtn.addEventListener('click', () => { if (current < total - 1) { current++; updateSlider(false); } });
+
+    updateSlider(true);
+  }
+</script>
 </body>
     </html>
