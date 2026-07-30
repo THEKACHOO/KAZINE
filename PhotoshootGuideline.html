@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kazine · Photoshoot Guideline & Venue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffffff;
+      font-family: 'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: #000000;
+      line-height: 1.5;
+      font-weight: 400;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    h1, h2, h3, h4, p, li, a, button, div, span {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+      width: 100%;
+    }
+
+    /* ----- SEMUA HALAMAN (page) ADALAH FULL VIEWPORT ----- */
+    .page {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 1;
+      overflow-y: auto;
+    }
+    .page.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 10;
+    }
+
+    /* ----- HEADER (LOGO KACHOO) ----- */
+    .page-header {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 18px 0;
+      flex-shrink: 0;
+      width: 100%;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+    }
+    .logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 200px;
+      object-fit: contain;
+      filter: grayscale(100%) contrast(1.1);
+      cursor: pointer;
+    }
+
+    /* ----- ISI HALAMAN (flexible) ----- */
+    .page-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px 40px 20px;
+      width: 100%;
+    }
+    .page-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* PAGE NUMBER */
+    .page-number {
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: #888;
+      letter-spacing: 2px;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+
+    /* ----- PAGE 1: GUIDELINE ----- */
+    .guideline-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .guideline-content {
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: #000;
+      max-width: 850px;
+      margin: 0 auto;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    .guideline-content p {
+      margin-bottom: 14px;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    .guideline-content strong {
+      font-weight: 700;
+    }
+    .guideline-content a {
+      color: #000000;
+      font-weight: 700;
+      text-decoration: none !important;
+      transition: opacity 0.2s;
+    }
+    .guideline-content a:hover {
+      opacity: 0.6;
+      text-decoration: none !important;
+    }
+
+    /* ----- PAGE 2: VENUE ----- */
+    .venue-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .venue-sub {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #333;
+      margin-bottom: 18px;
+    }
+    .venue-address {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .venue-address strong {
+      font-weight: 600;
+      color: #000;
+    }
+
+    /* slider venue */
+    .slider-venue-wrapper {
+      position: relative;
+      margin: 10px 0 20px;
+      padding: 0 50px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .slider-venue-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      will-change: transform;
+      width: 100%;
+    }
+    .venue-slide {
+      flex: 0 0 100%;
+      text-align: center;
+      padding: 0 5px;
+    }
+    .venue-slide img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      background: #f8f8f8;
+      border-radius: 24px;
+      border: 1px solid #eaeaea;
+      display: block;
+      margin: 0 auto;
+    }
+    .venue-slide .slide-label {
+      margin-top: 12px;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #555;
+      letter-spacing: 0.3px;
+    }
+
+    .slider-btn-out {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.85);
+      border: 1px solid #ccc;
+      color: #000;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: 60px;
+      font-weight: 300;
+      transition: 0.2s;
+      z-index: 10;
+      line-height: 1;
+      backdrop-filter: blur(2px);
+    }
+    .slider-btn-out:hover {
+      background: rgba(0,0,0,0.06);
+      border-color: #888;
+    }
+    .slider-btn-out.btn-left-out { left: 0px; }
+    .slider-btn-out.btn-right-out { right: 0px; }
+    .slider-btn-out.disabled {
+      opacity: 0.2;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .venue-dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 6px;
+    }
+    .venue-dots .dot {
+      width: 9px;
+      height: 9px;
+      background: #bbb;
+      border-radius: 50%;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .venue-dots .dot.active-dot {
+      background: #000;
+      transform: scale(1.25);
+    }
+
+    /* navigation buttons */
+    .nav-btn-wrap {
+      text-align: center;
+      margin-top: 18px;
+      padding-bottom: 6px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .nav-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #000;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 300;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-decoration: none;
+    }
+    .nav-circle:hover {
+      transform: scale(1.04);
+      background: #1a1a1a;
+    }
+    .nav-circle i {
+      font-size: 20px;
+    }
+    .nav-circle.back {
+      background: #e0e0e0;
+      color: #000;
+    }
+    .nav-circle.back:hover {
+      background: #cccccc;
+    }
+
+    /* ----- FOOTER - SAMA UNTUK SEMUA PAGE ----- */
+    .page-footer {
+      background: #000000;
+      color: #ffffff;
+      padding: 30px 0 16px;
+      flex-shrink: 0;
+      width: 100%;
+      margin-top: 12px;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .footer-section h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+      display: inline-block;
+    }
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      background: #ffffff;
+    }
+    .footer-section p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      font-size: 14px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .footer-links a:hover {
+      color: #ffffff;
+      transform: translateX(4px);
+    }
+    .social-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: #ffffff;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-size: 14px;
+    }
+    .social-link:hover {
+      background: #ffffff;
+      color: #000000;
+      transform: translateY(-3px);
+    }
+    .x-logo {
+      font-weight: 900;
+      font-size: 14px;
+    }
+    .footer-links i {
+      color: rgba(255,255,255,0.6);
+      width: 14px;
+      font-size: 14px;
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 11px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 30px;
+      }
+    }
+    
+    @media (max-width: 700px) {
+      .container {
+        padding: 0 14px;
+      }
+      .page-body {
+        padding: 40px 10px 30px 10px;
+      }
+      .guideline-title, .venue-title {
+        font-size: 2rem;
+        margin-bottom: 16px;
+      }
+      .guideline-content {
+        font-size: 0.95rem;
+      }
+      .slider-venue-wrapper {
+        padding: 0 35px;
+        margin: 5px 0 16px;
+      }
+      .slider-btn-out {
+        font-size: 1.6rem;
+        padding: 4px 10px;
+      }
+      .venue-slide img {
+        max-height: 300px;
+      }
+      .nav-btn-wrap {
+        gap: 14px;
+        margin-top: 14px;
+      }
+      .nav-circle {
+        width: 46px;
+        height: 46px;
+        font-size: 18px;
+      }
+      .nav-circle i {
+        font-size: 17px;
+      }
+      .venue-sub {
+        font-size: 1rem;
+      }
+      .venue-address {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px 16px;
+      }
+      .footer-section h3 {
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+      .footer-section h3::after {
+        width: 16px;
+        bottom: -3px;
+      }
+      .footer-links li {
+        font-size: 11px;
+        margin-bottom: 4px;
+        gap: 5px;
+      }
+      .footer-links a {
+        font-size: 11px;
+      }
+      .footer-links i {
+        font-size: 11px;
+        width: 12px;
+      }
+      .footer-section p {
+        font-size: 11px;
+      }
+      .social-link {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+      }
+      .social-links {
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .x-logo {
+        font-size: 12px;
+      }
+      .copyright {
+        font-size: 10px;
+        padding-top: 12px;
+      }
+      .page-footer {
+        padding: 20px 0 12px;
+        margin-top: 8px;
+      }
+      .footer-content {
+        margin-bottom: 12px;
+      }
+      .page-body {
+        padding: 34px 8px 24px 8px;
+      }
+      .guideline-title, .venue-title {
+        font-size: 1.6rem;
+      }
+      .guideline-content {
+        font-size: 0.88rem;
+        line-height: 1.6;
+      }
+      .guideline-content p {
+        margin-bottom: 10px;
+      }
+      .slider-venue-wrapper {
+        padding: 0 28px;
+        margin: 0px 0 12px;
+      }
+      .slider-btn-out {
+        font-size: 1.3rem;
+        padding: 3px 8px;
+      }
+      .venue-slide img {
+        max-height: 240px;
+        border-radius: 16px;
+      }
+      .venue-slide .slide-label {
+        font-size: 0.85rem;
+        margin-top: 8px;
+      }
+      .venue-dots {
+        gap: 8px;
+        margin-top: 4px;
+      }
+      .venue-dots .dot {
+        width: 7px;
+        height: 7px;
+      }
+      .venue-sub {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+      }
+      .venue-address {
+        font-size: 0.82rem;
+        margin-bottom: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-body {
+        padding: 28px 6px 20px 6px;
+      }
+      .guideline-title, .venue-title {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+      }
+      .nav-btn-wrap {
+        gap: 12px;
+        margin-top: 12px;
+        padding-bottom: 2px;
+      }
+      .nav-circle {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+      }
+      .nav-circle i {
+        font-size: 15px;
+      }
+      .page-number {
+        font-size: 0.7rem;
+        margin-top: 6px;
+        margin-bottom: 2px;
+      }
+      .page-footer {
+        padding: 16px 0 10px;
+        margin-top: 6px;
+      }
+      .venue-slide img {
+        max-height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- PAGE 1: PHOTOSHOOT GUIDELINE -->
+<!-- ============================================================ -->
+<div class="page active" id="pageGuideline">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo" onerror="this.src='https://placehold.co/200x60/eeeeee/333333?text=KACHOO'">
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <h1 class="guideline-title">Photoshoot Guideline</h1>
+      
+      <div class="guideline-content">
+        <p>First, the photoshoot schedule must be finalized and agreed upon in advance. Attendance on the scheduled day is mandatory, if a model is unable to attend, the session cannot be postponed, but the model will be required to make separate arrangements for a different schedule.</p>
+        
+        <p>Prior to the shoot, models are expected to prepare a few reference photos to suggest for the magazine feature, which will later be evaluated and discussed by the writers (Out of Character (OOC)) within the GDM.</p>
+        
+        <p>During the photoshoot, Kachoo's team will provide the photographer, who will make an initial selection of shots and share them directly or via a Google Drive link to choose the final shots.</p>
+        
+        <p>The model's approval is required. Should the model disagree with the proposed selection, their prepared reference photos will be considered as alternatives.</p>
+        
+        <p>Once the final selection is agreed upon, the photos will proceed to the editing phase, which is handled entirely by Kazine's team. Please note that once the editing session begins, all selected images are considered final and cannot be disputed or modified.</p>
+        
+        <p>Additionally, models are permitted to share behind-the-scenes content or equipment teasers during the photoshoot. While posting is completely optional, any coverage provided will be calculated as an additional bonus added to the final payment.</p>
+      </div>
+      
+      <div class="page-number">PAGE 1</div>
+      <div class="nav-btn-wrap">
+        <div style="width:52px;"></div>
+        <button class="nav-circle" onclick="goToPage('pageVenue')"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 2: PHOTOSHOOT VENUE -->
+<!-- ============================================================ -->
+<div class="page" id="pageVenue">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo" onerror="this.src='https://placehold.co/200x60/eeeeee/333333?text=KACHOO'">
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <h1 class="venue-title">Photoshoot Venue</h1>
+      <div class="venue-sub">The Kachoo Office Building, Kadio Room</div>
+      <div class="venue-address"><strong>Address:</strong> Jenderal Sudirman Avenue, Lots 61-62, South Jakarta, Indonesia.</div>
+      
+      <!-- Slider Venue -->
+      <div class="slider-venue-wrapper" id="venueSlider">
+        <div class="slider-venue-track" id="venueTrack">
+          <div class="venue-slide">
+            <img src="https://thekachoo.github.io/Office/KR1.png" alt="Kadio Room 1" onerror="this.src='https://placehold.co/800x500/eeeeee/222?text=KR1'">
+          </div>
+          <div class="venue-slide">
+            <img src="https://thekachoo.github.io/Office/KR2.png" alt="Kadio Room 2" onerror="this.src='https://placehold.co/800x500/eeeeee/222?text=KR2'">
+          </div>
+          <div class="venue-slide">
+            <img src="https://thekachoo.github.io/Office/KR3.png" alt="Kadio Room 3" onerror="this.src='https://placehold.co/800x500/eeeeee/222?text=KR3'">
+          </div>
+        </div>
+        <button class="slider-btn-out btn-left-out" id="venueLeft">‹</button>
+        <button class="slider-btn-out btn-right-out" id="venueRight">›</button>
+        <div class="venue-dots" id="venueDots"></div>
+      </div>
+      
+      <div class="page-number">PAGE 2</div>
+      <div class="nav-btn-wrap">
+        <button class="nav-circle back" onclick="goToPage('pageGuideline')"><i class="fas fa-arrow-left"></i></button>
+        <div style="width:52px;"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ----- FUNGSI PINDAH HALAMAN -----
+  function goToPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById(pageId);
+    if (target) target.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  // ----- VENUE SLIDER (3 slide) -----
+  const venueTrack = document.getElementById('venueTrack');
+  const dotsContainer = document.getElementById('venueDots');
+  const leftBtn = document.getElementById('venueLeft');
+  const rightBtn = document.getElementById('venueRight');
+  
+  if (venueTrack) {
+    const totalSlides = document.querySelectorAll('.venue-slide').length;
+    let current = 0;
+
+    function updateVenueSlider(instant = false) {
+      const shift = -current * 100;
+      venueTrack.style.transition = instant ? 'none' : 'transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1)';
+      venueTrack.style.transform = `translateX(${shift}%)`;
+      updateVenueDots();
+      updateVenueButtons();
+    }
+
+    function updateVenueDots() {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === current ? ' active-dot' : '');
+        dot.addEventListener('click', () => {
+          if (i !== current) {
+            current = i;
+            updateVenueSlider(false);
+          }
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateVenueButtons() {
+      if (leftBtn) {
+        if (current === 0) leftBtn.classList.add('disabled');
+        else leftBtn.classList.remove('disabled');
+      }
+      if (rightBtn) {
+        if (current === totalSlides - 1) rightBtn.classList.add('disabled');
+        else rightBtn.classList.remove('disabled');
+      }
+    }
+
+    if (leftBtn) leftBtn.addEventListener('click', () => { if (current > 0) { current--; updateVenueSlider(false); } });
+    if (rightBtn) rightBtn.addEventListener('click', () => { if (current < totalSlides - 1) { current++; updateVenueSlider(false); } });
+
+    updateVenueSlider(true);
+  }
+</script>
+</body>
+</html>
