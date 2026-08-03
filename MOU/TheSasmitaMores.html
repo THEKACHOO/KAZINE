@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memorandum of Understanding — KAZINE Vol. 1 Issue 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#ffffff;
+    font-family:'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color:#000000;
+    line-height:1.5;
+    font-weight:400;
+  }
+  h1,h2,h3,h4,p,li,a,div,span { font-family:'Outfit', sans-serif; }
+
+  .container { max-width:1280px; margin:0 auto; padding:0 28px; width:100%; }
+
+  /* ===== HEADER ===== */
+  .page-header {
+    background:rgba(255,255,255,0.96);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(0,0,0,0.08);
+    padding:14px 0;
+    width:100%;
+  }
+  .navbar { display:flex; align-items:center; justify-content:center; }
+  .logo-img { height:44px; width:auto; max-width:180px; object-fit:contain; filter:grayscale(100%) contrast(1.1); }
+
+  /* ===== BODY / MoU CONTENT ===== */
+  .page-body { width:100%; padding:48px 0 20px; }
+  .page-content { max-width:1500px; margin:0 auto; width:100%; padding:0 24px; }
+
+  .mou-title {
+    font-size:2rem; font-weight:800; letter-spacing:-0.5px; text-align:center;
+    padding-bottom:14px; margin-bottom:6px; border-bottom:2px solid #000;
+  }
+  .mou-parties { text-align:center; margin:18px 0 26px; font-size:1.05rem; }
+  .mou-parties .party-name { font-weight:700; }
+
+  .mou-section { margin:22px 0 8px; }
+  .mou-section h3 {
+    font-size:1.25rem; font-weight:700; text-align:center; margin:26px 0 10px; letter-spacing:-0.2px;
+  }
+  .mou-section p {
+    font-size:1.02rem; line-height:1.75; text-align:justify; text-justify:inter-word; margin-bottom:10px;
+  }
+  .mou-section ul { list-style:none; padding-left:6px; margin:6px 0 12px; }
+  .mou-section ul li {
+    padding:3px 0 3px 24px; position:relative; font-size:1.02rem; line-height:1.7;
+    text-align:justify; text-justify:inter-word;
+  }
+  .mou-section ul li::before { content:"—"; position:absolute; left:0; color:#000; }
+  .mou-section strong { font-weight:700; }
+  .mou-italic { font-style:italic; }
+
+  /* ===== SIGNATURES — 2 GRID KANAN KIRI, TETAP DI MOBILE ===== */
+  .signature-wrap {
+    display:grid; 
+    grid-template-columns:1fr 1fr; 
+    gap:40px;
+    margin:34px 0 10px; 
+    max-width:1100px;
+  }
+  .sig-col p { 
+    font-size:0.85rem; 
+    margin-bottom:3px; 
+    text-align:left; 
+    line-height:1.4;
+  }
+  .sig-col .sig-label { font-weight:700; font-size:0.9rem; margin-top:6px; }
+  .sig-line {
+    margin-top:30px; 
+    margin-bottom:4px; 
+    border-bottom:1px solid #000; 
+    width:60%;
+  }
+  .sig-name { font-weight:700; margin-top:3px; font-size:0.9rem; }
+  .sig-title { font-size:0.8rem; color:#333; }
+
+  .sig-input {
+    border:none; border-bottom:1px solid #000; 
+    background:transparent; 
+    font-family:'Outfit', sans-serif;
+    font-size:0.9rem; font-weight:700;
+    padding:4px 0; width:100%; max-width:200px;
+    outline:none; transition:border-color 0.2s;
+    margin-top:2px;
+  }
+  .sig-input:focus { border-bottom-color:#666; }
+  .sig-input::placeholder { font-weight:400; font-size:0.75rem; color:#aaa; }
+
+  /* TTD - TANPA CONTAINER, LANGSUNG KE PUTIH */
+  .ttd-upload-wrap {
+    display:flex; 
+    align-items:center; 
+    gap:12px; 
+    flex-wrap:wrap;
+    margin-top:8px;
+    cursor:pointer;
+  }
+  .ttd-upload-wrap label {
+    font-size:0.75rem; 
+    background:#f0f0f0; 
+    padding:4px 12px; 
+    border-radius:20px;
+    cursor:pointer; 
+    transition:background 0.2s;
+  }
+  .ttd-upload-wrap label:hover { background:#ddd; }
+  .ttd-upload-wrap input[type="file"] { display:none; }
+  
+  .ttd-preview {
+    max-height:80px; 
+    max-width:200px; 
+    object-fit:contain; 
+    cursor:pointer;
+    display:none;
+    background:transparent;
+    border:none;
+    padding:0;
+  }
+  .ttd-preview-placeholder {
+    font-size:0.7rem; 
+    color:#999; 
+    padding:4px 8px; 
+    border:1px dashed #ddd;
+    border-radius:4px; 
+    min-width:80px; 
+    text-align:center;
+    display:inline-block;
+  }
+
+  .ttd-fixed {
+    max-height:80px; 
+    max-width:200px; 
+    object-fit:contain; 
+    display:block;
+    margin-top:4px;
+    background:transparent;
+    border:none;
+    padding:0;
+  }
+
+  /* DATE - SAMPING (inline) TANPA WRAP */
+  .date-row {
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-top:4px;
+    flex-wrap:nowrap;
+  }
+  .date-label {
+    font-size:0.8rem;
+    color:#555;
+    font-weight:400;
+    white-space:nowrap;
+  }
+  .date-input {
+    border:none; 
+    border-bottom:1px solid #000; 
+    background:transparent; 
+    font-family:'Outfit', sans-serif;
+    font-size:0.8rem;
+    padding:2px 0; 
+    min-width:100px;
+    max-width:180px;
+    outline:none; 
+    transition:border-color 0.2s;
+    display:inline-block;
+    width:auto;
+    flex:1;
+  }
+  .date-input:focus { border-bottom-color:#666; }
+  .date-input::placeholder { color:#aaa; font-size:0.7rem; }
+  .date-fixed {
+    font-size:0.8rem;
+    color:#000;
+    font-weight:500;
+    display:inline-block;
+  }
+
+  /* ===== TOMBOL PRINT ===== */
+  .save-section {
+    margin:30px 0 10px;
+    text-align:center;
+  }
+  .btn-print {
+    background:#000; color:#fff; border:none;
+    font-family:'Outfit', sans-serif; font-weight:600; font-size:1rem;
+    padding:14px 48px; border-radius:40px;
+    cursor:pointer; transition:all 0.25s ease;
+    letter-spacing:0.5px;
+  }
+  .btn-print:hover { 
+    background:#222; 
+    transform:scale(1.02);
+    box-shadow:0 4px 20px rgba(0,0,0,0.15);
+  }
+  .btn-print i { margin-right:10px; }
+
+  /* ===== FOOTER ===== */
+  .page-footer { background:#000000; color:#ffffff; padding:36px 0 18px; width:100%; margin-top:20px; }
+  .footer-content { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-bottom:20px; }
+  .footer-section h3 { font-size:18px; font-weight:700; margin-bottom:12px; position:relative; display:inline-block; }
+  .footer-section h3::after { content:''; position:absolute; bottom:-4px; left:0; width:24px; height:2px; background:#ffffff; }
+  .footer-section p { font-size:14px; color:rgba(255,255,255,0.7); line-height:1.5; }
+  .footer-links { list-style:none; }
+  .footer-links li { font-size:14px; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+  .footer-links a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:14px; transition:all .2s ease; }
+  .footer-links a:hover { color:#ffffff; transform:translateX(4px); }
+  .social-links { display:flex; gap:10px; margin-top:12px; }
+  .social-link {
+    display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px;
+    background:rgba(255,255,255,0.1); border-radius:50%; color:#fff; text-decoration:none;
+    transition:all .2s ease; font-size:14px;
+  }
+  .social-link:hover { background:#fff; color:#000; transform:translateY(-3px); }
+  .x-logo { font-weight:900; font-size:14px; }
+  .footer-links i { color:rgba(255,255,255,0.6); width:14px; font-size:14px; }
+  .copyright { text-align:center; padding-top:16px; border-top:1px solid rgba(255,255,255,0.08); color:rgba(255,255,255,0.4); font-size:11px; }
+
+/* ===== RESPONSIVE — TETAP 2 GRID SAMA RATA ===== */
+@media (max-width:900px) {
+  .footer-content { grid-template-columns:repeat(2,1fr); gap:24px 30px; }
+  .signature-wrap { 
+    grid-template-columns:1fr 1fr !important; 
+    gap:20px !important; 
+  }
+  .sig-col { 
+    width:100% !important; 
+    min-width:0 !important;
+  }
+  .sig-line { width:50%; }
+  .sig-input { max-width:150px; font-size:0.8rem; width:100%; }
+  .date-input { min-width:80px; max-width:130px; font-size:0.7rem; width:auto; }
+  .ttd-fixed { max-height:60px; max-width:140px; }
+  .ttd-preview { max-height:60px; max-width:140px; }
+}
+@media (max-width:600px) {
+  .footer-content { grid-template-columns:1fr 1fr; gap:16px; }
+  .mou-title { font-size:1.4rem; }
+  .mou-section h3 { font-size:1.05rem; }
+  .mou-section p, .mou-section ul li { font-size:0.92rem; }
+  .signature-wrap { 
+    grid-template-columns:1fr 1fr !important; 
+    gap:12px !important; 
+  }
+  .sig-col { 
+    width:100% !important; 
+    min-width:0 !important;
+    padding:0 4px !important;
+  }
+  .sig-col p { font-size:0.65rem; }
+  .sig-name { font-size:0.7rem; }
+  .sig-title { font-size:0.65rem; }
+  .sig-input { font-size:0.7rem; max-width:100px; width:100%; }
+  .ttd-fixed { max-height:45px; max-width:100px; }
+  .ttd-preview { max-height:45px; max-width:100px; }
+  .date-input { min-width:60px; max-width:90px; font-size:0.6rem; }
+  .date-label { font-size:0.65rem; }
+  .date-row { gap:3px; flex-wrap:nowrap !important; }
+  .sig-line { width:40%; }
+  .ttd-upload-wrap label { font-size:0.6rem; padding:2px 6px; }
+  .ttd-preview-placeholder { font-size:0.55rem; min-width:50px; padding:2px 4px; }
+}
+
+  /* ===== PRINT STYLES ===== */
+  @media print {
+    /* HEADER & FOOTER HILANG */
+    .page-header, .page-footer {
+      display: none !important;
+    }
+    .btn-print, .ttd-upload-wrap label, .ttd-upload-wrap input, .ttd-preview-placeholder, .save-section {
+      display:none !important;
+    }
+    .ttd-preview {
+      display:block !important;
+      max-height:80px !important;
+      border:none !important;
+      background:transparent !important;
+    }
+    .sig-input {
+      border-bottom:1px solid #000 !important;
+    }
+    .date-input {
+      border-bottom:1px solid #000 !important;
+    }
+    .signature-wrap { 
+      grid-template-columns:1fr 1fr !important; 
+    }
+    .date-row {
+      flex-wrap:nowrap !important;
+    }
+    .mou-title { border-bottom:2px solid #000 !important; }
+    .sig-line { border-bottom:1px solid #000 !important; }
+    .container { padding:0 20px !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="container">
+    <div class="navbar">
+      <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="Kachoo" onerror="this.src='https://placehold.co/200x60/eeeeee/333333?text=KACHOO'">
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="page-content" id="mou-content">
+
+    <h1 class="mou-title">MEMORANDUM OF UNDERSTANDING (MoU)</h1>
+    <div class="mou-parties">
+      <div class="party-name">THE KACHOO</div>
+      <div>and</div>
+      <div class="party-name">THE SASMITA-MORES</div>
+    </div>
+
+    <div class="mou-section">
+      <p>This Memorandum of Understanding (MoU) is made and entered into by and between:</p>
+      <p><strong>THE KACHOO</strong>, a media and publication company, operating under the <strong>KAZINE</strong> brand, with its principal office at Jenderal Sudirman Avenue, Lots 61–62, Karet Semanggi, Setiabudi, South Jakarta 12930, Indonesia, hereinafter referred to as <strong>"Party One"</strong>.</p>
+      <p><strong>THE SASMITA-MORES</strong>, a <strong>Sponsor</strong>, with an address at <span id="party2-address" contenteditable="true" style="outline:none; border-bottom:1px dashed #ccc; padding:0 6px; min-width:150px; display:inline-block;">[Address]</span>, hereinafter referred to as <strong>"Party Two"</strong>.</p>
+      <p>Party One and Party Two are hereinafter individually referred to as a "Party" and collectively referred to as the "Parties."</p>
+    </div>
+
+    <div class="mou-section">
+      <h3>1. Purpose</h3>
+      <p>This MoU serves as a general framework of cooperation between Party One and Party Two for participation and contribution in <strong>KAZINE Volume 1, Issue 3</strong>, a lifestyle magazine publication produced by THE KACHOO under the theme <span class="mou-italic">"How Nature Helps Us Heal"</span> and the campaign tagline <span class="mou-italic">"Time to Heal"</span>, targeted for release in <strong>September 2026</strong>. This MoU outlines the basic understanding, roles, and expectations of the Parties during the production, publication, and promotional period of KAZINE Vol. 1 Issue 3, without creating a legally binding partnership unless otherwise specified in a separate written agreement.</p>
+    </div>
+
+    <div class="mou-section">
+      <h3>2. Scope of Collaboration</h3>
+      <p>Party Two agrees to participate in KAZINE Volume 1 Issue 3 in the capacity of <strong>Sponsor</strong>, including but not limited to:</p>
+      <ul>
+        <li>Product, service, or creative contributions relevant to the theme of healthy living, mental & physical balance, and reconnecting with nature</li>
+        <li>Participation in editorial, visual, promotional, or production activities related to KAZINE Vol. 1 Issue 3</li>
+        <li>Use of likeness, brand assets, work, or intellectual contribution solely for KAZINE Vol. 1 Issue 3 purposes</li>
+        <li>Other mutually agreed activities relevant to the project</li>
+      </ul>
+      <p>Specific deliverables, schedules (including the photoshoot session), and technical details may be further agreed upon separately in writing.</p>
+    </div>
+
+    <div class="mou-section">
+      <h3>3. Duration</h3>
+      <p>This MoU shall be valid for the duration of KAZINE Volume 1 Issue 3, commencing from:</p>
+      <p><strong>Start Date:</strong> <strong>3 August 2026</strong><br><strong>End Date:</strong> <strong>13 September 2026</strong></p>
+      <p>or for the full active period of KAZINE Vol. 1 Issue 3, including production, release, and related promotional activities, whichever period is longer.</p>
+    </div>
+
+    <div class="mou-section">
+      <h3>4. Partner Contribution and Benefits</h3>
+      <p><strong>1) Contribution.</strong> Depending on the partnership category, Party Two agrees to provide the following:</p>
+      <ul>
+        <li><strong>Product/Brand Sponsor:</strong> send the sponsored product for use during the activity, with the detailed schedule coordinated during the photoshoot session or magazine release.</li>
+      </ul>
+      <p><strong>2) Benefits.</strong> In return, Party One agrees to provide Party Two with the following benefits:</p>
+      <ul>
+        <li><strong>Dedicated Promotional Space:</strong> an allocation of 4 (four) pages inside KAZINE Vol. 1 Issue 3 for product promotion, business profile, or portfolio.</li>
+        <li><strong>Audience & Digital Exposure:</strong> cross-platform promotion through The Kachoo's digital media ecosystem and official social media.</li>
+        <li><strong>Networking Opportunities:</strong> direct connection with young audiences, creators, influencers, and professionals in the creative industry.</li>
+        <li><strong>Complimentary Products:</strong> 2 (two) of the newest products from KAZINE as a gift.</li>
+      </ul>
+      <p>Any additional compensation, fee, or payment terms beyond the benefits above shall be mutually agreed upon and confirmed separately in writing.</p>
+    </div>
+
+    <div class="mou-section">
+      <h3>5. Rights and Usage</h3>
+      <p>Party Two grants Party One the right to use submitted works, images, likeness, name, brand, and related materials solely for:</p>
+      <ul>
+        <li>KAZINE Volume 1 Issue 3</li>
+        <li>Editorial, promotional, marketing, and archival purposes related to the project</li>
+      </ul>
+      <p>Any usage beyond KAZINE Vol. 1 Issue 3 shall require additional written consent from Party Two.</p>
+    </div>
+
+    <div class="mou-section">
+      <h3>6. Responsibilities of the Parties</h3>
+      <ul>
+        <li>Each Party shall perform their respective roles in a professional and timely manner.</li>
+        <li>Each Party is responsible for their own expenses unless otherwise agreed in writing.</li>
+        <li>Party Two confirms that any submitted work, product, or material does not infringe upon third-party rights.</li>
+        <li><strong>Follow Official Account:</strong> Party Two agrees to follow the official X (Twitter) account <strong>@TheKachoo</strong>.</li>
+        <li><strong>Retweet Publication:</strong> Party Two agrees to retweet/share the post when KAZINE Vol. 1 Issue 3 is officially released.</li>
+      </ul>
+    </div>
+
+    <div class="mou-section">
+      <h3>7. Confidentiality</h3>
+      <p>Both Parties agree to keep confidential any non-public information related to the project, including but not limited to creative concepts, unpublished materials, and internal communications, unless disclosure is required by law or approved in writing by the other Party.</p>
+    </div>
+
+    <div class="mou-section">
+      <h3>8. Non-Exclusivity</h3>
+      <p>Unless otherwise stated in a separate agreement, this MoU does not create an exclusive relationship between the Parties.</p>
+    </div>
+
+    <div class="mou-section">
+      <h3>9. Termination</h3>
+      <p>Either Party may terminate this MoU by providing written notice to the other Party. Termination shall not affect any obligations already fulfilled or contributions/benefits due for completed collaboration.</p>
+    </div>
+
+    <div class="mou-section">
+      <h3>10. General Provisions</h3>
+      <ul>
+        <li>This MoU does not constitute an employment relationship, partnership, or joint venture.</li>
+        <li>Amendments to this MoU must be made in writing and agreed upon by both Parties.</li>
+        <li>This MoU shall be governed by the laws agreed upon by the Parties or, in the absence thereof, by mutual understanding.</li>
+      </ul>
+    </div>
+
+    <div class="mou-section">
+      <h3>11. Signatures</h3>
+      <p>This MoU shall enter into effect upon signing by both Parties.</p>
+
+      <div class="signature-wrap">
+        <!-- KOLOM KIRI: KACHOO (Geriel Rakhastra) -->
+        <div class="sig-col">
+          <p class="sig-label"><strong>Party One</strong></p>
+          <p style="font-weight:600;">THE KACHOO</p>
+          <p style="font-size:0.8rem;">For and on behalf of KACHOO</p>
+          
+          <!-- TTD Geriel dari URL -->
+          <img src="https://thekachoo.github.io/KAZINE/MOU/TTDGeriel.png" 
+               alt="Tanda tangan Geriel Rakhastra" 
+               class="ttd-fixed"
+               crossorigin="anonymous"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+          <div style="display:none; font-size:0.7rem; color:#999; padding:4px 0;">
+            ⚠️ TTDGeriel.png not found.
+          </div>
+          
+          <div class="sig-line"></div>
+          <p class="sig-name">Geriel Rakhastra</p>
+          <p class="sig-title">Company Secretary</p>
+          <!-- DATE SAMPING (inline) - FIXED -->
+          <div class="date-row">
+            <span class="date-label">Date :</span>
+            <span class="date-fixed">August 3, 2026</span>
+          </div>
+        </div>
+
+        <!-- KOLOM KANAN: PARTY TWO -->
+        <div class="sig-col">
+          <p class="sig-label"><strong>Party Two</strong></p>
+          <p style="font-weight:600; font-size:0.9rem;">THE SASMITA-MORES</p>
+          
+          <!-- Upload TTD untuk Party Two -->
+          <div class="ttd-upload-wrap" id="ttdWrapper">
+            <input type="file" id="ttd-party2" accept="image/png" />
+            <img id="preview-party2" class="ttd-preview" alt="Signature" />
+            <span id="placeholder-party2" class="ttd-preview-placeholder">Upload PNG</span>
+          </div>
+          
+          <div class="sig-line"></div>
+          <!-- Input untuk nama penandatangan Party Two -->
+          <input type="text" class="sig-input" id="signatory-name" placeholder="Signatory Name" style="margin-top:2px;" />
+          <input type="text" class="sig-input" id="signatory-title" placeholder="Title / Position" style="margin-top:2px; font-weight:400; font-size:0.8rem;" />
+          <!-- DATE SAMPING (inline) - BISA DIISI, TANPA WRAP -->
+          <div class="date-row" style="display:flex; align-items:center; gap:6px; margin-top:4px; flex-wrap:nowrap;">
+            <span class="date-label" style="font-size:0.8rem; color:#555; font-weight:400; white-space:nowrap;">Date :</span>
+            <input type="text" class="date-input" placeholder="Enter date" style="border:none; border-bottom:1px solid #000; background:transparent; font-family:'Outfit', sans-serif; font-size:0.8rem; padding:2px 0; min-width:100px; max-width:180px; outline:none; transition:border-color 0.2s; display:inline-block; width:auto; flex:1;" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== TOMBOL PRINT ===== -->
+<div class="save-section">
+  <button class="btn-print" id="printButton"><i class="fas fa-print"></i> Print MoU</button>
+</div>
+
+<div class="page-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>KACHOO</h3>
+        <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+        <div class="social-links">
+          <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+          <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3>Platforms</h3>
+        <ul class="footer-links">
+          <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+          <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+          <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul class="footer-links">
+          <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+          <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+          <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Address</h3>
+        <ul class="footer-links">
+          <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+  </div>
+</div>
+
+<script>
+  // ===== UPLOAD TTD PARTY TWO =====
+  const ttdInput = document.getElementById('ttd-party2');
+  const ttdPreview = document.getElementById('preview-party2');
+  const ttdPlaceholder = document.getElementById('placeholder-party2');
+  const ttdWrapper = document.getElementById('ttdWrapper');
+
+  ttdInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        ttdPreview.src = ev.target.result;
+        ttdPreview.style.display = 'block';
+        ttdPlaceholder.style.display = 'none';
+        const label = ttdWrapper.querySelector('label');
+        if (label) label.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  ttdPreview.addEventListener('click', function() {
+    ttdInput.click();
+  });
+
+  ttdPlaceholder.addEventListener('click', function() {
+    ttdInput.click();
+  });
+
+  // ===== FUNGSI PRINT =====
+  document.getElementById('printButton').addEventListener('click', function() {
+    window.print();
+  });
+</script>
+
+</body>
+                                                                                          </html>
