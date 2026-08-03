@@ -74,14 +74,24 @@
   }
   .sig-col .sig-label { font-weight:700; font-size:0.9rem; margin-top:6px; }
   .sig-line {
-    margin-top:40px; 
+    margin-top:30px; 
     margin-bottom:4px; 
     border-bottom:1px solid #000; 
     width:70%;
   }
   .sig-name { font-weight:700; margin-top:3px; font-size:0.9rem; }
   .sig-title { font-size:0.8rem; color:#333; }
-  .sig-date { font-size:0.8rem; color:#555; margin-top:4px; }
+  .sig-date { 
+    font-size:0.8rem; 
+    color:#555; 
+    margin-top:4px;
+  }
+  .sig-date-fixed {
+    font-size:0.8rem; 
+    color:#000; 
+    margin-top:4px;
+    font-weight:500;
+  }
 
   .sig-input {
     border:none; border-bottom:1px solid #000; 
@@ -95,35 +105,72 @@
   .sig-input:focus { border-bottom-color:#666; }
   .sig-input::placeholder { font-weight:400; font-size:0.75rem; color:#aaa; }
 
+  /* TTD - TANPA CONTAINER, LANGSUNG KE PUTIH */
   .ttd-upload-wrap {
-    display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    display:flex; 
+    align-items:center; 
+    gap:12px; 
+    flex-wrap:wrap;
     margin-top:8px;
+    cursor:pointer;
   }
   .ttd-upload-wrap label {
-    font-size:0.75rem; background:#f0f0f0; padding:4px 12px; border-radius:20px;
-    cursor:pointer; transition:background 0.2s;
+    font-size:0.75rem; 
+    background:#f0f0f0; 
+    padding:4px 12px; 
+    border-radius:20px;
+    cursor:pointer; 
+    transition:background 0.2s;
   }
   .ttd-upload-wrap label:hover { background:#ddd; }
   .ttd-upload-wrap input[type="file"] { display:none; }
+  
   .ttd-preview {
-    max-height:50px; max-width:150px; border:1px dashed #ccc; border-radius:4px;
-    padding:2px; object-fit:contain; background:#fafafa;
+    max-height:80px; 
+    max-width:220px; 
+    object-fit:contain; 
+    cursor:pointer;
+    display:none;
+    background:transparent;
+    border:none;
+    padding:0;
   }
   .ttd-preview-placeholder {
-    font-size:0.7rem; color:#999; padding:4px 8px; border:1px dashed #ddd;
-    border-radius:4px; min-width:80px; text-align:center;
+    font-size:0.7rem; 
+    color:#999; 
+    padding:4px 8px; 
+    border:1px dashed #ddd;
+    border-radius:4px; 
+    min-width:80px; 
+    text-align:center;
+    display:inline-block;
   }
 
   .ttd-fixed {
-    max-height:55px; 
-    max-width:180px; 
+    max-height:80px; 
+    max-width:220px; 
     object-fit:contain; 
-    border:1px solid #ddd; 
-    border-radius:4px; 
-    padding:4px; 
-    background:#fafafa;
     display:block;
+    margin-top:4px;
+    background:transparent;
+    border:none;
+    padding:0;
   }
+
+  .date-input {
+    border:none; 
+    border-bottom:1px solid #000; 
+    background:transparent; 
+    font-family:'Outfit', sans-serif;
+    font-size:0.8rem;
+    padding:2px 0; 
+    min-width:150px;
+    outline:none; 
+    transition:border-color 0.2s;
+    margin-left:4px;
+  }
+  .date-input:focus { border-bottom-color:#666; }
+  .date-input::placeholder { color:#aaa; font-size:0.7rem; }
 
   /* ===== TOMBOL SIMPAN ===== */
   .save-section {
@@ -173,7 +220,6 @@
   /* ===== RESPONSIVE — TETAP 2 GRID ===== */
   @media (max-width:900px) {
     .footer-content { grid-template-columns:repeat(2,1fr); gap:24px 30px; }
-    /* SIGNATURE TETAP 2 GRID */
     .signature-wrap { 
       grid-template-columns:1fr 1fr !important; 
       gap:30px !important; 
@@ -184,7 +230,6 @@
     .mou-title { font-size:1.4rem; }
     .mou-section h3 { font-size:1.05rem; }
     .mou-section p, .mou-section ul li { font-size:0.92rem; }
-    /* TETAP 2 GRID */
     .signature-wrap { 
       grid-template-columns:1fr 1fr !important; 
       gap:20px !important; 
@@ -192,8 +237,9 @@
     .sig-col p { font-size:0.75rem; }
     .sig-name { font-size:0.8rem; }
     .sig-input { font-size:0.8rem; max-width:100%; }
-    .ttd-fixed { max-height:40px; max-width:120px; }
-    .ttd-preview { max-height:40px; max-width:100px; }
+    .ttd-fixed { max-height:60px; max-width:140px; }
+    .ttd-preview { max-height:60px; max-width:140px; }
+    .date-input { min-width:100px; font-size:0.7rem; }
   }
 
   /* ===== PRINT STYLES ===== */
@@ -203,10 +249,14 @@
     }
     .ttd-preview {
       display:block !important;
-      border:1px solid #000;
-      max-height:60px;
+      max-height:80px !important;
+      border:none !important;
+      background:transparent !important;
     }
     .sig-input {
+      border-bottom:1px solid #000;
+    }
+    .date-input {
       border-bottom:1px solid #000;
     }
     .page-header {
@@ -354,30 +404,31 @@
           <p style="font-weight:600;">THE KACHOO</p>
           <p style="font-size:0.8rem;">For and on behalf of THE KACHOO</p>
           
-          <!-- TTD Geriel pakai TTDGeriel.png -->
-          <img src="TTDGeriel.png" 
+          <!-- TTD Geriel dari URL -->
+          <img src="https://thekachoo.github.io/KAZINE/MOU/TTDGeriel.png" 
                alt="Tanda tangan Geriel Rakhastra" 
                class="ttd-fixed"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
           <div style="display:none; font-size:0.7rem; color:#999; padding:4px 0;">
+            ⚠️ TTDGeriel.png not found.
           </div>
           
           <div class="sig-line"></div>
           <p class="sig-name">Geriel Rakhastra</p>
           <p class="sig-title">Company Secretary</p>
-          <p class="sig-date">Date: August 3, 2026</p>
+          <p class="sig-date-fixed">Date : August 3, 2026</p>
         </div>
 
         <!-- KOLOM KANAN: PARTY TWO -->
         <div class="sig-col">
           <p class="sig-label"><strong>Party Two</strong></p>
           <p style="font-weight:600; font-size:0.9rem;">[PARTY TWO NAME]</p>
+          <p style="font-size:0.8rem;">[Profession / Company]</p>
           
           <!-- Upload TTD untuk Party Two -->
-          <div class="ttd-upload-wrap">
-            <label for="ttd-party2"><i class="fas fa-upload"></i> Upload Signature (PNG)</label>
+          <div class="ttd-upload-wrap" id="ttdWrapper">
             <input type="file" id="ttd-party2" accept="image/png" />
-            <img id="preview-party2" class="ttd-preview" style="display:none;" alt="Signature" />
+            <img id="preview-party2" class="ttd-preview" alt="Signature" />
             <span id="placeholder-party2" class="ttd-preview-placeholder">⬆ Upload PNG</span>
           </div>
           
@@ -385,7 +436,7 @@
           <!-- Input untuk nama penandatangan Party Two -->
           <input type="text" class="sig-input" id="signatory-name" placeholder="Signatory Name" style="margin-top:2px;" />
           <input type="text" class="sig-input" id="signatory-title" placeholder="Title / Position" style="margin-top:2px; font-weight:400; font-size:0.8rem;" />
-          <p class="sig-date">Date: _______________________</p>
+          <p class="sig-date">Date : <input type="text" class="date-input" placeholder="Enter date" /></p>
         </div>
       </div>
     </div>
@@ -441,6 +492,7 @@
   const ttdInput = document.getElementById('ttd-party2');
   const ttdPreview = document.getElementById('preview-party2');
   const ttdPlaceholder = document.getElementById('placeholder-party2');
+  const ttdWrapper = document.getElementById('ttdWrapper');
 
   ttdInput.addEventListener('change', function(e) {
     const file = e.target.files[0];
@@ -450,12 +502,19 @@
         ttdPreview.src = ev.target.result;
         ttdPreview.style.display = 'block';
         ttdPlaceholder.style.display = 'none';
+        const label = ttdWrapper.querySelector('label');
+        if (label) label.style.display = 'none';
       };
       reader.readAsDataURL(file);
-    } else {
-      ttdPreview.style.display = 'none';
-      ttdPlaceholder.style.display = 'inline-block';
     }
+  });
+
+  ttdPreview.addEventListener('click', function() {
+    ttdInput.click();
+  });
+
+  ttdPlaceholder.addEventListener('click', function() {
+    ttdInput.click();
   });
 
   // ===== FUNGSI DOWNLOAD PDF =====
@@ -486,4 +545,4 @@
 </script>
 
 </body>
-</html>
+ </html>
