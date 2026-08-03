@@ -6,7 +6,6 @@
 <title>Memorandum of Understanding — KAZINE Vol. 1 Issue 3</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
@@ -184,29 +183,24 @@
     display:inline-block;
   }
 
-  /* ===== TOMBOL SIMPAN ===== */
+  /* ===== TOMBOL PRINT ===== */
   .save-section {
     margin:30px 0 10px;
     text-align:center;
   }
-  .btn-save {
+  .btn-print {
     background:#000; color:#fff; border:none;
     font-family:'Outfit', sans-serif; font-weight:600; font-size:1rem;
     padding:14px 48px; border-radius:40px;
     cursor:pointer; transition:all 0.25s ease;
     letter-spacing:0.5px;
   }
-  .btn-save:hover { 
+  .btn-print:hover { 
     background:#222; 
     transform:scale(1.02);
     box-shadow:0 4px 20px rgba(0,0,0,0.15);
   }
-  .btn-save i { margin-right:10px; }
-  .btn-save:disabled {
-    opacity:0.6;
-    cursor:not-allowed;
-    transform:none;
-  }
+  .btn-print i { margin-right:10px; }
 
   /* ===== FOOTER ===== */
   .page-footer { background:#000000; color:#ffffff; padding:36px 0 18px; width:100%; margin-top:20px; }
@@ -280,7 +274,7 @@
     .page-header, .page-footer {
       display: none !important;
     }
-    .btn-save, .ttd-upload-wrap label, .ttd-upload-wrap input, .ttd-preview-placeholder, .save-section {
+    .btn-print, .ttd-upload-wrap label, .ttd-upload-wrap input, .ttd-preview-placeholder, .save-section {
       display:none !important;
     }
     .ttd-preview {
@@ -482,9 +476,9 @@
   </div>
 </div>
 
-<!-- ===== TOMBOL DOWNLOAD PDF ===== -->
+<!-- ===== TOMBOL PRINT ===== -->
 <div class="save-section">
-  <button class="btn-save" id="saveButton"><i class="fas fa-file-pdf"></i> Download PDF</button>
+  <button class="btn-print" id="printButton"><i class="fas fa-print"></i> Print MoU</button>
 </div>
 
 <div class="page-footer">
@@ -555,42 +549,11 @@
     ttdInput.click();
   });
 
-  // ===== FUNGSI DOWNLOAD PDF (FALLBACK) =====
-  document.getElementById('saveButton').addEventListener('click', function() {
-    const button = this;
-    button.disabled = true;
-    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
-
-    const element = document.getElementById('mou-content');
-    
-    setTimeout(function() {
-      const opt = {
-        margin:        [10, 10, 10, 10],
-        filename:     `MoU_KAZINE_Vol1_Issue3_${new Date().toISOString().slice(0,10)}.pdf`,
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { 
-          scale: 2, 
-          useCORS: true, 
-          allowTaint: true,
-          letterRendering: true,
-          logging: true,
-          timeout: 30000
-        },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
-
-      html2pdf().set(opt).from(element).save().then(function() {
-        button.disabled = false;
-        button.innerHTML = '<i class="fas fa-file-pdf"></i> Download PDF';
-      }).catch(function(err) {
-        console.error('PDF Error:', err);
-        button.disabled = false;
-        button.innerHTML = '<i class="fas fa-file-pdf"></i> Download PDF';
-        alert('❌ Gagal generate PDF. Gunakan Print (Ctrl+P) → "Save as PDF" untuk hasil terbaik.');
-      });
-    }, 2000);
+  // ===== FUNGSI PRINT =====
+  document.getElementById('printButton').addEventListener('click', function() {
+    window.print();
   });
 </script>
 
 </body>
- </html>
+                                                                                          </html>
