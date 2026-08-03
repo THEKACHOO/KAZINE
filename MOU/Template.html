@@ -276,7 +276,11 @@
 
   /* ===== PRINT STYLES ===== */
   @media print {
-    .btn-save, .ttd-upload-wrap label, .ttd-upload-wrap input, .ttd-preview-placeholder {
+    /* HEADER & FOOTER HILANG */
+    .page-header, .page-footer {
+      display: none !important;
+    }
+    .btn-save, .ttd-upload-wrap label, .ttd-upload-wrap input, .ttd-preview-placeholder, .save-section {
       display:none !important;
     }
     .ttd-preview {
@@ -286,23 +290,10 @@
       background:transparent !important;
     }
     .sig-input {
-      border-bottom:1px solid #000;
+      border-bottom:1px solid #000 !important;
     }
     .date-input {
-      border-bottom:1px solid #000;
-    }
-    .page-header {
-      background:#fff !important;
-      backdrop-filter:none !important;
-    }
-    .page-footer {
-      background:#000 !important;
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-    }
-    .social-link {
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
+      border-bottom:1px solid #000 !important;
     }
     .signature-wrap { 
       grid-template-columns:1fr 1fr !important; 
@@ -310,6 +301,9 @@
     .date-row {
       flex-wrap:nowrap !important;
     }
+    .mou-title { border-bottom:2px solid #000 !important; }
+    .sig-line { border-bottom:1px solid #000 !important; }
+    .container { padding:0 20px !important; }
   }
 </style>
 </head>
@@ -561,7 +555,7 @@
     ttdInput.click();
   });
 
-  // ===== FUNGSI DOWNLOAD PDF =====
+  // ===== FUNGSI DOWNLOAD PDF (FALLBACK) =====
   document.getElementById('saveButton').addEventListener('click', function() {
     const button = this;
     button.disabled = true;
@@ -592,11 +586,11 @@
         console.error('PDF Error:', err);
         button.disabled = false;
         button.innerHTML = '<i class="fas fa-file-pdf"></i> Download PDF';
-        alert('❌ Failed to generate PDF. Please try again or use Print (Ctrl+P) → "Save as PDF".');
+        alert('❌ Gagal generate PDF. Gunakan Print (Ctrl+P) → "Save as PDF" untuk hasil terbaik.');
       });
     }, 2000);
   });
 </script>
 
 </body>
-     </html>
+ </html>
