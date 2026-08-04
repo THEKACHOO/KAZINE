@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kazine Proposal for Partnerships</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffffff;
+      font-family: 'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: #000000;
+      line-height: 1.5;
+      font-weight: 400;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    h1, h2, h3, h4, p, li, a, button, div, span {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+      width: 100%;
+    }
+
+    /* SPLASH */
+    #splashScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+      visibility: visible;
+      pointer-events: none;
+    }
+    #splashScreen.hide-splash {
+      opacity: 0;
+      visibility: hidden;
+    }
+    #splashScreen img {
+      max-width: 220px;
+      width: 80%;
+      height: auto;
+      display: block;
+    }
+
+    /* PAGE */
+    .page {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 1;
+      overflow-y: auto;
+    }
+    .page.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 10;
+    }
+
+    /* HEADER */
+    .page-header {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 14px 0;
+      flex-shrink: 0;
+      width: 100%;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      position: relative;
+    }
+    .logo-img {
+      height: 44px;
+      width: auto;
+      max-width: 180px;
+      object-fit: contain;
+      filter: grayscale(100%) contrast(1.1);
+      cursor: pointer;
+    }
+
+    /* TOMBOL BAHASA - LANGSUNG ICON GLOBE HITAM */
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: #000;
+      font-size: 22px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      padding: 4px;
+    }
+    .lang-btn:hover {
+      opacity: 0.6;
+      transform: scale(1.05);
+    }
+    .lang-btn i {
+      font-size: 22px;
+    }
+
+    /* BODY */
+    .page-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px 30px 20px;
+      width: 100%;
+    }
+    .page-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .page-number {
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: #888;
+      letter-spacing: 2px;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+
+    /* PROPOSAL STYLE */
+    .proposal-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      text-align: center;
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+    }
+    .proposal-section {
+      margin: 16px 0 10px;
+    }
+    .proposal-section h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: -0.3px;
+    }
+    .proposal-section h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 12px 0 4px;
+    }
+    .proposal-section p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      text-align: justify;
+      text-justify: inter-word;
+      margin-bottom: 6px;
+    }
+    .proposal-section ul {
+      list-style: none;
+      padding-left: 6px;
+      margin: 4px 0 8px;
+    }
+    .proposal-section ul li {
+      padding: 2px 0 2px 22px;
+      position: relative;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    .proposal-section ul li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #000;
+    }
+    .proposal-section strong {
+      font-weight: 700;
+    }
+    .proposal-section a {
+      color: #000000;
+      font-weight: 700;
+      text-decoration: none !important;
+      border-bottom: 1px solid #000;
+      transition: opacity 0.2s;
+    }
+    .proposal-section a:hover {
+      opacity: 0.6;
+      text-decoration: none !important;
+    }
+
+    /* CAMPAIGN TAGLINE - ITALIC */
+    .campaign-tagline {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 400;
+      font-style: italic;
+      margin: 4px 0 10px 0;
+      letter-spacing: 0.5px;
+    }
+
+    /* COLOR PALETTE */
+    .color-palette-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px 30px;
+      margin: 12px 0 8px;
+    }
+    .color-palette-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px 30px;
+      width: 100%;
+    }
+    .color-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .color-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-align: center;
+      color: #000;
+      padding: 4px;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+    .color-circle.white {
+      background: #FFFFFF;
+      border: 2px solid #ccc;
+      color: #000;
+    }
+    .color-circle.black {
+      background: #000000;
+      color: #fff;
+      border: 2px solid #333;
+    }
+    .color-circle.soft-cream {
+      background: #EEE1B6;
+      color: #000;
+    }
+    .color-circle.sage-green {
+      background: #BDDDB6;
+      color: #000;
+    }
+    .color-circle.forest-green {
+      background: #3A5F3A;
+      color: #fff;
+    }
+    .color-circle.beige {
+      background: #EAE2CF;
+      color: #000;
+    }
+    .color-circle.espresso {
+      background: #462A1B;
+      color: #fff;
+    }
+
+    /* RATE TABLE */
+    .rate-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 6px;
+      font-size: 0.95rem;
+    }
+    .rate-table th {
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 2px solid #000;
+      font-weight: 700;
+    }
+    .rate-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #ddd;
+    }
+    .rate-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* NAVIGATION */
+    .nav-btn-wrap {
+      text-align: center;
+      margin-top: 18px;
+      padding-bottom: 6px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .nav-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #000;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 300;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-decoration: none;
+    }
+    .nav-circle:hover {
+      transform: scale(1.04);
+      background: #1a1a1a;
+    }
+    .nav-circle i {
+      font-size: 20px;
+    }
+    .nav-circle.back {
+      background: #e0e0e0;
+      color: #000;
+    }
+    .nav-circle.back:hover {
+      background: #cccccc;
+    }
+
+    /* FOOTER */
+    .page-footer {
+      background: #000000;
+      color: #ffffff;
+      padding: 30px 0 16px;
+      flex-shrink: 0;
+      width: 100%;
+      margin-top: 12px;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .footer-section h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+      display: inline-block;
+    }
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      background: #ffffff;
+    }
+    .footer-section p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      font-size: 14px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .footer-links a:hover {
+      color: #ffffff;
+      transform: translateX(4px);
+    }
+    .social-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: #ffffff;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-size: 14px;
+    }
+    .social-link:hover {
+      background: #ffffff;
+      color: #000000;
+      transform: translateY(-3px);
+    }
+    .x-logo {
+      font-weight: 900;
+      font-size: 14px;
+    }
+    .footer-links i {
+      color: rgba(255,255,255,0.6);
+      width: 14px;
+      font-size: 14px;
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 11px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 30px;
+      }
+    }
+    
+    @media (max-width: 700px) {
+      .container {
+        padding: 0 14px;
+      }
+      .proposal-title {
+        font-size: 1.8rem;
+      }
+      .proposal-section h3 {
+        font-size: 1.3rem;
+      }
+      .proposal-section p, .proposal-section ul li {
+        font-size: 0.95rem;
+      }
+      .page-body {
+        padding: 30px 10px 20px 10px;
+      }
+      .nav-btn-wrap {
+        gap: 14px;
+        margin-top: 14px;
+      }
+      .nav-circle {
+        width: 46px;
+        height: 46px;
+        font-size: 18px;
+      }
+      .nav-circle i {
+        font-size: 17px;
+      }
+      .color-circle {
+        width: 60px;
+        height: 60px;
+        font-size: 0.6rem;
+      }
+      .color-palette-wrap {
+        gap: 14px 20px;
+      }
+      .color-palette-row {
+        gap: 14px 20px;
+      }
+      .navbar {
+        gap: 10px;
+      }
+      .lang-btn {
+        font-size: 18px;
+      }
+      .lang-btn i {
+        font-size: 18px;
+      }
+      .logo-img {
+        height: 36px;
+        max-width: 140px;
+      }
+      .rate-table {
+        font-size: 0.8rem;
+      }
+      .rate-table th, .rate-table td {
+        padding: 5px 8px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px 16px;
+      }
+      .footer-section h3 {
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+      .footer-section h3::after {
+        width: 16px;
+        bottom: -3px;
+      }
+      .footer-links li {
+        font-size: 11px;
+        margin-bottom: 4px;
+        gap: 5px;
+      }
+      .footer-links a {
+        font-size: 11px;
+      }
+      .footer-links i {
+        font-size: 11px;
+        width: 12px;
+      }
+      .footer-section p {
+        font-size: 11px;
+      }
+      .social-link {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+      }
+      .social-links {
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .x-logo {
+        font-size: 12px;
+      }
+      .copyright {
+        font-size: 10px;
+        padding-top: 12px;
+      }
+      .page-footer {
+        padding: 20px 0 12px;
+        margin-top: 8px;
+      }
+      .footer-content {
+        margin-bottom: 12px;
+      }
+      .page-body {
+        padding: 24px 8px 16px 8px;
+      }
+      .proposal-title {
+        font-size: 1.5rem;
+      }
+      .proposal-section h3 {
+        font-size: 1.1rem;
+      }
+      .proposal-section h4 {
+        font-size: 1rem;
+      }
+      .proposal-section p, .proposal-section ul li {
+        font-size: 0.9rem;
+      }
+      .color-circle {
+        width: 50px;
+        height: 50px;
+        font-size: 0.5rem;
+      }
+      .color-palette-wrap {
+        gap: 10px 14px;
+      }
+      .color-palette-row {
+        gap: 10px 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-body {
+        padding: 20px 6px 12px 6px;
+      }
+      .proposal-title {
+        font-size: 1.3rem;
+      }
+      .proposal-section h3 {
+        font-size: 1rem;
+      }
+      .proposal-section h4 {
+        font-size: 0.9rem;
+      }
+      .proposal-section p, .proposal-section ul li {
+        font-size: 0.85rem;
+      }
+      .proposal-section ul li {
+        padding: 2px 0 2px 18px;
+      }
+      .nav-btn-wrap {
+        gap: 12px;
+        margin-top: 12px;
+        padding-bottom: 2px;
+      }
+      .nav-circle {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+      }
+      .nav-circle i {
+        font-size: 15px;
+      }
+      .page-number {
+        font-size: 0.7rem;
+        margin-top: 6px;
+        margin-bottom: 2px;
+      }
+      .color-circle {
+        width: 44px;
+        height: 44px;
+        font-size: 0.45rem;
+      }
+      .color-palette-wrap {
+        gap: 8px 10px;
+      }
+      .color-palette-row {
+        gap: 8px 10px;
+      }
+      .page-footer {
+        padding: 14px 0 8px;
+        margin-top: 6px;
+      }
+      .navbar {
+        gap: 8px;
+      }
+      .lang-btn {
+        font-size: 16px;
+      }
+      .lang-btn i {
+        font-size: 16px;
+      }
+      .logo-img {
+        height: 30px;
+        max-width: 110px;
+      }
+      .rate-table {
+        font-size: 0.7rem;
+      }
+      .rate-table th, .rate-table td {
+        padding: 4px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splashScreen">
+  <img src="https://thekachoo.github.io/Home/KAZINE.png" alt="Kazine">
+</div>
+
+<!-- ============================================================ -->
+<!-- SESI 1: INTRODUCTION (Page 1) -->
+<!-- ============================================================ -->
+<div class="page" id="page1">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo" onerror="this.src='https://placehold.co/200x60/eeeeee/333333?text=KACHOO'">
+        <button class="lang-btn" id="langToggle1" aria-label="Toggle language EN/ID">
+          <i class="fas fa-globe"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <!-- ENGLISH -->
+      <div id="contentEN1">
+        <h1 class="proposal-title">Kazine Proposal</h1>
+        <div class="proposal-section">
+          <h3>1. Introduction</h3>
+          <p><strong>The Kachoo</strong> is an integrated digital media and news company based in South Jakarta. The Kachoo oversees various innovative platforms including <strong>KAFKAPAGES</strong>, <strong>KAZINE</strong>, and <strong>KABOOM</strong>.</p>
+          <p><strong>KAZINE</strong> is a lifestyle brand owned by The Kachoo, officially launched in early January 2026. KAZINE publishes a modern lifestyle magazine that combines inspiring articles, product catalogs, and collaborative promotional space with sponsoring partners.</p>
+          <p>Beyond the magazine, KAZINE has an exclusive product line including <strong>Choosic</strong>, <strong>Chozy</strong>, and two new product lines debuting in Issue 3: <strong>CHO°L</strong> (lifestyle tumbler) and <strong>Choffee</strong> (Kachoo's Coffee Box with refreshed packaging).</p>
+        </div>
+      </div>
+
+      <!-- INDONESIAN -->
+      <div id="contentID1" style="display:none;">
+        <h1 class="proposal-title">Proposal Kazine</h1>
+        <div class="proposal-section">
+          <h3>1. Pendahuluan</h3>
+          <p><strong>The Kachoo</strong> adalah perusahaan media digital dan berita terintegrasi yang berbasis di Jakarta Selatan. The Kachoo menaungi berbagai platform inovatif seperti <strong>KAFKAPAGES</strong>, <strong>KAZINE</strong>, dan <strong>KABOOM</strong>.</p>
+          <p><strong>KAZINE</strong> adalah brand gaya hidup milik The Kachoo yang resmi diluncurkan pada awal Januari 2026. KAZINE mempublikasikan majalah gaya hidup modern yang memadukan artikel inspiratif, katalog produk, serta ruang promosi kolaboratif bersama mitra sponsor.</p>
+          <p>Selain majalah, KAZINE memiliki lini produk eksklusif seperti <strong>Choosic</strong>, <strong>Chozy</strong>, serta dua lini produk terbaru yang akan hadir di Issue 3: <strong>CHO°L</strong> (tumbler lifestyle) dan <strong>Choffee</strong> (Kachoo's Coffee Box dengan desain kemasan baru).</p>
+        </div>
+      </div>
+
+      <div class="page-number">PAGE 1</div>
+      <div class="nav-btn-wrap">
+        <div style="width:52px;"></div>
+        <button class="nav-circle" onclick="goToPage('page2')"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SESI 2: THEME & CONCEPT (Page 2) -->
+<!-- ============================================================ -->
+<div class="page" id="page2">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo">
+        <button class="lang-btn" id="langToggle2" aria-label="Toggle language EN/ID">
+          <i class="fas fa-globe"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <!-- ENGLISH -->
+      <div id="contentEN2">
+        <h1 class="proposal-title">Kazine Proposal</h1>
+        <div class="proposal-section">
+          <h3>2. Main Theme &amp; Concept</h3>
+          <p><strong>Main Theme:</strong> <em>"How Nature Helps Us Heal"</em></p>
+          <p><strong>Campaign Tagline:</strong> <em>Time to Heal</em></p>
+          <p><strong>Issue Concept:</strong> KAZINE Vol. 1 Issue 3 embraces healthy living, mental & physical balance, healing, and an invitation to reconnect with nature. This edition features guides to healthy lifestyles, wellness, and back to nature.</p>
+          <p><strong>Target Release:</strong> <strong>September 2026</strong></p>
+
+          <div style="margin: 14px 0 6px; font-weight: 600;">Color Palette:</div>
+          <div class="color-palette-wrap">
+            <div class="color-palette-row">
+              <div class="color-item">
+                <div class="color-circle white">White</div>
+              </div>
+              <div class="color-item">
+                <div class="color-circle black">Black</div>
+              </div>
+            </div>
+            <div class="color-palette-row">
+              <div class="color-item">
+                <div class="color-circle soft-cream">Soft Cream</div>
+              </div>
+              <div class="color-item">
+                <div class="color-circle sage-green">Sage Green</div>
+              </div>
+              <div class="color-item">
+                <div class="color-circle forest-green">Forest Green</div>
+              </div>
+            </div>
+            <div class="color-palette-row">
+              <div class="color-item">
+                <div class="color-circle beige">Beige</div>
+              </div>
+              <div class="color-item">
+                <div class="color-circle espresso">Espresso</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INDONESIAN -->
+      <div id="contentID2" style="display:none;">
+        <h1 class="proposal-title">Proposal Kazine</h1>
+        <div class="proposal-section">
+          <h3>2. Tema Utama &amp; Konsep</h3>
+          <p><strong>Tema Utama:</strong> <em>"How Nature Helps Us Heal"</em></p>
+          <p class="campaign-tagline">Campaign Tagline : Time to Heal</p>
+          <p><strong>Konsep Edisi:</strong> KAZINE Vol. 1 Issue 3 mengusung hidup sehat, keseimbangan mental & fisik, healing, serta ajakan untuk kembali menyatu dengan alam. Edisi ini menyajikan panduan gaya hidup sehat, wellness, dan back to nature.</p>
+          <p><strong>Target Rilis:</strong> <strong>September 2026</strong></p>
+
+          <div style="margin: 14px 0 6px; font-weight: 600;">Palet Warna:</div>
+          <div class="color-palette-wrap">
+            <div class="color-palette-row">
+              <div class="color-item">
+                <div class="color-circle white">Putih</div>
+              </div>
+              <div class="color-item">
+                <div class="color-circle black">Hitam</div>
+              </div>
+            </div>
+            <div class="color-palette-row">
+              <div class="color-item">
+                <div class="color-circle soft-cream">Krim Lembut</div>
+              </div>
+              <div class="color-item">
+                <div class="color-circle sage-green">Hijau Sage</div>
+              </div>
+              <div class="color-item">
+                <div class="color-circle forest-green">Hijau Hutan</div>
+              </div>
+            </div>
+            <div class="color-palette-row">
+              <div class="color-item">
+                <div class="color-circle beige">Beige</div>
+              </div>
+              <div class="color-item">
+                <div class="color-circle espresso">Espresso</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-number">PAGE 2</div>
+      <div class="nav-btn-wrap">
+        <button class="nav-circle back" onclick="goToPage('page1')"><i class="fas fa-arrow-left"></i></button>
+        <button class="nav-circle" onclick="goToPage('page3')"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SESI 3: COMMERCIAL MODEL (Page 3) -->
+<!-- ============================================================ -->
+<div class="page" id="page3">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo">
+        <button class="lang-btn" id="langToggle3" aria-label="Toggle language EN/ID">
+          <i class="fas fa-globe"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <!-- ENGLISH -->
+      <div id="contentEN3">
+        <h1 class="proposal-title">Kazine Proposal</h1>
+        <div class="proposal-section">
+          <h3>3. Commercial Model</h3>
+          <p>Party One agrees to provide compensation to Party Two for their contribution to <strong>KAZINE</strong> Volume 1, with the payment rate as follows:</p>
+          
+          <table class="rate-table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Rate / Fee</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Commercial Model (Main Fee)</strong></td>
+                <td>USD 1,000 / Rp. 16,700,000</td>
+              </tr>
+              <tr>
+                <td><strong>Live Instagram</strong> (per content)</td>
+                <td>USD 1,500 / Rp. 25,000,000</td>
+              </tr>
+              <tr>
+                <td><strong>Post Instagram</strong> (per content)</td>
+                <td>USD 900 / Rp. 15,000,000</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 0.95rem; margin-top: 4px;"><strong>Payment Terms:</strong> Per Media Content</p>
+          <p style="font-size: 0.95rem; margin-top: 4px;">Payment details, method, and schedule shall be mutually agreed upon and may be confirmed separately in writing.</p>
+          <p style="margin-top: 10px;"><strong>Placement:</strong> Commercial Models will be featured in the product sponsor section of KAZINE magazine.</p>
+        </div>
+      </div>
+
+      <!-- INDONESIAN -->
+      <div id="contentID3" style="display:none;">
+        <h1 class="proposal-title">Proposal Kazine</h1>
+        <div class="proposal-section">
+          <h3>3. Commercial Model</h3>
+          <p>Pihak Pertama setuju untuk memberikan kompensasi kepada Pihak Kedua atas kontribusi mereka untuk <strong>KAZINE</strong> Volume 1, dengan tarif pembayaran sebagai berikut:</p>
+          
+          <table class="rate-table">
+            <thead>
+              <tr>
+                <th>Layanan</th>
+                <th>Tarif / Fee</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Commercial Model (Fee Utama)</strong></td>
+                <td>USD 1,000 / Rp. 16,700,000</td>
+              </tr>
+              <tr>
+                <td><strong>Live Instagram</strong> (per konten)</td>
+                <td>USD 1,500 / Rp. 25,000,000</td>
+              </tr>
+              <tr>
+                <td><strong>Post Instagram</strong> (per konten)</td>
+                <td>USD 900 / Rp. 15,000,000</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 0.95rem; margin-top: 4px;"><strong>Ketentuan Pembayaran:</strong> Per Konten Media</p>
+          <p style="font-size: 0.95rem; margin-top: 4px;">Rincian pembayaran, metode, dan jadwal akan disepakati bersama dan dapat dikonfirmasi secara terpisah secara tertulis.</p>
+          <p style="margin-top: 10px;"><strong>Penempatan:</strong> Commercial Models akan ditampilkan di bagian sponsor produk majalah KAZINE.</p>
+        </div>
+      </div>
+
+      <div class="page-number">PAGE 3</div>
+      <div class="nav-btn-wrap">
+        <button class="nav-circle back" onclick="goToPage('page2')"><i class="fas fa-arrow-left"></i></button>
+        <button class="nav-circle" onclick="goToPage('page4')"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SESI 4: OBLIGATIONS (Page 4) -->
+<!-- ============================================================ -->
+<div class="page" id="page4">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo">
+        <button class="lang-btn" id="langToggle4" aria-label="Toggle language EN/ID">
+          <i class="fas fa-globe"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <!-- ENGLISH -->
+      <div id="contentEN4">
+        <h1 class="proposal-title">Kazine Proposal</h1>
+        <div class="proposal-section">
+          <h3>4. Commercial Model Obligations</h3>
+          <p>As a Commercial Model for KAZINE, you are required to:</p>
+          <ul>
+            <li><strong>Follow Official Account:</strong> Follow the official X (Twitter) account <strong>@TheKachoo</strong> and all KAZINE-related accounts.</li>
+            <li><strong>Retweet &amp; Share:</strong> Retweet/share all content related to KAZINE Vol. 1 Issue 3, including teasers, announcements, and the official release.</li>
+            <li><strong>Professionalism:</strong> Maintain a professional image and reputation throughout the collaboration period.</li>
+            <li><strong>No Scandals:</strong> Must not be involved in any scandal or controversy during the magazine's release period. If any issues arise, KAZINE reserves the right to terminate the agreement and select a replacement or leave the Commercial Model position vacant for Issue 3.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- INDONESIAN -->
+      <div id="contentID4" style="display:none;">
+        <h1 class="proposal-title">Proposal Kazine</h1>
+        <div class="proposal-section">
+          <h3>4. Kewajiban Commercial Model</h3>
+          <p>Sebagai Commercial Model untuk KAZINE, Anda diwajibkan untuk:</p>
+          <ul>
+            <li><strong>Follow Akun Resmi:</strong> Mengikuti akun X (Twitter) resmi <strong>@TheKachoo</strong> dan semua akun terkait KAZINE.</li>
+            <li><strong>Retweet &amp; Bagikan:</strong> Meretweet/membagikan semua konten terkait KAZINE Vol. 1 Issue 3, termasuk teaser, pengumuman, dan rilis resmi.</li>
+            <li><strong>Profesionalisme:</strong> Menjaga citra profesional dan reputasi selama periode kerjasama.</li>
+            <li><strong>Bebas Skandal:</strong> Tidak terlibat dalam skandal atau kontroversi apapun selama periode rilis majalah. Apabila terjadi masalah, KAZINE berhak menghentikan kerjasama dan memilih pengganti atau mengosongkan posisi Commercial Model pada Issue 3 ini.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="page-number">PAGE 4</div>
+      <div class="nav-btn-wrap">
+        <button class="nav-circle back" onclick="goToPage('page3')"><i class="fas fa-arrow-left"></i></button>
+        <button class="nav-circle" onclick="goToPage('page5')"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SESI 5: CONTRACT TERMS (Page 5) -->
+<!-- ============================================================ -->
+<div class="page" id="page5">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo">
+        <button class="lang-btn" id="langToggle5" aria-label="Toggle language EN/ID">
+          <i class="fas fa-globe"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <!-- ENGLISH -->
+      <div id="contentEN5">
+        <h1 class="proposal-title">Kazine Proposal</h1>
+        <div class="proposal-section">
+          <h3>5. Contract Terms &amp; Responsibilities</h3>
+          <p><strong>Contract Duration:</strong> 2 months (August – September 2026).</p>
+          <p>As a Commercial Model, you are expected to:</p>
+          <ul>
+            <li><strong>Promotional Content:</strong> Create and share social media content or other promotional materials to support KAZINE Vol. 1 Issue 3.</li>
+            <li><strong>Active Engagement:</strong> Actively retweet and engage with content from The Kachoo and KAZINE projects.</li>
+            <li><strong>Brand Image:</strong> Maintain professionalism and uphold the aesthetic and values of KAZINE.</li>
+          </ul>
+          <p style="margin-top: 8px;"><strong>Placement:</strong> Commercial Models will be featured in the product sponsor section of KAZINE Vol. 1 Issue 3.</p>
+        </div>
+      </div>
+
+      <!-- INDONESIAN -->
+      <div id="contentID5" style="display:none;">
+        <h1 class="proposal-title">Proposal Kazine</h1>
+        <div class="proposal-section">
+          <h3>5. Ketentuan Kontrak &amp; Tanggung Jawab</h3>
+          <p><strong>Durasi Kontrak:</strong> 2 bulan (Agustus – September 2026).</p>
+          <p>Sebagai Commercial Model, Anda diharapkan untuk:</p>
+          <ul>
+            <li><strong>Konten Promosi:</strong> Membuat dan membagikan konten media sosial atau materi promosi lainnya untuk mendukung KAZINE Vol. 1 Issue 3.</li>
+            <li><strong>Keterlibatan Aktif:</strong> Aktif meretweet dan terlibat dengan konten dari The Kachoo dan proyek KAZINE.</li>
+            <li><strong>Citra Brand:</strong> Menjaga profesionalisme dan menjunjung tinggi estetika serta nilai-nilai KAZINE.</li>
+          </ul>
+          <p style="margin-top: 8px;"><strong>Penempatan:</strong> Commercial Models akan ditampilkan di bagian sponsor produk KAZINE Vol. 1 Issue 3.</p>
+        </div>
+      </div>
+
+      <div class="page-number">PAGE 5</div>
+      <div class="nav-btn-wrap">
+        <button class="nav-circle back" onclick="goToPage('page4')"><i class="fas fa-arrow-left"></i></button>
+        <button class="nav-circle" onclick="goToPage('page6')"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SESI 6: CLOSING (Page 6) -->
+<!-- ============================================================ -->
+<div class="page" id="page6">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo">
+        <button class="lang-btn" id="langToggle6" aria-label="Toggle language EN/ID">
+          <i class="fas fa-globe"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <!-- ENGLISH -->
+      <div id="contentEN6">
+        <h1 class="proposal-title">Kazine Proposal</h1>
+        <div class="proposal-section" style="margin-top: 20px; padding-top: 10px;">
+          <p style="font-size: 1.3rem; font-weight: 500; text-align: center;">We turn Ideas into attention,<br>Let's create something together.</p>
+          <p style="text-align: center; margin-top: 16px; font-size: 1.05rem;">— Kazine by Kachoo —</p>
+        </div>
+      </div>
+
+      <!-- INDONESIAN -->
+      <div id="contentID6" style="display:none;">
+        <h1 class="proposal-title">Proposal Kazine</h1>
+        <div class="proposal-section" style="margin-top: 20px; padding-top: 10px;">
+          <p style="font-size: 1.3rem; font-weight: 500; text-align: center;">Kami mengubah Ide menjadi perhatian,<br>Mari ciptakan sesuatu bersama.</p>
+          <p style="text-align: center; margin-top: 16px; font-size: 1.05rem;">— Kazine by Kachoo —</p>
+        </div>
+      </div>
+
+      <div class="page-number">PAGE 6</div>
+      <div class="nav-btn-wrap">
+        <button class="nav-circle back" onclick="goToPage('page5')"><i class="fas fa-arrow-left"></i></button>
+        <div style="width:52px;"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // SPLASH
+  const splash = document.getElementById('splashScreen');
+  setTimeout(() => {
+    splash.classList.add('hide-splash');
+    document.getElementById('page1').classList.add('active');
+  }, 2000);
+
+  // NAVIGATION
+  function goToPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById(pageId);
+    if (target) target.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  // LANGUAGE TOGGLE
+  const langConfigs = [
+    { toggle: 'langToggle1', en: 'contentEN1', id: 'contentID1' },
+    { toggle: 'langToggle2', en: 'contentEN2', id: 'contentID2' },
+    { toggle: 'langToggle3', en: 'contentEN3', id: 'contentID3' },
+    { toggle: 'langToggle4', en: 'contentEN4', id: 'contentID4' },
+    { toggle: 'langToggle5', en: 'contentEN5', id: 'contentID5' },
+    { toggle: 'langToggle6', en: 'contentEN6', id: 'contentID6' }
+  ];
+
+  langConfigs.forEach(cfg => {
+    const btn = document.getElementById(cfg.toggle);
+    const enEl = document.getElementById(cfg.en);
+    const idEl = document.getElementById(cfg.id);
+    let isEN = true;
+
+    if (btn) {
+      btn.addEventListener('click', function() {
+        isEN = !isEN;
+        if (isEN) {
+          enEl.style.display = 'block';
+          idEl.style.display = 'none';
+        } else {
+          enEl.style.display = 'none';
+          idEl.style.display = 'block';
+        }
+        this.innerHTML = '<i class="fas fa-globe"></i>';
+      });
+    }
+  });
+</script>
+</body>
+</html>
