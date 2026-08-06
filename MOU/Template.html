@@ -57,7 +57,7 @@
   .mou-section strong { font-weight:700; }
   .mou-italic { font-style:italic; }
 
-  /* ===== SIGNATURES — 2 GRID SAMA RATA ===== */
+  /* ===== SIGNATURES ===== */
   .signature-wrap {
     display:grid; 
     grid-template-columns:1fr 1fr; 
@@ -92,27 +92,57 @@
   
   .sig-line {
     margin-top:30px; 
-    margin-bottom:4px; 
+    margin-bottom:10px; 
     border-bottom:1px solid #000; 
     width:100%;
   }
 
-  .sig-name { font-weight:700; margin-top:3px; font-size:0.9rem; }
-  .sig-title { font-size:0.8rem; color:#333; }
-
-  .sig-input {
-    border:none; border-bottom:1px solid #000; 
-    background:transparent; 
-    font-family:'Outfit', sans-serif;
-    font-size:0.9rem; font-weight:700;
-    padding:4px 0; width:100%; max-width:200px;
-    outline:none; transition:border-color 0.2s;
-    margin-top:2px;
+  /* ===== VERTICAL: NAME, POSITION, DATE masing-masing ke bawah ===== */
+  .sig-info-row {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:4px;
   }
-  .sig-input:focus { border-bottom-color:#666; }
-  .sig-input::placeholder { font-weight:400; font-size:0.75rem; color:#aaa; }
+  .sig-info-row .label {
+    font-weight:600;
+    font-size:0.85rem;
+    white-space:nowrap;
+    min-width:75px;
+  }
+  .sig-info-row .value {
+    font-weight:500;
+    font-size:0.85rem;
+    border-bottom:1px solid #000;
+    padding:2px 4px;
+    min-width:120px;
+    flex:1;
+  }
+  .sig-info-row .value-input {
+    border:none;
+    border-bottom:1px solid #000;
+    background:transparent;
+    font-family:'Outfit', sans-serif;
+    font-size:0.85rem;
+    font-weight:500;
+    padding:2px 4px;
+    min-width:120px;
+    flex:1;
+    outline:none;
+    transition:border-color 0.2s;
+  }
+  .sig-info-row .value-input:focus { border-bottom-color:#666; }
+  .sig-info-row .value-input::placeholder { font-weight:400; font-size:0.7rem; color:#aaa; }
 
-  /* TTD - TANPA CONTAINER, LANGSUNG KE PUTIH */
+  .sig-info-row .value-fixed {
+    font-weight:500;
+    font-size:0.85rem;
+    padding:2px 4px;
+    min-width:120px;
+    flex:1;
+  }
+
+  /* TTD - UPLOAD */
   .ttd-upload-wrap {
     display:flex; 
     align-items:center; 
@@ -164,44 +194,6 @@
     padding:0;
   }
 
-  /* DATE - SAMPING (inline) TANPA WRAP */
-  .date-row {
-    display:flex;
-    align-items:center;
-    gap:6px;
-    margin-top:4px;
-    flex-wrap:nowrap;
-  }
-  .date-label {
-    font-size:0.8rem;
-    color:#555;
-    font-weight:400;
-    white-space:nowrap;
-  }
-  .date-input {
-    border:none; 
-    border-bottom:1px solid #000; 
-    background:transparent; 
-    font-family:'Outfit', sans-serif;
-    font-size:0.8rem;
-    padding:2px 0; 
-    min-width:100px;
-    max-width:180px;
-    outline:none; 
-    transition:border-color 0.2s;
-    display:inline-block;
-    width:auto;
-    flex:1;
-  }
-  .date-input:focus { border-bottom-color:#666; }
-  .date-input::placeholder { color:#aaa; font-size:0.7rem; }
-  .date-fixed {
-    font-size:0.8rem;
-    color:#000;
-    font-weight:500;
-    display:inline-block;
-  }
-
   /* ===== TOMBOL PRINT ===== */
   .save-section {
     margin:30px 0 10px;
@@ -242,7 +234,7 @@
   .footer-links i { color:rgba(255,255,255,0.6); width:14px; font-size:14px; }
   .copyright { text-align:center; padding-top:16px; border-top:1px solid rgba(255,255,255,0.08); color:rgba(255,255,255,0.4); font-size:11px; }
 
-/* ===== RESPONSIVE — TETAP 2 GRID SAMA RATA ===== */
+/* ===== RESPONSIVE ===== */
 @media (max-width:900px) {
   .footer-content { grid-template-columns:repeat(2,1fr); gap:24px 30px; }
   .signature-wrap { 
@@ -254,8 +246,9 @@
     min-width:0 !important;
   }
   .sig-line { width:100% !important; }
-  .sig-input { max-width:150px; font-size:0.8rem; width:100%; }
-  .date-input { min-width:80px; max-width:130px; font-size:0.7rem; width:auto; }
+  .sig-info-row .label { min-width:65px; font-size:0.75rem; }
+  .sig-info-row .value-input { min-width:80px; font-size:0.75rem; }
+  .sig-info-row .value-fixed { min-width:80px; font-size:0.75rem; }
   .ttd-fixed { max-height:60px; max-width:140px; }
   .ttd-preview { max-height:60px; max-width:140px; }
 }
@@ -274,14 +267,12 @@
     padding:0 4px !important;
   }
   .sig-col p { font-size:0.65rem; }
-  .sig-name { font-size:0.7rem; }
-  .sig-title { font-size:0.65rem; }
-  .sig-input { font-size:0.7rem; max-width:100px; width:100%; }
+  .sig-info-row .label { min-width:55px; font-size:0.65rem; }
+  .sig-info-row .value-input { min-width:60px; font-size:0.65rem; }
+  .sig-info-row .value-fixed { min-width:60px; font-size:0.65rem; }
+  .sig-info-row { gap:4px; }
   .ttd-fixed { max-height:45px; max-width:100px; }
   .ttd-preview { max-height:45px; max-width:100px; }
-  .date-input { min-width:60px; max-width:90px; font-size:0.6rem; }
-  .date-label { font-size:0.65rem; }
-  .date-row { gap:3px; flex-wrap:nowrap !important; }
   .sig-line { width:100% !important; }
   .ttd-upload-wrap label { font-size:0.6rem; padding:2px 6px; }
   .ttd-preview-placeholder { font-size:0.55rem; min-width:50px; padding:2px 4px; }
@@ -289,7 +280,6 @@
 
   /* ===== PRINT STYLES ===== */
   @media print {
-    /* HEADER & FOOTER HILANG */
     .page-header, .page-footer {
       display: none !important;
     }
@@ -302,17 +292,11 @@
       border:none !important;
       background:transparent !important;
     }
-    .sig-input {
-      border-bottom:1px solid #000 !important;
-    }
-    .date-input {
+    .sig-info-row .value-input {
       border-bottom:1px solid #000 !important;
     }
     .signature-wrap { 
       grid-template-columns:1fr 1fr !important; 
-    }
-    .date-row {
-      flex-wrap:nowrap !important;
     }
     .mou-title { border-bottom:2px solid #000 !important; }
     .sig-line { border-bottom:1px solid #000 !important; }
@@ -460,11 +444,18 @@
           
           <div class="sig-bottom">
             <div class="sig-line"></div>
-            <p class="sig-name">Geriel Rakhastra</p>
-            <p class="sig-title">Company Secretary</p>
-            <div class="date-row">
-              <span class="date-label">Date :</span>
-              <span class="date-fixed">August 3, 2026</span>
+            <!-- NAME, POSITION, DATE — VERTICAL KE BAWAH, ISIAN DI SAMPING -->
+            <div class="sig-info-row">
+              <span class="label">Name:</span>
+              <span class="value-fixed">Geriel Rakhastra</span>
+            </div>
+            <div class="sig-info-row">
+              <span class="label">Position:</span>
+              <span class="value-fixed">Company Secretary</span>
+            </div>
+            <div class="sig-info-row">
+              <span class="label">Date:</span>
+              <span class="value-fixed">August 3, 2026</span>
             </div>
           </div>
         </div>
@@ -486,11 +477,18 @@
           
           <div class="sig-bottom">
             <div class="sig-line"></div>
-            <input type="text" class="sig-input" id="signatory-name" placeholder="Signatory Name" style="margin-top:2px;" />
-            <input type="text" class="sig-input" id="signatory-title" placeholder="Title / Position" style="margin-top:2px; font-weight:400; font-size:0.8rem;" />
-            <div class="date-row" style="display:flex; align-items:center; gap:6px; margin-top:4px; flex-wrap:nowrap;">
-              <span class="date-label" style="font-size:0.8rem; color:#555; font-weight:400; white-space:nowrap;">Date :</span>
-              <input type="text" class="date-input" placeholder="Enter date" style="border:none; border-bottom:1px solid #000; background:transparent; font-family:'Outfit', sans-serif; font-size:0.8rem; padding:2px 0; min-width:100px; max-width:180px; outline:none; transition:border-color 0.2s; display:inline-block; width:auto; flex:1;" />
+            <!-- NAME, POSITION, DATE — VERTICAL KE BAWAH, ISIAN DI SAMPING (input) -->
+            <div class="sig-info-row">
+              <span class="label">Name:</span>
+              <input type="text" class="value-input" id="signatory-name" placeholder="Full Name" />
+            </div>
+            <div class="sig-info-row">
+              <span class="label">Position:</span>
+              <input type="text" class="value-input" id="signatory-title" placeholder="Position" />
+            </div>
+            <div class="sig-info-row">
+              <span class="label">Date:</span>
+              <input type="text" class="value-input" placeholder="Date" />
             </div>
           </div>
         </div>
