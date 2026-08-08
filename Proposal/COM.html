@@ -107,7 +107,7 @@
       cursor: pointer;
     }
 
-    /* TOMBOL BAHASA - LANGSUNG ICON GLOBE HITAM */
+    /* TOMBOL BAHASA */
     .lang-btn {
       background: transparent;
       border: none;
@@ -131,7 +131,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px 30px 20px;
+      padding: 30px 20px 20px 20px;
       width: 100%;
     }
     .page-content {
@@ -215,7 +215,7 @@
       text-decoration: none !important;
     }
 
-    /* CAMPAIGN TAGLINE - ITALIC */
+    /* CAMPAIGN TAGLINE */
     .campaign-tagline {
       text-align: center;
       font-size: 1.1rem;
@@ -355,6 +355,116 @@
       background: #cccccc;
     }
 
+    /* SLIDE CONTAINER */
+    .slide-container {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 12px auto 8px;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #f5f5f5;
+    }
+
+    .slide-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    .slide-item {
+      flex: 0 0 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 12px;
+      background: #fff;
+      min-height: 240px;
+    }
+
+    .slide-item img {
+      max-width: 100%;
+      max-height: 50vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .slide-caption {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: #555;
+      text-align: center;
+      font-weight: 400;
+      max-width: 90%;
+    }
+
+    /* Tombol slide di luar container */
+    .slide-nav-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 6px 0 10px;
+    }
+
+    .slide-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #000;
+      color: #fff;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    }
+    .slide-btn:hover {
+      transform: scale(1.05);
+      background: #1a1a1a;
+    }
+    .slide-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .slide-btn i {
+      font-size: 16px;
+    }
+
+    .slide-section-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #333;
+      margin: 6px 0 2px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    /* Product credit list */
+    .product-credits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 24px;
+      margin: 8px 0 4px;
+      font-size: 0.9rem;
+      color: #333;
+    }
+    .product-credits span {
+      display: block;
+      padding: 2px 0;
+    }
+    .product-credits .label {
+      font-weight: 600;
+    }
+
     /* FOOTER */
     .page-footer {
       background: #000000;
@@ -473,7 +583,7 @@
         font-size: 0.95rem;
       }
       .page-body {
-        padding: 30px 10px 20px 10px;
+        padding: 24px 10px 16px 10px;
       }
       .nav-btn-wrap {
         gap: 14px;
@@ -516,6 +626,26 @@
       }
       .rate-table th, .rate-table td {
         padding: 5px 8px;
+      }
+      .slide-item {
+        min-height: 180px;
+        padding: 8px;
+      }
+      .slide-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
+      }
+      .slide-btn i {
+        font-size: 14px;
+      }
+      .product-credits {
+        grid-template-columns: 1fr;
+        gap: 2px;
+        font-size: 0.8rem;
+      }
+      .slide-section-label {
+        font-size: 0.8rem;
       }
     }
 
@@ -571,7 +701,7 @@
         margin-bottom: 12px;
       }
       .page-body {
-        padding: 24px 8px 16px 8px;
+        padding: 20px 8px 12px 8px;
       }
       .proposal-title {
         font-size: 1.5rem;
@@ -596,11 +726,26 @@
       .color-palette-row {
         gap: 10px 14px;
       }
+      .slide-item {
+        min-height: 140px;
+        padding: 6px;
+      }
+      .slide-caption {
+        font-size: 0.7rem;
+      }
+      .slide-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 13px;
+      }
+      .slide-btn i {
+        font-size: 12px;
+      }
     }
 
     @media (max-width: 480px) {
       .page-body {
-        padding: 20px 6px 12px 6px;
+        padding: 16px 6px 10px 6px;
       }
       .proposal-title {
         font-size: 1.3rem;
@@ -668,6 +813,28 @@
       }
       .rate-table th, .rate-table td {
         padding: 4px 6px;
+      }
+      .slide-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 11px;
+      }
+      .slide-btn i {
+        font-size: 10px;
+      }
+      .slide-item {
+        min-height: 110px;
+        padding: 4px;
+      }
+      .product-credits {
+        font-size: 0.7rem;
+      }
+      .slide-section-label {
+        font-size: 0.7rem;
+      }
+      .slide-caption {
+        font-size: 0.65rem;
+        margin-top: 4px;
       }
     }
   </style>
@@ -1240,7 +1407,7 @@
 </div>
 
 <!-- ============================================================ -->
-<!-- SESI 6: CLOSING (Page 6) -->
+<!-- SESI 6: PRODUCTS (Page 6) -->
 <!-- ============================================================ -->
 <div class="page" id="page6">
   <div class="page-header">
@@ -1259,6 +1426,121 @@
       <!-- ENGLISH -->
       <div id="contentEN6">
         <h1 class="proposal-title">Kazine Proposal</h1>
+        <div class="proposal-section">
+          <h3>6. Products</h3>
+        </div>
+
+        <!-- CONTAINER PRODUK (8 slide) -->
+        <div class="slide-section-label">— Product Gallery —</div>
+        <div class="slide-container" id="productSlideContainer">
+          <div class="slide-track" id="productSlideTrack">
+            <div class="slide-item"><img src="Choosic.png" alt="Choosic 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2220%22 fill=%22%23999%22%3EChoosic.png%3C/text%3E%3C/svg%3E'"><div class="slide-caption">Choosic</div></div>
+            <div class="slide-item"><img src="Choosic2.png" alt="Choosic 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2220%22 fill=%22%23999%22%3EChoosic2.png%3C/text%3E%3C/svg%3E'"><div class="slide-caption">Choosic</div></div>
+            <div class="slide-item"><img src="Chozy.png" alt="Chozy 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2220%22 fill=%22%23999%22%3EChozy.png%3C/text%3E%3C/svg%3E'"><div class="slide-caption">Chozy</div></div>
+            <div class="slide-item"><img src="Chozy2.png" alt="Chozy 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2220%22 fill=%22%23999%22%3EChozy2.png%3C/text%3E%3C/svg%3E'"><div class="slide-caption">Chozy</div></div>
+            <div class="slide-item"><img src="Choffee.png" alt="Choffee 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2220%22 fill=%22%23999%22%3EChoffee.png%3C/text%3E%3C/svg%3E'"><div class="slide-caption">Choffee</div></div>
+            <div class="slide-item"><img src="Choffee2.png" alt="Choffee 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2220%22 fill=%22%23999%22%3EChoffee2.png%3C/text%3E%3C/svg%3E'"><div class="slide-caption">Choffee</div></div>
+            <div class="slide-item"><img src="Chool.png" alt="Chool 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2220%22 fill=%22%23999%22%3EChool.png%3C/text%3E%3C/svg%3E'"><div class="slide-caption">Chool</div></div>
+            <div class="slide-item"><img src="Chool2.png" alt="Chool 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2220%22 fill=%22%23999%22%3EChool2.png%3C/text%3E%3C/svg%3E'"><div class="slide-caption">Chool</div></div>
+          </div>
+        </div>
+        <div class="slide-nav-wrap">
+          <button class="slide-btn" id="productPrev"><i class="fas fa-chevron-left"></i></button>
+          <button class="slide-btn" id="productNext"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+                  <div class="product-credits">
+            <span><span class="label">Choosic & Chozy</span> Design by Shirinazar Arunika Yasminn</span>
+            <span><span class="label">Choffee</span> Design by Ashraffi Yudha &amp; Lucius Vincent</span>
+            <span><span class="label">Chool</span> Design by Lucius Vincent</span>
+                  </div>
+
+        <!-- CONTAINER PACKAGE (2 slide) -->
+        <div class="slide-section-label" style="margin-top:14px;">— Package &amp; Shopping Bag —</div>
+        <div class="slide-container" id="packageSlideContainer">
+          <div class="slide-track" id="packageSlideTrack">
+            <div class="slide-item"><img src="Package.png" alt="Package" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2220%22 fill=%22%23999%22%3EPackage.png%3C/text%3E%3C/svg%3E'"><div class="slide-caption">Package</div></div>
+            <div class="slide-item"><img src="ShoppingBag.png" alt="Shopping Bag" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22400%22 height=%22300%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2220%22 fill=%22%23999%22%3EShoppingBag.png%3C/text%3E%3C/svg%3E'"><div class="slide-caption">Shopping Bag</div></div>
+          </div>
+        </div>
+        <div class="slide-nav-wrap">
+          <button class="slide-btn" id="packagePrev"><i class="fas fa-chevron-left"></i></button>
+          <button class="slide-btn" id="packageNext"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+          <!-- KREDIT PACKAGE -->
+        <div class="package-credit" style="text-align:center; margin: 8px 0 4px; font-size:0.9rem; color:#333;">
+          All package handle by <a href="https://twitter.com/Choket_" target="_blank" style="color:#000; font-weight:600; text-decoration:none; border-bottom:1px solid #000;">CHOKET (Kachoo Paket)</a>
+        </div>
+        
+        <div class="page-number">PAGE 6</div>
+        <div class="nav-btn-wrap">
+          <button class="nav-circle back" onclick="goToPage('page5')"><i class="fas fa-arrow-left"></i></button>
+          <button class="nav-circle" onclick="goToPage('page7')"><i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KACHOO</h3>
+          <p>Kachoo is a digital media and news company that develops projects including magazines, news platforms, and integrated digital systems.</p>
+          <div class="social-links">
+            <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Platforms</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-book"></i><a href="https://thekachoo.github.io/Home/kafkapages.html" target="_blank">KAFKAPAGES</a></li>
+            <li><i class="fas fa-tshirt"></i><a href="https://thekachoo.github.io/KAZINE/COLLECTION.html" target="_blank">KAZINE</a></li>
+            <li><i class="fas fa-camera"></i><a href="https://thekachoo.github.io/KABOOM/" target="_blank">KABOOM</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li>
+            <li><span class="x-logo" style="color:#000;background:#fff;border-radius:3px;padding:0 4px;font-size:12px;margin-right:4px;">𝕏</span><a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo</a></li>
+            <li><i class="fas fa-envelope"></i><a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Address</h3>
+          <ul class="footer-links">
+            <li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i>Jenderal Sudirman Ave,<br />Lots 61–62, South Jakarta</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">&copy; 2026 The Kachoo. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SESI 7: CLOSING (Page 7) -->
+<!-- ============================================================ -->
+<div class="page" id="page7">
+  <div class="page-header">
+    <div class="container">
+      <div class="navbar">
+        <img class="logo-img" src="https://thekachoo.github.io/Home/logo-thekachoo.png" alt="The Kachoo">
+        <button class="lang-btn" id="langToggle7" aria-label="Toggle language EN/ID">
+          <i class="fas fa-globe"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="page-body">
+    <div class="container page-content">
+      <!-- ENGLISH -->
+      <div id="contentEN7">
+        <h1 class="proposal-title">Kazine Proposal</h1>
         <div class="proposal-section" style="margin-top: 20px; padding-top: 10px;">
           <p style="font-size: 1.3rem; font-weight: 500; text-align: center;">We turn Ideas into attention,<br>Let's create something together.</p>
           <p style="text-align: center; margin-top: 16px; font-size: 1.05rem;">— Kazine by Kachoo —</p>
@@ -1266,7 +1548,7 @@
       </div>
 
       <!-- INDONESIAN -->
-      <div id="contentID6" style="display:none;">
+      <div id="contentID7" style="display:none;">
         <h1 class="proposal-title">Proposal Kazine</h1>
         <div class="proposal-section" style="margin-top: 20px; padding-top: 10px;">
           <p style="font-size: 1.3rem; font-weight: 500; text-align: center;">Kami mengubah Ide menjadi perhatian,<br>Mari ciptakan sesuatu bersama.</p>
@@ -1274,9 +1556,9 @@
         </div>
       </div>
 
-      <div class="page-number">PAGE 6</div>
+      <div class="page-number">PAGE 7</div>
       <div class="nav-btn-wrap">
-        <button class="nav-circle back" onclick="goToPage('page5')"><i class="fas fa-arrow-left"></i></button>
+        <button class="nav-circle back" onclick="goToPage('page6')"><i class="fas fa-arrow-left"></i></button>
         <div style="width:52px;"></div>
       </div>
     </div>
@@ -1344,7 +1626,8 @@
     { toggle: 'langToggle3', en: 'contentEN3', id: 'contentID3' },
     { toggle: 'langToggle4', en: 'contentEN4', id: 'contentID4' },
     { toggle: 'langToggle5', en: 'contentEN5', id: 'contentID5' },
-    { toggle: 'langToggle6', en: 'contentEN6', id: 'contentID6' }
+    { toggle: 'langToggle6', en: 'contentEN6', id: 'contentID6' },
+    { toggle: 'langToggle7', en: 'contentEN7', id: 'contentID7' }
   ];
 
   langConfigs.forEach(cfg => {
@@ -1367,6 +1650,49 @@
       });
     }
   });
+
+  // SLIDE FUNGSI GENERIK
+  function initSlide(containerId, trackId, prevId, nextId) {
+    const track = document.getElementById(trackId);
+    const prevBtn = document.getElementById(prevId);
+    const nextBtn = document.getElementById(nextId);
+    const items = track ? track.children : [];
+    const total = items.length;
+    let currentIndex = 0;
+
+    if (!track || total === 0) return;
+
+    function updateSlide() {
+      const percent = -currentIndex * 100;
+      track.style.transform = 'translateX(' + percent + '%)';
+      if (prevBtn) prevBtn.disabled = (currentIndex === 0);
+      if (nextBtn) nextBtn.disabled = (currentIndex === total - 1);
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateSlide();
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        if (currentIndex < total - 1) {
+          currentIndex++;
+          updateSlide();
+        }
+      });
+    }
+
+    updateSlide();
+  }
+
+  // Inisialisasi kedua slider
+  initSlide('productSlideContainer', 'productSlideTrack', 'productPrev', 'productNext');
+  initSlide('packageSlideContainer', 'packageSlideTrack', 'packagePrev', 'packageNext');
 </script>
 </body>
-</html>
+  </html>
