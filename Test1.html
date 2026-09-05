@@ -1154,7 +1154,8 @@
             <div class="variant-modal-title" id="variantTitle">CHOOSIC</div>
             <div class="variant-modal-subtitle" id="variantSubtitle">Select your variant</div>
             <div id="variantOptions"></div>
-            <button class="variant-modal-add-btn" id="variantAddBtn">Add to Bag</button>
+            <!-- TOMBOL PAKAI ONCLICK LANGSUNG -->
+            <button class="variant-modal-add-btn" id="variantAddBtn" onclick="addVariantToCart()">Add to Bag</button>
         </div>
     </div>
 
@@ -1451,30 +1452,11 @@
 
     <script>
     // ========== STATE ==========
-    let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
-    let isProcessing = false;
-    let currentVariantData = null;
-
-    // ========== DOM REFS ==========
-    const cartModal = document.getElementById('cartModal');
-    const cartOverlay = document.getElementById('cartOverlay');
-    const cartCount = document.getElementById('cartCount');
-    const cartItems = document.getElementById('cartItems');
-    const cartTotal = document.getElementById('cartTotal');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    const openCartBtn = document.getElementById('openCart');
-    const closeCartBtn = document.getElementById('closeCart');
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mainNav = document.getElementById('mainNav');
-    const variantModal = document.getElementById('variantModal');
-    const variantModalClose = document.getElementById('variantModalClose');
-    const variantTitle = document.getElementById('variantTitle');
-    const variantSubtitle = document.getElementById('variantSubtitle');
-    const variantOptions = document.getElementById('variantOptions');
-    const variantAddBtn = document.getElementById('variantAddBtn');
+    var cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
+    var currentVariantData = null;
 
     // ========== VARIANT CONFIGS ==========
-    const variantConfigs = {
+    var variantConfigs = {
         choosic: {
             title: 'Choosic Headphone',
             subtitle: 'Select your color',
@@ -1525,86 +1507,34 @@
         }
     };
 
-    // ========== VARIANT MODAL ==========
-    function showVariantModal(variantKey) {
-        const config = variantConfigs[variantKey];
-        if (!config) {
-            console.error('Variant config not found for:', variantKey);
-            return;
-        }
-
-        currentVariantData = {
-            key: variantKey,
-            config: config,
-            selectedId: config.options[0].id
-        };
-
-        variantTitle.textContent = config.title;
-        variantSubtitle.textContent = config.subtitle;
-
-        let html = '';
-        config.options.forEach((opt, index) => {
-            const checked = index === 0 ? 'checked' : '';
-            html += `
-                <div class="variant-option ${index === 0 ? 'selected' : ''}" data-id="${opt.id}">
-                    <input type="radio" name="variant" value="${opt.id}" ${checked}>
-                    <label>${opt.label}</label>
-                    <span class="variant-price">$${opt.price}</span>
-                </div>
-            `;
-        });
-        variantOptions.innerHTML = html;
-
-        // Add click listeners to variant options
-        document.querySelectorAll('.variant-option').forEach(el => {
-            el.addEventListener('click', function(e) {
-                document.querySelectorAll('.variant-option').forEach(o => o.classList.remove('selected'));
-                this.classList.add('selected');
-                const radio = this.querySelector('input[type="radio"]');
-                if (radio) radio.checked = true;
-                currentVariantData.selectedId = this.dataset.id;
-            });
-        });
-
-        variantModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function hideVariantModal() {
-        variantModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        currentVariantData = null;
-    }
-
-    // ========== VARIANT MODAL EVENTS ==========
-    variantModalClose.addEventListener('click', hideVariantModal);
-    
-    variantModal.addEventListener('click', function(e) {
-        if (e.target === this) hideVariantModal();
-    });
-
-    // ========== ADD TO CART FROM VARIANT ==========
-    variantAddBtn.addEventListener('click', function(e) {
-        e.preventDefault();
+    // ========== FUNGSI GLOBAL UNTUK ADD TO CART ==========
+    // INI YANG DIPANGGIL OLEH ONCLICK
+    window.addVariantToCart = function() {
+        console.log('addVariantToCart dipanggil!');
+        console.log('currentVariantData:', currentVariantData);
         
         if (!currentVariantData) {
             showNotification('Error: No variant selected');
             return;
         }
 
-        const config = currentVariantData.config;
-        const selectedOption = config.options.find(o => o.id === currentVariantData.selectedId);
+        var config = currentVariantData.config;
+        var selectedOption = config.options.find(function(o) {
+            return o.id === currentVariantData.selectedId;
+        });
         
         if (!selectedOption) {
             showNotification('Error: Please select a variant');
             return;
         }
 
-        const productTitle = config.title + ' - ' + selectedOption.label;
-        const productId = selectedOption.id;
-        const productPrice = selectedOption.price;
+        var productTitle = config.title + ' - ' + selectedOption.label;
+        var productId = selectedOption.id;
+        var productPrice = selectedOption.price;
 
-        const existingItem = cart.find(item => item.id === productId);
+        var existingItem = cart.find(function(item) {
+            return item.id === productId;
+        });
 
         if (existingItem) {
             existingItem.quantity = (existingItem.quantity || 1) + 1;
@@ -1622,12 +1552,74 @@
         localStorage.setItem('kazineCart', JSON.stringify(cart));
         updateCartDisplay();
         hideVariantModal();
-    });
+    };
+
+    // ========== VARIANT MODAL ==========
+    function showVariantModal(variantKey) {
+        console.log('showVariantModal dipanggil untuk:', variantKey);
+        
+        var config = variantConfigs[variantKey];
+        if (!config) {
+            console.error('Variant config not found for:', variantKey);
+            return;
+        }
+
+        currentVariantData = {
+            key: variantKey,
+            config: config,
+            selectedId: config.options[0].id
+        };
+
+        document.getElementById('variantTitle').textContent = config.title;
+        document.getElementById('variantSubtitle').textContent = config.subtitle;
+
+        var html = '';
+        config.options.forEach(function(opt, index) {
+            var checked = index === 0 ? 'checked' : '';
+            html += `
+                <div class="variant-option ${index === 0 ? 'selected' : ''}" data-id="${opt.id}">
+                    <input type="radio" name="variant" value="${opt.id}" ${checked}>
+                    <label>${opt.label}</label>
+                    <span class="variant-price">$${opt.price}</span>
+                </div>
+            `;
+        });
+        document.getElementById('variantOptions').innerHTML = html;
+
+        // Add click listeners to variant options
+        document.querySelectorAll('.variant-option').forEach(function(el) {
+            el.addEventListener('click', function(e) {
+                document.querySelectorAll('.variant-option').forEach(function(o) {
+                    o.classList.remove('selected');
+                });
+                this.classList.add('selected');
+                var radio = this.querySelector('input[type="radio"]');
+                if (radio) radio.checked = true;
+                currentVariantData.selectedId = this.dataset.id;
+                console.log('Variant selected:', currentVariantData.selectedId);
+            });
+        });
+
+        document.getElementById('variantModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function hideVariantModal() {
+        document.getElementById('variantModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+        currentVariantData = null;
+    }
 
     // ========== CART DISPLAY ==========
     function updateCartDisplay() {
-        const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
-        cartCount.textContent = totalItems;
+        var totalItems = cart.reduce(function(total, item) {
+            return total + (item.quantity || 1);
+        }, 0);
+        document.getElementById('cartCount').textContent = totalItems;
+        
+        var cartItems = document.getElementById('cartItems');
+        var checkoutBtn = document.getElementById('checkoutBtn');
+        var cartTotal = document.getElementById('cartTotal');
         
         if (cart.length === 0) {
             cartItems.innerHTML = `
@@ -1643,11 +1635,11 @@
         
         checkoutBtn.style.display = 'block';
         
-        let total = 0;
-        let itemsHTML = '';
+        var total = 0;
+        var itemsHTML = '';
         
-        cart.forEach((item, index) => {
-            const itemTotal = parseFloat(item.price) * (item.quantity || 1);
+        cart.forEach(function(item, index) {
+            var itemTotal = parseFloat(item.price) * (item.quantity || 1);
             total += itemTotal;
             
             itemsHTML += `
@@ -1668,10 +1660,10 @@
         cartTotal.textContent = `$${total.toFixed(2)}`;
         
         // Remove item listeners
-        document.querySelectorAll('.remove-item').forEach(button => {
+        document.querySelectorAll('.remove-item').forEach(function(button) {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
-                const index = parseInt(this.getAttribute('data-index'));
+                var index = parseInt(this.getAttribute('data-index'));
                 cart.splice(index, 1);
                 localStorage.setItem('kazineCart', JSON.stringify(cart));
                 updateCartDisplay();
@@ -1682,15 +1674,15 @@
 
     // ========== NOTIFICATION ==========
     function showNotification(message) {
-        const existing = document.querySelector('.cart-notification');
+        var existing = document.querySelector('.cart-notification');
         if (existing) existing.remove();
         
-        const notification = document.createElement('div');
+        var notification = document.createElement('div');
         notification.className = 'cart-notification';
         notification.textContent = message;
         document.body.appendChild(notification);
         
-        setTimeout(() => {
+        setTimeout(function() {
             if (notification.parentNode) notification.remove();
         }, 2000);
     }
@@ -1700,37 +1692,27 @@
         event.preventDefault();
         event.stopPropagation();
         
-        if (isProcessing) return;
-        isProcessing = true;
-        
-        const button = event.currentTarget;
-        const variantKey = button.getAttribute('data-variant');
+        var button = event.currentTarget;
+        var variantKey = button.getAttribute('data-variant');
+        console.log('Add to Cart diklik, variant:', variantKey);
         
         if (variantKey && variantConfigs[variantKey]) {
             showVariantModal(variantKey);
-            isProcessing = false;
-            return;
         }
-        
-        isProcessing = false;
     }
 
-    // ========== INIT BUTTONS - DIPERBAIKI UNTUK DESKTOP ==========
+    // ========== INIT BUTTONS ==========
     function initializeAddToCartButtons() {
-        // Ambil semua tombol add to cart
-        const buttons = document.querySelectorAll('.add-to-cart-btn');
+        var buttons = document.querySelectorAll('.add-to-cart-btn');
+        console.log('Jumlah tombol Add to Cart:', buttons.length);
         
-        // Loop dan pasang event listener
         buttons.forEach(function(button) {
-            // Hapus event listener lama dengan clone
             var newButton = button.cloneNode(true);
             button.parentNode.replaceChild(newButton, button);
         });
         
-        // Pasang event listener baru
         document.querySelectorAll('.add-to-cart-btn').forEach(function(button) {
             button.addEventListener('click', handleAddToCart);
-            button.style.cursor = 'pointer';
         });
     }
 
@@ -1776,33 +1758,36 @@
 
     // ========== CART MODAL ==========
     function openCart() {
-        cartModal.classList.add('active');
-        cartOverlay.classList.add('active');
+        document.getElementById('cartModal').classList.add('active');
+        document.getElementById('cartOverlay').classList.add('active');
         document.body.style.overflow = 'hidden';
         updateCartDisplay();
     }
 
     function closeCart() {
-        cartModal.classList.remove('active');
-        cartOverlay.classList.remove('active');
+        document.getElementById('cartModal').classList.remove('active');
+        document.getElementById('cartOverlay').classList.remove('active');
         document.body.style.overflow = 'auto';
     }
 
-    openCartBtn.addEventListener('click', function(e) {
+    document.getElementById('openCart').addEventListener('click', function(e) {
         e.preventDefault();
         openCart();
     });
     
-    closeCartBtn.addEventListener('click', function(e) {
+    document.getElementById('closeCart').addEventListener('click', function(e) {
         e.preventDefault();
         closeCart();
     });
     
-    cartOverlay.addEventListener('click', function() {
+    document.getElementById('cartOverlay').addEventListener('click', function() {
         closeCart();
     });
 
     // ========== MOBILE MENU ==========
+    var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    var mainNav = document.getElementById('mainNav');
+    
     if (mobileMenuBtn && mainNav) {
         mobileMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1822,8 +1807,15 @@
         });
     }
 
+    // ========== CLOSE VARIANT MODAL ==========
+    document.getElementById('variantModalClose').addEventListener('click', hideVariantModal);
+    
+    document.getElementById('variantModal').addEventListener('click', function(e) {
+        if (e.target === this) hideVariantModal();
+    });
+
     // ========== CHECKOUT ==========
-    checkoutBtn.addEventListener('click', function(e) {
+    document.getElementById('checkoutBtn').addEventListener('click', function(e) {
         e.preventDefault();
         if (cart.length === 0) {
             showNotification('Your cart is empty');
@@ -1876,14 +1868,15 @@
         });
     });
 
-    // ========== DOM READY ==========
+    // ========== INIT ==========
     function init() {
+        console.log('=== INITIALISASI KAZINE ===');
         initializeAddToCartButtons();
         initializeImageSliders();
         updateCartDisplay();
+        console.log('=== INITIALISASI SELESAI ===');
     }
 
-    // Jalankan saat DOM siap
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
