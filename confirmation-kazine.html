@@ -442,6 +442,24 @@
             color: #555555;
             margin-top: 6px;
         }
+
+        .delivery-message {
+            background: #F8F8F8;
+            padding: 18px 24px;
+            margin: 20px 0 10px;
+            border-left: 3px solid #000000;
+            font-size: 15px;
+            color: #111111;
+            text-align: left;
+        }
+
+        .delivery-message strong {
+            font-weight: 700;
+        }
+
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -477,6 +495,11 @@
                 <span id="discountText">Discount Applied</span>
             </div>
 
+            <!-- Delivery Message - shows based on delivery method -->
+            <div id="deliveryMessageContainer" class="delivery-message hidden">
+                <span id="deliveryMessageText"></span>
+            </div>
+
             <div class="admin-note">
                 <strong>ADMIN NOTE</strong><br>
                 Your order has been recorded in our system. The admin has been notified and will prepare your download links.
@@ -509,6 +532,10 @@
                     <div class="detail-group">
                         <h4>COUNTRY</h4>
                         <p id="customerCountry">-</p>
+                    </div>
+                    <div class="detail-group">
+                        <h4>DELIVERY METHOD</h4>
+                        <p id="deliveryMethod">-</p>
                     </div>
                 </div>
 
@@ -543,7 +570,8 @@
                 <a href="payment-kazine.html" class="btn btn-secondary">NEW ORDER</a>
             </div>
 
-            <div class="take-order-container">
+            <!-- Take Order - only shown for Pickup In Store -->
+            <div id="takeOrderContainer" class="take-order-container hidden">
                 <a href="CHOKET.html" class="btn-take-order">TAKE YOUR ORDER</a>
             </div>
         </div>
@@ -576,7 +604,27 @@
     function formatPaymentMethod(method) {
         if (method === 'chobank') return 'CHOBANK';
         if (method === 'qris') return 'QRIS';
+        if (method === 'other') return 'OTHER';
         return 'CHOBANK';
+    }
+
+    function formatDeliveryMethod(method) {
+        if (method === 'shipping') return 'Ship to Address';
+        if (method === 'pickup') return 'Pickup In Store';
+        return 'Ship to Address';
+    }
+
+    function formatDate12Hour(date) {
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const month = months[date.getMonth()];
+        const day = date.getDate();
+        const year = date.getFullYear();
+        let hours = date.getHours();
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        return `${month} ${day}, ${year} at ${hours}:${minutes} ${ampm}`;
     }
 
     let currentOrderData = null;
@@ -592,9 +640,7 @@
         const orderDate = orderData.paymentDate ? new Date(orderData.paymentDate) : new Date();
         const orderDateEl = document.getElementById('orderDate');
         if (orderDateEl) {
-            orderDateEl.textContent = orderDate.toLocaleDateString('en-US', {
-                year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
-            });
+            orderDateEl.textContent = formatDate12Hour(orderDate);
         }
         
         if (orderData.customer) {
@@ -611,6 +657,27 @@
         const paymentMethodValue = orderData.paymentMethod || 'chobank';
         const paymentMethodEl = document.getElementById('paymentMethod');
         if (paymentMethodEl) paymentMethodEl.textContent = formatPaymentMethod(paymentMethodValue);
+        
+        // Delivery Method
+        const deliveryMethodValue = orderData.deliveryMethod || 'shipping';
+        const deliveryMethodEl = document.getElementById('deliveryMethod');
+        if (deliveryMethodEl) deliveryMethodEl.textContent = formatDeliveryMethod(deliveryMethodValue);
+        
+        // Handle delivery message and Take Order button
+        const deliveryMessageContainer = document.getElementById('deliveryMessageContainer');
+        const deliveryMessageText = document.getElementById('deliveryMessageText');
+        const takeOrderContainer = document.getElementById('takeOrderContainer');
+        
+        if (deliveryMethodValue === 'pickup') {
+            // Pickup In Store - show Take Order button
+            takeOrderContainer.classList.remove('hidden');
+            deliveryMessageContainer.classList.add('hidden');
+        } else {
+            // Shipping - show delivery message, hide Take Order button
+            takeOrderContainer.classList.add('hidden');
+            deliveryMessageContainer.classList.remove('hidden');
+            deliveryMessageText.innerHTML = 'Your order will be shipped within 3 - 5 business days via <strong>CHOKET</strong> by Kachoo.';
+        }
         
         const discountDiv = document.getElementById('discountApplied');
         const discountRow = document.getElementById('discountRow');
@@ -690,6 +757,7 @@
         
         const orderDate = currentOrderData.paymentDate ? new Date(currentOrderData.paymentDate) : new Date();
         const paymentDisplay = formatPaymentMethod(currentOrderData.paymentMethod || 'chobank');
+        const deliveryDisplay = formatDeliveryMethod(currentOrderData.deliveryMethod || 'shipping');
         
         let itemsHtml = '';
         if (currentOrderData.items && currentOrderData.items.length > 0) {
@@ -728,10 +796,10 @@
                 </div>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
-                    <div><div style="font-size: 11px; color: #777;">ORDER DATE</div><div style="font-weight: 600;">${orderDate.toLocaleString()}</div></div>
+                    <div><div style="font-size: 11px; color: #777;">ORDER DATE</div><div style="font-weight: 600;">${formatDate12Hour(orderDate)}</div></div>
                     <div><div style="font-size: 11px; color: #777;">PAYMENT</div><div style="font-weight: 600;">${paymentDisplay}</div></div>
                     <div><div style="font-size: 11px; color: #777;">CUSTOMER</div><div style="font-weight: 600;">${escapeHtml(currentOrderData.customer?.fullName || 'Customer')}</div></div>
-                    <div><div style="font-size: 11px; color: #777;">EMAIL</div><div style="font-weight: 600;">${escapeHtml(currentOrderData.customer?.email || '-')}</div></div>
+                    <div><div style="font-size: 11px; color: #777;">DELIVERY</div><div style="font-weight: 600;">${deliveryDisplay}</div></div>
                 </div>
                 
                 <div style="margin-bottom: 24px;">
@@ -821,4 +889,4 @@
     });
 </script>
 </body>
-    </html>
+</html>
