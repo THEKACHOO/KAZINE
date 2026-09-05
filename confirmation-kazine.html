@@ -28,56 +28,44 @@
             padding: 0 24px;
         }
 
-        .header {
-            background: #FFFFFF;
-            padding: 32px 0;
-            border-bottom: 1px solid #000000;
+        header {
+            background: #ffffff;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .header-inner {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 24px;
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .logo-area {
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 16px;
         }
 
-        .logo-placeholder {
-            width: 48px;
-            height: 48px;
-            border: 1.5px solid #000000;
+        .logo-img-placeholder {
+            width: 100px;
+            height: 80px;
+            border-radius: 12px;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #FFFFFF;
+            flex-shrink: 0;
         }
 
-        .logo-placeholder span {
-            font-weight: 800;
-            font-size: 14px;
-            letter-spacing: 1px;
-            color: #000000;
-        }
-
-        .logo-text h1 {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: #000000;
-        }
-
-        .logo-text p {
-            font-size: 11px;
-            color: #555555;
-            letter-spacing: 1px;
-            margin-top: 2px;
+        .logo-img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .confirmation-section {
@@ -465,17 +453,13 @@
 <body>
 
 <header class="header">
-    <div class="header-inner">
-        <div class="logo-area">
-            <div class="logo-placeholder">
-                <span>KZ</span>
-            </div>
-            <div class="logo-text">
-                <h1>KAZINE</h1>
-                <p>ORDER CONFIRMATION</p>
+   <div class="container header-container">
+            <div class="logo-container">
+                <div class="logo-img-placeholder">
+                    <img src="https://thekachoo.github.io/KAZINE/KAZINE.png" alt="KAZINE Logo">
+                </div>
             </div>
         </div>
-    </div>
 </header>
 
 <main class="container">
