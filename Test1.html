@@ -1473,7 +1473,7 @@
 
     const variantConfigs = {
         choosic: {
-            title: 'Headphone',
+            title: 'Choosic Headphone',
             subtitle: 'Select your color',
             options: [
                 { id: 'A1', label: 'Graphite Black', price: 480, img: 'CGB1.png' },
@@ -1481,7 +1481,7 @@
             ]
         },
         chozy: {
-            title: 'Mug',
+            title: 'Chozy Mug',
             subtitle: 'Select your color',
             options: [
                 { id: 'B1', label: 'Black', price: 30, img: 'MUGB1.png' },
@@ -1489,7 +1489,7 @@
             ]
         },
         large: {
-            title: 'Large',
+            title: 'Large Tumbler',
             subtitle: 'Select your color',
             options: [
                 { id: 'C1', label: 'Black', price: 10, img: 'Chool1.png' },
@@ -1497,7 +1497,7 @@
             ]
         },
         stainless: {
-            title: 'Stainless',
+            title: 'Stainless Tumbler',
             subtitle: 'Select your color',
             options: [
                 { id: 'C3', label: 'Black', price: 6, img: 'Chool3.png' },
@@ -1514,17 +1514,21 @@
             ]
         },
         capsule: {
-            title: 'Choffee',
-            subtitle: 'Espresso',
+            title: 'Capsule Choffee',
+            subtitle: 'Select your variant',
             options: [
                 { id: 'D4', label: 'Espresso', price: 4, img: 'Choffee4.png' }
             ]
         }
     };
 
+    // ========== VARIANT MODAL FUNCTIONS ==========
     function showVariantModal(variantKey) {
         const config = variantConfigs[variantKey];
-        if (!config) return;
+        if (!config) {
+            console.error('Variant config not found for:', variantKey);
+            return;
+        }
 
         currentVariantData = {
             key: variantKey,
@@ -1548,11 +1552,17 @@
         });
         variantOptions.innerHTML = html;
 
+        // Add click listeners to variant options
         document.querySelectorAll('.variant-option').forEach(el => {
-            el.addEventListener('click', function() {
+            el.addEventListener('click', function(e) {
+                // Remove selected class from all
                 document.querySelectorAll('.variant-option').forEach(o => o.classList.remove('selected'));
+                // Add selected class to clicked
                 this.classList.add('selected');
-                this.querySelector('input[type="radio"]').checked = true;
+                // Check the radio button
+                const radio = this.querySelector('input[type="radio"]');
+                if (radio) radio.checked = true;
+                // Update selectedId
                 currentVariantData.selectedId = this.dataset.id;
             });
         });
@@ -1567,27 +1577,41 @@
         currentVariantData = null;
     }
 
+    // ========== VARIANT MODAL EVENT LISTENERS ==========
     variantModalClose.addEventListener('click', hideVariantModal);
+    
     variantModal.addEventListener('click', function(e) {
         if (e.target === this) hideVariantModal();
     });
 
-    variantAddBtn.addEventListener('click', function() {
-        if (!currentVariantData) return;
+    // ========== ADD TO CART FROM VARIANT MODAL ==========
+    variantAddBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        if (!currentVariantData) {
+            showNotification('Error: No variant selected');
+            return;
+        }
 
         const config = currentVariantData.config;
         const selectedOption = config.options.find(o => o.id === currentVariantData.selectedId);
-        if (!selectedOption) return;
+        
+        if (!selectedOption) {
+            showNotification('Error: Please select a variant');
+            return;
+        }
 
+        // Create product name with variant
         const productTitle = config.title + ' - ' + selectedOption.label;
         const productId = selectedOption.id;
         const productPrice = selectedOption.price;
 
+        // Check if item already exists in cart
         const existingItem = cart.find(item => item.id === productId);
 
         if (existingItem) {
             existingItem.quantity = (existingItem.quantity || 1) + 1;
-            showNotification(`${productTitle} quantity updated`);
+            showNotification(productTitle + ' quantity updated');
         } else {
             cart.push({
                 id: productId,
@@ -1595,27 +1619,36 @@
                 price: productPrice,
                 quantity: 1
             });
-            showNotification(`${productTitle} added to cart`);
+            showNotification(productTitle + ' added to cart');
         }
 
+        // Save to localStorage
         localStorage.setItem('kazineCart', JSON.stringify(cart));
+        
+        // Update cart display
         updateCartDisplay();
+        
+        // Close modal
         hideVariantModal();
     });
 
+    // ========== CART FUNCTIONS ==========
     function updateCartDisplay() {
         const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
         cartCount.textContent = totalItems;
         
         if (cart.length === 0) {
-            emptyCart.style.display = 'flex';
+            cartItems.innerHTML = `
+                <div class="empty-cart" id="emptyCart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <p>Your bag is empty</p>
+                </div>
+            `;
             checkoutBtn.style.display = 'none';
             cartTotal.textContent = '$0.00';
-            cartItems.innerHTML = '<div class="empty-cart" id="emptyCart"><i class="fas fa-shopping-bag"></i><p>Your bag is empty</p></div>';
             return;
         }
         
-        emptyCart.style.display = 'none';
         checkoutBtn.style.display = 'block';
         
         let total = 0;
@@ -1642,6 +1675,7 @@
         cartItems.innerHTML = itemsHTML;
         cartTotal.textContent = `$${total.toFixed(2)}`;
         
+        // Add remove item listeners
         document.querySelectorAll('.remove-item').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1655,6 +1689,7 @@
     }
 
     function showNotification(message) {
+        // Remove existing notification
         const existing = document.querySelector('.cart-notification');
         if (existing) existing.remove();
         
@@ -1668,6 +1703,7 @@
         }, 2000);
     }
 
+    // ========== ADD TO CART BUTTON HANDLER ==========
     function handleAddToCart(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -1678,7 +1714,8 @@
         const button = event.currentTarget;
         const variantKey = button.getAttribute('data-variant');
         
-        if (variantKey) {
+        if (variantKey && variantConfigs[variantKey]) {
+            // Show variant modal
             showVariantModal(variantKey);
             isProcessing = false;
             return;
@@ -1688,17 +1725,20 @@
     }
 
     function initializeAddToCartButtons() {
+        // Clone and replace to remove old listeners
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
             const newButton = button.cloneNode(true);
             button.parentNode.replaceChild(newButton, button);
         });
         
+        // Add new listeners
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
             button.addEventListener('click', handleAddToCart);
             button.style.cursor = 'pointer';
         });
     }
 
+    // ========== IMAGE SLIDERS ==========
     function initializeImageSliders() {
         document.querySelectorAll('.product-card').forEach(card => {
             const slides = card.querySelector('.product-slides');
@@ -1738,6 +1778,7 @@
         });
     }
 
+    // ========== CART MODAL ==========
     function openCart() {
         cartModal.classList.add('active');
         cartOverlay.classList.add('active');
@@ -1751,49 +1792,86 @@
         document.body.style.overflow = 'auto';
     }
 
-    openCartBtn.addEventListener('click', (e) => { e.preventDefault(); openCart(); });
-    closeCartBtn.addEventListener('click', (e) => { e.preventDefault(); closeCart(); });
-    cartOverlay.addEventListener('click', () => closeCart());
+    openCartBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openCart();
+    });
+    
+    closeCartBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        closeCart();
+    });
+    
+    cartOverlay.addEventListener('click', function() {
+        closeCart();
+    });
 
+    // ========== MOBILE MENU ==========
     if (mobileMenuBtn && mainNav) {
         mobileMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
             mainNav.classList.toggle('active');
-            this.innerHTML = mainNav.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            this.innerHTML = mainNav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : 
+                '<i class="fas fa-bars"></i>';
         });
         
         document.addEventListener('click', function(e) {
-            if (mainNav.classList.contains('active') && !mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            if (mainNav.classList.contains('active') && 
+                !mainNav.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target)) {
                 mainNav.classList.remove('active');
                 mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             }
         });
     }
 
+    // ========== CHECKOUT ==========
     checkoutBtn.addEventListener('click', function(e) {
         e.preventDefault();
         if (cart.length === 0) {
             showNotification('Your cart is empty');
             return;
         }
+        
         let subtotal = 0;
-        cart.forEach(item => { subtotal += parseFloat(item.price) * (item.quantity || 1); });
-        const orderData = { items: cart, subtotal: subtotal, total: subtotal + 2.50, store: 'KAZINE', orderId: 'KZ-' + Date.now().toString(36).toUpperCase() };
+        cart.forEach(item => {
+            subtotal += parseFloat(item.price) * (item.quantity || 1);
+        });
+        
+        const orderData = {
+            items: cart,
+            subtotal: subtotal,
+            total: subtotal + 2.50,
+            store: 'KAZINE',
+            orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
+        };
+        
         localStorage.setItem('kazineOrder', JSON.stringify(orderData));
         closeCart();
-        setTimeout(() => { window.location.href = 'payment-kazine.html'; }, 300);
+        
+        setTimeout(() => {
+            window.location.href = 'payment-kazine.html';
+        }, 300);
     });
 
+    // ========== SMOOTH SCROLL ==========
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             if (href === '#' || href.includes('.html')) return;
+            
             e.preventDefault();
             const targetId = href.substring(1);
             const targetElement = document.getElementById(targetId);
+            
             if (targetElement) {
                 const headerHeight = document.querySelector('header').offsetHeight;
-                window.scrollTo({ top: targetElement.offsetTop - headerHeight, behavior: 'smooth' });
+                window.scrollTo({
+                    top: targetElement.offsetTop - headerHeight,
+                    behavior: 'smooth'
+                });
+                
                 if (mainNav && mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
@@ -1802,6 +1880,7 @@
         });
     });
 
+    // ========== DOM READY ==========
     document.addEventListener('DOMContentLoaded', function() {
         initializeAddToCartButtons();
         initializeImageSliders();
