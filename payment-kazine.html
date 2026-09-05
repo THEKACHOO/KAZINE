@@ -50,13 +50,12 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
         }
 
         .logo-img-placeholder {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -70,15 +69,7 @@
             object-fit: contain;
         }
 
-        .logo-text h1 {
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            color: #212529;
-            line-height: 1.2;
-        }
-
-        .logo-text p {
+        .logo-text {
             display: none;
         }
 
@@ -212,77 +203,87 @@
         }
 
         .voucher-section {
-            background: #f8f9fa;
-            padding: 18px;
-            border-radius: 12px;
             margin: 18px 0;
-            border: 1px dashed #adb5bd;
+            padding: 0;
+            border: none;
+            background: none;
+        }
+
+        .voucher-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #495057;
         }
 
         .voucher-input-group {
             display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
         }
 
         .voucher-input {
             flex: 1;
-            min-width: 150px;
-            padding: 12px 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            font-size: 15px;
+            padding: 10px 14px;
+            border: 1.5px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
             transition: all 0.2s;
-            height: 46px;
+            height: 42px;
+            background: #f8f9fa;
+        }
+
+        .voucher-input:focus {
+            border-color: #000000;
             background: #ffffff;
+            outline: none;
         }
 
         .voucher-button {
-            padding: 0 20px;
-            background: #212529;
+            padding: 0 18px;
+            background: #000000;
             color: #ffffff;
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             font-weight: 600;
+            font-size: 13px;
             cursor: pointer;
             transition: all 0.2s;
-            height: 46px;
-            min-width: 80px;
+            height: 42px;
             flex-shrink: 0;
         }
 
         .voucher-button:hover {
-            background: #000000;
+            background: #212529;
         }
 
         .voucher-message {
             font-size: 13px;
-            margin-top: 8px;
+            margin-top: 6px;
             min-height: 20px;
         }
 
         .voucher-success {
             color: #28a745;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .voucher-error {
             color: #dc3545;
+            font-weight: 500;
         }
 
         .voucher-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: #f8f9fa;
+            gap: 6px;
+            background: #e9ecef;
             color: #000000;
-            padding: 6px 14px;
-            border-radius: 20px;
-            margin: 5px 0;
-            font-weight: 600;
-            border: 1px solid #000000;
-            font-size: 13px;
+            padding: 4px 12px;
+            border-radius: 16px;
+            margin-top: 6px;
+            font-weight: 500;
+            font-size: 12px;
         }
 
         .payment-form-section {
@@ -615,7 +616,7 @@
         @media (max-width: 480px) {
             .container { padding: 0 12px; }
             .header-container { gap: 10px; }
-            .logo-text h1 { font-size: 26px; }
+            .logo-img-placeholder { width: 60px; height: 60px; }
             .payment-container { padding: 15px 0 40px; }
             .order-summary-section, .payment-form-section { padding: 18px; }
             .payment-methods { grid-template-columns: 1fr; }
@@ -641,7 +642,7 @@
                     <img src="KAZINE.png" alt="KAZINE Logo">
                 </div>
                 <div class="logo-text">
-                    <h1>KAZINE</h1>
+                    <!-- Teks KAZINE dihapus -->
                 </div>
             </div>
             <a href="COLLECTION.html" class="back-button">
@@ -672,9 +673,9 @@
                     <div class="order-items-list" id="orderItemsList"></div>
 
                     <div class="voucher-section">
-                        <h3 style="font-size: 15px; margin-bottom: 12px; font-weight: 600;">Have a voucher?</h3>
+                        <h3>Voucher Code</h3>
                         <div class="voucher-input-group">
-                            <input type="text" class="voucher-input" id="voucherCode" placeholder="Enter voucher code">
+                            <input type="text" class="voucher-input" id="voucherCode" placeholder="Enter code">
                             <button type="button" class="voucher-button" id="applyVoucher">Apply</button>
                         </div>
                         <div class="voucher-message" id="voucherMessage"></div>
@@ -1017,8 +1018,6 @@
             } else {
                 document.querySelectorAll('.payment-label').forEach(l => l.style.borderColor = '');
             }
-
-            // Email is now optional - no validation needed
 
             if (paymentMethod && paymentMethod.value === 'chobank') {
                 if (!chobankAcc || chobankAcc.length !== 16) {
