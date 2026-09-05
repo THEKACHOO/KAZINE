@@ -213,29 +213,11 @@
         .fashion-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, auto);
             gap: 15px;
         }
 
-        .grid-item:nth-child(1),
-        .grid-item:nth-child(2),
-        .grid-item:nth-child(3) {
-            aspect-ratio: 1 / 1;
-        }
-
-        .grid-item:nth-child(4),
-        .grid-item:nth-child(5),
-        .grid-item:nth-child(6) {
-            aspect-ratio: 4 / 5;
-        }
-
-        .grid-item:nth-child(7),
-        .grid-item:nth-child(8),
-        .grid-item:nth-child(9) {
-            aspect-ratio: 1 / 1;
-        }
-
         .grid-item {
+            aspect-ratio: 1 / 1;
             overflow: hidden;
             position: relative;
             width: 100%;
@@ -280,8 +262,10 @@
 
         .magazine-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .magazine-card {
@@ -385,7 +369,7 @@
         }
 
         .product-image-container {
-            height: 350px;
+            aspect-ratio: 1 / 1;
             background: var(--light-gray);
             overflow: hidden;
             position: relative;
@@ -393,13 +377,11 @@
 
         .product-slides {
             display: flex;
-            width: 200%;
             height: 100%;
-            transition: transform 0.5s ease;
+            transition: transform 0.4s ease;
         }
 
         .product-slide {
-            width: 50%;
             height: 100%;
             flex-shrink: 0;
         }
@@ -408,17 +390,18 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            pointer-events: none;
         }
 
         .slide-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.15);
+            background: rgba(0, 0, 0, 0.2);
             color: white;
             border: none;
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -436,23 +419,24 @@
         }
 
         .slide-btn:hover {
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.4);
         }
 
         .slide-btn.prev {
-            left: 10px;
+            left: 8px;
         }
 
         .slide-btn.next {
-            right: 10px;
+            right: 8px;
         }
 
         .slide-btn i {
-            font-size: 14px;
+            font-size: 12px;
+            pointer-events: none;
         }
 
         .slide-btn:disabled {
-            opacity: 0.3;
+            opacity: 0.15 !important;
             cursor: not-allowed;
         }
 
@@ -469,35 +453,41 @@
             font-weight: 500;
             letter-spacing: 0.5px;
             font-family: 'Outfit', sans-serif;
+            pointer-events: none;
         }
 
         .product-info {
             padding: 25px 20px;
-            text-align: center;
+            text-align: left;
+        }
+
+        .product-name {
+            font-size: 17px;
+            font-weight: 400;
+            margin-bottom: 2px;
+            font-weight : 600;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .product-info-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 20px;
         }
 
         .brand-name {
             font-size: 11px;
-            color: var(--medium-gray);
+            color: black;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 10px;
             font-family: 'Outfit', sans-serif;
             font-weight: 400;
-        }
-
-        .product-name {
-            font-size: 16px;
-            font-weight: 400;
-            margin-bottom: 15px;
-            min-height: 40px;
-            font-family: 'Outfit', sans-serif;
         }
 
         .product-price {
             font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 20px;
+            font-weight: 600;
             font-family: 'Outfit', sans-serif;
         }
 
@@ -528,6 +518,143 @@
             opacity: 0.7;
         }
 
+        .coming-soon-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--light-gray);
+            color: var(--medium-gray);
+            border: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: default;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .variant-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .variant-modal.active {
+            display: flex;
+        }
+
+        .variant-modal-content {
+            background: var(--pure-white);
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 420px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .variant-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+
+        .variant-modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .variant-modal-subtitle {
+            font-size: 14px;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .variant-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .variant-option:hover {
+            border-color: var(--pure-black);
+            background: var(--off-white);
+        }
+
+        .variant-option.selected {
+            border-color: var(--pure-black);
+            background: var(--light-gray);
+        }
+
+        .variant-option input[type="radio"] {
+            margin-right: 12px;
+            accent-color: var(--pure-black);
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .variant-option label {
+            cursor: pointer;
+            flex: 1;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+        }
+
+        .variant-option .variant-price {
+            font-weight: 500;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .variant-modal-add-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border: none;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .variant-modal-add-btn:hover {
+            background: var(--dark-gray);
+        }
+
+        .variant-modal-add-btn:disabled {
+            background: var(--medium-gray);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
         .checkout-container {
             text-align: center;
             margin-top: 50px;
@@ -548,8 +675,8 @@
 
         .footer-section h3 {
             font-size: 14px;
-            font-weight: 400;
-            margin-bottom: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
             letter-spacing: 2px;
             text-transform: uppercase;
             font-family: 'Outfit', sans-serif;
@@ -558,8 +685,8 @@
         .footer-section p {
             font-size: 14px;
             color: var(--medium-gray);
-            line-height: 1.8;
-            margin-bottom: 20px;
+            line-height: 1.5;
+            margin-bottom: 2px;
             font-family: 'Outfit', sans-serif;
         }
 
@@ -801,13 +928,9 @@
             font-family: 'Outfit', sans-serif;
         }
 
-        /* =============== RESPONSIVE DESIGN =============== */
         @media (max-width: 1200px) {
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
-            }
-            .magazine-grid {
-                grid-template-columns: repeat(4, 1fr);
             }
         }
 
@@ -873,13 +996,8 @@
                 width: 120px;
                 height: 35px;
             }
-
-            .magazine-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
         }
 
-        /* =============== PERUBAHAN UTAMA DI MOBILE =============== */
         @media (max-width: 768px) {
             .hero-ambassador {
                 padding: 90px 0 50px;
@@ -895,7 +1013,6 @@
                 padding: 50px 0;
             }
             
-            /* GRID 9 FOTO: 3 KOLOM, PAS DI MOBILE */
             .fashion-grid {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
@@ -915,7 +1032,6 @@
                 object-fit: cover;
             }
             
-            /* SHOP SECTION: 2x2 GRID, PRODUCT IMAGE JADI 1:1 (KOTAK SEMPURNA) */
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 20px;
@@ -923,7 +1039,6 @@
             }
             
             .product-image-container {
-                height: auto;
                 aspect-ratio: 1 / 1;
             }
             
@@ -933,30 +1048,62 @@
             
             .product-name {
                 font-size: 14px;
-                margin-bottom: 10px;
-                min-height: auto;
+                margin-bottom: 6px;
+            }
+            
+            .product-info-bottom {
+                margin-bottom: 15px;
+            }
+            
+            .brand-name {
+                font-size: 10px;
             }
             
             .product-price {
                 font-size: 14px;
-                margin-bottom: 15px;
             }
             
             .add-to-cart-btn {
                 padding: 10px;
                 font-size: 11px;
             }
+
+            .coming-soon-btn {
+                padding: 10px;
+                font-size: 11px;
+            }
             
             .slide-btn {
-                opacity: 0.4;
-                visibility: visible;
-                width: 32px;
-                height: 32px;
-                background: rgba(0, 0, 0, 0.15);
+                opacity: 1 !important;
+                visibility: visible !important;
+                width: 28px !important;
+                height: 28px !important;
+                background: rgba(0, 0, 0, 0.2) !important;
+                border: none !important;
+                font-size: 10px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                border-radius: 50% !important;
+                z-index: 20 !important;
+                color: white !important;
             }
             
             .slide-btn i {
-                font-size: 12px;
+                font-size: 10px !important;
+            }
+            
+            .slide-btn.prev {
+                left: 4px !important;
+            }
+            
+            .slide-btn.next {
+                right: 4px !important;
+            }
+            
+            .slide-btn:disabled {
+                opacity: 0.1 !important;
+                cursor: not-allowed !important;
             }
             
             .section-title {
@@ -999,6 +1146,7 @@
             .magazine-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
+                max-width: 100%;
             }
 
             .magazine-section-title h2 {
@@ -1020,6 +1168,11 @@
                 min-height: 44px;
                 min-width: 44px;
             }
+
+            .variant-modal-content {
+                padding: 20px;
+                width: 95%;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1031,11 +1184,30 @@
             .products-grid {
                 gap: 15px;
             }
+            
+            .slide-btn {
+                width: 24px !important;
+                height: 24px !important;
+            }
+            
+            .slide-btn i {
+                font-size: 8px !important;
+            }
         }
     </style>
 </head>
 <body>
     <div class="cart-overlay" id="cartOverlay"></div>
+
+    <div class="variant-modal" id="variantModal">
+        <div class="variant-modal-content">
+            <button class="variant-modal-close" id="variantModalClose">&times;</button>
+            <div class="variant-modal-title" id="variantTitle">CHOOSIC</div>
+            <div class="variant-modal-subtitle" id="variantSubtitle">Select your variant</div>
+            <div id="variantOptions"></div>
+            <button class="variant-modal-add-btn" onclick="addVariantToCart()">Add to Bag</button>
+        </div>
+    </div>
 
     <div class="cart-modal" id="cartModal">
         <div class="cart-header">
@@ -1151,75 +1323,124 @@
             </div>
             
             <div class="products-grid">
-                <div class="product-card" data-product="CHOOSIC GRAPHITE BLACK" data-price="480" data-id="CGB-01">
+                <div class="product-card" data-product="Headphone" data-price="480" data-id="A">
                     <div class="product-image-container">
                         <div class="product-slides">
-                            <div class="product-slide"><img src="CGB1.png" alt="CHOOSIC GB FRONT"></div>
-                            <div class="product-slide"><img src="CGB2.png" alt="CHOOSIC GB BACK"></div>
+                            <div class="product-slide"><img src="CGB1.png" alt="Headphone Front"></div>
+                            <div class="product-slide"><img src="CW1.png" alt="Headphone Back"></div>
                         </div>
                         <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
                         <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
+                        <div class="limited-edition-label">BEST SELLER</div>
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">CHOOSIC</div>
-                        <h3 class="product-name">GRAPHITE BLACK</h3>
-                        <div class="product-price">$480</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-                
-                <div class="product-card" data-product="CHOOSIC WHITE" data-price="480" data-id="CW-02">
-                    <div class="product-image-container">
-                        <div class="product-slides">
-                            <div class="product-slide"><img src="CW1.png" alt="CHOOSIC W FRONT"></div>
-                            <div class="product-slide"><img src="CW2.png" alt="CHOOSIC W BACK"></div>
+                        <div class="product-name">Choosic Headphone</div>
+                        <div class="product-info-bottom">
+                            <div class="brand-name">CHOOSIC</div>
+                            <div class="product-price">$450</div>
                         </div>
-                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">CHOOSIC</div>
-                        <h3 class="product-name">WHITE</h3>
-                        <div class="product-price">$480</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
-                    </div>
-                </div>
-            
-                <div class="product-card" data-product="CHOZY BLACK" data-price="30" data-id="MUGB-01">
-                    <div class="product-image-container">
-                        <div class="product-slides">
-                            <div class="product-slide"><img src="MUGB1.png" alt="CHOZY BLACK - Front"></div>
-                            <div class="product-slide"><img src="MUGB2.png" alt="CHOZY BLACK - Back"></div>
-                        </div>
-                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand-name">CHOZY</div>
-                        <h3 class="product-name">BLACK</h3>
-                        <div class="product-price">$30</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
+                        <button class="add-to-cart-btn" onclick="openVariantModal('choosic')">Add to Bag</button>
                     </div>
                 </div>
 
-                <div class="product-card" data-product="CHOZY WHITE" data-price="30" data-id="MUGW-02">
+                <div class="product-card" data-product="Mug" data-price="30" data-id="B">
                     <div class="product-image-container">
                         <div class="product-slides">
-                            <div class="product-slide"><img src="MUGW1.png" alt="CHOZY WHITE - FRONT"></div>
-                            <div class="product-slide"><img src="MUGW2.png" alt="CHOZY WHITE- BACK"></div>
+                            <div class="product-slide"><img src="MUGB1.png" alt="Mug Front"></div>
+                            <div class="product-slide"><img src="MUGW1.png" alt="Mug Back"></div>
                         </div>
                         <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
                         <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
-                        <div class="limited-edition-label">LIMITED EDITION</div>
+                        <div class="limited-edition-label">POPULAR</div>
                     </div>
                     <div class="product-info">
-                        <div class="brand-name">CHOZY</div>
-                        <h3 class="product-name">WHITE</h3>
-                        <div class="product-price">$30</div>
-                        <button class="add-to-cart-btn">Add to Bag</button>
+                        <div class="product-name">Chozy Mug</div>
+                        <div class="product-info-bottom">
+                            <div class="brand-name">CHOZY</div>
+                            <div class="product-price">$25</div>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="openVariantModal('chozy')">Add to Bag</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-product="Large" data-price="10" data-id="C">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide"><img src="Chool1.png" alt="Cho°L Large Front"></div>
+                            <div class="product-slide"><img src="Chool2.png" alt="Cho°L Large Back"></div>
+                        </div>
+                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
+                        <div class="limited-edition-label">NEW</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Large Tumbler</div>
+                        <div class="product-info-bottom">
+                            <div class="brand-name">Cho°L</div>
+                            <div class="product-price">$10</div>
+                        </div>
+                        <button class="coming-soon-btn">Coming Soon</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-product="Stainless" data-price="6" data-id="C3">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide"><img src="Chool3.png" alt="Cho°L Stainless Front"></div>
+                            <div class="product-slide"><img src="Chool4.png" alt="Cho°L Stainless Back"></div>
+                        </div>
+                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
+                        <div class="limited-edition-label">NEW</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Stainless Tumbler</div>
+                        <div class="product-info-bottom">
+                            <div class="brand-name">Cho°L</div>
+                            <div class="product-price">$6</div>
+                        </div>
+                        <button class="coming-soon-btn">Coming Soon</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-product="Original Choffee" data-price="3" data-id="D">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide"><img src="Choffee1.png" alt="Original Choffee 1"></div>
+                            <div class="product-slide"><img src="Choffee2.png" alt="Original Choffee 2"></div>
+                            <div class="product-slide"><img src="Choffee3.png" alt="Original Choffee 3"></div>
+                        </div>
+                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
+                        <div class="limited-edition-label">NEW</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Original Choffee</div>
+                        <div class="product-info-bottom">
+                            <div class="brand-name">CHOFFEE</div>
+                            <div class="product-price">$4</div>
+                        </div>
+                        <button class="coming-soon-btn">Coming Soon</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-product="Choffee" data-price="4" data-id="D4">
+                    <div class="product-image-container">
+                        <div class="product-slides">
+                            <div class="product-slide"><img src="Choffee4.png" alt="Choffee 1"></div>
+                            <div class="product-slide"><img src="Choffee5.png" alt="Choffee 2"></div>
+                        </div>
+                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
+                        <div class="limited-edition-label">NEW</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Capsule Choffee</div>
+                        <div class="product-info-bottom">
+                            <div class="brand-name">CHOFFEE</div>
+                            <div class="product-price">$4</div>
+                        </div>
+                        <button class="coming-soon-btn">Coming Soon</button>
                     </div>
                 </div>
             </div>
@@ -1266,104 +1487,113 @@
     </footer>
 
     <script>
-    let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
-    let isProcessing = false;
+    var cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
+    var currentVariantData = null;
 
-    const cartModal = document.getElementById('cartModal');
-    const cartOverlay = document.getElementById('cartOverlay');
-    const cartCount = document.getElementById('cartCount');
-    const cartItems = document.getElementById('cartItems');
-    const cartTotal = document.getElementById('cartTotal');
-    const emptyCart = document.getElementById('emptyCart');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    const openCartBtn = document.getElementById('openCart');
-    const closeCartBtn = document.getElementById('closeCart');
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mainNav = document.getElementById('mainNav');
+    var variantConfigs = {
+        choosic: {
+            title: 'Choosic Headphone',
+            subtitle: 'Select your color',
+            options: [
+                { id: 'A1', label: 'Graphite Black', price: 450 },
+                { id: 'A2', label: 'White', price: 450 }
+            ]
+        },
+        chozy: {
+            title: 'Chozy Mug',
+            subtitle: 'Select your color',
+            options: [
+                { id: 'B1', label: 'Black', price: 25 },
+                { id: 'B2', label: 'White', price: 25 }
+            ]
+        }
+    };
 
-    function updateCartDisplay() {
-        const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
-        cartCount.textContent = totalItems;
-        
-        if (cart.length === 0) {
-            emptyCart.style.display = 'flex';
-            checkoutBtn.style.display = 'none';
-            cartTotal.textContent = '$0.00';
-            cartItems.innerHTML = '<div class="empty-cart" id="emptyCart"><i class="fas fa-shopping-bag"></i><p>Your bag is empty</p></div>';
+    function openVariantModal(variantKey) {
+        var config = variantConfigs[variantKey];
+        if (!config) return;
+
+        currentVariantData = {
+            key: variantKey,
+            config: config,
+            selectedId: config.options[0].id
+        };
+
+        document.getElementById('variantTitle').textContent = config.title;
+        document.getElementById('variantSubtitle').textContent = config.subtitle;
+
+        var html = '';
+        for (var i = 0; i < config.options.length; i++) {
+            var opt = config.options[i];
+            var checked = i === 0 ? 'checked' : '';
+            html += '<div class="variant-option ' + (i === 0 ? 'selected' : '') + '" data-id="' + opt.id + '">';
+            html += '<input type="radio" name="variant" value="' + opt.id + '" ' + checked + '>';
+            html += '<label>' + opt.label + '</label>';
+            html += '<span class="variant-price">$' + opt.price + '</span>';
+            html += '</div>';
+        }
+        document.getElementById('variantOptions').innerHTML = html;
+
+        var options = document.querySelectorAll('.variant-option');
+        for (var i = 0; i < options.length; i++) {
+            options[i].onclick = function() {
+                var allOptions = document.querySelectorAll('.variant-option');
+                for (var j = 0; j < allOptions.length; j++) {
+                    allOptions[j].classList.remove('selected');
+                }
+                this.classList.add('selected');
+                var radio = this.querySelector('input[type="radio"]');
+                if (radio) radio.checked = true;
+                currentVariantData.selectedId = this.getAttribute('data-id');
+            };
+        }
+
+        document.getElementById('variantModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeVariantModal() {
+        document.getElementById('variantModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+        currentVariantData = null;
+    }
+
+    function addVariantToCart() {
+        if (!currentVariantData) {
+            showNotification('Error: No variant selected');
             return;
         }
-        
-        emptyCart.style.display = 'none';
-        checkoutBtn.style.display = 'block';
-        
-        let total = 0;
-        let itemsHTML = '';
-        
-        cart.forEach((item, index) => {
-            const itemTotal = parseFloat(item.price) * (item.quantity || 1);
-            total += itemTotal;
-            
-            itemsHTML += `
-                <div class="cart-item">
-                    <div class="item-info">
-                        <h4>${item.title}</h4>
-                        <p>Quantity: ${item.quantity || 1}</p>
-                    </div>
-                    <div class="item-price">$${itemTotal.toFixed(2)}</div>
-                    <button class="remove-item" data-index="${index}" aria-label="Remove item">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </div>
-            `;
-        });
-        
-        cartItems.innerHTML = itemsHTML;
-        cartTotal.textContent = `$${total.toFixed(2)}`;
-        
-        document.querySelectorAll('.remove-item').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const index = parseInt(this.getAttribute('data-index'));
-                cart.splice(index, 1);
-                localStorage.setItem('kazineCart', JSON.stringify(cart));
-                updateCartDisplay();
-                showNotification('Item removed from cart');
-            });
-        });
-    }
 
-    function showNotification(message) {
-        const existing = document.querySelector('.cart-notification');
-        if (existing) existing.remove();
+        var config = currentVariantData.config;
+        var selectedOption = null;
         
-        const notification = document.createElement('div');
-        notification.className = 'cart-notification';
-        notification.textContent = message;
-        document.body.appendChild(notification);
+        for (var i = 0; i < config.options.length; i++) {
+            if (config.options[i].id === currentVariantData.selectedId) {
+                selectedOption = config.options[i];
+                break;
+            }
+        }
         
-        setTimeout(() => {
-            if (notification.parentNode) notification.remove();
-        }, 2000);
-    }
+        if (!selectedOption) {
+            showNotification('Error: Please select a variant');
+            return;
+        }
 
-    function handleAddToCart(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        
-        if (isProcessing) return;
-        isProcessing = true;
-        
-        const button = event.currentTarget;
-        const productCard = button.closest('.product-card');
-        const productTitle = productCard.getAttribute('data-product');
-        const productPrice = productCard.getAttribute('data-price');
-        const productId = productCard.getAttribute('data-id');
-        
-        const existingItem = cart.find(item => item.id === productId);
-        
+        var productTitle = config.title + ' - ' + selectedOption.label;
+        var productId = selectedOption.id;
+        var productPrice = selectedOption.price;
+
+        var existingItem = null;
+        for (var i = 0; i < cart.length; i++) {
+            if (cart[i].id === productId) {
+                existingItem = cart[i];
+                break;
+            }
+        }
+
         if (existingItem) {
             existingItem.quantity = (existingItem.quantity || 1) + 1;
-            showNotification(`${productTitle} quantity updated`);
+            showNotification(productTitle + ' quantity updated');
         } else {
             cart.push({
                 id: productId,
@@ -1371,145 +1601,236 @@
                 price: productPrice,
                 quantity: 1
             });
-            showNotification(`${productTitle} added to cart`);
+            showNotification(productTitle + ' added to cart');
         }
-        
+
         localStorage.setItem('kazineCart', JSON.stringify(cart));
         updateCartDisplay();
-        
-        const originalText = button.innerHTML;
-        button.innerHTML = '<i class="fas fa-check"></i> Added';
-        button.style.backgroundColor = '#27ae60';
-        button.disabled = true;
-        
-        setTimeout(() => {
-            button.innerHTML = originalText;
-            button.style.backgroundColor = '';
-            button.disabled = false;
-            isProcessing = false;
-        }, 1000);
+        closeVariantModal();
     }
 
-    function initializeAddToCartButtons() {
-        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            const newButton = button.cloneNode(true);
-            button.parentNode.replaceChild(newButton, button);
-        });
+    function updateCartDisplay() {
+        var totalItems = 0;
+        for (var i = 0; i < cart.length; i++) {
+            totalItems = totalItems + (cart[i].quantity || 1);
+        }
+        document.getElementById('cartCount').textContent = totalItems;
         
-        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            button.addEventListener('click', handleAddToCart);
-            button.style.cursor = 'pointer';
-        });
+        var cartItems = document.getElementById('cartItems');
+        var checkoutBtn = document.getElementById('checkoutBtn');
+        var cartTotal = document.getElementById('cartTotal');
+        
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<div class="empty-cart"><i class="fas fa-shopping-bag"></i><p>Your bag is empty</p></div>';
+            checkoutBtn.style.display = 'none';
+            cartTotal.textContent = '$0.00';
+            return;
+        }
+        
+        checkoutBtn.style.display = 'block';
+        
+        var total = 0;
+        var itemsHTML = '';
+        
+        for (var i = 0; i < cart.length; i++) {
+            var item = cart[i];
+            var itemTotal = parseFloat(item.price) * (item.quantity || 1);
+            total = total + itemTotal;
+            
+            itemsHTML = itemsHTML + '<div class="cart-item">';
+            itemsHTML = itemsHTML + '<div class="item-info"><h4>' + item.title + '</h4><p>Quantity: ' + (item.quantity || 1) + '</p></div>';
+            itemsHTML = itemsHTML + '<div class="item-price">$' + itemTotal.toFixed(2) + '</div>';
+            itemsHTML = itemsHTML + '<button class="remove-item" data-index="' + i + '" aria-label="Remove item"><i class="fas fa-trash-alt"></i></button>';
+            itemsHTML = itemsHTML + '</div>';
+        }
+        
+        cartItems.innerHTML = itemsHTML;
+        cartTotal.textContent = '$' + total.toFixed(2);
+        
+        var removeButtons = document.querySelectorAll('.remove-item');
+        for (var i = 0; i < removeButtons.length; i++) {
+            removeButtons[i].onclick = function() {
+                var index = parseInt(this.getAttribute('data-index'));
+                cart.splice(index, 1);
+                localStorage.setItem('kazineCart', JSON.stringify(cart));
+                updateCartDisplay();
+                showNotification('Item removed from cart');
+            };
+        }
     }
 
-    function initializeImageSliders() {
-        document.querySelectorAll('.product-card').forEach(card => {
-            const slides = card.querySelector('.product-slides');
-            const prevBtn = card.querySelector('.slide-btn.prev');
-            const nextBtn = card.querySelector('.slide-btn.next');
+    function showNotification(message) {
+        var existing = document.querySelector('.cart-notification');
+        if (existing) existing.remove();
+        
+        var notification = document.createElement('div');
+        notification.className = 'cart-notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(function() {
+            if (notification.parentNode) notification.remove();
+        }, 2000);
+    }
+
+    // ========== SLIDER ==========
+    function initSliders() {
+        document.querySelectorAll('.product-card').forEach(function(card) {
+            var slides = card.querySelector('.product-slides');
+            var prevBtn = card.querySelector('.slide-btn.prev');
+            var nextBtn = card.querySelector('.slide-btn.next');
             
             if (!slides || !prevBtn || !nextBtn) return;
             
-            let currentSlide = 0;
-            const totalSlides = 2;
+            var total = slides.querySelectorAll('.product-slide').length;
+            var current = 0;
             
-            function updateSlide() {
-                slides.style.transform = `translateX(-${currentSlide * 50}%)`;
-                prevBtn.disabled = currentSlide === 0;
-                nextBtn.disabled = currentSlide === totalSlides - 1;
+            slides.style.width = (total * 100) + '%';
+            slides.querySelectorAll('.product-slide').forEach(function(slide) {
+                slide.style.width = (100 / total) + '%';
+            });
+            
+            function goTo(index) {
+                if (index < 0) index = 0;
+                if (index >= total) index = total - 1;
+                current = index;
+                slides.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
+                prevBtn.disabled = (current === 0);
+                nextBtn.disabled = (current === total - 1);
             }
             
             prevBtn.addEventListener('click', function(e) {
-                e.preventDefault();
                 e.stopPropagation();
-                if (!this.disabled) {
-                    currentSlide = Math.max(0, currentSlide - 1);
-                    updateSlide();
-                }
+                goTo(current - 1);
             });
             
             nextBtn.addEventListener('click', function(e) {
-                e.preventDefault();
                 e.stopPropagation();
-                if (!this.disabled) {
-                    currentSlide = Math.min(totalSlides - 1, currentSlide + 1);
-                    updateSlide();
-                }
+                goTo(current + 1);
             });
             
-            updateSlide();
+            goTo(0);
         });
     }
 
     function openCart() {
-        cartModal.classList.add('active');
-        cartOverlay.classList.add('active');
+        document.getElementById('cartModal').classList.add('active');
+        document.getElementById('cartOverlay').classList.add('active');
         document.body.style.overflow = 'hidden';
         updateCartDisplay();
     }
 
     function closeCart() {
-        cartModal.classList.remove('active');
-        cartOverlay.classList.remove('active');
+        document.getElementById('cartModal').classList.remove('active');
+        document.getElementById('cartOverlay').classList.remove('active');
         document.body.style.overflow = 'auto';
     }
 
-    openCartBtn.addEventListener('click', (e) => { e.preventDefault(); openCart(); });
-    closeCartBtn.addEventListener('click', (e) => { e.preventDefault(); closeCart(); });
-    cartOverlay.addEventListener('click', () => closeCart());
+    document.getElementById('openCart').onclick = function(e) {
+        e.preventDefault();
+        openCart();
+    };
+    
+    document.getElementById('closeCart').onclick = function(e) {
+        e.preventDefault();
+        closeCart();
+    };
+    
+    document.getElementById('cartOverlay').onclick = function() {
+        closeCart();
+    };
 
+    var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    var mainNav = document.getElementById('mainNav');
+    
     if (mobileMenuBtn && mainNav) {
-        mobileMenuBtn.addEventListener('click', function(e) {
+        mobileMenuBtn.onclick = function(e) {
             e.preventDefault();
             mainNav.classList.toggle('active');
-            this.innerHTML = mainNav.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
+            this.innerHTML = mainNav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : 
+                '<i class="fas fa-bars"></i>';
+        };
         
-        document.addEventListener('click', function(e) {
-            if (mainNav.classList.contains('active') && !mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        document.onclick = function(e) {
+            if (mainNav.classList.contains('active') && 
+                !mainNav.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target)) {
                 mainNav.classList.remove('active');
                 mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             }
-        });
+        };
     }
 
-    checkoutBtn.addEventListener('click', function(e) {
+    document.getElementById('variantModalClose').onclick = closeVariantModal;
+    
+    document.getElementById('variantModal').onclick = function(e) {
+        if (e.target === this) closeVariantModal();
+    };
+
+    document.getElementById('checkoutBtn').onclick = function(e) {
         e.preventDefault();
         if (cart.length === 0) {
             showNotification('Your cart is empty');
             return;
         }
-        let subtotal = 0;
-        cart.forEach(item => { subtotal += parseFloat(item.price) * (item.quantity || 1); });
-        const orderData = { items: cart, subtotal: subtotal, total: subtotal + 2.50, store: 'KAZINE', orderId: 'KZ-' + Date.now().toString(36).toUpperCase() };
+        
+        var subtotal = 0;
+        for (var i = 0; i < cart.length; i++) {
+            subtotal = subtotal + parseFloat(cart[i].price) * (cart[i].quantity || 1);
+        }
+        
+        var orderData = {
+            items: cart,
+            subtotal: subtotal,
+            total: subtotal + 2.50,
+            store: 'KAZINE',
+            orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
+        };
+        
         localStorage.setItem('kazineOrder', JSON.stringify(orderData));
         closeCart();
-        setTimeout(() => { window.location.href = 'payment-kazine.html'; }, 300);
-    });
+        
+        setTimeout(function() {
+            window.location.href = 'payment-kazine.html';
+        }, 300);
+    };
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
+    var links = document.querySelectorAll('a[href^="#"]');
+    for (var i = 0; i < links.length; i++) {
+        links[i].onclick = function(e) {
+            var href = this.getAttribute('href');
             if (href === '#' || href.includes('.html')) return;
+            
             e.preventDefault();
-            const targetId = href.substring(1);
-            const targetElement = document.getElementById(targetId);
+            var targetId = href.substring(1);
+            var targetElement = document.getElementById(targetId);
+            
             if (targetElement) {
-                const headerHeight = document.querySelector('header').offsetHeight;
-                window.scrollTo({ top: targetElement.offsetTop - headerHeight, behavior: 'smooth' });
+                var headerHeight = document.querySelector('header').offsetHeight;
+                window.scrollTo({
+                    top: targetElement.offsetTop - headerHeight,
+                    behavior: 'smooth'
+                });
+                
                 if (mainNav && mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                 }
             }
-        });
-    });
+        };
+    }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        initializeAddToCartButtons();
-        initializeImageSliders();
+    function init() {
+        initSliders();
         updateCartDisplay();
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
     </script>
 </body>
-    </html>
+</html>
