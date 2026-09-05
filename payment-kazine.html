@@ -681,23 +681,19 @@
                         <input type="text" class="form-input" id="fullName" placeholder="Enter your full name" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="email">Email Address *</label>
-                        <input type="email" class="form-input" id="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="country">Country *</label>
-                        <input type="text" class="form-input" id="country" placeholder="Enter your country" required>
+                        <label class="form-label" for="twitterUsername">Twitter/X Username *</label>
+                        <input type="text" class="form-input" id="twitterUsername" placeholder="@username" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="address">Address (Optional)</label>
                         <input type="text" class="form-input" id="address" placeholder="Enter your address">
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="twitterUsername">Twitter/X Username *</label>
-                        <input type="text" class="form-input" id="twitterUsername" placeholder="@username" required>
+                        <label class="form-label" for="email">Email (Optional)</label>
+                        <input type="email" class="form-input" id="email" placeholder="Enter your email">
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="otherRequest">Other Request (Optional)</label>
+                        <label class="form-label" for="otherRequest">Other Request (Optional / As gift)</label>
                         <textarea class="form-input" id="otherRequest" placeholder="Any special requests?" rows="3"></textarea>
                     </div>
 
@@ -986,7 +982,6 @@
         function validateForm() {
             const fullName = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
-            const country = document.getElementById('country').value.trim();
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
             const chobankAcc = document.getElementById('chobankAccountNumber')?.value.replace(/\s/g, '');
             const otherAcc = document.getElementById('otherAccountNumber')?.value.replace(/\D/g, '');
@@ -995,14 +990,14 @@
             let isValid = true, error = '';
 
             if (!fullName) { document.getElementById('fullName').style.borderColor = '#dc3545'; isValid = false; error = 'Full name required'; }
-            if (!email || !email.includes('@')) { document.getElementById('email').style.borderColor = '#dc3545'; isValid = false; error = error || 'Valid email required'; }
-            if (!country) { document.getElementById('country').style.borderColor = '#dc3545'; isValid = false; error = error || 'Country required'; }
             if (!paymentMethod) {
                 document.querySelectorAll('.payment-label').forEach(l => l.style.borderColor = '#dc3545');
                 isValid = false; error = error || 'Select a payment method';
             } else {
                 document.querySelectorAll('.payment-label').forEach(l => l.style.borderColor = '');
             }
+
+            // Email is now optional - no validation needed
 
             if (paymentMethod && paymentMethod.value === 'chobank') {
                 if (!chobankAcc || chobankAcc.length !== 16) {
@@ -1035,7 +1030,6 @@
 
             const fullName = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
-            const country = document.getElementById('country').value.trim();
             const address = document.getElementById('address').value.trim();
             const twitter = document.getElementById('twitterUsername').value.trim();
             const otherReq = document.getElementById('otherRequest').value.trim();
@@ -1048,7 +1042,7 @@
             const itemCount = cartItems.reduce((s, i) => s + (i.quantity || 1), 0);
 
             const orderData = {
-                customer: { fullName, email, country, address: address || 'Not provided', twitter: twitter || 'Not provided', request: otherReq || 'No special request' },
+                customer: { fullName, email: email || 'Not provided', address: address || 'Not provided', twitter: twitter || 'Not provided', request: otherReq || 'No special request' },
                 items: cartItems,
                 subtotal, discount, serviceFee, total, itemCount,
                 paymentMethod: paymentMethod.value,
@@ -1069,7 +1063,7 @@
                     "Timestamp": new Date().toISOString(),
                     "Order Number": `KAZINE-${Date.now().toString().slice(-6)}`,
                     "Customer Name": fullName,
-                    "Customer Email": email,
+                    "Customer Email": email || 'Not provided',
                     "Customer Address": address || 'Not provided',
                     "Customer Twitter/X": twitter || 'Not provided',
                     "Other Request": otherReq || 'No special request',
