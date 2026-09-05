@@ -36,21 +36,21 @@
         }
 
         .choket-header {
-            padding: 24px 24px 16px 24px;
+            padding: 12px 24px 10px 24px;
             text-align: center;
             border-bottom: 1px solid #000000;
             background: #FFFFFF;
         }
 
         .logo-image {
-            max-width: 400px;
+            max-width: 100px;
             height: auto;
             display: block;
             margin: 0 auto;
         }
 
         .bag-section {
-            padding: 48px 24px;
+            padding: 28px 24px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -62,9 +62,9 @@
         }
 
         .bag-icon {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -86,7 +86,7 @@
         .bag-hint {
             font-size: 13px;
             color: #555555;
-            margin-top: 8px;
+            margin-top: 4px;
         }
 
         .orders-panel {
@@ -151,7 +151,7 @@
         .order-image-large {
             width: 280px;
             height: 280px;
-            margin-bottom: 28px;
+            margin-bottom: 20px;
             background-color: #F8F8F8;
             border: 1px solid #DDDDDD;
             border-radius: 16px;
@@ -182,76 +182,21 @@
             font-size: 22px;
             font-weight: 800;
             color: #000000;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             letter-spacing: -0.3px;
         }
 
         .order-item-quantity {
             font-size: 17px;
             color: #333333;
-            margin-bottom: 8px;
             font-weight: 500;
         }
 
-        .order-item-price {
-            font-size: 16px;
-            font-weight: 600;
-            color: #111111;
-            margin-top: 8px;
-            background: #F0F0F0;
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 30px;
-        }
-
         .total-section {
-            padding: 24px 24px 28px 24px;
+            padding: 20px 24px 24px 24px;
             border-top: 2px solid #000000;
             margin-top: 12px;
             background: #FFFFFF;
-        }
-
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            font-size: 20px;
-            font-weight: 800;
-            color: #000000;
-            margin-bottom: 16px;
-        }
-
-        .total-label {
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 18px;
-        }
-
-        .total-amount {
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            color: #000000;
-        }
-
-        .thankyou-message {
-            text-align: center;
-            font-size: 20px;
-            font-weight: 700;
-            color: #1a5d1a;
-            background: #E9F5E9;
-            padding: 18px 16px;
-            margin: 20px 0 10px 0;
-            border-radius: 40px;
-            letter-spacing: -0.2px;
-            border: 1px solid #2a7a2a;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            animation: gentlePulse 1.2s ease-in-out;
-        }
-
-        @keyframes gentlePulse {
-            0% { opacity: 0.7; transform: scale(0.98);}
-            100% { opacity: 1; transform: scale(1);}
         }
 
         .payment-info-row {
@@ -298,6 +243,51 @@
             background: #FFFFFF;
         }
 
+        .thankyou-message {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #000000;
+            background: #F0F0F0;
+            padding: 18px 16px;
+            margin: 20px 0 10px 0;
+            border-radius: 40px;
+            letter-spacing: -0.2px;
+            border: 1px solid #AAAAAA;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            animation: gentlePulse 1.2s ease-in-out;
+        }
+
+        @keyframes gentlePulse {
+            0% { opacity: 0.7; transform: scale(0.98);}
+            100% { opacity: 1; transform: scale(1);}
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #000000;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 16px;
+            transition: background 0.2s;
+        }
+
+        .download-btn:hover {
+            background: #333333;
+        }
+
+        .download-btn:active {
+            background: #555555;
+        }
+
         @media (max-width: 650px) {
             .order-image-large {
                 width: 240px;
@@ -306,12 +296,16 @@
             .order-item-name {
                 font-size: 20px;
             }
-            .total-amount {
-                font-size: 24px;
-            }
             .thankyou-message {
                 font-size: 18px;
                 padding: 14px 12px;
+            }
+            .bag-icon {
+                width: 160px;
+                height: 160px;
+            }
+            .logo-image {
+                max-width: 80px;
             }
         }
 
@@ -327,13 +321,14 @@
                 font-size: 18px;
             }
             .logo-image {
-                max-width: 150px;
-            }
-            .total-amount {
-                font-size: 22px;
+                max-width: 70px;
             }
             .thankyou-message {
                 font-size: 17px;
+            }
+            .bag-icon {
+                width: 140px;
+                height: 140px;
             }
         }
 
@@ -345,6 +340,13 @@
             .order-item-card {
                 padding: 24px 12px;
             }
+            .bag-icon {
+                width: 120px;
+                height: 120px;
+            }
+            .logo-image {
+                max-width: 60px;
+            }
         }
     </style>
 </head>
@@ -352,12 +354,12 @@
 
 <div class="choket-container">
     <div class="choket-header">
-        <img src="Choket.png" alt="CHOKET" class="logo-image" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22180%22%20height%3D%2260%22%20viewBox%3D%220%200%20180%2060%22%3E%3Ctext%20x%3D%2290%22%20y%3D%2238%22%20font-size%3D%2224%22%20text-anchor%3D%22middle%22%20fill%3D%22%23000%22%3ECHOKET%3C%2Ftext%3E%3C%2Fsvg%3E';">
+        <img src="Choket.png" alt="CHOKET" class="logo-image" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%2236%22%20viewBox%3D%220%200%20100%2036%22%3E%3Ctext%20x%3D%2250%22%20y%3D%2224%22%20font-size%3D%2216%22%20text-anchor%3D%22middle%22%20fill%3D%22%23000%22%3ECHOKET%3C%2Ftext%3E%3C%2Fsvg%3E';">
     </div>
 
     <div class="bag-section" id="bagTrigger">
-        <div class="bag-icon">
-            <img src="Orderbag.png" alt="Bag" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2280%22%20height%3D%2280%22%20viewBox%3D%220%200%2080%2080%22%3E%3Crect%20width%3D%2280%22%20height%3D%2280%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%2240%22%20y%3D%2245%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22%23999%22%3Ebag%3C%2Ftext%3E%3C%2Fsvg%3E';">
+        <div class="bag-icon" id="bagIcon">
+            <img src="Orderbag.png" alt="Bag" id="bagImage" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22200%22%20viewBox%3D%220%200%20200%20200%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22110%22%20font-size%3D%2220%22%20text-anchor%3D%22middle%22%20fill%3D%22%23999%22%3EBAG%3C%2Ftext%3E%3C%2Fsvg%3E';">
         </div>
         <div class="bag-text">PLEASE TAKE YOUR ORDER</div>
         <div class="bag-hint">Open the bag</div>
@@ -369,15 +371,12 @@
             <div id="orderItemsContainer"></div>
         </div>
         <div class="total-section">
-            <div class="total-row">
-                <span class="total-label">TOTAL PURCHASE</span>
-                <span class="total-amount" id="totalAmountDisplay">$0.00</span>
-            </div>
             <div class="payment-info-row" id="paymentInfoRow" style="display: none;">
                 <span class="payment-label">PAID WITH</span>
                 <span class="payment-value" id="paymentMethodDisplay">-</span>
             </div>
             <div id="thankyouMessageContainer" style="margin-top: 16px;"></div>
+            <button class="download-btn" id="downloadBtn">Download All Images</button>
         </div>
         <div class="footer-note">
             <span>2026 Kazine, featured by Kachoo</span>
@@ -387,29 +386,22 @@
 
 <script>
     // ========== MAPPING ID KE FILE GAMBAR ==========
-    // PAKAI ID SEPERTI A1, A2, B1, B2, C1, C2, C3, C4, D1, D2, D3, D4
+    // SEMUA GAMBAR PRODUK DARI FOLDER KAZINE/Product/
     const imageMap = {
-        // CHOOSIC HEADPHONE
-        "A1": "A1.png",
-        "A2": "A2.png",
-        // CHOZY MUG
-        "B1": "B1.png",
-        "B2": "B2.png",
-        // CHO°L LARGE TUMBLER
-        "C1": "C1.png",
-        "C2": "C2.png",
-        // CHO°L STAINLESS TUMBLER
-        "C3": "C3.png",
-        "C4": "C4.png",
-        // ORIGINAL CHOFFEE
-        "D1": "D1.png",
-        "D2": "D2.png",
-        "D3": "D3.png",
-        // CAPSULE CHOFFEE
-        "D4": "D4.png"
+        "A1": "KAZINE/Product/A1.png",
+        "A2": "KAZINE/Product/A2.png",
+        "B1": "KAZINE/Product/B1.png",
+        "B2": "KAZINE/Product/B2.png",
+        "C1": "KAZINE/Product/C1.png",
+        "C2": "KAZINE/Product/C2.png",
+        "C3": "KAZINE/Product/C3.png",
+        "C4": "KAZINE/Product/C4.png",
+        "D1": "KAZINE/Product/D1.png",
+        "D2": "KAZINE/Product/D2.png",
+        "D3": "KAZINE/Product/D3.png",
+        "D4": "KAZINE/Product/D4.png"
     };
 
-    // ========== NAMA PRODUK LENGKAP UNTUK DISPLAY ==========
     const productNames = {
         "A1": "Choosic Headphone - Graphite Black",
         "A2": "Choosic Headphone - White",
@@ -425,23 +417,6 @@
         "D4": "Capsule Choffee - Espresso"
     };
 
-    // ========== HARGA PRODUK ==========
-    const productPrices = {
-        "A1": 480,
-        "A2": 480,
-        "B1": 30,
-        "B2": 30,
-        "C1": 10,
-        "C2": 10,
-        "C3": 6,
-        "C4": 6,
-        "D1": 3,
-        "D2": 3,
-        "D3": 3,
-        "D4": 4
-    };
-
-    // ========== FUNGSI UNTUK MENDAPATKAN GAMBAR BERDASARKAN ID ==========
     function getImageForItem(itemId) {
         if (!itemId) return null;
         return imageMap[itemId] || null;
@@ -452,16 +427,10 @@
         return productNames[itemId] || itemId;
     }
 
-    function getProductPrice(itemId) {
-        if (!itemId) return 0;
-        return productPrices[itemId] || 0;
-    }
-
     function isValidItem(itemId) {
         return imageMap[itemId] !== undefined;
     }
 
-    // ========== GET PAYMENT METHOD ==========
     function getPaymentMethodFromOrder(order) {
         if (order && order.paymentMethod) {
             const method = order.paymentMethod;
@@ -472,7 +441,14 @@
         return null;
     }
 
-    // ========== FETCH ORDER ITEMS ==========
+    function getTotalQuantity(items) {
+        let total = 0;
+        for (let item of items) {
+            total += (item.quantity || 1);
+        }
+        return total;
+    }
+
     function fetchValidOrderItems() {
         try {
             const orderDataRaw = localStorage.getItem('kazineOrder');
@@ -491,7 +467,6 @@
                                 id: itemId,
                                 name: getProductName(itemId),
                                 quantity: item.quantity || 1,
-                                price: getProductPrice(itemId),
                                 imageFile: getImageForItem(itemId)
                             });
                         }
@@ -502,7 +477,6 @@
                 }
             }
             
-            // Coba baca dari cart
             const cartRaw = localStorage.getItem('kazineCart');
             if (cartRaw) {
                 const cart = JSON.parse(cartRaw);
@@ -515,7 +489,6 @@
                                 id: itemId,
                                 name: getProductName(itemId),
                                 quantity: item.quantity || 1,
-                                price: getProductPrice(itemId),
                                 imageFile: getImageForItem(itemId)
                             });
                         }
@@ -533,7 +506,6 @@
         }
     }
 
-    // ========== ESCAPE HTML ==========
     function escapeHtml(str) {
         if (!str) return '';
         return str.replace(/[&<>]/g, function(m) {
@@ -544,7 +516,6 @@
         });
     }
 
-    // ========== RENDER THANK YOU ==========
     function renderThankYouMessage(hasItems) {
         const thankyouContainer = document.getElementById('thankyouMessageContainer');
         if (!thankyouContainer) return;
@@ -552,8 +523,8 @@
         if (hasItems) {
             thankyouContainer.innerHTML = `
                 <div class="thankyou-message">
-                    🙏 THANK YOU FOR YOUR ORDER 🙏
-                    <div style="font-size: 14px; font-weight: normal; margin-top: 6px;">we truly appreciate your support</div>
+                    THANK YOU FOR YOUR ORDER
+                    <div style="font-size: 14px; font-weight: normal; margin-top: 6px; color: #555555;">we truly appreciate your support</div>
                 </div>
             `;
         } else {
@@ -561,45 +532,62 @@
         }
     }
 
-    // ========== RENDER ORDERS ==========
+    function updateBagIcon(totalQuantity) {
+        const bagImage = document.getElementById('bagImage');
+        if (totalQuantity > 5) {
+            bagImage.src = 'Orderbox.png';
+            bagImage.alt = 'Box';
+            bagImage.onerror = function() {
+                this.onerror = null;
+                this.src = 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22200%22%20viewBox%3D%220%200%20200%20200%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22110%22%20font-size%3D%2220%22%20text-anchor%3D%22middle%22%20fill%3D%22%23999%22%3EBOX%3C%2Ftext%3E%3C%2Fsvg%3E';
+            };
+        } else {
+            bagImage.src = 'Orderbag.png';
+            bagImage.alt = 'Bag';
+            bagImage.onerror = function() {
+                this.onerror = null;
+                this.src = 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22200%22%20viewBox%3D%220%200%20200%20200%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22110%22%20font-size%3D%2220%22%20text-anchor%3D%22middle%22%20fill%3D%22%23999%22%3EBAG%3C%2Ftext%3E%3C%2Fsvg%3E';
+            };
+        }
+    }
+
     function renderOrders(validItems, paymentMethod) {
         const container = document.getElementById('orderItemsContainer');
-        const totalSpan = document.getElementById('totalAmountDisplay');
         const paymentInfoRow = document.getElementById('paymentInfoRow');
         const paymentMethodDisplay = document.getElementById('paymentMethodDisplay');
+        const downloadBtn = document.getElementById('downloadBtn');
+        
+        const totalQty = getTotalQuantity(validItems);
+        updateBagIcon(totalQty);
         
         if (!validItems.length) {
-            container.innerHTML = `<div class="empty-message">✨ No valid order found.<br>Please complete your purchase first at KAZINE payment page.<br>📦 Add items & checkout to see enlarged photos ✨</div>`;
-            totalSpan.textContent = "$0.00";
+            container.innerHTML = `<div class="empty-message">No valid order found.<br>Please complete your purchase first at KAZINE payment page.<br>Add items and checkout to see enlarged photos</div>`;
             paymentInfoRow.style.display = 'none';
             renderThankYouMessage(false);
+            downloadBtn.style.display = 'none';
             return;
         }
         
+        downloadBtn.style.display = 'block';
         let html = '';
-        let totalSum = 0;
         
         for (let item of validItems) {
-            const itemTotal = item.price * item.quantity;
-            totalSum += itemTotal;
-            const imgSrc = `./${item.imageFile}`;
+            const imgSrc = item.imageFile;
             
             html += `
-                <div class="order-item-card">
+                <div class="order-item-card" data-image="${imgSrc}">
                     <div class="order-image-large">
                         <img src="${imgSrc}" alt="${escapeHtml(item.name)}" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22280%22%20height%3D%22280%22%20viewBox%3D%220%200%20280%20280%22%3E%3Crect%20width%3D%22280%22%20height%3D%22280%22%20fill%3D%22%23f4f4f4%22%2F%3E%3Ctext%20x%3D%22140%22%20y%3D%22150%22%20font-size%3D%2216%22%20text-anchor%3D%22middle%22%20fill%3D%22%23999%22%3E${escapeHtml(item.name)}%3C%2Ftext%3E%3C%2Fsvg%3E';">
                     </div>
                     <div class="order-details">
                         <div class="order-item-name">${escapeHtml(item.name)}</div>
-                        <div class="order-item-quantity">📦 Quantity: ${item.quantity}</div>
-                        <div class="order-item-price">$${item.price.toFixed(2)} each</div>
+                        <div class="order-item-quantity">Quantity: ${item.quantity}</div>
                     </div>
                 </div>
             `;
         }
         
         container.innerHTML = html;
-        totalSpan.textContent = `$${totalSum.toFixed(2)}`;
         
         if (paymentMethod) {
             paymentMethodDisplay.textContent = paymentMethod;
@@ -611,7 +599,45 @@
         renderThankYouMessage(true);
     }
 
-    // ========== LOAD AND SHOW ==========
+    function downloadAllImages() {
+        const imageElements = document.querySelectorAll('.order-image-large img');
+        if (!imageElements.length) return;
+        
+        imageElements.forEach((img, index) => {
+            const imgSrc = img.src;
+            fetch(imgSrc)
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    const filename = imgSrc.split('/').pop().split('?')[0] || `image_${index + 1}.png`;
+                    link.download = filename;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                })
+                .catch(() => {
+                    try {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.naturalWidth || 280;
+                        canvas.height = img.naturalHeight || 280;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0);
+                        const link = document.createElement('a');
+                        link.download = `image_${index + 1}.png`;
+                        link.href = canvas.toDataURL('image/png');
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    } catch (e) {
+                        console.warn('Could not download image:', imgSrc);
+                    }
+                });
+        });
+    }
+
     function loadAndShowOrders() {
         const panel = document.getElementById('ordersPanel');
         const { items, paymentMethod } = fetchValidOrderItems();
@@ -624,9 +650,12 @@
         }, 100);
     }
 
-    // ========== EVENT LISTENERS ==========
     document.getElementById('bagTrigger').addEventListener('click', function(e) {
         loadAndShowOrders();
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', function(e) {
+        downloadAllImages();
     });
 
     const panel = document.getElementById('ordersPanel');
@@ -641,8 +670,8 @@
         }
     });
 
-    console.log("CHOKET ready - Using ID mapping: A1, A2, B1, B2, C1, C2, C3, C4, D1, D2, D3, D4");
-    console.log("Images: A1.png, A2.png, B1.png, B2.png, C1.png, C2.png, C3.png, C4.png, D1.png, D2.png, D3.png, D4.png");
+    console.log("CHOKET ready - Images from KAZINE/Product/ folder");
+    console.log("Mapping: A1, A2, B1, B2, C1, C2, C3, C4, D1, D2, D3, D4");
 </script>
 </body>
 </html>
