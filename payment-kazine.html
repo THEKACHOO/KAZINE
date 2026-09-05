@@ -7,25 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <style>
-        :root {
-            --pure-white: #ffffff;
-            --off-white: #f8f9fa;
-            --light-gray: #e9ecef;
-            --medium-gray: #adb5bd;
-            --dark-gray: #495057;
-            --pure-black: #212529;
-            --kazine-primary: #495057;
-            --success-color: #28a745;
-            --info-color: #17a2b8;
-            --discount-color: #dc3545;
-            --voucher-color: #ff6b6b;
-            --gradient-light: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            --border-radius: 12px;
-            --selected-color: #007bff;
-            --selected-light: rgba(0, 123, 255, 0.1);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -34,12 +15,11 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--pure-white);
-            color: var(--pure-black);
+            background: #ffffff;
+            color: #000000;
             line-height: 1.6;
-            min-height: 100vh;
-            background: var(--gradient-light);
             font-size: 16px;
+            min-height: 100vh;
         }
 
         .container {
@@ -49,12 +29,12 @@
             padding: 0 20px;
         }
 
-        /* Header Responsive */
+        /* header */
         header {
-            background: var(--pure-white);
+            background: #ffffff;
             padding: 20px 0;
-            border-bottom: 1px solid var(--light-gray);
-            box-shadow: var(--shadow);
+            border-bottom: 1px solid #e9ecef;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -72,8 +52,6 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            flex: 1;
-            min-width: 200px;
         }
 
         .logo-img-placeholder {
@@ -97,13 +75,13 @@
             font-size: 24px;
             font-weight: 800;
             letter-spacing: 0.5px;
-            color: var(--kazine-primary);
+            color: #212529;
             line-height: 1.2;
         }
 
         .logo-text p {
             font-size: 11px;
-            color: var(--dark-gray);
+            color: #495057;
             letter-spacing: 0.5px;
         }
 
@@ -111,23 +89,23 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: var(--dark-gray);
+            color: #495057;
             text-decoration: none;
             font-weight: 500;
             padding: 10px 16px;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--light-gray);
-            transition: all 0.3s ease;
-            white-space: nowrap;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            transition: all 0.2s;
             font-size: 14px;
+            background: #ffffff;
         }
 
         .back-button:hover {
-            background: var(--off-white);
-            border-color: var(--medium-gray);
+            background: #f8f9fa;
+            border-color: #adb5bd;
         }
 
-        /* Main Layout Improvements */
+        /* layout */
         .payment-container {
             padding: 30px 0 50px;
             display: grid;
@@ -141,18 +119,16 @@
                 grid-template-columns: 1fr;
                 gap: 25px;
             }
-            
             .order-summary-section {
                 position: static !important;
             }
         }
 
-        /* Order Summary Responsive */
         .order-summary-section {
-            background: var(--pure-white);
+            background: #ffffff;
             padding: 25px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
             height: fit-content;
         }
 
@@ -167,9 +143,9 @@
             font-size: 20px;
             font-weight: 700;
             margin-bottom: 20px;
-            color: var(--pure-black);
+            color: #000000;
             padding-bottom: 12px;
-            border-bottom: 2px solid var(--light-gray);
+            border-bottom: 2px solid #e9ecef;
         }
 
         .order-items-list {
@@ -179,18 +155,15 @@
             padding-right: 10px;
         }
 
-        /* Scrollbar Styling */
         .order-items-list::-webkit-scrollbar {
             width: 6px;
         }
-
         .order-items-list::-webkit-scrollbar-track {
-            background: var(--off-white);
+            background: #f8f9fa;
             border-radius: 10px;
         }
-
         .order-items-list::-webkit-scrollbar-thumb {
-            background: var(--medium-gray);
+            background: #adb5bd;
             border-radius: 10px;
         }
 
@@ -199,7 +172,7 @@
             justify-content: space-between;
             align-items: flex-start;
             padding: 12px 0;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid #e9ecef;
         }
 
         .order-item:last-child {
@@ -210,12 +183,11 @@
             font-weight: 600;
             font-size: 15px;
             margin-bottom: 4px;
-            line-height: 1.4;
         }
 
         .item-details {
             font-size: 13px;
-            color: var(--medium-gray);
+            color: #adb5bd;
         }
 
         .item-price {
@@ -225,13 +197,13 @@
             margin-left: 10px;
         }
 
-        /* Voucher Section Responsive */
+        /* voucher */
         .voucher-section {
-            background: var(--off-white);
+            background: #f8f9fa;
             padding: 18px;
-            border-radius: var(--border-radius);
+            border-radius: 12px;
             margin: 18px 0;
-            border: 1px dashed var(--medium-gray);
+            border: 1px dashed #adb5bd;
         }
 
         .voucher-input-group {
@@ -245,37 +217,67 @@
             flex: 1;
             min-width: 150px;
             padding: 12px 15px;
-            border: 2px solid var(--light-gray);
-            border-radius: var(--border-radius);
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
             font-size: 15px;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
             height: 46px;
+            background: #ffffff;
         }
 
         .voucher-button {
             padding: 0 20px;
-            background: var(--kazine-primary);
-            color: var(--pure-white);
+            background: #212529;
+            color: #ffffff;
             border: none;
-            border-radius: var(--border-radius);
+            border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
             height: 46px;
             min-width: 80px;
             flex-shrink: 0;
         }
 
         .voucher-button:hover {
-            background: var(--dark-gray);
+            background: #000000;
         }
 
-        /* Payment Form Responsive */
+        .voucher-message {
+            font-size: 13px;
+            margin-top: 8px;
+            min-height: 20px;
+        }
+
+        .voucher-success {
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .voucher-error {
+            color: #dc3545;
+        }
+
+        .voucher-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8f9fa;
+            color: #000000;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin: 5px 0;
+            font-weight: 600;
+            border: 1px solid #000000;
+            font-size: 13px;
+        }
+
+        /* payment form */
         .payment-form-section {
-            background: var(--pure-white);
+            background: #ffffff;
             padding: 25px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
         }
 
         .form-group {
@@ -286,18 +288,24 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: var(--dark-gray);
+            color: #495057;
             font-size: 14px;
         }
 
         .form-input {
             width: 100%;
             padding: 14px 15px;
-            border: 2px solid var(--light-gray);
-            border-radius: var(--border-radius);
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
             font-size: 15px;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
             min-height: 48px;
+            background: #ffffff;
+        }
+
+        .form-input:focus {
+            border-color: #000000;
+            outline: none;
         }
 
         textarea.form-input {
@@ -305,15 +313,20 @@
             resize: vertical;
         }
 
-        /* Payment Methods Responsive - HANYA 2 METODE SEKARANG */
+        /* payment methods */
         .payment-methods {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 12px;
             margin-top: 15px;
         }
 
-        @media (max-width: 576px) {
+        @media (max-width: 700px) {
+            .payment-methods {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 480px) {
             .payment-methods {
                 grid-template-columns: 1fr;
             }
@@ -335,41 +348,23 @@
             align-items: center;
             gap: 12px;
             padding: 16px;
-            border: 2px solid var(--light-gray);
-            border-radius: var(--border-radius);
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
             min-height: 80px;
-            background: var(--pure-white);
+            background: #ffffff;
         }
 
-        /* Selected payment method style */
         .payment-method input:checked + .payment-label {
-            border-color: var(--selected-color);
-            background: var(--selected-light);
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-        }
-
-        .payment-method input:checked + .payment-label .payment-icon {
-            color: var(--selected-color);
+            border-color: #000000;
+            background: #f8f9fa;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
         }
 
         .payment-label:hover {
-            border-color: var(--medium-gray);
-            background: var(--off-white);
-        }
-
-        @media (max-width: 480px) {
-            .payment-label {
-                padding: 12px;
-                min-height: 70px;
-            }
-            
-            .payment-icon {
-                width: 35px !important;
-                height: 35px !important;
-                font-size: 20px !important;
-            }
+            border-color: #adb5bd;
+            background: #f8f9fa;
         }
 
         .payment-icon {
@@ -379,21 +374,21 @@
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            color: var(--kazine-primary);
-            transition: all 0.3s ease;
+            color: #212529;
+            transition: all 0.2s;
         }
 
         .payment-details {
             font-size: 13px;
-            color: var(--medium-gray);
+            color: #adb5bd;
             margin-top: 3px;
         }
 
-        /* Price Breakdown Responsive */
+        /* price breakdown */
         .price-breakdown {
             margin-top: 20px;
             padding-top: 18px;
-            border-top: 2px solid var(--light-gray);
+            border-top: 2px solid #e9ecef;
         }
 
         .price-row {
@@ -409,22 +404,26 @@
             font-weight: 700;
             margin-top: 12px;
             padding-top: 12px;
-            border-top: 2px solid var(--light-gray);
-            color: var(--success-color);
+            border-top: 2px solid #e9ecef;
+            color: #000000;
         }
 
-        /* Submit Button Responsive */
+        .price-row.discount {
+            color: #000000;
+            font-weight: 600;
+        }
+
         .submit-button {
             width: 100%;
             padding: 16px;
-            background: var(--success-color);
-            color: var(--pure-white);
+            background: #000000;
+            color: #ffffff;
             border: none;
-            border-radius: var(--border-radius);
+            border-radius: 12px;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
             margin-top: 25px;
             display: flex;
             align-items: center;
@@ -434,29 +433,114 @@
         }
 
         .submit-button:hover {
-            background: #218838;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+            background: #212529;
         }
 
-        /* Footer Responsive */
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* payment specific */
+        .payment-specific {
+            margin-top: 25px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .payment-specific.active {
+            display: block;
+        }
+
+        .account-number-input {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .chobank-info {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+            border-left: 4px solid #000000;
+        }
+
+        .chobank-info p {
+            margin: 5px 0;
+            font-size: 13px;
+            color: #495057;
+        }
+
+        .qris-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .qris-scan-btn {
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .qris-scan-btn:hover {
+            background: #212529;
+        }
+
+        .card-press-area {
+            background: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+            margin-top: 10px;
+        }
+
+        .card-press-area:active {
+            transform: scale(0.97);
+        }
+
+        .card-press-area i {
+            font-size: 48px;
+            color: #000000;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .other-payment-input {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
         .footer-disclaimer {
             text-align: center;
             padding: 30px 0;
-            color: var(--medium-gray);
+            color: #adb5bd;
             font-size: 12px;
             line-height: 1.6;
             max-width: 800px;
             margin: 0 auto;
-            border-top: 1px solid var(--light-gray);
+            border-top: 1px solid #e9ecef;
             margin-top: 40px;
         }
 
-        /* Empty Cart Responsive */
         .empty-cart {
             text-align: center;
             padding: 50px 20px;
-            color: var(--medium-gray);
+            color: #adb5bd;
             max-width: 500px;
             margin: 0 auto;
         }
@@ -465,231 +549,7 @@
             font-size: 48px;
             margin-bottom: 20px;
             display: block;
-            color: var(--light-gray);
-        }
-
-        /* Mobile Optimizations */
-        @media (max-width: 768px) {
-            body {
-                font-size: 15px;
-            }
-            
-            .container {
-                padding: 0 15px;
-            }
-            
-            header {
-                padding: 15px 0;
-            }
-            
-            .logo-container {
-                min-width: auto;
-            }
-            
-            .logo-img-placeholder {
-                width: 45px;
-                height: 45px;
-            }
-            
-            .logo-text h1 {
-                font-size: 22px;
-            }
-            
-            .payment-container {
-                padding: 20px 0 40px;
-                gap: 20px;
-            }
-            
-            .order-summary-section,
-            .payment-form-section {
-                padding: 20px;
-            }
-            
-            .section-title {
-                font-size: 18px;
-                margin-bottom: 18px;
-            }
-            
-            .voucher-section {
-                padding: 15px;
-            }
-            
-            .submit-button {
-                padding: 14px;
-                font-size: 15px;
-                min-height: 52px;
-            }
-            
-            .back-button {
-                padding: 8px 14px;
-                font-size: 13px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 12px;
-            }
-            
-            .header-container {
-                gap: 10px;
-            }
-            
-            .logo-container {
-                gap: 8px;
-            }
-            
-            .logo-text h1 {
-                font-size: 20px;
-            }
-            
-            .logo-text p {
-                font-size: 10px;
-            }
-            
-            .order-summary-section,
-            .payment-form-section {
-                padding: 18px;
-            }
-            
-            .section-title {
-                font-size: 17px;
-            }
-            
-            .form-input,
-            .voucher-input {
-                padding: 12px;
-                font-size: 14px;
-            }
-            
-            .price-row {
-                font-size: 14px;
-            }
-            
-            .price-row.total {
-                font-size: 16px;
-            }
-            
-            .footer-disclaimer {
-                padding: 25px 0;
-                font-size: 11px;
-            }
-        }
-
-        /* Touch-friendly improvements */
-        @media (hover: none) {
-            .back-button:hover,
-            .voucher-button:hover,
-            .submit-button:hover,
-            .payment-label:hover {
-                transform: none;
-            }
-            
-            .submit-button:active {
-                background: #218838;
-                transform: scale(0.98);
-            }
-            
-            .payment-label:active {
-                border-color: var(--selected-color);
-                background: var(--selected-light);
-            }
-        }
-
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            :root {
-                --light-gray: #000000;
-                --medium-gray: #000000;
-                --shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-                --selected-color: #0000ff;
-            }
-            
-            .voucher-section {
-                border-style: solid;
-            }
-            
-            .payment-method input:checked + .payment-label {
-                border-width: 3px;
-            }
-        }
-
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-            
-            .loading-spinner {
-                animation: none;
-                border: 5px solid var(--success-color);
-            }
-        }
-
-        /* Keep existing animations and keyframes */
-        .payment-specific.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid var(--light-gray);
-            border-top: 5px solid var(--success-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Existing styles that remain unchanged */
-        .payment-specific {
-            margin-top: 25px;
-            padding: 25px;
-            background: var(--off-white);
-            border-radius: var(--border-radius);
-            display: none;
-        }
-
-        .voucher-message {
-            font-size: 13px;
-            margin-top: 8px;
-            min-height: 20px;
-        }
-
-        .voucher-success {
-            color: var(--success-color);
-            font-weight: 600;
-        }
-
-        .voucher-error {
-            color: var(--discount-color);
-        }
-
-        .voucher-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
-            color: var(--voucher-color);
-            padding: 6px 14px;
-            border-radius: 20px;
-            margin: 5px 0;
-            font-weight: 600;
-            border: 1px solid var(--voucher-color);
-            font-size: 13px;
+            color: #e9ecef;
         }
 
         .loading-overlay {
@@ -707,86 +567,62 @@
             display: none;
         }
 
-        .price-row.discount {
-            color: var(--voucher-color);
-            font-weight: 600;
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #e9ecef;
+            border-top: 5px solid #000000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
         }
 
-        select.form-input {
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            background-size: 16px;
-            padding-right: 40px;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        
-        /* Button disabled state */
-        button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+
+        /* delivery option */
+        .delivery-option-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 10px 0;
         }
-        
-        button:disabled:hover {
-            transform: none !important;
-            background: var(--success-color) !important;
-            box-shadow: none !important;
+
+        .delivery-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            cursor: pointer;
         }
-        
-        /* Voucher info */
-        .voucher-info {
-            font-size: 12px;
-            color: var(--medium-gray);
-            margin-top: 10px;
-            background: var(--light-gray);
-            padding: 8px 12px;
-            border-radius: 8px;
-            border-left: 3px solid var(--voucher-color);
+
+        .delivery-option input[type="radio"] {
+            accent-color: #000000;
+            width: 18px;
+            height: 18px;
         }
-        
-        .voucher-info strong {
-            color: var(--dark-gray);
+
+        @media (max-width: 480px) {
+            .container { padding: 0 12px; }
+            .header-container { gap: 10px; }
+            .logo-text h1 { font-size: 20px; }
+            .payment-container { padding: 20px 0 40px; }
+            .order-summary-section, .payment-form-section { padding: 18px; }
+            .payment-methods { grid-template-columns: 1fr; }
         }
-        
-        /* CHOBANK Form Styling */
-        .account-number-input {
-            font-family: 'Courier New', monospace;
-            font-size: 18px;
-            letter-spacing: 2px;
-            text-align: center;
-        }
-        
-        .account-number-input::placeholder {
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            letter-spacing: normal;
-        }
-        
-        .chobank-info {
-            background: var(--light-gray);
-            padding: 15px;
-            border-radius: var(--border-radius);
-            margin-top: 15px;
-            border-left: 4px solid var(--info-color);
-        }
-        
-        .chobank-info p {
-            margin: 5px 0;
-            font-size: 13px;
-            color: var(--dark-gray);
-        }
-        
-        /* QRIS Styling */
-        .qris-container {
-            text-align: center;
-            padding: 20px;
+
+        /* reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
     </style>
 </head>
 <body>
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
-        <h3>Processing Payment...</h3>
+        <h3>Processing Payment</h3>
         <p>Please wait while we process your order</p>
     </div>
 
@@ -802,8 +638,7 @@
                 </div>
             </div>
             <a href="COLLECTION.html" class="back-button">
-                <i class="fas fa-arrow-left"></i>
-                Back to Store
+                <i class="fas fa-arrow-left"></i> Back to Store
             </a>
         </div>
     </header>
@@ -814,8 +649,7 @@
             <h3>Your cart is empty</h3>
             <p>Please add items to your cart before proceeding to payment.</p>
             <a href="COLLECTION.html" class="back-button" style="margin-top: 20px;">
-                <i class="fas fa-store"></i>
-                Browse Products
+                <i class="fas fa-store"></i> Browse Products
             </a>
         </div>
 
@@ -823,9 +657,8 @@
             <div class="payment-container">
                 <section class="order-summary-section">
                     <h2 class="section-title">Order Summary</h2>
-                    
                     <div class="order-items-list" id="orderItemsList"></div>
-                    
+
                     <div class="voucher-section">
                         <h3 style="font-size: 15px; margin-bottom: 12px; font-weight: 600;">Have a voucher?</h3>
                         <div class="voucher-input-group">
@@ -838,128 +671,123 @@
                             <span id="voucherText">Voucher Applied</span>
                         </div>
                     </div>
-                    
+
                     <div class="price-breakdown">
-                        <div class="price-row">
-                            <span>Subtotal</span>
-                            <span id="subtotal">$0.00</span>
-                        </div>
+                        <div class="price-row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
                         <div class="price-row discount" id="discountRow" style="display: none;">
-                            <span>Discount</span>
-                            <span id="discountAmount">-$0.00</span>
+                            <span>Discount</span><span id="discountAmount">-$0.00</span>
                         </div>
-                        <div class="price-row">
-                            <span>Service Fee</span>
-                            <span id="serviceFee">$2.50</span>
-                        </div>
-                        <div class="price-row total">
-                            <span>Total Amount</span>
-                            <span id="totalAmount">$0.00</span>
-                        </div>
+                        <div class="price-row"><span>Service Fee</span><span id="serviceFee">$2.50</span></div>
+                        <div class="price-row total"><span>Total Amount</span><span id="totalAmount">$0.00</span></div>
                     </div>
                 </section>
 
                 <section class="payment-form-section">
                     <h2 class="section-title">Payment Details</h2>
-                    
+
                     <div class="form-group">
                         <label class="form-label" for="fullName">Full Name *</label>
                         <input type="text" class="form-input" id="fullName" placeholder="Enter your full name" required>
                     </div>
-                    
                     <div class="form-group">
                         <label class="form-label" for="email">Email Address *</label>
                         <input type="email" class="form-input" id="email" placeholder="Enter your email" required>
                     </div>
-                    
                     <div class="form-group">
                         <label class="form-label" for="country">Country *</label>
                         <input type="text" class="form-input" id="country" placeholder="Enter your country" required>
                     </div>
-
                     <div class="form-group">
                         <label class="form-label" for="address">Address (Optional)</label>
                         <input type="text" class="form-input" id="address" placeholder="Enter your address">
                     </div>
-
                     <div class="form-group">
                         <label class="form-label" for="twitterUsername">Twitter/X Username *</label>
                         <input type="text" class="form-input" id="twitterUsername" placeholder="@username" required>
                     </div>
-
                     <div class="form-group">
                         <label class="form-label" for="otherRequest">Other Request (Optional)</label>
                         <textarea class="form-input" id="otherRequest" placeholder="Any special requests?" rows="3"></textarea>
                     </div>
 
+                    <!-- Delivery option -->
+                    <div class="form-group">
+                        <label class="form-label">Delivery Method *</label>
+                        <div class="delivery-option-group">
+                            <label class="delivery-option">
+                                <input type="radio" name="deliveryMethod" value="shipping" checked> Ship to Address
+                            </label>
+                            <label class="delivery-option">
+                                <input type="radio" name="deliveryMethod" value="pickup"> Pickup In Store
+                            </label>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="form-label">Select Payment Method *</label>
                         <div class="payment-methods">
-                            <!-- HANYA CHOBANK DAN QRIS SAJA -->
                             <div class="payment-method">
                                 <input type="radio" id="chobank" name="paymentMethod" value="chobank">
                                 <label class="payment-label" for="chobank">
                                     <div class="payment-icon"><i class="fas fa-university"></i></div>
-                                    <div>
-                                        <div>CHOBANK</div>
-                                        <div class="payment-details">Transfer via CHOBANK</div>
-                                    </div>
+                                    <div><div>CHOBANK</div><div class="payment-details">Transfer or press card</div></div>
                                 </label>
                             </div>
-                            
                             <div class="payment-method">
                                 <input type="radio" id="qris" name="paymentMethod" value="qris">
                                 <label class="payment-label" for="qris">
                                     <div class="payment-icon"><i class="fas fa-qrcode"></i></div>
-                                    <div>
-                                        <div>QRIS</div>
-                                        <div class="payment-details">Scan QR code to pay</div>
-                                    </div>
+                                    <div><div>QRIS</div><div class="payment-details">Scan barcode</div></div>
+                                </label>
+                            </div>
+                            <div class="payment-method">
+                                <input type="radio" id="other" name="paymentMethod" value="other">
+                                <label class="payment-label" for="other">
+                                    <div class="payment-icon"><i class="fas fa-credit-card"></i></div>
+                                    <div><div>Other Payment</div><div class="payment-details">Manual transfer</div></div>
                                 </label>
                             </div>
                         </div>
                     </div>
 
-                    <!-- CHOBANK Payment Form -->
+                    <!-- CHOBANK -->
                     <div class="payment-specific" id="chobankSelection">
                         <div class="form-group">
-                            <label class="form-label" for="chobankAccountNumber">CHOBANK Account Number *</label>
-                            <input type="text" 
-                                   class="form-input account-number-input" 
-                                   id="chobankAccountNumber" 
-                                   placeholder="1234 5678 9012 3456"
-                                   maxlength="19"
-                                   inputmode="numeric"
-                                   pattern="[0-9\s]{16,19}">
+                            <label class="form-label" for="chobankAccountNumber">CHOBANK Account Number</label>
+                            <input type="text" class="form-input account-number-input" id="chobankAccountNumber" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric">
                             <div class="chobank-info">
-                                <p><strong>CHOBANK Information:</strong></p>
-                                <p>• Enter 16-digit account number</p>
-                                <p>• No letters or special characters</p>
-                                <p>• Example: 1234 5678 9012 3456</p>
-                                <p>• Transfer to this number to complete payment</p>
+                                <p><strong>CHOBANK:</strong> Enter 16-digit number or press the card below to pay instantly.</p>
                             </div>
+                        </div>
+                        <div class="card-press-area" id="cardPressArea">
+                            <i class="fas fa-credit-card"></i>
+                            <span style="font-weight: 600;">Press and hold the card to pay</span>
+                            <div style="font-size: 13px; color: #495057; margin-top: 6px;">Hold for 3 seconds to complete payment</div>
                         </div>
                     </div>
 
-                    <!-- QRIS Payment Form -->
+                    <!-- QRIS -->
                     <div class="payment-specific" id="qrisSelection">
                         <div class="qris-container">
-                            <div class="qris-code">
-                                <!-- Placeholder for QR Code -->
-                                <div style="text-align: center;">
-                                    <i class="fas fa-qrcode" style="font-size: 40px; margin-bottom: 10px; color: var(--medium-gray);"></i>
-                                    <div>QR CODE</div>
-                                </div>
-                            </div>
+                            <div style="margin-bottom: 20px;"><i class="fas fa-qrcode" style="font-size: 60px; color: #000000;"></i></div>
+                            <button class="qris-scan-btn" id="qrisScanBtn">Scan Barcode</button>
+                            <p style="margin-top: 15px; font-size: 13px; color: #495057;">Click to simulate QRIS payment</p>
+                        </div>
+                    </div>
+
+                    <!-- Other Payment -->
+                    <div class="payment-specific" id="otherSelection">
+                        <div class="form-group">
+                            <label class="form-label" for="otherAccountNumber">Account Number *</label>
+                            <input type="text" class="form-input" id="otherAccountNumber" placeholder="Enter account number (min 5 digits)" inputmode="numeric">
+                            <div style="font-size: 13px; color: #495057; margin-top: 6px;">Minimum 5 digits. Payment will be processed instantly.</div>
                         </div>
                     </div>
 
                     <button type="button" class="submit-button" id="processPayment">
-                        <i class="fas fa-lock"></i>
-                        Complete Payment
+                        <i class="fas fa-lock"></i> Complete Payment
                     </button>
-                    
-                    <p style="text-align: center; margin-top: 20px; font-size: 13px; color: var(--medium-gray);">
+                    <p style="text-align: center; margin-top: 20px; font-size: 13px; color: #adb5bd;">
                         <i class="fas fa-shield-alt"></i> Your payment is secure and encrypted
                     </p>
                 </section>
@@ -970,43 +798,31 @@
     <footer class="container">
         <div class="footer-disclaimer">
             <p><strong>IMPORTANT NOTE:</strong> No actual payment will be processed. This is a simulation for roleplay purposes only.</p>
-            <p style="margin-top: 10px;">&copy; 2026 KAZINE | A Magazine of THE KACHOO. All rights reserved.</p>
+            <p style="margin-top: 10px;">© 2026 KAZINE by The Kachoo. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
         const SPREADSHEET_URL = "https://script.google.com/macros/s/AKfycbyOuKoJVKmHEcuBOSaWoU3X6H1DctA1L4Xlgh_NMATkuNJEi7QROub7m-BIIatlAdLeGg/exec";
-        
         let cartItems = [];
         let subtotal = 0;
         let discount = 0;
         let voucherCode = '';
         let discountPercentage = 0;
         const serviceFee = 2.50;
-        
-        // Valid voucher codes with their discounts
+
+        // Voucher: 50% for SobatKachoo (case insensitive)
         const validVouchers = {
-            "KACHOOBESTIE": 40
+            "SOBATKACHOO": 50
         };
 
         function calculateDiscount(code, amount) {
             const voucher = code.trim().toUpperCase();
-            
-            // Check if voucher exists in validVouchers
             if (validVouchers.hasOwnProperty(voucher)) {
                 const percentage = validVouchers[voucher];
-                return {
-                    amount: amount * (percentage / 100),
-                    percentage: percentage,
-                    code: voucher
-                };
+                return { amount: amount * (percentage / 100), percentage, code: voucher };
             }
-            
-            return {
-                amount: 0,
-                percentage: 0,
-                code: null
-            };
+            return { amount: 0, percentage: 0, code: null };
         }
 
         function applyVoucher() {
@@ -1014,43 +830,31 @@
             const voucherMessage = document.getElementById('voucherMessage');
             const voucherBadge = document.getElementById('voucherBadge');
             const voucherText = document.getElementById('voucherText');
-            
             const code = voucherInput.value.trim();
-            
+
             if (!code) {
                 voucherMessage.innerHTML = '<span class="voucher-error">Please enter a voucher code</span>';
                 voucherBadge.style.display = 'none';
-                discount = 0;
-                discountPercentage = 0;
-                voucherCode = '';
+                discount = 0; discountPercentage = 0; voucherCode = '';
                 updateTotals();
                 return;
             }
-            
+
             const discountInfo = calculateDiscount(code, subtotal);
-            
             if (discountInfo.amount > 0) {
                 voucherMessage.innerHTML = `<span class="voucher-success">✓ ${discountInfo.percentage}% discount applied!</span>`;
                 voucherText.textContent = `${discountInfo.code} - ${discountInfo.percentage}% OFF`;
                 voucherBadge.style.display = 'inline-flex';
-                
                 discount = discountInfo.amount;
                 discountPercentage = discountInfo.percentage;
                 voucherCode = discountInfo.code;
-                
-                localStorage.setItem('kazineVoucher', JSON.stringify({
-                    code: voucherCode,
-                    percentage: discountPercentage,
-                    amount: discount
-                }));
+                localStorage.setItem('kazineVoucher', JSON.stringify({ code: voucherCode, percentage: discountPercentage, amount: discount }));
             } else {
                 voucherBadge.style.display = 'none';
-                discount = 0;
-                discountPercentage = 0;
-                voucherCode = '';
+                discount = 0; discountPercentage = 0; voucherCode = '';
                 localStorage.removeItem('kazineVoucher');
+                voucherMessage.innerHTML = '<span class="voucher-error">Invalid voucher code</span>';
             }
-            
             updateTotals();
         }
 
@@ -1058,13 +862,11 @@
             const savedCart = localStorage.getItem('kazineCart');
             const emptyCartState = document.getElementById('emptyCartState');
             const paymentFormState = document.getElementById('paymentFormState');
-            
             if (!savedCart || savedCart === '[]') {
                 emptyCartState.style.display = 'block';
                 paymentFormState.style.display = 'none';
                 return false;
             }
-            
             try {
                 cartItems = JSON.parse(savedCart);
                 displayCartItems();
@@ -1083,166 +885,106 @@
             const savedVoucher = localStorage.getItem('kazineVoucher');
             if (savedVoucher) {
                 try {
-                    const voucherData = JSON.parse(savedVoucher);
-                    document.getElementById('voucherCode').value = voucherData.code;
-                    discount = voucherData.amount;
-                    discountPercentage = voucherData.percentage;
-                    voucherCode = voucherData.code;
-                    
-                    document.getElementById('voucherText').textContent = `${voucherCode} - ${discountPercentage}% OFF`;
+                    const v = JSON.parse(savedVoucher);
+                    document.getElementById('voucherCode').value = v.code;
+                    discount = v.amount; discountPercentage = v.percentage; voucherCode = v.code;
+                    document.getElementById('voucherText').textContent = `${v.code} - ${v.percentage}% OFF`;
                     document.getElementById('voucherBadge').style.display = 'inline-flex';
-                    document.getElementById('voucherMessage').innerHTML = 
-                        `<span class="voucher-success">✓ ${discountPercentage}% discount applied!</span>`;
-                    
+                    document.getElementById('voucherMessage').innerHTML = `<span class="voucher-success">✓ ${v.percentage}% discount applied!</span>`;
                     updateTotals();
-                } catch (error) {
-                    console.error('Error loading voucher:', error);
-                }
+                } catch (e) {}
             }
         }
 
         function displayCartItems() {
             const orderItemsList = document.getElementById('orderItemsList');
             orderItemsList.innerHTML = '';
-            
             if (cartItems.length === 0) {
-                orderItemsList.innerHTML = '<p style="text-align: center; color: var(--medium-gray);">No items in cart</p>';
+                orderItemsList.innerHTML = '<p style="text-align: center; color: #adb5bd;">No items in cart</p>';
                 return;
             }
-            
             cartItems.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.className = 'order-item';
-                
+                const el = document.createElement('div');
+                el.className = 'order-item';
                 const price = parseFloat(item.price) || 0;
-                const quantity = item.quantity || 1;
-                const total = price * quantity;
-                
-                itemElement.innerHTML = `
-                    <div class="item-info">
-                        <h4>${item.title || 'Magazine Item'}</h4>
-                        <div class="item-details">Quantity: ${quantity}</div>
-                    </div>
-                    <div class="item-price">$${total.toFixed(2)}</div>
+                const qty = item.quantity || 1;
+                el.innerHTML = `
+                    <div class="item-info"><h4>${item.title || 'Magazine Item'}</h4><div class="item-details">Quantity: ${qty}</div></div>
+                    <div class="item-price">$${(price * qty).toFixed(2)}</div>
                 `;
-                
-                orderItemsList.appendChild(itemElement);
+                orderItemsList.appendChild(el);
             });
         }
 
         function calculateSubtotal() {
-            subtotal = cartItems.reduce((total, item) => {
-                const price = parseFloat(item.price) || 0;
-                const quantity = item.quantity || 1;
-                return total + (price * quantity);
-            }, 0);
-            
+            subtotal = cartItems.reduce((t, item) => t + (parseFloat(item.price) || 0) * (item.quantity || 1), 0);
             updateTotals();
         }
 
         function updateTotals() {
             const total = subtotal - discount + serviceFee;
-            
             document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
             document.getElementById('serviceFee').textContent = `$${serviceFee.toFixed(2)}`;
             document.getElementById('totalAmount').textContent = `$${total.toFixed(2)}`;
-            
             const discountRow = document.getElementById('discountRow');
             const discountAmount = document.getElementById('discountAmount');
-            
             if (discount > 0) {
                 discountRow.style.display = 'flex';
                 discountAmount.textContent = `-$${discount.toFixed(2)}`;
             } else {
                 discountRow.style.display = 'none';
             }
-            
-            localStorage.setItem('kazineTotals', JSON.stringify({
-                subtotal: subtotal,
-                discount: discount,
-                serviceFee: serviceFee,
-                total: total,
-                voucherCode: voucherCode
-            }));
+            localStorage.setItem('kazineTotals', JSON.stringify({ subtotal, discount, serviceFee, total, voucherCode }));
         }
 
         function setupPaymentMethods() {
-            const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
-            const chobankSelection = document.getElementById('chobankSelection');
-            const qrisSelection = document.getElementById('qrisSelection');
-            
-            // NO DEFAULT SELECTION - User must choose
-            paymentMethods.forEach(method => {
-                method.addEventListener('change', function() {
-                    chobankSelection.classList.remove('active');
-                    qrisSelection.classList.remove('active');
-                    
-                    if (this.value === 'chobank') {
-                        chobankSelection.classList.add('active');
-                    } else if (this.value === 'qris') {
-                        qrisSelection.classList.add('active');
-                    }
-                    
-                    // Highlight the selected payment method
-                    highlightSelectedPayment();
-                });
-                
-                // Add click handler to label for better UX
-                const label = method.nextElementSibling;
-                label.addEventListener('click', function() {
-                    // The radio button change event will handle the rest
+            const methods = document.querySelectorAll('input[name="paymentMethod"]');
+            const chobankSel = document.getElementById('chobankSelection');
+            const qrisSel = document.getElementById('qrisSelection');
+            const otherSel = document.getElementById('otherSelection');
+
+            methods.forEach(m => {
+                m.addEventListener('change', function() {
+                    chobankSel.classList.remove('active');
+                    qrisSel.classList.remove('active');
+                    otherSel.classList.remove('active');
+                    if (this.value === 'chobank') chobankSel.classList.add('active');
+                    else if (this.value === 'qris') qrisSel.classList.add('active');
+                    else if (this.value === 'other') otherSel.classList.add('active');
                 });
             });
-            
-            // Format CHOBANK account number input
-            const accountNumberInput = document.getElementById('chobankAccountNumber');
-            if (accountNumberInput) {
-                accountNumberInput.addEventListener('input', function(e) {
-                    // Remove all non-digits
-                    let value = this.value.replace(/\D/g, '');
-                    
-                    // Limit to 16 digits
-                    if (value.length > 16) {
-                        value = value.substring(0, 16);
-                    }
-                    
-                    // Add space every 4 digits
-                    value = value.replace(/(.{4})/g, '$1 ').trim();
-                    
-                    this.value = value;
-                });
-                
-                // Prevent non-numeric input
-                accountNumberInput.addEventListener('keypress', function(e) {
-                    const char = String.fromCharCode(e.keyCode || e.which);
-                    if (!/[\d]/.test(char)) {
-                        e.preventDefault();
-                    }
-                });
-            }
-            
-            // Initialize - no payment method selected by default
-            highlightSelectedPayment();
-        }
-        
-        function highlightSelectedPayment() {
-            // Remove highlight from all
-            document.querySelectorAll('.payment-label').forEach(label => {
-                label.style.borderColor = '';
-                label.style.background = '';
-                label.style.boxShadow = '';
-                label.querySelector('.payment-icon').style.color = '';
+
+            // CHOBANK card press (hold 3 sec)
+            const cardArea = document.getElementById('cardPressArea');
+            let pressTimer = null;
+            cardArea.addEventListener('mousedown', () => {
+                pressTimer = setTimeout(() => {
+                    alert('CHOBANK payment completed (card press).');
+                    document.getElementById('chobankAccountNumber').value = '1234 5678 9012 3456';
+                }, 3000);
             });
-            
-            // Highlight selected
-            const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked');
-            if (selectedMethod) {
-                const selectedLabel = selectedMethod.nextElementSibling;
-                selectedLabel.style.borderColor = 'var(--selected-color)';
-                selectedLabel.style.background = 'var(--selected-light)';
-                selectedLabel.style.boxShadow = '0 0 0 3px rgba(0, 123, 255, 0.1)';
-                selectedLabel.querySelector('.payment-icon').style.color = 'var(--selected-color)';
-            }
+            cardArea.addEventListener('mouseup', () => { clearTimeout(pressTimer); });
+            cardArea.addEventListener('mouseleave', () => { clearTimeout(pressTimer); });
+            // touch support
+            cardArea.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                pressTimer = setTimeout(() => {
+                    alert('CHOBANK payment completed (card press).');
+                    document.getElementById('chobankAccountNumber').value = '1234 5678 9012 3456';
+                }, 3000);
+            });
+            cardArea.addEventListener('touchend', () => { clearTimeout(pressTimer); });
+
+            // QRIS scan button
+            document.getElementById('qrisScanBtn').addEventListener('click', function() {
+                alert('QRIS payment completed (barcode scanned).');
+            });
+
+            // Other payment: validate min 5 digits
+            const otherInput = document.getElementById('otherAccountNumber');
+            otherInput.addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '');
+            });
         }
 
         function validateForm() {
@@ -1250,297 +992,139 @@
             const email = document.getElementById('email').value.trim();
             const country = document.getElementById('country').value.trim();
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
-            const chobankAccountNumber = document.getElementById('chobankAccountNumber')?.value.replace(/\s/g, '');
-            
-            // Clear previous errors
-            document.querySelectorAll('.form-input').forEach(input => {
-                input.style.borderColor = '';
-            });
-            
-            let isValid = true;
-            let errorMessage = '';
-            
-            if (!fullName) {
-                document.getElementById('fullName').style.borderColor = 'var(--discount-color)';
-                isValid = false;
-                errorMessage = 'Please enter your full name';
-            }
-            
-            if (!email || !email.includes('@')) {
-                document.getElementById('email').style.borderColor = 'var(--discount-color)';
-                isValid = false;
-                errorMessage = errorMessage || 'Please enter a valid email address';
-            }
-            
-            if (!country) {
-                document.getElementById('country').style.borderColor = 'var(--discount-color)';
-                isValid = false;
-                errorMessage = errorMessage || 'Please enter your country';
-            }
-            
+            const chobankAcc = document.getElementById('chobankAccountNumber')?.value.replace(/\s/g, '');
+            const otherAcc = document.getElementById('otherAccountNumber')?.value.replace(/\D/g, '');
+
+            document.querySelectorAll('.form-input').forEach(i => i.style.borderColor = '');
+            let isValid = true, error = '';
+
+            if (!fullName) { document.getElementById('fullName').style.borderColor = '#dc3545'; isValid = false; error = 'Full name required'; }
+            if (!email || !email.includes('@')) { document.getElementById('email').style.borderColor = '#dc3545'; isValid = false; error = error || 'Valid email required'; }
+            if (!country) { document.getElementById('country').style.borderColor = '#dc3545'; isValid = false; error = error || 'Country required'; }
             if (!paymentMethod) {
-                isValid = false;
-                // Highlight all payment method labels
-                document.querySelectorAll('.payment-label').forEach(label => {
-                    label.style.borderColor = 'var(--discount-color)';
-                });
-                errorMessage = errorMessage || 'Please select a payment method';
+                document.querySelectorAll('.payment-label').forEach(l => l.style.borderColor = '#dc3545');
+                isValid = false; error = error || 'Select a payment method';
             } else {
-                // Reset border color for payment methods
-                document.querySelectorAll('.payment-label').forEach(label => {
-                    label.style.borderColor = '';
-                });
+                document.querySelectorAll('.payment-label').forEach(l => l.style.borderColor = '');
             }
-            
-            // Validate CHOBANK account number if selected
+
             if (paymentMethod && paymentMethod.value === 'chobank') {
-                if (!chobankAccountNumber || chobankAccountNumber.length !== 16) {
-                    document.getElementById('chobankAccountNumber').style.borderColor = 'var(--discount-color)';
-                    isValid = false;
-                    errorMessage = errorMessage || 'Please enter a valid 16-digit CHOBANK account number';
-                } else if (!/^\d+$/.test(chobankAccountNumber)) {
-                    document.getElementById('chobankAccountNumber').style.borderColor = 'var(--discount-color)';
-                    isValid = false;
-                    errorMessage = errorMessage || 'CHOBANK account number should contain only numbers';
+                if (!chobankAcc || chobankAcc.length !== 16) {
+                    document.getElementById('chobankAccountNumber').style.borderColor = '#dc3545';
+                    isValid = false; error = error || 'CHOBANK: 16-digit number required';
                 }
             }
-            
-            if (cartItems.length === 0) {
-                isValid = false;
-                errorMessage = 'Your cart is empty';
+            if (paymentMethod && paymentMethod.value === 'other') {
+                if (!otherAcc || otherAcc.length < 5) {
+                    document.getElementById('otherAccountNumber').style.borderColor = '#dc3545';
+                    isValid = false; error = error || 'Other Payment: minimum 5 digits required';
+                }
             }
-            
-            return { isValid, errorMessage };
+            if (cartItems.length === 0) { isValid = false; error = 'Cart is empty'; }
+            return { isValid, errorMessage: error };
         }
 
         async function processPayment() {
-            // Disable button to prevent multiple clicks
-            const submitButton = document.getElementById('processPayment');
-            submitButton.disabled = true;
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            
-            // Validate form
+            const submitBtn = document.getElementById('processPayment');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
             const validation = validateForm();
             if (!validation.isValid) {
                 alert(validation.errorMessage);
-                submitButton.disabled = false;
-                submitButton.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
                 return;
             }
-            
+
             const fullName = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
             const country = document.getElementById('country').value.trim();
             const address = document.getElementById('address').value.trim();
-            const twitterUsername = document.getElementById('twitterUsername').value.trim();
-            const otherRequest = document.getElementById('otherRequest').value.trim();
+            const twitter = document.getElementById('twitterUsername').value.trim();
+            const otherReq = document.getElementById('otherRequest').value.trim();
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
-            const chobankAccountNumber = document.getElementById('chobankAccountNumber')?.value;
-            
+            const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked')?.value || 'shipping';
+            const chobankAcc = document.getElementById('chobankAccountNumber')?.value;
+            const otherAcc = document.getElementById('otherAccountNumber')?.value;
+
             const total = subtotal - discount + serviceFee;
-            const itemCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
-            
-            // Prepare order data
+            const itemCount = cartItems.reduce((s, i) => s + (i.quantity || 1), 0);
+
             const orderData = {
-                customer: {
-                    fullName: fullName,
-                    email: email,
-                    country: country,
-                    address: address || 'Not provided',
-                    twitter: twitterUsername || 'Not provided',
-                    request: otherRequest || 'No special request'
-                },
+                customer: { fullName, email, country, address: address || 'Not provided', twitter: twitter || 'Not provided', request: otherReq || 'No special request' },
                 items: cartItems,
-                subtotal: subtotal,
-                discount: discount,
-                serviceFee: serviceFee,
-                total: total,
-                itemCount: itemCount,
+                subtotal, discount, serviceFee, total, itemCount,
                 paymentMethod: paymentMethod.value,
-                chobankAccountNumber: paymentMethod.value === 'chobank' ? chobankAccountNumber : null,
-                voucherCode: voucherCode,
+                chobankAccountNumber: paymentMethod.value === 'chobank' ? chobankAcc : null,
+                otherAccountNumber: paymentMethod.value === 'other' ? otherAcc : null,
+                deliveryMethod: deliveryMethod,
+                voucherCode: voucherCode || 'None',
                 paymentDate: new Date().toISOString(),
                 status: 'pending'
             };
-            
-            // Show loading
+
             const loadingOverlay = document.getElementById('loadingOverlay');
             loadingOverlay.style.display = 'flex';
-            
+
             try {
-                // Save to localStorage first
                 localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-                
-                // Prepare data for Google Sheets
                 const sheetData = {
                     "Timestamp": new Date().toISOString(),
                     "Order Number": `KAZINE-${Date.now().toString().slice(-6)}`,
                     "Customer Name": fullName,
                     "Customer Email": email,
                     "Customer Address": address || 'Not provided',
-                    "Customer Twitter/X": twitterUsername || 'Not provided',
-                    "Other Request": otherRequest || 'No special request',
-                    "Items": JSON.stringify(cartItems.map(item => `${item.title} x${item.quantity || 1}`)),
+                    "Customer Twitter/X": twitter || 'Not provided',
+                    "Other Request": otherReq || 'No special request',
+                    "Items": JSON.stringify(cartItems.map(i => `${i.title} x${i.quantity || 1}`)),
                     "Item Count": itemCount,
                     "Subtotal": subtotal.toFixed(2),
                     "Discount Voucher": voucherCode || 'None',
-                    "Shipping Fee": "0.00",
-                    "Tax": "0.00",
+                    "Delivery Method": deliveryMethod === 'shipping' ? 'Ship to Address' : 'Pickup In Store',
                     "Total Amount": total.toFixed(2),
-                    "Payment Method": getPaymentMethodDisplay(paymentMethod.value, chobankAccountNumber),
+                    "Payment Method": paymentMethod.value.toUpperCase(),
                     "Payment Status": "PAID",
                     "Order Date": new Date().toLocaleString()
                 };
-                
+
                 console.log('📤 Sending to spreadsheet:', sheetData);
-                
-                // Send to Google Sheets
-                const response = await fetch(SPREADSHEET_URL, {
+                await fetch(SPREADSHEET_URL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(sheetData)
                 });
-                
-                // Update order status
+
                 orderData.status = 'completed';
                 orderData.orderNumber = sheetData["Order Number"];
                 localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-                
-                // Clear cart after successful payment
                 localStorage.removeItem('kazineCart');
                 localStorage.removeItem('kazineVoucher');
                 localStorage.removeItem('kazineTotals');
-                
-                // Redirect to confirmation page
-                setTimeout(() => {
-                    window.location.href = 'confirmation-kazine.html';
-                }, 1500);
-                
+
+                setTimeout(() => { window.location.href = 'confirmation-kazine.html'; }, 1500);
             } catch (error) {
-                console.error('Error processing payment:', error);
-                
-                // Re-enable button
-                submitButton.disabled = false;
-                submitButton.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
-                
-                // Hide loading
+                console.error('Error:', error);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
                 loadingOverlay.style.display = 'none';
-                
-                // Show error but still proceed (for demo)
-                const proceed = confirm('There was an issue saving to spreadsheet. Your order is still recorded locally. Continue to confirmation?');
-                if (proceed) {
-                    // Clear cart anyway
+                if (confirm('There was an issue saving to spreadsheet. Your order is still recorded locally. Continue to confirmation?')) {
                     localStorage.removeItem('kazineCart');
                     localStorage.removeItem('kazineVoucher');
                     localStorage.removeItem('kazineTotals');
-                    
                     window.location.href = 'confirmation-kazine.html';
                 }
-            }
-        }
-        
-        function getPaymentMethodDisplay(method, accountNumber) {
-            switch(method) {
-                case 'chobank':
-                    return `CHOBANK - ${accountNumber || 'Not provided'}`;
-                case 'qris':
-                    return 'QRIS';
-                default:
-                    return method.toUpperCase();
             }
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Load cart items
-            if (!loadCartItems()) {
-                return;
-            }
-            
-            // Setup payment methods
+            if (!loadCartItems()) return;
             setupPaymentMethods();
-            
-            // Voucher button event
             document.getElementById('applyVoucher').addEventListener('click', applyVoucher);
-            
-            // Enter key for voucher
-            document.getElementById('voucherCode').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    applyVoucher();
-                }
-            });
-            
-            // Payment button event
+            document.getElementById('voucherCode').addEventListener('keypress', e => { if (e.key === 'Enter') applyVoucher(); });
             document.getElementById('processPayment').addEventListener('click', processPayment);
-            
-            // Form input validation on blur
-            document.querySelectorAll('.form-input[required]').forEach(input => {
-                input.addEventListener('blur', function() {
-                    if (!this.value.trim()) {
-                        this.style.borderColor = 'var(--discount-color)';
-                    } else {
-                        this.style.borderColor = '';
-                    }
-                });
-            });
-            
-            // Add hover effect for payment methods
-            document.querySelectorAll('.payment-label').forEach(label => {
-                label.addEventListener('mouseenter', function() {
-                    const radio = this.previousElementSibling;
-                    if (!radio.checked) {
-                        this.style.borderColor = 'var(--medium-gray)';
-                        this.style.background = 'var(--off-white)';
-                    }
-                });
-                
-                label.addEventListener('mouseleave', function() {
-                    const radio = this.previousElementSibling;
-                    if (!radio.checked) {
-                        this.style.borderColor = '';
-                        this.style.background = '';
-                    }
-                });
-                
-                // Click handler for better UX
-                label.addEventListener('click', function() {
-                    // Small animation feedback
-                    this.style.transform = 'scale(0.98)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 150);
-                });
-            });
-            
-            // Auto-fill for testing (remove in production)
-            if (window.location.href.includes('localhost') || window.location.href.includes('127.0.0.1')) {
-                if (cartItems.length > 0 && !document.getElementById('fullName').value) {
-                    document.getElementById('fullName').value = 'Test Customer';
-                    document.getElementById('email').value = 'test@example.com';
-                    document.getElementById('country').value = 'Indonesia';
-                    document.getElementById('address').value = '123 Test Street';
-                    document.getElementById('twitterUsername').value = '@testuser';
-                }
-            }
-        });
-        
-        // Handle browser back button
-        window.addEventListener('pageshow', function(event) {
-            if (event.persisted) {
-                loadCartItems();
-            }
-        });
-        
-        // Handle beforeunload to prevent accidental navigation
-        window.addEventListener('beforeunload', function(e) {
-            if (cartItems.length > 0) {
-                // Optional: Ask for confirmation
-                // e.preventDefault();
-                // e.returnValue = '';
-            }
         });
     </script>
 </body>
-    </html>
+</html>
