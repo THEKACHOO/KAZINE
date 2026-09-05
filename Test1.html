@@ -376,7 +376,7 @@
         .product-slides {
             display: flex;
             height: 100%;
-            transition: transform 0.5s ease;
+            transition: transform 0.4s ease;
         }
 
         .product-slide {
@@ -388,6 +388,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            pointer-events: none;
         }
 
         .slide-btn {
@@ -429,6 +430,7 @@
 
         .slide-btn i {
             font-size: 12px;
+            pointer-events: none;
         }
 
         .slide-btn:disabled {
@@ -449,6 +451,7 @@
             font-weight: 500;
             letter-spacing: 0.5px;
             font-family: 'Outfit', sans-serif;
+            pointer-events: none;
         }
 
         .product-info {
@@ -513,7 +516,6 @@
             opacity: 0.7;
         }
 
-        /* Variant Modal */
         .variant-modal {
             display: none;
             position: fixed;
@@ -908,7 +910,6 @@
             font-family: 'Outfit', sans-serif;
         }
 
-        /* =============== RESPONSIVE =============== */
         @media (max-width: 1200px) {
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -979,7 +980,6 @@
             }
         }
 
-        /* =============== MOBILE =============== */
         @media (max-width: 768px) {
             .hero-ambassador {
                 padding: 90px 0 50px;
@@ -1050,13 +1050,12 @@
                 font-size: 11px;
             }
             
-            /* ===== SLIDE BUTTON MOBILE - SIMPLE & TRANSPARAN ===== */
             .slide-btn {
                 opacity: 1 !important;
                 visibility: visible !important;
-                width: 26px !important;
-                height: 26px !important;
-                background: rgba(0, 0, 0, 0.15) !important;
+                width: 28px !important;
+                height: 28px !important;
+                background: rgba(0, 0, 0, 0.2) !important;
                 border: none !important;
                 font-size: 10px !important;
                 display: flex !important;
@@ -1064,12 +1063,11 @@
                 justify-content: center !important;
                 border-radius: 50% !important;
                 z-index: 20 !important;
-                color: rgba(255, 255, 255, 0.7) !important;
+                color: white !important;
             }
             
             .slide-btn i {
-                font-size: 9px !important;
-                color: rgba(255, 255, 255, 0.7) !important;
+                font-size: 10px !important;
             }
             
             .slide-btn.prev {
@@ -1084,11 +1082,6 @@
                 opacity: 0.1 !important;
                 cursor: not-allowed !important;
             }
-            
-            .slide-btn:active {
-                transform: translateY(-50%) scale(0.85) !important;
-            }
-            /* ===== END ===== */
             
             .section-title {
                 margin-bottom: 40px;
@@ -1169,8 +1162,8 @@
             }
             
             .slide-btn {
-                width: 22px !important;
-                height: 22px !important;
+                width: 24px !important;
+                height: 24px !important;
             }
             
             .slide-btn i {
@@ -1182,7 +1175,6 @@
 <body>
     <div class="cart-overlay" id="cartOverlay"></div>
 
-    <!-- Variant Modal -->
     <div class="variant-modal" id="variantModal">
         <div class="variant-modal-content">
             <button class="variant-modal-close" id="variantModalClose">&times;</button>
@@ -1316,7 +1308,6 @@
             </div>
             
             <div class="products-grid">
-                <!-- 1. CHOOSIC - Headphone -->
                 <div class="product-card" data-product="Headphone" data-price="480" data-id="A">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1337,7 +1328,6 @@
                     </div>
                 </div>
 
-                <!-- 2. CHOZY - Mug -->
                 <div class="product-card" data-product="Mug" data-price="30" data-id="B">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1358,7 +1348,6 @@
                     </div>
                 </div>
 
-                <!-- 3. Cho°L Large -->
                 <div class="product-card" data-product="Large" data-price="10" data-id="C">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1379,7 +1368,6 @@
                     </div>
                 </div>
 
-                <!-- 4. Cho°L Stainless -->
                 <div class="product-card" data-product="Stainless" data-price="6" data-id="C3">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1400,7 +1388,6 @@
                     </div>
                 </div>
 
-                <!-- 5. Original Choffee -->
                 <div class="product-card" data-product="Original Choffee" data-price="3" data-id="D">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1422,7 +1409,6 @@
                     </div>
                 </div>
 
-                <!-- 6. Choffee (Capsule) -->
                 <div class="product-card" data-product="Choffee" data-price="4" data-id="D4">
                     <div class="product-image-container">
                         <div class="product-slides">
@@ -1486,7 +1472,6 @@
     </footer>
 
     <script>
-    // ========== DATA ==========
     var cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
     var currentVariantData = null;
 
@@ -1541,8 +1526,6 @@
         }
     };
 
-    // ========== FUNGSI GLOBAL ==========
-    
     function openVariantModal(variantKey) {
         var config = variantConfigs[variantKey];
         if (!config) return;
@@ -1643,7 +1626,6 @@
         closeVariantModal();
     }
 
-    // ========== CART DISPLAY ==========
     function updateCartDisplay() {
         var totalItems = 0;
         for (var i = 0; i < cart.length; i++) {
@@ -1694,7 +1676,6 @@
         }
     }
 
-    // ========== NOTIFICATION ==========
     function showNotification(message) {
         var existing = document.querySelector('.cart-notification');
         if (existing) existing.remove();
@@ -1709,65 +1690,46 @@
         }, 2000);
     }
 
-    // ========== IMAGE SLIDERS ==========
-    function initializeImageSliders() {
-        var cards = document.querySelectorAll('.product-card');
-        
-        for (var c = 0; c < cards.length; c++) {
-            var card = cards[c];
+    // ========== SLIDER ==========
+    function initSliders() {
+        document.querySelectorAll('.product-card').forEach(function(card) {
             var slides = card.querySelector('.product-slides');
             var prevBtn = card.querySelector('.slide-btn.prev');
             var nextBtn = card.querySelector('.slide-btn.next');
             
-            if (!slides || !prevBtn || !nextBtn) continue;
+            if (!slides || !prevBtn || !nextBtn) return;
             
-            // HITUNG JUMLAH SLIDE
-            var slideChildren = slides.querySelectorAll('.product-slide');
-            var totalSlides = slideChildren.length;
-            var currentSlide = 0;
+            var total = slides.querySelectorAll('.product-slide').length;
+            var current = 0;
             
-            // SET LEBAR SLIDES
-            slides.style.width = (totalSlides * 100) + '%';
+            slides.style.width = (total * 100) + '%';
+            slides.querySelectorAll('.product-slide').forEach(function(slide) {
+                slide.style.width = (100 / total) + '%';
+            });
             
-            // SET LEBAR TIAP SLIDE
-            for (var s = 0; s < slideChildren.length; s++) {
-                slideChildren[s].style.width = (100 / totalSlides) + '%';
+            function goTo(index) {
+                if (index < 0) index = 0;
+                if (index >= total) index = total - 1;
+                current = index;
+                slides.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
+                prevBtn.disabled = (current === 0);
+                nextBtn.disabled = (current === total - 1);
             }
             
-            function updateSlide() {
-                var translateX = -(currentSlide * (100 / totalSlides));
-                slides.style.transform = 'translateX(' + translateX + '%)';
-                prevBtn.disabled = currentSlide === 0;
-                nextBtn.disabled = currentSlide === totalSlides - 1;
-            }
-            
-            // HAPUS EVENT LAMA (biar ga double)
-            prevBtn.onclick = null;
-            nextBtn.onclick = null;
-            
-            prevBtn.onclick = function(e) {
-                e.preventDefault();
+            prevBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
-                if (!this.disabled) {
-                    currentSlide = Math.max(0, currentSlide - 1);
-                    updateSlide();
-                }
-            };
+                goTo(current - 1);
+            });
             
-            nextBtn.onclick = function(e) {
-                e.preventDefault();
+            nextBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
-                if (!this.disabled) {
-                    currentSlide = Math.min(totalSlides - 1, currentSlide + 1);
-                    updateSlide();
-                }
-            };
+                goTo(current + 1);
+            });
             
-            updateSlide();
-        }
+            goTo(0);
+        });
     }
 
-    // ========== CART MODAL ==========
     function openCart() {
         document.getElementById('cartModal').classList.add('active');
         document.getElementById('cartOverlay').classList.add('active');
@@ -1795,7 +1757,6 @@
         closeCart();
     };
 
-    // ========== MOBILE MENU ==========
     var mobileMenuBtn = document.getElementById('mobileMenuBtn');
     var mainNav = document.getElementById('mainNav');
     
@@ -1818,14 +1779,12 @@
         };
     }
 
-    // ========== CLOSE VARIANT MODAL ==========
     document.getElementById('variantModalClose').onclick = closeVariantModal;
     
     document.getElementById('variantModal').onclick = function(e) {
         if (e.target === this) closeVariantModal();
     };
 
-    // ========== CHECKOUT ==========
     document.getElementById('checkoutBtn').onclick = function(e) {
         e.preventDefault();
         if (cart.length === 0) {
@@ -1854,7 +1813,6 @@
         }, 300);
     };
 
-    // ========== SMOOTH SCROLL ==========
     var links = document.querySelectorAll('a[href^="#"]');
     for (var i = 0; i < links.length; i++) {
         links[i].onclick = function(e) {
@@ -1880,9 +1838,8 @@
         };
     }
 
-    // ========== INIT ==========
     function init() {
-        initializeImageSliders();
+        initSliders();
         updateCartDisplay();
     }
 
