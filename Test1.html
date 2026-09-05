@@ -1450,468 +1450,445 @@
     </footer>
 
     <script>
-    (function() {
-        'use strict';
+    // ========== STATE ==========
+    let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
+    let isProcessing = false;
+    let currentVariantData = null;
 
-        // ========== STATE ==========
-        let cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
-        let isProcessing = false;
-        let currentVariantData = null;
+    // ========== DOM REFS ==========
+    const cartModal = document.getElementById('cartModal');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const cartCount = document.getElementById('cartCount');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const openCartBtn = document.getElementById('openCart');
+    const closeCartBtn = document.getElementById('closeCart');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
+    const variantModal = document.getElementById('variantModal');
+    const variantModalClose = document.getElementById('variantModalClose');
+    const variantTitle = document.getElementById('variantTitle');
+    const variantSubtitle = document.getElementById('variantSubtitle');
+    const variantOptions = document.getElementById('variantOptions');
+    const variantAddBtn = document.getElementById('variantAddBtn');
 
-        // ========== DOM REFS ==========
-        const cartModal = document.getElementById('cartModal');
-        const cartOverlay = document.getElementById('cartOverlay');
-        const cartCount = document.getElementById('cartCount');
-        const cartItems = document.getElementById('cartItems');
-        const cartTotal = document.getElementById('cartTotal');
-        const checkoutBtn = document.getElementById('checkoutBtn');
-        const openCartBtn = document.getElementById('openCart');
-        const closeCartBtn = document.getElementById('closeCart');
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mainNav = document.getElementById('mainNav');
-        const variantModal = document.getElementById('variantModal');
-        const variantModalClose = document.getElementById('variantModalClose');
-        const variantTitle = document.getElementById('variantTitle');
-        const variantSubtitle = document.getElementById('variantSubtitle');
-        const variantOptions = document.getElementById('variantOptions');
-        const variantAddBtn = document.getElementById('variantAddBtn');
+    // ========== VARIANT CONFIGS ==========
+    const variantConfigs = {
+        choosic: {
+            title: 'Choosic Headphone',
+            subtitle: 'Select your color',
+            options: [
+                { id: 'A1', label: 'Graphite Black', price: 480 },
+                { id: 'A2', label: 'White', price: 480 }
+            ]
+        },
+        chozy: {
+            title: 'Chozy Mug',
+            subtitle: 'Select your color',
+            options: [
+                { id: 'B1', label: 'Black', price: 30 },
+                { id: 'B2', label: 'White', price: 30 }
+            ]
+        },
+        large: {
+            title: 'Large Tumbler',
+            subtitle: 'Select your color',
+            options: [
+                { id: 'C1', label: 'Black', price: 10 },
+                { id: 'C2', label: 'White', price: 10 }
+            ]
+        },
+        stainless: {
+            title: 'Stainless Tumbler',
+            subtitle: 'Select your color',
+            options: [
+                { id: 'C3', label: 'Black', price: 6 },
+                { id: 'C4', label: 'White', price: 6 }
+            ]
+        },
+        original: {
+            title: 'Original Choffee',
+            subtitle: 'Select your flavor',
+            options: [
+                { id: 'D1', label: 'Robusta Strong', price: 3 },
+                { id: 'D2', label: 'Perfect Latte', price: 3 },
+                { id: 'D3', label: 'Arabica Prime', price: 3 }
+            ]
+        },
+        capsule: {
+            title: 'Capsule Choffee',
+            subtitle: 'Select your variant',
+            options: [
+                { id: 'D4', label: 'Espresso', price: 4 }
+            ]
+        }
+    };
 
-        // ========== VARIANT CONFIGS ==========
-        const variantConfigs = {
-            choosic: {
-                title: 'Choosic Headphone',
-                subtitle: 'Select your color',
-                options: [
-                    { id: 'A1', label: 'Graphite Black', price: 480 },
-                    { id: 'A2', label: 'White', price: 480 }
-                ]
-            },
-            chozy: {
-                title: 'Chozy Mug',
-                subtitle: 'Select your color',
-                options: [
-                    { id: 'B1', label: 'Black', price: 30 },
-                    { id: 'B2', label: 'White', price: 30 }
-                ]
-            },
-            large: {
-                title: 'Large Tumbler',
-                subtitle: 'Select your color',
-                options: [
-                    { id: 'C1', label: 'Black', price: 10 },
-                    { id: 'C2', label: 'White', price: 10 }
-                ]
-            },
-            stainless: {
-                title: 'Stainless Tumbler',
-                subtitle: 'Select your color',
-                options: [
-                    { id: 'C3', label: 'Black', price: 6 },
-                    { id: 'C4', label: 'White', price: 6 }
-                ]
-            },
-            original: {
-                title: 'Original Choffee',
-                subtitle: 'Select your flavor',
-                options: [
-                    { id: 'D1', label: 'Robusta Strong', price: 3 },
-                    { id: 'D2', label: 'Perfect Latte', price: 3 },
-                    { id: 'D3', label: 'Arabica Prime', price: 3 }
-                ]
-            },
-            capsule: {
-                title: 'Capsule Choffee',
-                subtitle: 'Select your variant',
-                options: [
-                    { id: 'D4', label: 'Espresso', price: 4 }
-                ]
-            }
+    // ========== VARIANT MODAL ==========
+    function showVariantModal(variantKey) {
+        const config = variantConfigs[variantKey];
+        if (!config) {
+            console.error('Variant config not found for:', variantKey);
+            return;
+        }
+
+        currentVariantData = {
+            key: variantKey,
+            config: config,
+            selectedId: config.options[0].id
         };
 
-        // ========== VARIANT MODAL ==========
-        function showVariantModal(variantKey) {
-            const config = variantConfigs[variantKey];
-            if (!config) {
-                console.error('Variant config not found for:', variantKey);
-                return;
-            }
+        variantTitle.textContent = config.title;
+        variantSubtitle.textContent = config.subtitle;
 
-            currentVariantData = {
-                key: variantKey,
-                config: config,
-                selectedId: config.options[0].id
-            };
+        let html = '';
+        config.options.forEach((opt, index) => {
+            const checked = index === 0 ? 'checked' : '';
+            html += `
+                <div class="variant-option ${index === 0 ? 'selected' : ''}" data-id="${opt.id}">
+                    <input type="radio" name="variant" value="${opt.id}" ${checked}>
+                    <label>${opt.label}</label>
+                    <span class="variant-price">$${opt.price}</span>
+                </div>
+            `;
+        });
+        variantOptions.innerHTML = html;
 
-            variantTitle.textContent = config.title;
-            variantSubtitle.textContent = config.subtitle;
-
-            let html = '';
-            config.options.forEach((opt, index) => {
-                const checked = index === 0 ? 'checked' : '';
-                html += `
-                    <div class="variant-option ${index === 0 ? 'selected' : ''}" data-id="${opt.id}">
-                        <input type="radio" name="variant" value="${opt.id}" ${checked}>
-                        <label>${opt.label}</label>
-                        <span class="variant-price">$${opt.price}</span>
-                    </div>
-                `;
-            });
-            variantOptions.innerHTML = html;
-
-            // Add click listeners to variant options
-            document.querySelectorAll('.variant-option').forEach(el => {
-                el.addEventListener('click', function(e) {
-                    document.querySelectorAll('.variant-option').forEach(o => o.classList.remove('selected'));
-                    this.classList.add('selected');
-                    const radio = this.querySelector('input[type="radio"]');
-                    if (radio) radio.checked = true;
-                    currentVariantData.selectedId = this.dataset.id;
-                });
-            });
-
-            variantModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function hideVariantModal() {
-            variantModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            currentVariantData = null;
-        }
-
-        // ========== VARIANT MODAL EVENTS ==========
-        if (variantModalClose) {
-            variantModalClose.addEventListener('click', hideVariantModal);
-        }
-        
-        if (variantModal) {
-            variantModal.addEventListener('click', function(e) {
-                if (e.target === this) hideVariantModal();
-            });
-        }
-
-        // ========== ADD TO CART FROM VARIANT ==========
-        if (variantAddBtn) {
-            variantAddBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                if (!currentVariantData) {
-                    showNotification('Error: No variant selected');
-                    return;
-                }
-
-                const config = currentVariantData.config;
-                const selectedOption = config.options.find(o => o.id === currentVariantData.selectedId);
-                
-                if (!selectedOption) {
-                    showNotification('Error: Please select a variant');
-                    return;
-                }
-
-                const productTitle = config.title + ' - ' + selectedOption.label;
-                const productId = selectedOption.id;
-                const productPrice = selectedOption.price;
-
-                const existingItem = cart.find(item => item.id === productId);
-
-                if (existingItem) {
-                    existingItem.quantity = (existingItem.quantity || 1) + 1;
-                    showNotification(productTitle + ' quantity updated');
-                } else {
-                    cart.push({
-                        id: productId,
-                        title: productTitle,
-                        price: productPrice,
-                        quantity: 1
-                    });
-                    showNotification(productTitle + ' added to cart');
-                }
-
-                localStorage.setItem('kazineCart', JSON.stringify(cart));
-                updateCartDisplay();
-                hideVariantModal();
-            });
-        }
-
-        // ========== CART DISPLAY ==========
-        function updateCartDisplay() {
-            const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
-            if (cartCount) cartCount.textContent = totalItems;
-            
-            if (cart.length === 0) {
-                if (cartItems) {
-                    cartItems.innerHTML = `
-                        <div class="empty-cart">
-                            <i class="fas fa-shopping-bag"></i>
-                            <p>Your bag is empty</p>
-                        </div>
-                    `;
-                }
-                if (checkoutBtn) checkoutBtn.style.display = 'none';
-                if (cartTotal) cartTotal.textContent = '$0.00';
-                return;
-            }
-            
-            if (checkoutBtn) checkoutBtn.style.display = 'block';
-            
-            let total = 0;
-            let itemsHTML = '';
-            
-            cart.forEach((item, index) => {
-                const itemTotal = parseFloat(item.price) * (item.quantity || 1);
-                total += itemTotal;
-                
-                itemsHTML += `
-                    <div class="cart-item">
-                        <div class="item-info">
-                            <h4>${item.title}</h4>
-                            <p>Quantity: ${item.quantity || 1}</p>
-                        </div>
-                        <div class="item-price">$${itemTotal.toFixed(2)}</div>
-                        <button class="remove-item" data-index="${index}" aria-label="Remove item">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
-                `;
-            });
-            
-            if (cartItems) {
-                cartItems.innerHTML = itemsHTML;
-            }
-            if (cartTotal) cartTotal.textContent = `$${total.toFixed(2)}`;
-            
-            // Remove item listeners
-            document.querySelectorAll('.remove-item').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const index = parseInt(this.getAttribute('data-index'));
-                    cart.splice(index, 1);
-                    localStorage.setItem('kazineCart', JSON.stringify(cart));
-                    updateCartDisplay();
-                    showNotification('Item removed from cart');
-                });
-            });
-        }
-
-        // ========== NOTIFICATION ==========
-        function showNotification(message) {
-            const existing = document.querySelector('.cart-notification');
-            if (existing) existing.remove();
-            
-            const notification = document.createElement('div');
-            notification.className = 'cart-notification';
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                if (notification.parentNode) notification.remove();
-            }, 2000);
-        }
-
-        // ========== ADD TO CART HANDLER ==========
-        function handleAddToCart(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            
-            if (isProcessing) return;
-            isProcessing = true;
-            
-            const button = event.currentTarget;
-            const variantKey = button.getAttribute('data-variant');
-            
-            if (variantKey && variantConfigs[variantKey]) {
-                showVariantModal(variantKey);
-                isProcessing = false;
-                return;
-            }
-            
-            isProcessing = false;
-        }
-
-        // ========== INIT BUTTONS ==========
-        function initializeAddToCartButtons() {
-            const buttons = document.querySelectorAll('.add-to-cart-btn');
-            
-            buttons.forEach(button => {
-                // Remove old listeners by cloning
-                const newButton = button.cloneNode(true);
-                button.parentNode.replaceChild(newButton, button);
-            });
-            
-            // Add fresh listeners
-            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-                button.addEventListener('click', handleAddToCart);
-                button.style.cursor = 'pointer';
-            });
-        }
-
-        // ========== IMAGE SLIDERS ==========
-        function initializeImageSliders() {
-            document.querySelectorAll('.product-card').forEach(card => {
-                const slides = card.querySelector('.product-slides');
-                const prevBtn = card.querySelector('.slide-btn.prev');
-                const nextBtn = card.querySelector('.slide-btn.next');
-                
-                if (!slides || !prevBtn || !nextBtn) return;
-                
-                let currentSlide = 0;
-                const totalSlides = 2;
-                
-                function updateSlide() {
-                    slides.style.transform = `translateX(-${currentSlide * 50}%)`;
-                    prevBtn.disabled = currentSlide === 0;
-                    nextBtn.disabled = currentSlide === totalSlides - 1;
-                }
-                
-                prevBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (!this.disabled) {
-                        currentSlide = Math.max(0, currentSlide - 1);
-                        updateSlide();
-                    }
-                });
-                
-                nextBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (!this.disabled) {
-                        currentSlide = Math.min(totalSlides - 1, currentSlide + 1);
-                        updateSlide();
-                    }
-                });
-                
-                updateSlide();
-            });
-        }
-
-        // ========== CART MODAL ==========
-        function openCart() {
-            if (cartModal) cartModal.classList.add('active');
-            if (cartOverlay) cartOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            updateCartDisplay();
-        }
-
-        function closeCart() {
-            if (cartModal) cartModal.classList.remove('active');
-            if (cartOverlay) cartOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        if (openCartBtn) {
-            openCartBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                openCart();
-            });
-        }
-        
-        if (closeCartBtn) {
-            closeCartBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                closeCart();
-            });
-        }
-        
-        if (cartOverlay) {
-            cartOverlay.addEventListener('click', function() {
-                closeCart();
-            });
-        }
-
-        // ========== MOBILE MENU ==========
-        if (mobileMenuBtn && mainNav) {
-            mobileMenuBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                mainNav.classList.toggle('active');
-                this.innerHTML = mainNav.classList.contains('active') ? 
-                    '<i class="fas fa-times"></i>' : 
-                    '<i class="fas fa-bars"></i>';
-            });
-            
-            document.addEventListener('click', function(e) {
-                if (mainNav.classList.contains('active') && 
-                    !mainNav.contains(e.target) && 
-                    !mobileMenuBtn.contains(e.target)) {
-                    mainNav.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            });
-        }
-
-        // ========== CHECKOUT ==========
-        if (checkoutBtn) {
-            checkoutBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (cart.length === 0) {
-                    showNotification('Your cart is empty');
-                    return;
-                }
-                
-                let subtotal = 0;
-                cart.forEach(item => {
-                    subtotal += parseFloat(item.price) * (item.quantity || 1);
-                });
-                
-                const orderData = {
-                    items: cart,
-                    subtotal: subtotal,
-                    total: subtotal + 2.50,
-                    store: 'KAZINE',
-                    orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
-                };
-                
-                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-                closeCart();
-                
-                setTimeout(() => {
-                    window.location.href = 'payment-kazine.html';
-                }, 300);
-            });
-        }
-
-        // ========== SMOOTH SCROLL ==========
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href === '#' || href.includes('.html')) return;
-                
-                e.preventDefault();
-                const targetId = href.substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    window.scrollTo({
-                        top: targetElement.offsetTop - headerHeight,
-                        behavior: 'smooth'
-                    });
-                    
-                    if (mainNav && mainNav.classList.contains('active')) {
-                        mainNav.classList.remove('active');
-                        if (mobileMenuBtn) {
-                            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                        }
-                    }
-                }
+        // Add click listeners to variant options
+        document.querySelectorAll('.variant-option').forEach(el => {
+            el.addEventListener('click', function(e) {
+                document.querySelectorAll('.variant-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                const radio = this.querySelector('input[type="radio"]');
+                if (radio) radio.checked = true;
+                currentVariantData.selectedId = this.dataset.id;
             });
         });
 
-        // ========== DOM READY ==========
-        function init() {
-            initializeAddToCartButtons();
-            initializeImageSliders();
-            updateCartDisplay();
+        variantModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function hideVariantModal() {
+        variantModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        currentVariantData = null;
+    }
+
+    // ========== VARIANT MODAL EVENTS ==========
+    variantModalClose.addEventListener('click', hideVariantModal);
+    
+    variantModal.addEventListener('click', function(e) {
+        if (e.target === this) hideVariantModal();
+    });
+
+    // ========== ADD TO CART FROM VARIANT ==========
+    variantAddBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        if (!currentVariantData) {
+            showNotification('Error: No variant selected');
+            return;
         }
 
-        // Run on DOM ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
+        const config = currentVariantData.config;
+        const selectedOption = config.options.find(o => o.id === currentVariantData.selectedId);
+        
+        if (!selectedOption) {
+            showNotification('Error: Please select a variant');
+            return;
+        }
+
+        const productTitle = config.title + ' - ' + selectedOption.label;
+        const productId = selectedOption.id;
+        const productPrice = selectedOption.price;
+
+        const existingItem = cart.find(item => item.id === productId);
+
+        if (existingItem) {
+            existingItem.quantity = (existingItem.quantity || 1) + 1;
+            showNotification(productTitle + ' quantity updated');
         } else {
-            init();
+            cart.push({
+                id: productId,
+                title: productTitle,
+                price: productPrice,
+                quantity: 1
+            });
+            showNotification(productTitle + ' added to cart');
         }
 
-    })();
+        localStorage.setItem('kazineCart', JSON.stringify(cart));
+        updateCartDisplay();
+        hideVariantModal();
+    });
+
+    // ========== CART DISPLAY ==========
+    function updateCartDisplay() {
+        const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+        cartCount.textContent = totalItems;
+        
+        if (cart.length === 0) {
+            cartItems.innerHTML = `
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <p>Your bag is empty</p>
+                </div>
+            `;
+            checkoutBtn.style.display = 'none';
+            cartTotal.textContent = '$0.00';
+            return;
+        }
+        
+        checkoutBtn.style.display = 'block';
+        
+        let total = 0;
+        let itemsHTML = '';
+        
+        cart.forEach((item, index) => {
+            const itemTotal = parseFloat(item.price) * (item.quantity || 1);
+            total += itemTotal;
+            
+            itemsHTML += `
+                <div class="cart-item">
+                    <div class="item-info">
+                        <h4>${item.title}</h4>
+                        <p>Quantity: ${item.quantity || 1}</p>
+                    </div>
+                    <div class="item-price">$${itemTotal.toFixed(2)}</div>
+                    <button class="remove-item" data-index="${index}" aria-label="Remove item">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            `;
+        });
+        
+        cartItems.innerHTML = itemsHTML;
+        cartTotal.textContent = `$${total.toFixed(2)}`;
+        
+        // Remove item listeners
+        document.querySelectorAll('.remove-item').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const index = parseInt(this.getAttribute('data-index'));
+                cart.splice(index, 1);
+                localStorage.setItem('kazineCart', JSON.stringify(cart));
+                updateCartDisplay();
+                showNotification('Item removed from cart');
+            });
+        });
+    }
+
+    // ========== NOTIFICATION ==========
+    function showNotification(message) {
+        const existing = document.querySelector('.cart-notification');
+        if (existing) existing.remove();
+        
+        const notification = document.createElement('div');
+        notification.className = 'cart-notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            if (notification.parentNode) notification.remove();
+        }, 2000);
+    }
+
+    // ========== ADD TO CART HANDLER ==========
+    function handleAddToCart(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        if (isProcessing) return;
+        isProcessing = true;
+        
+        const button = event.currentTarget;
+        const variantKey = button.getAttribute('data-variant');
+        
+        if (variantKey && variantConfigs[variantKey]) {
+            showVariantModal(variantKey);
+            isProcessing = false;
+            return;
+        }
+        
+        isProcessing = false;
+    }
+
+    // ========== INIT BUTTONS - DIPERBAIKI UNTUK DESKTOP ==========
+    function initializeAddToCartButtons() {
+        // Ambil semua tombol add to cart
+        const buttons = document.querySelectorAll('.add-to-cart-btn');
+        
+        // Loop dan pasang event listener
+        buttons.forEach(function(button) {
+            // Hapus event listener lama dengan clone
+            var newButton = button.cloneNode(true);
+            button.parentNode.replaceChild(newButton, button);
+        });
+        
+        // Pasang event listener baru
+        document.querySelectorAll('.add-to-cart-btn').forEach(function(button) {
+            button.addEventListener('click', handleAddToCart);
+            button.style.cursor = 'pointer';
+        });
+    }
+
+    // ========== IMAGE SLIDERS ==========
+    function initializeImageSliders() {
+        document.querySelectorAll('.product-card').forEach(function(card) {
+            var slides = card.querySelector('.product-slides');
+            var prevBtn = card.querySelector('.slide-btn.prev');
+            var nextBtn = card.querySelector('.slide-btn.next');
+            
+            if (!slides || !prevBtn || !nextBtn) return;
+            
+            var currentSlide = 0;
+            var totalSlides = 2;
+            
+            function updateSlide() {
+                slides.style.transform = 'translateX(-' + (currentSlide * 50) + '%)';
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+            }
+            
+            prevBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (!this.disabled) {
+                    currentSlide = Math.max(0, currentSlide - 1);
+                    updateSlide();
+                }
+            });
+            
+            nextBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (!this.disabled) {
+                    currentSlide = Math.min(totalSlides - 1, currentSlide + 1);
+                    updateSlide();
+                }
+            });
+            
+            updateSlide();
+        });
+    }
+
+    // ========== CART MODAL ==========
+    function openCart() {
+        cartModal.classList.add('active');
+        cartOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        updateCartDisplay();
+    }
+
+    function closeCart() {
+        cartModal.classList.remove('active');
+        cartOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    openCartBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openCart();
+    });
+    
+    closeCartBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        closeCart();
+    });
+    
+    cartOverlay.addEventListener('click', function() {
+        closeCart();
+    });
+
+    // ========== MOBILE MENU ==========
+    if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            mainNav.classList.toggle('active');
+            this.innerHTML = mainNav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : 
+                '<i class="fas fa-bars"></i>';
+        });
+        
+        document.addEventListener('click', function(e) {
+            if (mainNav.classList.contains('active') && 
+                !mainNav.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target)) {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+    }
+
+    // ========== CHECKOUT ==========
+    checkoutBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (cart.length === 0) {
+            showNotification('Your cart is empty');
+            return;
+        }
+        
+        var subtotal = 0;
+        cart.forEach(function(item) {
+            subtotal += parseFloat(item.price) * (item.quantity || 1);
+        });
+        
+        var orderData = {
+            items: cart,
+            subtotal: subtotal,
+            total: subtotal + 2.50,
+            store: 'KAZINE',
+            orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
+        };
+        
+        localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+        closeCart();
+        
+        setTimeout(function() {
+            window.location.href = 'payment-kazine.html';
+        }, 300);
+    });
+
+    // ========== SMOOTH SCROLL ==========
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            var href = this.getAttribute('href');
+            if (href === '#' || href.includes('.html')) return;
+            
+            e.preventDefault();
+            var targetId = href.substring(1);
+            var targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                var headerHeight = document.querySelector('header').offsetHeight;
+                window.scrollTo({
+                    top: targetElement.offsetTop - headerHeight,
+                    behavior: 'smooth'
+                });
+                
+                if (mainNav && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            }
+        });
+    });
+
+    // ========== DOM READY ==========
+    function init() {
+        initializeAddToCartButtons();
+        initializeImageSliders();
+        updateCartDisplay();
+    }
+
+    // Jalankan saat DOM siap
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
     </script>
 </body>
 </html>
