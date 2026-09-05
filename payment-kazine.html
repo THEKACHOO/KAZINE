@@ -29,7 +29,6 @@
             padding: 0 20px;
         }
 
-        /* header */
         header {
             background: #ffffff;
             padding: 20px 0;
@@ -105,7 +104,6 @@
             border-color: #adb5bd;
         }
 
-        /* layout */
         .payment-container {
             padding: 30px 0 50px;
             display: grid;
@@ -197,7 +195,6 @@
             margin-left: 10px;
         }
 
-        /* voucher */
         .voucher-section {
             background: #f8f9fa;
             padding: 18px;
@@ -272,7 +269,6 @@
             font-size: 13px;
         }
 
-        /* payment form */
         .payment-form-section {
             background: #ffffff;
             padding: 25px;
@@ -313,7 +309,6 @@
             resize: vertical;
         }
 
-        /* payment methods */
         .payment-methods {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -384,7 +379,6 @@
             margin-top: 3px;
         }
 
-        /* price breakdown */
         .price-breakdown {
             margin-top: 20px;
             padding-top: 18px;
@@ -441,7 +435,6 @@
             cursor: not-allowed;
         }
 
-        /* payment specific */
         .payment-specific {
             margin-top: 25px;
             padding: 25px;
@@ -500,8 +493,8 @@
         .card-press-area {
             background: #ffffff;
             border: 2px solid #000000;
-            border-radius: 16px;
-            padding: 30px 20px;
+            border-radius: 12px;
+            padding: 20px 16px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
@@ -514,9 +507,9 @@
         }
 
         .card-press-area i {
-            font-size: 48px;
+            font-size: 32px;
             color: #000000;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             display: block;
         }
 
@@ -582,7 +575,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* delivery option */
         .delivery-option-group {
             display: flex;
             gap: 20px;
@@ -613,7 +605,6 @@
             .payment-methods { grid-template-columns: 1fr; }
         }
 
-        /* reduced motion */
         @media (prefers-reduced-motion: reduce) {
             * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
@@ -710,7 +701,6 @@
                         <textarea class="form-input" id="otherRequest" placeholder="Any special requests?" rows="3"></textarea>
                     </div>
 
-                    <!-- Delivery option -->
                     <div class="form-group">
                         <label class="form-label">Delivery Method *</label>
                         <div class="delivery-option-group">
@@ -762,7 +752,7 @@
                         <div class="card-press-area" id="cardPressArea">
                             <i class="fas fa-credit-card"></i>
                             <span style="font-weight: 600;">Press and hold the card to pay</span>
-                            <div style="font-size: 13px; color: #495057; margin-top: 6px;">Hold for 3 seconds to complete payment</div>
+                            <div style="font-size: 13px; color: #495057; margin-top: 4px;">Hold for 3 seconds to complete payment</div>
                         </div>
                     </div>
 
@@ -811,7 +801,6 @@
         let discountPercentage = 0;
         const serviceFee = 2.50;
 
-        // Voucher: 50% for SobatKachoo (case insensitive)
         const validVouchers = {
             "SOBATKACHOO": 50
         };
@@ -954,33 +943,40 @@
                 });
             });
 
-            // CHOBANK card press (hold 3 sec)
+            // CHOBANK card press - hold 3 seconds
             const cardArea = document.getElementById('cardPressArea');
             let pressTimer = null;
-            cardArea.addEventListener('mousedown', () => {
-                pressTimer = setTimeout(() => {
-                    alert('CHOBANK payment completed (card press).');
-                    document.getElementById('chobankAccountNumber').value = '1234 5678 9012 3456';
-                }, 3000);
-            });
-            cardArea.addEventListener('mouseup', () => { clearTimeout(pressTimer); });
-            cardArea.addEventListener('mouseleave', () => { clearTimeout(pressTimer); });
-            // touch support
-            cardArea.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                pressTimer = setTimeout(() => {
-                    alert('CHOBANK payment completed (card press).');
-                    document.getElementById('chobankAccountNumber').value = '1234 5678 9012 3456';
-                }, 3000);
-            });
-            cardArea.addEventListener('touchend', () => { clearTimeout(pressTimer); });
+            let pressTimeout = null;
 
-            // QRIS scan button
+            function startPress() {
+                pressTimer = setTimeout(() => {
+                    alert('CHOBANK payment completed (card press).');
+                    document.getElementById('chobankAccountNumber').value = '1234 5678 9012 3456';
+                }, 3000);
+            }
+
+            function clearPress() {
+                clearTimeout(pressTimer);
+                pressTimer = null;
+            }
+
+            cardArea.addEventListener('mousedown', startPress);
+            cardArea.addEventListener('mouseup', clearPress);
+            cardArea.addEventListener('mouseleave', clearPress);
+
+            cardArea.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                startPress();
+            });
+            cardArea.addEventListener('touchend', clearPress);
+            cardArea.addEventListener('touchcancel', clearPress);
+
+            // QRIS scan
             document.getElementById('qrisScanBtn').addEventListener('click', function() {
                 alert('QRIS payment completed (barcode scanned).');
             });
 
-            // Other payment: validate min 5 digits
+            // Other payment: min 5 digits
             const otherInput = document.getElementById('otherAccountNumber');
             otherInput.addEventListener('input', function() {
                 this.value = this.value.replace(/\D/g, '');
