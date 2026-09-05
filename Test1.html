@@ -1154,8 +1154,8 @@
             <div class="variant-modal-title" id="variantTitle">CHOOSIC</div>
             <div class="variant-modal-subtitle" id="variantSubtitle">Select your variant</div>
             <div id="variantOptions"></div>
-            <!-- TOMBOL PAKAI ONCLICK LANGSUNG -->
-            <button class="variant-modal-add-btn" id="variantAddBtn" onclick="addVariantToCart()">Add to Bag</button>
+            <!-- TOMBOL PAKAI ONCLICK -->
+            <button class="variant-modal-add-btn" onclick="addVariantToCart()">Add to Bag</button>
         </div>
     </div>
 
@@ -1299,7 +1299,8 @@
                             <div class="brand-name">CHOOSIC</div>
                             <div class="product-price">$480</div>
                         </div>
-                        <button class="add-to-cart-btn" data-variant="choosic">Add to Bag</button>
+                        <!-- TOMBOL PAKAI ONCLICK -->
+                        <button class="add-to-cart-btn" onclick="openVariantModal('choosic')">Add to Bag</button>
                     </div>
                 </div>
 
@@ -1320,7 +1321,7 @@
                             <div class="brand-name">CHOZY</div>
                             <div class="product-price">$30</div>
                         </div>
-                        <button class="add-to-cart-btn" data-variant="chozy">Add to Bag</button>
+                        <button class="add-to-cart-btn" onclick="openVariantModal('chozy')">Add to Bag</button>
                     </div>
                 </div>
 
@@ -1341,7 +1342,7 @@
                             <div class="brand-name">CHOFFEE</div>
                             <div class="product-price">$3</div>
                         </div>
-                        <button class="add-to-cart-btn" data-variant="original">Add to Bag</button>
+                        <button class="add-to-cart-btn" onclick="openVariantModal('original')">Add to Bag</button>
                     </div>
                 </div>
 
@@ -1362,7 +1363,7 @@
                             <div class="brand-name">CHOFFEE</div>
                             <div class="product-price">$4</div>
                         </div>
-                        <button class="add-to-cart-btn" data-variant="capsule">Add to Bag</button>
+                        <button class="add-to-cart-btn" onclick="openVariantModal('capsule')">Add to Bag</button>
                     </div>
                 </div>
 
@@ -1383,7 +1384,7 @@
                             <div class="brand-name">Cho°L</div>
                             <div class="product-price">$10</div>
                         </div>
-                        <button class="add-to-cart-btn" data-variant="large">Add to Bag</button>
+                        <button class="add-to-cart-btn" onclick="openVariantModal('large')">Add to Bag</button>
                     </div>
                 </div>
 
@@ -1404,7 +1405,7 @@
                             <div class="brand-name">Cho°L</div>
                             <div class="product-price">$6</div>
                         </div>
-                        <button class="add-to-cart-btn" data-variant="stainless">Add to Bag</button>
+                        <button class="add-to-cart-btn" onclick="openVariantModal('stainless')">Add to Bag</button>
                     </div>
                 </div>
             </div>
@@ -1451,11 +1452,10 @@
     </footer>
 
     <script>
-    // ========== STATE ==========
+    // ========== DATA ==========
     var cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
     var currentVariantData = null;
 
-    // ========== VARIANT CONFIGS ==========
     var variantConfigs = {
         choosic: {
             title: 'Choosic Headphone',
@@ -1507,21 +1507,76 @@
         }
     };
 
-    // ========== FUNGSI GLOBAL UNTUK ADD TO CART ==========
-    // INI YANG DIPANGGIL OLEH ONCLICK
-    window.addVariantToCart = function() {
-        console.log('addVariantToCart dipanggil!');
-        console.log('currentVariantData:', currentVariantData);
-        
+    // ========== FUNGSI GLOBAL ==========
+    
+    // BUKA MODAL VARIAN
+    function openVariantModal(variantKey) {
+        var config = variantConfigs[variantKey];
+        if (!config) return;
+
+        currentVariantData = {
+            key: variantKey,
+            config: config,
+            selectedId: config.options[0].id
+        };
+
+        document.getElementById('variantTitle').textContent = config.title;
+        document.getElementById('variantSubtitle').textContent = config.subtitle;
+
+        var html = '';
+        for (var i = 0; i < config.options.length; i++) {
+            var opt = config.options[i];
+            var checked = i === 0 ? 'checked' : '';
+            html += '<div class="variant-option ' + (i === 0 ? 'selected' : '') + '" data-id="' + opt.id + '">';
+            html += '<input type="radio" name="variant" value="' + opt.id + '" ' + checked + '>';
+            html += '<label>' + opt.label + '</label>';
+            html += '<span class="variant-price">$' + opt.price + '</span>';
+            html += '</div>';
+        }
+        document.getElementById('variantOptions').innerHTML = html;
+
+        // Event listener untuk pilihan varian
+        var options = document.querySelectorAll('.variant-option');
+        for (var i = 0; i < options.length; i++) {
+            options[i].onclick = function() {
+                var allOptions = document.querySelectorAll('.variant-option');
+                for (var j = 0; j < allOptions.length; j++) {
+                    allOptions[j].classList.remove('selected');
+                }
+                this.classList.add('selected');
+                var radio = this.querySelector('input[type="radio"]');
+                if (radio) radio.checked = true;
+                currentVariantData.selectedId = this.getAttribute('data-id');
+            };
+        }
+
+        document.getElementById('variantModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // TUTUP MODAL VARIAN
+    function closeVariantModal() {
+        document.getElementById('variantModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+        currentVariantData = null;
+    }
+
+    // ADD TO CART DARI MODAL (dipanggil oleh onclick)
+    function addVariantToCart() {
         if (!currentVariantData) {
             showNotification('Error: No variant selected');
             return;
         }
 
         var config = currentVariantData.config;
-        var selectedOption = config.options.find(function(o) {
-            return o.id === currentVariantData.selectedId;
-        });
+        var selectedOption = null;
+        
+        for (var i = 0; i < config.options.length; i++) {
+            if (config.options[i].id === currentVariantData.selectedId) {
+                selectedOption = config.options[i];
+                break;
+            }
+        }
         
         if (!selectedOption) {
             showNotification('Error: Please select a variant');
@@ -1532,9 +1587,13 @@
         var productId = selectedOption.id;
         var productPrice = selectedOption.price;
 
-        var existingItem = cart.find(function(item) {
-            return item.id === productId;
-        });
+        var existingItem = null;
+        for (var i = 0; i < cart.length; i++) {
+            if (cart[i].id === productId) {
+                existingItem = cart[i];
+                break;
+            }
+        }
 
         if (existingItem) {
             existingItem.quantity = (existingItem.quantity || 1) + 1;
@@ -1551,70 +1610,15 @@
 
         localStorage.setItem('kazineCart', JSON.stringify(cart));
         updateCartDisplay();
-        hideVariantModal();
-    };
-
-    // ========== VARIANT MODAL ==========
-    function showVariantModal(variantKey) {
-        console.log('showVariantModal dipanggil untuk:', variantKey);
-        
-        var config = variantConfigs[variantKey];
-        if (!config) {
-            console.error('Variant config not found for:', variantKey);
-            return;
-        }
-
-        currentVariantData = {
-            key: variantKey,
-            config: config,
-            selectedId: config.options[0].id
-        };
-
-        document.getElementById('variantTitle').textContent = config.title;
-        document.getElementById('variantSubtitle').textContent = config.subtitle;
-
-        var html = '';
-        config.options.forEach(function(opt, index) {
-            var checked = index === 0 ? 'checked' : '';
-            html += `
-                <div class="variant-option ${index === 0 ? 'selected' : ''}" data-id="${opt.id}">
-                    <input type="radio" name="variant" value="${opt.id}" ${checked}>
-                    <label>${opt.label}</label>
-                    <span class="variant-price">$${opt.price}</span>
-                </div>
-            `;
-        });
-        document.getElementById('variantOptions').innerHTML = html;
-
-        // Add click listeners to variant options
-        document.querySelectorAll('.variant-option').forEach(function(el) {
-            el.addEventListener('click', function(e) {
-                document.querySelectorAll('.variant-option').forEach(function(o) {
-                    o.classList.remove('selected');
-                });
-                this.classList.add('selected');
-                var radio = this.querySelector('input[type="radio"]');
-                if (radio) radio.checked = true;
-                currentVariantData.selectedId = this.dataset.id;
-                console.log('Variant selected:', currentVariantData.selectedId);
-            });
-        });
-
-        document.getElementById('variantModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function hideVariantModal() {
-        document.getElementById('variantModal').classList.remove('active');
-        document.body.style.overflow = 'auto';
-        currentVariantData = null;
+        closeVariantModal();
     }
 
     // ========== CART DISPLAY ==========
     function updateCartDisplay() {
-        var totalItems = cart.reduce(function(total, item) {
-            return total + (item.quantity || 1);
-        }, 0);
+        var totalItems = 0;
+        for (var i = 0; i < cart.length; i++) {
+            totalItems = totalItems + (cart[i].quantity || 1);
+        }
         document.getElementById('cartCount').textContent = totalItems;
         
         var cartItems = document.getElementById('cartItems');
@@ -1622,12 +1626,7 @@
         var cartTotal = document.getElementById('cartTotal');
         
         if (cart.length === 0) {
-            cartItems.innerHTML = `
-                <div class="empty-cart">
-                    <i class="fas fa-shopping-bag"></i>
-                    <p>Your bag is empty</p>
-                </div>
-            `;
+            cartItems.innerHTML = '<div class="empty-cart"><i class="fas fa-shopping-bag"></i><p>Your bag is empty</p></div>';
             checkoutBtn.style.display = 'none';
             cartTotal.textContent = '$0.00';
             return;
@@ -1638,38 +1637,32 @@
         var total = 0;
         var itemsHTML = '';
         
-        cart.forEach(function(item, index) {
+        for (var i = 0; i < cart.length; i++) {
+            var item = cart[i];
             var itemTotal = parseFloat(item.price) * (item.quantity || 1);
-            total += itemTotal;
+            total = total + itemTotal;
             
-            itemsHTML += `
-                <div class="cart-item">
-                    <div class="item-info">
-                        <h4>${item.title}</h4>
-                        <p>Quantity: ${item.quantity || 1}</p>
-                    </div>
-                    <div class="item-price">$${itemTotal.toFixed(2)}</div>
-                    <button class="remove-item" data-index="${index}" aria-label="Remove item">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </div>
-            `;
-        });
+            itemsHTML = itemsHTML + '<div class="cart-item">';
+            itemsHTML = itemsHTML + '<div class="item-info"><h4>' + item.title + '</h4><p>Quantity: ' + (item.quantity || 1) + '</p></div>';
+            itemsHTML = itemsHTML + '<div class="item-price">$' + itemTotal.toFixed(2) + '</div>';
+            itemsHTML = itemsHTML + '<button class="remove-item" data-index="' + i + '" aria-label="Remove item"><i class="fas fa-trash-alt"></i></button>';
+            itemsHTML = itemsHTML + '</div>';
+        }
         
         cartItems.innerHTML = itemsHTML;
-        cartTotal.textContent = `$${total.toFixed(2)}`;
+        cartTotal.textContent = '$' + total.toFixed(2);
         
         // Remove item listeners
-        document.querySelectorAll('.remove-item').forEach(function(button) {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
+        var removeButtons = document.querySelectorAll('.remove-item');
+        for (var i = 0; i < removeButtons.length; i++) {
+            removeButtons[i].onclick = function() {
                 var index = parseInt(this.getAttribute('data-index'));
                 cart.splice(index, 1);
                 localStorage.setItem('kazineCart', JSON.stringify(cart));
                 updateCartDisplay();
                 showNotification('Item removed from cart');
-            });
-        });
+            };
+        }
     }
 
     // ========== NOTIFICATION ==========
@@ -1687,43 +1680,16 @@
         }, 2000);
     }
 
-    // ========== ADD TO CART HANDLER ==========
-    function handleAddToCart(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        
-        var button = event.currentTarget;
-        var variantKey = button.getAttribute('data-variant');
-        console.log('Add to Cart diklik, variant:', variantKey);
-        
-        if (variantKey && variantConfigs[variantKey]) {
-            showVariantModal(variantKey);
-        }
-    }
-
-    // ========== INIT BUTTONS ==========
-    function initializeAddToCartButtons() {
-        var buttons = document.querySelectorAll('.add-to-cart-btn');
-        console.log('Jumlah tombol Add to Cart:', buttons.length);
-        
-        buttons.forEach(function(button) {
-            var newButton = button.cloneNode(true);
-            button.parentNode.replaceChild(newButton, button);
-        });
-        
-        document.querySelectorAll('.add-to-cart-btn').forEach(function(button) {
-            button.addEventListener('click', handleAddToCart);
-        });
-    }
-
     // ========== IMAGE SLIDERS ==========
     function initializeImageSliders() {
-        document.querySelectorAll('.product-card').forEach(function(card) {
+        var cards = document.querySelectorAll('.product-card');
+        for (var c = 0; c < cards.length; c++) {
+            var card = cards[c];
             var slides = card.querySelector('.product-slides');
             var prevBtn = card.querySelector('.slide-btn.prev');
             var nextBtn = card.querySelector('.slide-btn.next');
             
-            if (!slides || !prevBtn || !nextBtn) return;
+            if (!slides || !prevBtn || !nextBtn) continue;
             
             var currentSlide = 0;
             var totalSlides = 2;
@@ -1734,26 +1700,26 @@
                 nextBtn.disabled = currentSlide === totalSlides - 1;
             }
             
-            prevBtn.addEventListener('click', function(e) {
+            prevBtn.onclick = function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 if (!this.disabled) {
                     currentSlide = Math.max(0, currentSlide - 1);
                     updateSlide();
                 }
-            });
+            };
             
-            nextBtn.addEventListener('click', function(e) {
+            nextBtn.onclick = function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 if (!this.disabled) {
                     currentSlide = Math.min(totalSlides - 1, currentSlide + 1);
                     updateSlide();
                 }
-            });
+            };
             
             updateSlide();
-        });
+        }
     }
 
     // ========== CART MODAL ==========
@@ -1770,52 +1736,52 @@
         document.body.style.overflow = 'auto';
     }
 
-    document.getElementById('openCart').addEventListener('click', function(e) {
+    document.getElementById('openCart').onclick = function(e) {
         e.preventDefault();
         openCart();
-    });
+    };
     
-    document.getElementById('closeCart').addEventListener('click', function(e) {
+    document.getElementById('closeCart').onclick = function(e) {
         e.preventDefault();
         closeCart();
-    });
+    };
     
-    document.getElementById('cartOverlay').addEventListener('click', function() {
+    document.getElementById('cartOverlay').onclick = function() {
         closeCart();
-    });
+    };
 
     // ========== MOBILE MENU ==========
     var mobileMenuBtn = document.getElementById('mobileMenuBtn');
     var mainNav = document.getElementById('mainNav');
     
     if (mobileMenuBtn && mainNav) {
-        mobileMenuBtn.addEventListener('click', function(e) {
+        mobileMenuBtn.onclick = function(e) {
             e.preventDefault();
             mainNav.classList.toggle('active');
             this.innerHTML = mainNav.classList.contains('active') ? 
                 '<i class="fas fa-times"></i>' : 
                 '<i class="fas fa-bars"></i>';
-        });
+        };
         
-        document.addEventListener('click', function(e) {
+        document.onclick = function(e) {
             if (mainNav.classList.contains('active') && 
                 !mainNav.contains(e.target) && 
                 !mobileMenuBtn.contains(e.target)) {
                 mainNav.classList.remove('active');
                 mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             }
-        });
+        };
     }
 
     // ========== CLOSE VARIANT MODAL ==========
-    document.getElementById('variantModalClose').addEventListener('click', hideVariantModal);
+    document.getElementById('variantModalClose').onclick = closeVariantModal;
     
-    document.getElementById('variantModal').addEventListener('click', function(e) {
-        if (e.target === this) hideVariantModal();
-    });
+    document.getElementById('variantModal').onclick = function(e) {
+        if (e.target === this) closeVariantModal();
+    };
 
     // ========== CHECKOUT ==========
-    document.getElementById('checkoutBtn').addEventListener('click', function(e) {
+    document.getElementById('checkoutBtn').onclick = function(e) {
         e.preventDefault();
         if (cart.length === 0) {
             showNotification('Your cart is empty');
@@ -1823,9 +1789,9 @@
         }
         
         var subtotal = 0;
-        cart.forEach(function(item) {
-            subtotal += parseFloat(item.price) * (item.quantity || 1);
-        });
+        for (var i = 0; i < cart.length; i++) {
+            subtotal = subtotal + parseFloat(cart[i].price) * (cart[i].quantity || 1);
+        }
         
         var orderData = {
             items: cart,
@@ -1841,11 +1807,12 @@
         setTimeout(function() {
             window.location.href = 'payment-kazine.html';
         }, 300);
-    });
+    };
 
     // ========== SMOOTH SCROLL ==========
-    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-        anchor.addEventListener('click', function(e) {
+    var links = document.querySelectorAll('a[href^="#"]');
+    for (var i = 0; i < links.length; i++) {
+        links[i].onclick = function(e) {
             var href = this.getAttribute('href');
             if (href === '#' || href.includes('.html')) return;
             
@@ -1865,16 +1832,13 @@
                     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                 }
             }
-        });
-    });
+        };
+    }
 
     // ========== INIT ==========
     function init() {
-        console.log('=== INITIALISASI KAZINE ===');
-        initializeAddToCartButtons();
         initializeImageSliders();
         updateCartDisplay();
-        console.log('=== INITIALISASI SELESAI ===');
     }
 
     if (document.readyState === 'loading') {
