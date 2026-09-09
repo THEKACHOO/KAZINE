@@ -6,7 +6,6 @@
     <title>Payment | KAZINE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * {
             margin: 0;
@@ -68,6 +67,10 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+        }
+
+        .logo-text {
+            display: none;
         }
 
         .back-button {
@@ -461,69 +464,25 @@
             display: block;
         }
 
-        .chobank-input-group {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            flex-wrap: wrap;
+        .account-number-input {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            letter-spacing: 2px;
+            text-align: center;
         }
 
-        .chobank-input-group .form-input {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .chobank-input-group .btn-check {
-            padding: 14px 24px;
-            background: #000000;
-            color: #ffffff;
-            border: none;
+        .chobank-info {
+            background: #e9ecef;
+            padding: 15px;
             border-radius: 12px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-            height: 48px;
-            white-space: nowrap;
+            margin-top: 15px;
+            border-left: 4px solid #000000;
         }
 
-        .chobank-input-group .btn-check:hover {
-            background: #212529;
-        }
-
-        .chobank-input-group .btn-check:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .chobank-user-info {
-            margin-top: 12px;
-            padding: 12px 16px;
-            border-radius: 10px;
-            display: none;
-        }
-
-        .chobank-user-info.found {
-            display: block;
-            background: #dcfce7;
-            border: 1px solid #16a34a;
-            color: #166534;
-        }
-
-        .chobank-user-info.not-found {
-            display: block;
-            background: #fee2e2;
-            border: 1px solid #dc2626;
-            color: #991b1b;
-        }
-
-        .chobank-user-info .name {
-            font-weight: 600;
-        }
-
-        .chobank-user-info .balance {
+        .chobank-info p {
+            margin: 5px 0;
             font-size: 13px;
-            margin-top: 2px;
+            color: #495057;
         }
 
         .qris-container {
@@ -546,6 +505,29 @@
 
         .qris-scan-btn:hover {
             background: #212529;
+        }
+
+        .card-press-area {
+            background: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 12px;
+            padding: 20px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+            margin-top: 10px;
+        }
+
+        .card-press-area:active {
+            transform: scale(0.97);
+        }
+
+        .card-press-area i {
+            font-size: 32px;
+            color: #000000;
+            margin-bottom: 6px;
+            display: block;
         }
 
         .other-payment-input {
@@ -753,7 +735,7 @@
                                 <input type="radio" id="chobank" name="paymentMethod" value="chobank">
                                 <label class="payment-label" for="chobank">
                                     <div class="payment-icon"><i class="fas fa-university"></i></div>
-                                    <div><div>CHOBANK</div><div class="payment-details">Pay with account/username</div></div>
+                                    <div><div>CHOBANK</div><div class="payment-details">Transfer or press card</div></div>
                                 </label>
                             </div>
                             <div class="payment-method">
@@ -776,15 +758,16 @@
                     <!-- CHOBANK -->
                     <div class="payment-specific" id="chobankSelection">
                         <div class="form-group">
-                            <label class="form-label">CHOBANK Account Number or Username</label>
-                            <div class="chobank-input-group">
-                                <input type="text" class="form-input" id="chobankInput" placeholder="Enter account number or username" required>
-                                <button type="button" class="btn-check" id="checkChobank">Check</button>
+                            <label class="form-label" for="chobankAccountNumber">CHOBANK Account Number</label>
+                            <input type="text" class="form-input account-number-input" id="chobankAccountNumber" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric">
+                            <div class="chobank-info">
+                                <p><strong>CHOBANK:</strong> Enter 16-digit number or press the card below to pay instantly.</p>
                             </div>
-                            <div class="chobank-user-info" id="chobankUserInfo">
-                                <div class="name" id="chobankUserName">-</div>
-                                <div class="balance" id="chobankUserBalance">Balance: $0.00</div>
-                            </div>
+                        </div>
+                        <div class="card-press-area" id="cardPressArea">
+                            <i class="fas fa-credit-card"></i>
+                            <span style="font-weight: 600;">Press and hold the card to pay</span>
+                            <div style="font-size: 13px; color: #495057; margin-top: 4px;">Hold for 3 seconds to complete payment</div>
                         </div>
                     </div>
 
@@ -825,470 +808,330 @@
     </footer>
 
     <script>
-        (function() {
-            'use strict';
+        const SPREADSHEET_URL = "https://script.google.com/macros/s/AKfycbyOuKoJVKmHEcuBOSaWoU3X6H1DctA1L4Xlgh_NMATkuNJEi7QROub7m-BIIatlAdLeGg/exec";
+        let cartItems = [];
+        let subtotal = 0;
+        let discount = 0;
+        let voucherCode = '';
+        let discountPercentage = 0;
+        const serviceFee = 2.50;
 
-            // =============================================
-            // SUPABASE CONFIG (SAMA DENGAN CHOBANK)
-            // =============================================
-            var SUPABASE_URL = 'https://inrvryaxdlhnyxxztyyt.supabase.co';
-            var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlucnZyeWF4ZGxobnl4eHp0eXl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg3MTAxNDYsImV4cCI6MjEwNDI4NjE0Nn0.xrG77jRP9Wg06P1D5aMkcBkRfrVGUDs4nN2CNnpBPd8';
-            var supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const validVouchers = {
+            "SOBATKACHOO": 50
+        };
 
-            var SPREADSHEET_URL = "https://script.google.com/macros/s/AKfycbyOuKoJVKmHEcuBOSaWoU3X6H1DctA1L4Xlgh_NMATkuNJEi7QROub7m-BIIatlAdLeGg/exec";
-            var cartItems = [];
-            var subtotal = 0;
-            var discount = 0;
-            var voucherCode = '';
-            var discountPercentage = 0;
-            var serviceFee = 2.50;
+        function calculateDiscount(code, amount) {
+            const voucher = code.trim().toUpperCase();
+            if (validVouchers.hasOwnProperty(voucher)) {
+                const percentage = validVouchers[voucher];
+                return { amount: amount * (percentage / 100), percentage, code: voucher };
+            }
+            return { amount: 0, percentage: 0, code: null };
+        }
 
-            var chobankUser = null;
+        function applyVoucher() {
+            const voucherInput = document.getElementById('voucherCode');
+            const voucherMessage = document.getElementById('voucherMessage');
+            const voucherBadge = document.getElementById('voucherBadge');
+            const voucherText = document.getElementById('voucherText');
+            const code = voucherInput.value.trim();
 
-            var validVouchers = {
-                "SOBATKACHOO": 50
+            if (!code) {
+                voucherMessage.innerHTML = '<span class="voucher-error">Please enter a voucher code</span>';
+                voucherBadge.style.display = 'none';
+                discount = 0; discountPercentage = 0; voucherCode = '';
+                updateTotals();
+                return;
+            }
+
+            const discountInfo = calculateDiscount(code, subtotal);
+            if (discountInfo.amount > 0) {
+                voucherMessage.innerHTML = `<span class="voucher-success">✓ ${discountInfo.percentage}% discount applied!</span>`;
+                voucherText.textContent = `${discountInfo.code} - ${discountInfo.percentage}% OFF`;
+                voucherBadge.style.display = 'inline-flex';
+                discount = discountInfo.amount;
+                discountPercentage = discountInfo.percentage;
+                voucherCode = discountInfo.code;
+                localStorage.setItem('kazineVoucher', JSON.stringify({ code: voucherCode, percentage: discountPercentage, amount: discount }));
+            } else {
+                voucherBadge.style.display = 'none';
+                discount = 0; discountPercentage = 0; voucherCode = '';
+                localStorage.removeItem('kazineVoucher');
+                voucherMessage.innerHTML = '<span class="voucher-error">Invalid voucher code</span>';
+            }
+            updateTotals();
+        }
+
+        function loadCartItems() {
+            const savedCart = localStorage.getItem('kazineCart');
+            const emptyCartState = document.getElementById('emptyCartState');
+            const paymentFormState = document.getElementById('paymentFormState');
+            if (!savedCart || savedCart === '[]') {
+                emptyCartState.style.display = 'block';
+                paymentFormState.style.display = 'none';
+                return false;
+            }
+            try {
+                cartItems = JSON.parse(savedCart);
+                displayCartItems();
+                calculateSubtotal();
+                loadSavedVoucher();
+                return true;
+            } catch (error) {
+                console.error('Error loading cart:', error);
+                emptyCartState.style.display = 'block';
+                paymentFormState.style.display = 'none';
+                return false;
+            }
+        }
+
+        function loadSavedVoucher() {
+            const savedVoucher = localStorage.getItem('kazineVoucher');
+            if (savedVoucher) {
+                try {
+                    const v = JSON.parse(savedVoucher);
+                    document.getElementById('voucherCode').value = v.code;
+                    discount = v.amount; discountPercentage = v.percentage; voucherCode = v.code;
+                    document.getElementById('voucherText').textContent = `${v.code} - ${v.percentage}% OFF`;
+                    document.getElementById('voucherBadge').style.display = 'inline-flex';
+                    document.getElementById('voucherMessage').innerHTML = `<span class="voucher-success">✓ ${v.percentage}% discount applied!</span>`;
+                    updateTotals();
+                } catch (e) {}
+            }
+        }
+
+        function displayCartItems() {
+            const orderItemsList = document.getElementById('orderItemsList');
+            orderItemsList.innerHTML = '';
+            if (cartItems.length === 0) {
+                orderItemsList.innerHTML = '<p style="text-align: center; color: #adb5bd;">No items in cart</p>';
+                return;
+            }
+            cartItems.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'order-item';
+                const price = parseFloat(item.price) || 0;
+                const qty = item.quantity || 1;
+                el.innerHTML = `
+                    <div class="item-info"><h4>${item.title || 'Magazine Item'}</h4><div class="item-details">Quantity: ${qty}</div></div>
+                    <div class="item-price">$${(price * qty).toFixed(2)}</div>
+                `;
+                orderItemsList.appendChild(el);
+            });
+        }
+
+        function calculateSubtotal() {
+            subtotal = cartItems.reduce((t, item) => t + (parseFloat(item.price) || 0) * (item.quantity || 1), 0);
+            updateTotals();
+        }
+
+        function updateTotals() {
+            const total = subtotal - discount + serviceFee;
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('serviceFee').textContent = `$${serviceFee.toFixed(2)}`;
+            document.getElementById('totalAmount').textContent = `$${total.toFixed(2)}`;
+            const discountRow = document.getElementById('discountRow');
+            const discountAmount = document.getElementById('discountAmount');
+            if (discount > 0) {
+                discountRow.style.display = 'flex';
+                discountAmount.textContent = `-$${discount.toFixed(2)}`;
+            } else {
+                discountRow.style.display = 'none';
+            }
+            localStorage.setItem('kazineTotals', JSON.stringify({ subtotal, discount, serviceFee, total, voucherCode }));
+        }
+
+        function setupPaymentMethods() {
+            const methods = document.querySelectorAll('input[name="paymentMethod"]');
+            const chobankSel = document.getElementById('chobankSelection');
+            const qrisSel = document.getElementById('qrisSelection');
+            const otherSel = document.getElementById('otherSelection');
+
+            methods.forEach(m => {
+                m.addEventListener('change', function() {
+                    chobankSel.classList.remove('active');
+                    qrisSel.classList.remove('active');
+                    otherSel.classList.remove('active');
+                    if (this.value === 'chobank') chobankSel.classList.add('active');
+                    else if (this.value === 'qris') qrisSel.classList.add('active');
+                    else if (this.value === 'other') otherSel.classList.add('active');
+                });
+            });
+
+            // CHOBANK card press - hold 3 seconds
+            const cardArea = document.getElementById('cardPressArea');
+            let pressTimer = null;
+            let pressTimeout = null;
+
+            function startPress() {
+                pressTimer = setTimeout(() => {
+                    alert('CHOBANK payment completed (card press).');
+                    document.getElementById('chobankAccountNumber').value = '1234 5678 9012 3456';
+                }, 3000);
+            }
+
+            function clearPress() {
+                clearTimeout(pressTimer);
+                pressTimer = null;
+            }
+
+            cardArea.addEventListener('mousedown', startPress);
+            cardArea.addEventListener('mouseup', clearPress);
+            cardArea.addEventListener('mouseleave', clearPress);
+
+            cardArea.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                startPress();
+            });
+            cardArea.addEventListener('touchend', clearPress);
+            cardArea.addEventListener('touchcancel', clearPress);
+
+            // QRIS scan
+            document.getElementById('qrisScanBtn').addEventListener('click', function() {
+                alert('QRIS payment completed (barcode scanned).');
+            });
+
+            // Other payment: min 5 digits
+            const otherInput = document.getElementById('otherAccountNumber');
+            otherInput.addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '');
+            });
+        }
+
+        function validateForm() {
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            const chobankAcc = document.getElementById('chobankAccountNumber')?.value.replace(/\s/g, '');
+            const otherAcc = document.getElementById('otherAccountNumber')?.value.replace(/\D/g, '');
+
+            document.querySelectorAll('.form-input').forEach(i => i.style.borderColor = '');
+            let isValid = true, error = '';
+
+            if (!fullName) { document.getElementById('fullName').style.borderColor = '#dc3545'; isValid = false; error = 'Full name required'; }
+            if (!paymentMethod) {
+                document.querySelectorAll('.payment-label').forEach(l => l.style.borderColor = '#dc3545');
+                isValid = false; error = error || 'Select a payment method';
+            } else {
+                document.querySelectorAll('.payment-label').forEach(l => l.style.borderColor = '');
+            }
+
+            if (paymentMethod && paymentMethod.value === 'chobank') {
+                if (!chobankAcc || chobankAcc.length !== 16) {
+                    document.getElementById('chobankAccountNumber').style.borderColor = '#dc3545';
+                    isValid = false; error = error || 'CHOBANK: 16-digit number required';
+                }
+            }
+            if (paymentMethod && paymentMethod.value === 'other') {
+                if (!otherAcc || otherAcc.length < 5) {
+                    document.getElementById('otherAccountNumber').style.borderColor = '#dc3545';
+                    isValid = false; error = error || 'Other Payment: minimum 5 digits required';
+                }
+            }
+            if (cartItems.length === 0) { isValid = false; error = 'Cart is empty'; }
+            return { isValid, errorMessage: error };
+        }
+
+        async function processPayment() {
+            const submitBtn = document.getElementById('processPayment');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+            const validation = validateForm();
+            if (!validation.isValid) {
+                alert(validation.errorMessage);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+                return;
+            }
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const twitter = document.getElementById('twitterUsername').value.trim();
+            const otherReq = document.getElementById('otherRequest').value.trim();
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked')?.value || 'shipping';
+            const chobankAcc = document.getElementById('chobankAccountNumber')?.value;
+            const otherAcc = document.getElementById('otherAccountNumber')?.value;
+
+            const total = subtotal - discount + serviceFee;
+            const itemCount = cartItems.reduce((s, i) => s + (i.quantity || 1), 0);
+
+            const orderData = {
+                customer: { fullName, email: email || 'Not provided', address: address || 'Not provided', twitter: twitter || 'Not provided', request: otherReq || 'No special request' },
+                items: cartItems,
+                subtotal, discount, serviceFee, total, itemCount,
+                paymentMethod: paymentMethod.value,
+                chobankAccountNumber: paymentMethod.value === 'chobank' ? chobankAcc : null,
+                otherAccountNumber: paymentMethod.value === 'other' ? otherAcc : null,
+                deliveryMethod: deliveryMethod,
+                voucherCode: voucherCode || 'None',
+                paymentDate: new Date().toISOString(),
+                status: 'pending'
             };
 
-            function calculateDiscount(code, amount) {
-                var voucher = code.trim().toUpperCase();
-                if (validVouchers.hasOwnProperty(voucher)) {
-                    var percentage = validVouchers[voucher];
-                    return { amount: amount * (percentage / 100), percentage: percentage, code: voucher };
-                }
-                return { amount: 0, percentage: 0, code: null };
-            }
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.style.display = 'flex';
 
-            function applyVoucher() {
-                var voucherInput = document.getElementById('voucherCode');
-                var voucherMessage = document.getElementById('voucherMessage');
-                var voucherBadge = document.getElementById('voucherBadge');
-                var voucherText = document.getElementById('voucherText');
-                var code = voucherInput.value.trim();
-
-                if (!code) {
-                    voucherMessage.innerHTML = '<span class="voucher-error">Please enter a voucher code</span>';
-                    voucherBadge.style.display = 'none';
-                    discount = 0;
-                    discountPercentage = 0;
-                    voucherCode = '';
-                    updateTotals();
-                    return;
-                }
-
-                var discountInfo = calculateDiscount(code, subtotal);
-                if (discountInfo.amount > 0) {
-                    voucherMessage.innerHTML = '<span class="voucher-success">✓ ' + discountInfo.percentage + '% discount applied!</span>';
-                    voucherText.textContent = discountInfo.code + ' - ' + discountInfo.percentage + '% OFF';
-                    voucherBadge.style.display = 'inline-flex';
-                    discount = discountInfo.amount;
-                    discountPercentage = discountInfo.percentage;
-                    voucherCode = discountInfo.code;
-                    localStorage.setItem('kazineVoucher', JSON.stringify({ code: voucherCode, percentage: discountPercentage, amount: discount }));
-                } else {
-                    voucherBadge.style.display = 'none';
-                    discount = 0;
-                    discountPercentage = 0;
-                    voucherCode = '';
-                    localStorage.removeItem('kazineVoucher');
-                    voucherMessage.innerHTML = '<span class="voucher-error">Invalid voucher code</span>';
-                }
-                updateTotals();
-            }
-
-            function loadCartItems() {
-                var savedCart = localStorage.getItem('kazineCart');
-                var emptyCartState = document.getElementById('emptyCartState');
-                var paymentFormState = document.getElementById('paymentFormState');
-                if (!savedCart || savedCart === '[]') {
-                    emptyCartState.style.display = 'block';
-                    paymentFormState.style.display = 'none';
-                    return false;
-                }
-                try {
-                    cartItems = JSON.parse(savedCart);
-                    displayCartItems();
-                    calculateSubtotal();
-                    loadSavedVoucher();
-                    return true;
-                } catch (error) {
-                    console.error('Error loading cart:', error);
-                    emptyCartState.style.display = 'block';
-                    paymentFormState.style.display = 'none';
-                    return false;
-                }
-            }
-
-            function loadSavedVoucher() {
-                var savedVoucher = localStorage.getItem('kazineVoucher');
-                if (savedVoucher) {
-                    try {
-                        var v = JSON.parse(savedVoucher);
-                        document.getElementById('voucherCode').value = v.code;
-                        discount = v.amount;
-                        discountPercentage = v.percentage;
-                        voucherCode = v.code;
-                        document.getElementById('voucherText').textContent = v.code + ' - ' + v.percentage + '% OFF';
-                        document.getElementById('voucherBadge').style.display = 'inline-flex';
-                        document.getElementById('voucherMessage').innerHTML = '<span class="voucher-success">✓ ' + v.percentage + '% discount applied!</span>';
-                        updateTotals();
-                    } catch (e) {}
-                }
-            }
-
-            function displayCartItems() {
-                var orderItemsList = document.getElementById('orderItemsList');
-                orderItemsList.innerHTML = '';
-                if (cartItems.length === 0) {
-                    orderItemsList.innerHTML = '<p style="text-align: center; color: #adb5bd;">No items in cart</p>';
-                    return;
-                }
-                cartItems.forEach(function(item) {
-                    var el = document.createElement('div');
-                    el.className = 'order-item';
-                    var price = parseFloat(item.price) || 0;
-                    var qty = item.quantity || 1;
-                    el.innerHTML = '<div class="item-info"><h4>' + (item.title || 'Magazine Item') + '</h4><div class="item-details">Quantity: ' + qty + '</div></div><div class="item-price">$' + (price * qty).toFixed(2) + '</div>';
-                    orderItemsList.appendChild(el);
-                });
-            }
-
-            function calculateSubtotal() {
-                subtotal = cartItems.reduce(function(t, item) {
-                    return t + (parseFloat(item.price) || 0) * (item.quantity || 1);
-                }, 0);
-                updateTotals();
-            }
-
-            function updateTotals() {
-                var total = subtotal - discount + serviceFee;
-                document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
-                document.getElementById('serviceFee').textContent = '$' + serviceFee.toFixed(2);
-                document.getElementById('totalAmount').textContent = '$' + total.toFixed(2);
-                var discountRow = document.getElementById('discountRow');
-                var discountAmount = document.getElementById('discountAmount');
-                if (discount > 0) {
-                    discountRow.style.display = 'flex';
-                    discountAmount.textContent = '-$' + discount.toFixed(2);
-                } else {
-                    discountRow.style.display = 'none';
-                }
-                localStorage.setItem('kazineTotals', JSON.stringify({ subtotal: subtotal, discount: discount, serviceFee: serviceFee, total: total, voucherCode: voucherCode }));
-            }
-
-            // =============================================
-            // CHOBANK CHECK USER
-            // =============================================
-            document.getElementById('checkChobank').addEventListener('click', async function() {
-                var input = document.getElementById('chobankInput').value.trim();
-                var info = document.getElementById('chobankUserInfo');
-                var nameDisplay = document.getElementById('chobankUserName');
-                var balanceDisplay = document.getElementById('chobankUserBalance');
-
-                if (!input) {
-                    info.className = 'chobank-user-info not-found';
-                    info.style.display = 'block';
-                    nameDisplay.textContent = 'Please enter account number or username';
-                    balanceDisplay.textContent = '';
-                    chobankUser = null;
-                    return;
-                }
-
-                this.disabled = true;
-                this.textContent = 'Checking...';
-
-                try {
-                    var result = await supabase
-                        .from('users')
-                        .select('*')
-                        .or('account_number.ilike.%' + input + '%,username.ilike.%' + input + '%')
-                        .single();
-
-                    if (result.error || !result.data) {
-                        info.className = 'chobank-user-info not-found';
-                        info.style.display = 'block';
-                        nameDisplay.textContent = 'User not found';
-                        balanceDisplay.textContent = '';
-                        chobankUser = null;
-                        this.disabled = false;
-                        this.textContent = 'Check';
-                        return;
-                    }
-
-                    chobankUser = result.data;
-                    info.className = 'chobank-user-info found';
-                    info.style.display = 'block';
-                    nameDisplay.textContent = 'Name: ' + (result.data.full_name || result.data.username);
-                    balanceDisplay.textContent = 'Balance: $' + (result.data.balance || 0).toFixed(2);
-
-                } catch (err) {
-                    console.error('Error checking CHOBANK user:', err);
-                    info.className = 'chobank-user-info not-found';
-                    info.style.display = 'block';
-                    nameDisplay.textContent = 'Error checking user';
-                    balanceDisplay.textContent = '';
-                    chobankUser = null;
-                }
-
-                this.disabled = false;
-                this.textContent = 'Check';
-            });
-
-            document.getElementById('chobankInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    document.getElementById('checkChobank').click();
-                }
-            });
-
-            function setupPaymentMethods() {
-                var methods = document.querySelectorAll('input[name="paymentMethod"]');
-                var chobankSel = document.getElementById('chobankSelection');
-                var qrisSel = document.getElementById('qrisSelection');
-                var otherSel = document.getElementById('otherSelection');
-
-                methods.forEach(function(m) {
-                    m.addEventListener('change', function() {
-                        chobankSel.classList.remove('active');
-                        qrisSel.classList.remove('active');
-                        otherSel.classList.remove('active');
-                        if (this.value === 'chobank') chobankSel.classList.add('active');
-                        else if (this.value === 'qris') qrisSel.classList.add('active');
-                        else if (this.value === 'other') otherSel.classList.add('active');
-                    });
-                });
-
-                document.getElementById('qrisScanBtn').addEventListener('click', function() {
-                    alert('QRIS payment completed (barcode scanned).');
-                });
-
-                var otherInput = document.getElementById('otherAccountNumber');
-                otherInput.addEventListener('input', function() {
-                    this.value = this.value.replace(/\D/g, '');
-                });
-            }
-
-            function validateForm() {
-                var fullName = document.getElementById('fullName').value.trim();
-                var paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
-                var chobankInput = document.getElementById('chobankInput').value.trim();
-                var otherAcc = document.getElementById('otherAccountNumber') ? document.getElementById('otherAccountNumber').value.replace(/\D/g, '') : '';
-
-                document.querySelectorAll('.form-input').forEach(function(i) { i.style.borderColor = ''; });
-                var isValid = true;
-                var error = '';
-
-                if (!fullName) {
-                    document.getElementById('fullName').style.borderColor = '#dc3545';
-                    isValid = false;
-                    error = 'Full name required';
-                }
-                if (!paymentMethod) {
-                    document.querySelectorAll('.payment-label').forEach(function(l) { l.style.borderColor = '#dc3545'; });
-                    isValid = false;
-                    error = error || 'Select a payment method';
-                } else {
-                    document.querySelectorAll('.payment-label').forEach(function(l) { l.style.borderColor = ''; });
-                }
-
-                if (paymentMethod && paymentMethod.value === 'chobank') {
-                    if (!chobankInput) {
-                        document.getElementById('chobankInput').style.borderColor = '#dc3545';
-                        isValid = false;
-                        error = error || 'Please enter CHOBANK account number or username';
-                    }
-                    if (!chobankUser) {
-                        isValid = false;
-                        error = error || 'Please check CHOBANK user first';
-                    }
-                    if (chobankUser && chobankUser.balance < getTotal()) {
-                        isValid = false;
-                        error = error || 'Insufficient CHOBANK balance';
-                    }
-                }
-                if (paymentMethod && paymentMethod.value === 'other') {
-                    if (!otherAcc || otherAcc.length < 5) {
-                        document.getElementById('otherAccountNumber').style.borderColor = '#dc3545';
-                        isValid = false;
-                        error = error || 'Other Payment: minimum 5 digits required';
-                    }
-                }
-                if (cartItems.length === 0) {
-                    isValid = false;
-                    error = 'Cart is empty';
-                }
-                return { isValid: isValid, errorMessage: error };
-            }
-
-            function getTotal() {
-                return subtotal - discount + serviceFee;
-            }
-
-            // =============================================
-            // PROCESS PAYMENT - DENGAN POTONG SALDO CHOBANK
-            // =============================================
-            async function processPayment() {
-                var submitBtn = document.getElementById('processPayment');
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-
-                var validation = validateForm();
-                if (!validation.isValid) {
-                    alert(validation.errorMessage);
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
-                    return;
-                }
-
-                var fullName = document.getElementById('fullName').value.trim();
-                var email = document.getElementById('email').value.trim();
-                var address = document.getElementById('address').value.trim();
-                var twitter = document.getElementById('twitterUsername').value.trim();
-                var otherReq = document.getElementById('otherRequest').value.trim();
-                var paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
-                var deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked') ? document.querySelector('input[name="deliveryMethod"]:checked').value : 'shipping';
-                var chobankInput = document.getElementById('chobankInput').value.trim();
-                var otherAcc = document.getElementById('otherAccountNumber') ? document.getElementById('otherAccountNumber').value : '';
-
-                var total = getTotal();
-                var itemCount = cartItems.reduce(function(s, i) {
-                    return s + (i.quantity || 1);
-                }, 0);
-
-                // =============================================
-                // POTONG SALDO CHOBANK
-                // =============================================
-                if (paymentMethod.value === 'chobank' && chobankUser) {
-                    try {
-                        var newBalance = chobankUser.balance - total;
-                        var history = chobankUser.history || [];
-
-                        history.push({
-                            type: 'debit',
-                            amount: total,
-                            description: 'KAZINE Purchase - $' + total.toFixed(2),
-                            date: new Date().toISOString()
-                        });
-
-                        var updateResult = await supabase
-                            .from('users')
-                            .update({
-                                balance: newBalance,
-                                history: history
-                            })
-                            .eq('id', chobankUser.id);
-
-                        if (updateResult.error) {
-                            console.error('Error updating CHOBANK balance:', updateResult.error);
-                            alert('Failed to deduct CHOBANK balance. Please try again.');
-                            submitBtn.disabled = false;
-                            submitBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
-                            return;
-                        }
-
-                        chobankUser.balance = newBalance;
-                        chobankUser.history = history;
-
-                        document.getElementById('chobankUserBalance').textContent = 'Balance: $' + newBalance.toFixed(2);
-
-                    } catch (err) {
-                        console.error('Error processing CHOBANK payment:', err);
-                        alert('Error processing CHOBANK payment. Please try again.');
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
-                        return;
-                    }
-                }
-
-                var orderData = {
-                    customer: {
-                        fullName: fullName,
-                        email: email || 'Not provided',
-                        address: address || 'Not provided',
-                        twitter: twitter || 'Not provided',
-                        request: otherReq || 'No special request'
-                    },
-                    items: cartItems,
-                    subtotal: subtotal,
-                    discount: discount,
-                    serviceFee: serviceFee,
-                    total: total,
-                    itemCount: itemCount,
-                    paymentMethod: paymentMethod.value,
-                    chobankAccountNumber: paymentMethod.value === 'chobank' ? chobankInput : null,
-                    chobankUsername: paymentMethod.value === 'chobank' ? (chobankUser ? chobankUser.username : null) : null,
-                    otherAccountNumber: paymentMethod.value === 'other' ? otherAcc : null,
-                    deliveryMethod: deliveryMethod,
-                    voucherCode: voucherCode || 'None',
-                    paymentDate: new Date().toISOString(),
-                    status: 'completed'
+            try {
+                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+                const sheetData = {
+                    "Timestamp": new Date().toISOString(),
+                    "Order Number": `KAZINE-${Date.now().toString().slice(-6)}`,
+                    "Customer Name": fullName,
+                    "Customer Email": email || 'Not provided',
+                    "Customer Address": address || 'Not provided',
+                    "Customer Twitter/X": twitter || 'Not provided',
+                    "Other Request": otherReq || 'No special request',
+                    "Items": JSON.stringify(cartItems.map(i => `${i.title} x${i.quantity || 1}`)),
+                    "Item Count": itemCount,
+                    "Subtotal": subtotal.toFixed(2),
+                    "Discount Voucher": voucherCode || 'None',
+                    "Delivery Method": deliveryMethod === 'shipping' ? 'Ship to Address' : 'Pickup In Store',
+                    "Total Amount": total.toFixed(2),
+                    "Payment Method": paymentMethod.value.toUpperCase(),
+                    "Payment Status": "PAID",
+                    "Order Date": new Date().toLocaleString()
                 };
 
-                var loadingOverlay = document.getElementById('loadingOverlay');
-                loadingOverlay.style.display = 'flex';
+                console.log('📤 Sending to spreadsheet:', sheetData);
+                await fetch(SPREADSHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(sheetData)
+                });
 
-                try {
-                    localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-                    var sheetData = {
-                        "Timestamp": new Date().toISOString(),
-                        "Order Number": 'KAZINE-' + Date.now().toString().slice(-6),
-                        "Customer Name": fullName,
-                        "Customer Email": email || 'Not provided',
-                        "Customer Address": address || 'Not provided',
-                        "Customer Twitter/X": twitter || 'Not provided',
-                        "Other Request": otherReq || 'No special request',
-                        "Items": JSON.stringify(cartItems.map(function(i) { return i.title + ' x' + (i.quantity || 1); })),
-                        "Item Count": itemCount,
-                        "Subtotal": subtotal.toFixed(2),
-                        "Discount Voucher": voucherCode || 'None',
-                        "Delivery Method": deliveryMethod === 'shipping' ? 'Ship to Address' : 'Pickup In Store',
-                        "Total Amount": total.toFixed(2),
-                        "Payment Method": paymentMethod.value.toUpperCase(),
-                        "CHOBANK User": paymentMethod.value === 'chobank' ? (chobankUser ? chobankUser.username : chobankInput) : 'N/A',
-                        "Payment Status": "PAID",
-                        "Order Date": new Date().toLocaleString()
-                    };
+                orderData.status = 'completed';
+                orderData.orderNumber = sheetData["Order Number"];
+                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+                localStorage.removeItem('kazineCart');
+                localStorage.removeItem('kazineVoucher');
+                localStorage.removeItem('kazineTotals');
 
-                    console.log('📤 Sending to spreadsheet:', sheetData);
-                    await fetch(SPREADSHEET_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(sheetData)
-                    });
-
-                    orderData.orderNumber = sheetData["Order Number"];
-                    localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+                setTimeout(() => { window.location.href = 'confirmation-kazine.html'; }, 1500);
+            } catch (error) {
+                console.error('Error:', error);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+                loadingOverlay.style.display = 'none';
+                if (confirm('There was an issue saving to spreadsheet. Your order is still recorded locally. Continue to confirmation?')) {
                     localStorage.removeItem('kazineCart');
                     localStorage.removeItem('kazineVoucher');
                     localStorage.removeItem('kazineTotals');
-
-                    setTimeout(function() {
-                        window.location.href = 'confirmation-kazine.html';
-                    }, 1500);
-                } catch (error) {
-                    console.error('Error:', error);
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
-                    loadingOverlay.style.display = 'none';
-                    if (confirm('There was an issue saving to spreadsheet. Your order is still recorded locally. Continue to confirmation?')) {
-                        localStorage.removeItem('kazineCart');
-                        localStorage.removeItem('kazineVoucher');
-                        localStorage.removeItem('kazineTotals');
-                        window.location.href = 'confirmation-kazine.html';
-                    }
+                    window.location.href = 'confirmation-kazine.html';
                 }
             }
+        }
 
-            document.addEventListener('DOMContentLoaded', function() {
-                if (!loadCartItems()) return;
-                setupPaymentMethods();
-                document.getElementById('applyVoucher').addEventListener('click', applyVoucher);
-                document.getElementById('voucherCode').addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') applyVoucher();
-                });
-                document.getElementById('processPayment').addEventListener('click', processPayment);
-            });
-
-        })();
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!loadCartItems()) return;
+            setupPaymentMethods();
+            document.getElementById('applyVoucher').addEventListener('click', applyVoucher);
+            document.getElementById('voucherCode').addEventListener('keypress', e => { if (e.key === 'Enter') applyVoucher(); });
+            document.getElementById('processPayment').addEventListener('click', processPayment);
+        });
     </script>
 </body>
-                                </html>
+                            </html>
