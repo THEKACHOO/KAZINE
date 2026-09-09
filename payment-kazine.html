@@ -6,6 +6,7 @@
     <title>Payment | KAZINE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * {
             margin: 0;
@@ -67,10 +68,6 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-        }
-
-        .logo-text {
-            display: none;
         }
 
         .back-button {
@@ -464,25 +461,69 @@
             display: block;
         }
 
-        .account-number-input {
-            font-family: 'Courier New', monospace;
-            font-size: 18px;
-            letter-spacing: 2px;
-            text-align: center;
+        .chobank-input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .chobank-info {
-            background: #e9ecef;
-            padding: 15px;
+        .chobank-input-group .form-input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .chobank-input-group .btn-check {
+            padding: 14px 24px;
+            background: #000000;
+            color: #ffffff;
+            border: none;
             border-radius: 12px;
-            margin-top: 15px;
-            border-left: 4px solid #000000;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            height: 48px;
+            white-space: nowrap;
         }
 
-        .chobank-info p {
-            margin: 5px 0;
+        .chobank-input-group .btn-check:hover {
+            background: #212529;
+        }
+
+        .chobank-input-group .btn-check:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .chobank-user-info {
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .chobank-user-info.found {
+            display: block;
+            background: #dcfce7;
+            border: 1px solid #16a34a;
+            color: #166534;
+        }
+
+        .chobank-user-info.not-found {
+            display: block;
+            background: #fee2e2;
+            border: 1px solid #dc2626;
+            color: #991b1b;
+        }
+
+        .chobank-user-info .name {
+            font-weight: 600;
+        }
+
+        .chobank-user-info .balance {
             font-size: 13px;
-            color: #495057;
+            margin-top: 2px;
         }
 
         .qris-container {
@@ -505,29 +546,6 @@
 
         .qris-scan-btn:hover {
             background: #212529;
-        }
-
-        .card-press-area {
-            background: #ffffff;
-            border: 2px solid #000000;
-            border-radius: 12px;
-            padding: 20px 16px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            user-select: none;
-            margin-top: 10px;
-        }
-
-        .card-press-area:active {
-            transform: scale(0.97);
-        }
-
-        .card-press-area i {
-            font-size: 32px;
-            color: #000000;
-            margin-bottom: 6px;
-            display: block;
         }
 
         .other-payment-input {
@@ -735,7 +753,7 @@
                                 <input type="radio" id="chobank" name="paymentMethod" value="chobank">
                                 <label class="payment-label" for="chobank">
                                     <div class="payment-icon"><i class="fas fa-university"></i></div>
-                                    <div><div>CHOBANK</div><div class="payment-details">Transfer or press card</div></div>
+                                    <div><div>CHOBANK</div><div class="payment-details">Pay with account/username</div></div>
                                 </label>
                             </div>
                             <div class="payment-method">
@@ -758,16 +776,15 @@
                     <!-- CHOBANK -->
                     <div class="payment-specific" id="chobankSelection">
                         <div class="form-group">
-                            <label class="form-label" for="chobankAccountNumber">CHOBANK Account Number</label>
-                            <input type="text" class="form-input account-number-input" id="chobankAccountNumber" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric">
-                            <div class="chobank-info">
-                                <p><strong>CHOBANK:</strong> Enter 16-digit number or press the card below to pay instantly.</p>
+                            <label class="form-label">CHOBANK Account Number or Username</label>
+                            <div class="chobank-input-group">
+                                <input type="text" class="form-input" id="chobankInput" placeholder="Enter account number or username" required>
+                                <button type="button" class="btn-check" id="checkChobank">Check</button>
                             </div>
-                        </div>
-                        <div class="card-press-area" id="cardPressArea">
-                            <i class="fas fa-credit-card"></i>
-                            <span style="font-weight: 600;">Press and hold the card to pay</span>
-                            <div style="font-size: 13px; color: #495057; margin-top: 4px;">Hold for 3 seconds to complete payment</div>
+                            <div class="chobank-user-info" id="chobankUserInfo">
+                                <div class="name" id="chobankUserName">-</div>
+                                <div class="balance" id="chobankUserBalance">Balance: $0.00</div>
+                            </div>
                         </div>
                     </div>
 
@@ -808,6 +825,13 @@
     </footer>
 
     <script>
+        // =============================================
+        // SUPABASE CONFIG (SAMA DENGAN CHOBANK)
+        // =============================================
+        const SUPABASE_URL = 'https://inrvryaxdlhnyxxztyyt.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlucnZyeWF4ZGxobnl4eHp0eXl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg3MTAxNDYsImV4cCI6MjEwNDI4NjE0Nn0.xrG77jRP9Wg06P1D5aMkcBkRfrVGUDs4nN2CNnpBPd8';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
         const SPREADSHEET_URL = "https://script.google.com/macros/s/AKfycbyOuKoJVKmHEcuBOSaWoU3X6H1DctA1L4Xlgh_NMATkuNJEi7QROub7m-BIIatlAdLeGg/exec";
         let cartItems = [];
         let subtotal = 0;
@@ -815,6 +839,8 @@
         let voucherCode = '';
         let discountPercentage = 0;
         const serviceFee = 2.50;
+
+        let chobankUser = null; // Store CHOBANK user data
 
         const validVouchers = {
             "SOBATKACHOO": 50
@@ -941,6 +967,72 @@
             localStorage.setItem('kazineTotals', JSON.stringify({ subtotal, discount, serviceFee, total, voucherCode }));
         }
 
+        // =============================================
+        // CHOBANK CHECK USER
+        // =============================================
+        document.getElementById('checkChobank').addEventListener('click', async function() {
+            const input = document.getElementById('chobankInput').value.trim();
+            const info = document.getElementById('chobankUserInfo');
+            const nameDisplay = document.getElementById('chobankUserName');
+            const balanceDisplay = document.getElementById('chobankUserBalance');
+
+            if (!input) {
+                info.className = 'chobank-user-info not-found';
+                info.style.display = 'block';
+                nameDisplay.textContent = 'Please enter account number or username';
+                balanceDisplay.textContent = '';
+                chobankUser = null;
+                return;
+            }
+
+            this.disabled = true;
+            this.textContent = 'Checking...';
+
+            try {
+                // Cari user berdasarkan account_number atau username (case insensitive)
+                let { data, error } = await supabase
+                    .from('users')
+                    .select('*')
+                    .or(`account_number.ilike.%${input}%,username.ilike.%${input}%`)
+                    .single();
+
+                if (error || !data) {
+                    info.className = 'chobank-user-info not-found';
+                    info.style.display = 'block';
+                    nameDisplay.textContent = 'User not found';
+                    balanceDisplay.textContent = '';
+                    chobankUser = null;
+                    this.disabled = false;
+                    this.textContent = 'Check';
+                    return;
+                }
+
+                chobankUser = data;
+                info.className = 'chobank-user-info found';
+                info.style.display = 'block';
+                nameDisplay.textContent = 'Name: ' + (data.full_name || data.username);
+                balanceDisplay.textContent = 'Balance: $' + (data.balance || 0).toFixed(2);
+
+            } catch (err) {
+                console.error('Error checking CHOBANK user:', err);
+                info.className = 'chobank-user-info not-found';
+                info.style.display = 'block';
+                nameDisplay.textContent = 'Error checking user';
+                balanceDisplay.textContent = '';
+                chobankUser = null;
+            }
+
+            this.disabled = false;
+            this.textContent = 'Check';
+        });
+
+        // Enter key on chobank input triggers check
+        document.getElementById('chobankInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('checkChobank').click();
+            }
+        });
+
         function setupPaymentMethods() {
             const methods = document.querySelectorAll('input[name="paymentMethod"]');
             const chobankSel = document.getElementById('chobankSelection');
@@ -958,34 +1050,6 @@
                 });
             });
 
-            // CHOBANK card press - hold 3 seconds
-            const cardArea = document.getElementById('cardPressArea');
-            let pressTimer = null;
-            let pressTimeout = null;
-
-            function startPress() {
-                pressTimer = setTimeout(() => {
-                    alert('CHOBANK payment completed (card press).');
-                    document.getElementById('chobankAccountNumber').value = '1234 5678 9012 3456';
-                }, 3000);
-            }
-
-            function clearPress() {
-                clearTimeout(pressTimer);
-                pressTimer = null;
-            }
-
-            cardArea.addEventListener('mousedown', startPress);
-            cardArea.addEventListener('mouseup', clearPress);
-            cardArea.addEventListener('mouseleave', clearPress);
-
-            cardArea.addEventListener('touchstart', function(e) {
-                e.preventDefault();
-                startPress();
-            });
-            cardArea.addEventListener('touchend', clearPress);
-            cardArea.addEventListener('touchcancel', clearPress);
-
             // QRIS scan
             document.getElementById('qrisScanBtn').addEventListener('click', function() {
                 alert('QRIS payment completed (barcode scanned).');
@@ -1000,9 +1064,8 @@
 
         function validateForm() {
             const fullName = document.getElementById('fullName').value.trim();
-            const email = document.getElementById('email').value.trim();
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
-            const chobankAcc = document.getElementById('chobankAccountNumber')?.value.replace(/\s/g, '');
+            const chobankInput = document.getElementById('chobankInput').value.trim();
             const otherAcc = document.getElementById('otherAccountNumber')?.value.replace(/\D/g, '');
 
             document.querySelectorAll('.form-input').forEach(i => i.style.borderColor = '');
@@ -1017,9 +1080,15 @@
             }
 
             if (paymentMethod && paymentMethod.value === 'chobank') {
-                if (!chobankAcc || chobankAcc.length !== 16) {
-                    document.getElementById('chobankAccountNumber').style.borderColor = '#dc3545';
-                    isValid = false; error = error || 'CHOBANK: 16-digit number required';
+                if (!chobankInput) {
+                    document.getElementById('chobankInput').style.borderColor = '#dc3545';
+                    isValid = false; error = error || 'Please enter CHOBANK account number or username';
+                }
+                if (!chobankUser) {
+                    isValid = false; error = error || 'Please check CHOBANK user first';
+                }
+                if (chobankUser && chobankUser.balance < getTotal()) {
+                    isValid = false; error = error || 'Insufficient CHOBANK balance';
                 }
             }
             if (paymentMethod && paymentMethod.value === 'other') {
@@ -1032,6 +1101,13 @@
             return { isValid, errorMessage: error };
         }
 
+        function getTotal() {
+            return subtotal - discount + serviceFee;
+        }
+
+        // =============================================
+        // PROCESS PAYMENT - DENGAN POTONG SALDO CHOBANK
+        // =============================================
         async function processPayment() {
             const submitBtn = document.getElementById('processPayment');
             submitBtn.disabled = true;
@@ -1052,23 +1128,70 @@
             const otherReq = document.getElementById('otherRequest').value.trim();
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
             const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked')?.value || 'shipping';
-            const chobankAcc = document.getElementById('chobankAccountNumber')?.value;
+            const chobankInput = document.getElementById('chobankInput').value.trim();
             const otherAcc = document.getElementById('otherAccountNumber')?.value;
 
-            const total = subtotal - discount + serviceFee;
+            const total = getTotal();
             const itemCount = cartItems.reduce((s, i) => s + (i.quantity || 1), 0);
+
+            // =============================================
+            // POTONG SALDO CHOBANK
+            // =============================================
+            if (paymentMethod.value === 'chobank' && chobankUser) {
+                try {
+                    const newBalance = chobankUser.balance - total;
+                    const history = chobankUser.history || [];
+
+                    history.push({
+                        type: 'debit',
+                        amount: total,
+                        description: 'KAZINE Purchase - $' + total.toFixed(2),
+                        date: new Date().toISOString()
+                    });
+
+                    const { error: updateError } = await supabase
+                        .from('users')
+                        .update({
+                            balance: newBalance,
+                            history: history
+                        })
+                        .eq('id', chobankUser.id);
+
+                    if (updateError) {
+                        console.error('Error updating CHOBANK balance:', updateError);
+                        alert('Failed to deduct CHOBANK balance. Please try again.');
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+                        return;
+                    }
+
+                    chobankUser.balance = newBalance;
+                    chobankUser.history = history;
+
+                    // Update display
+                    document.getElementById('chobankUserBalance').textContent = 'Balance: $' + newBalance.toFixed(2);
+
+                } catch (err) {
+                    console.error('Error processing CHOBANK payment:', err);
+                    alert('Error processing CHOBANK payment. Please try again.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+                    return;
+                }
+            }
 
             const orderData = {
                 customer: { fullName, email: email || 'Not provided', address: address || 'Not provided', twitter: twitter || 'Not provided', request: otherReq || 'No special request' },
                 items: cartItems,
                 subtotal, discount, serviceFee, total, itemCount,
                 paymentMethod: paymentMethod.value,
-                chobankAccountNumber: paymentMethod.value === 'chobank' ? chobankAcc : null,
+                chobankAccountNumber: paymentMethod.value === 'chobank' ? chobankInput : null,
+                chobankUsername: paymentMethod.value === 'chobank' ? chobankUser?.username : null,
                 otherAccountNumber: paymentMethod.value === 'other' ? otherAcc : null,
                 deliveryMethod: deliveryMethod,
                 voucherCode: voucherCode || 'None',
                 paymentDate: new Date().toISOString(),
-                status: 'pending'
+                status: 'completed'
             };
 
             const loadingOverlay = document.getElementById('loadingOverlay');
@@ -1091,6 +1214,7 @@
                     "Delivery Method": deliveryMethod === 'shipping' ? 'Ship to Address' : 'Pickup In Store',
                     "Total Amount": total.toFixed(2),
                     "Payment Method": paymentMethod.value.toUpperCase(),
+                    "CHOBANK User": paymentMethod.value === 'chobank' ? (chobankUser?.username || chobankInput) : 'N/A',
                     "Payment Status": "PAID",
                     "Order Date": new Date().toLocaleString()
                 };
@@ -1103,7 +1227,6 @@
                     body: JSON.stringify(sheetData)
                 });
 
-                orderData.status = 'completed';
                 orderData.orderNumber = sheetData["Order Number"];
                 localStorage.setItem('kazineOrder', JSON.stringify(orderData));
                 localStorage.removeItem('kazineCart');
@@ -1134,4 +1257,4 @@
         });
     </script>
 </body>
-</html>
+            </html>
