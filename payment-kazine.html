@@ -687,7 +687,10 @@
                         <div class="price-row discount" id="discountRow" style="display: none;">
                             <span>Discount</span><span id="discountAmount">-$0.00</span>
                         </div>
-                        <div class="price-row"><span>Service Fee</span><span id="serviceFee">$2.50</span></div>
+                        <div class="price-row"><span>Service Fee</span><span id="serviceFee">$1.50</span></div>
+                        <div class="price-row" id="shippingRow" style="display: none;">
+                            <span>Shipping Fee</span><span id="shippingFee">$2.50</span>
+                        </div>
                         <div class="price-row total"><span>Total Amount</span><span id="totalAmount">$0.00</span></div>
                     </div>
                 </section>
@@ -814,7 +817,9 @@
         let discount = 0;
         let voucherCode = '';
         let discountPercentage = 0;
-        const serviceFee = 2.50;
+        const serviceFee = 1.50;
+        let shippingFee = 0;
+        const SHIPPING_FEE_AMOUNT = 2.50;
 
         const validVouchers = {
             "SOBATKACHOO": 50
@@ -926,7 +931,9 @@
         }
 
         function updateTotals() {
-            const total = subtotal - discount + serviceFee;
+            const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked')?.value || 'shipping';
+            shippingFee = deliveryMethod === 'shipping' ? SHIPPING_FEE_AMOUNT : 0;
+            const total = subtotal - discount + serviceFee + shippingFee;
             document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
             document.getElementById('serviceFee').textContent = `$${serviceFee.toFixed(2)}`;
             document.getElementById('totalAmount').textContent = `$${total.toFixed(2)}`;
@@ -938,7 +945,14 @@
             } else {
                 discountRow.style.display = 'none';
             }
-            localStorage.setItem('kazineTotals', JSON.stringify({ subtotal, discount, serviceFee, total, voucherCode }));
+            const shippingRow = document.getElementById('shippingRow');
+            if (shippingFee > 0) {
+                shippingRow.style.display = 'flex';
+                document.getElementById('shippingFee').textContent = `$${shippingFee.toFixed(2)}`;
+            } else {
+                shippingRow.style.display = 'none';
+            }
+            localStorage.setItem('kazineTotals', JSON.stringify({ subtotal, discount, serviceFee, shippingFee, total, voucherCode }));
         }
 
         function setupPaymentMethods() {
@@ -956,6 +970,11 @@
                     else if (this.value === 'qris') qrisSel.classList.add('active');
                     else if (this.value === 'other') otherSel.classList.add('active');
                 });
+            });
+
+            // Delivery method change → update totals
+            document.querySelectorAll('input[name="deliveryMethod"]').forEach(r => {
+                r.addEventListener('change', updateTotals);
             });
 
             // CHOBANK card press - hold 3 seconds
@@ -1055,13 +1074,14 @@
             const chobankAcc = document.getElementById('chobankAccountNumber')?.value;
             const otherAcc = document.getElementById('otherAccountNumber')?.value;
 
-            const total = subtotal - discount + serviceFee;
+            shippingFee = deliveryMethod === 'shipping' ? SHIPPING_FEE_AMOUNT : 0;
+            const total = subtotal - discount + serviceFee + shippingFee;
             const itemCount = cartItems.reduce((s, i) => s + (i.quantity || 1), 0);
 
             const orderData = {
                 customer: { fullName, email: email || 'Not provided', address: address || 'Not provided', twitter: twitter || 'Not provided', request: otherReq || 'No special request' },
                 items: cartItems,
-                subtotal, discount, serviceFee, total, itemCount,
+                subtotal, discount, serviceFee, shippingFee, total, itemCount,
                 paymentMethod: paymentMethod.value,
                 chobankAccountNumber: paymentMethod.value === 'chobank' ? chobankAcc : null,
                 otherAccountNumber: paymentMethod.value === 'other' ? otherAcc : null,
@@ -1088,6 +1108,8 @@
                     "Item Count": itemCount,
                     "Subtotal": subtotal.toFixed(2),
                     "Discount Voucher": voucherCode || 'None',
+                    "Service Fee": serviceFee.toFixed(2),
+                    "Shipping Fee": shippingFee.toFixed(2),
                     "Delivery Method": deliveryMethod === 'shipping' ? 'Ship to Address' : 'Pickup In Store',
                     "Total Amount": total.toFixed(2),
                     "Payment Method": paymentMethod.value.toUpperCase(),
