@@ -262,10 +262,8 @@
 
         .magazine-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 15px;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
         .magazine-card {
@@ -516,22 +514,6 @@
             background: var(--medium-gray);
             cursor: not-allowed;
             opacity: 0.7;
-        }
-
-        .coming-soon-btn {
-            width: 100%;
-            padding: 12px;
-            background: var(--light-gray);
-            color: var(--medium-gray);
-            border: none;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: default;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 500;
-            position: relative;
-            overflow: hidden;
         }
 
         .variant-modal {
@@ -1067,11 +1049,6 @@
                 padding: 10px;
                 font-size: 11px;
             }
-
-            .coming-soon-btn {
-                padding: 10px;
-                font-size: 11px;
-            }
             
             .slide-btn {
                 opacity: 1 !important;
@@ -1144,9 +1121,8 @@
             }
 
             .magazine-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
                 gap: 15px;
-                max-width: 100%;
             }
 
             .magazine-section-title h2 {
@@ -1201,18 +1177,18 @@
 
     <div class="variant-modal" id="variantModal">
         <div class="variant-modal-content">
-            <button class="variant-modal-close" id="variantModalClose">&times;</button>
+            <button type="button" class="variant-modal-close" id="variantModalClose">&times;</button>
             <div class="variant-modal-title" id="variantTitle">CHOOSIC</div>
             <div class="variant-modal-subtitle" id="variantSubtitle">Select your variant</div>
             <div id="variantOptions"></div>
-            <button class="variant-modal-add-btn" onclick="addVariantToCart()">Add to Bag</button>
+            <button type="button" class="variant-modal-add-btn" id="variantAddBtn">Add to Bag</button>
         </div>
     </div>
 
     <div class="cart-modal" id="cartModal">
         <div class="cart-header">
             <h3>Shopping Bag</h3>
-            <button class="close-cart" id="closeCart" aria-label="Close cart">
+            <button type="button" class="close-cart" id="closeCart" aria-label="Close cart">
                 <i class="fas fa-times"></i>
             </button>
         </div>
@@ -1227,7 +1203,7 @@
                 <span>Total</span>
                 <span id="cartTotal">$0.00</span>
             </div>
-            <button class="checkout-btn" id="checkoutBtn">Proceed to Payment</button>
+            <button type="button" class="checkout-btn" id="checkoutBtn">Proceed to Payment</button>
         </div>
     </div>
 
@@ -1248,7 +1224,7 @@
                 </a>
             </div>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button type="button" class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
             
@@ -1290,7 +1266,7 @@
         <div class="container">
             <div class="magazine-section-title">
                 <h2>KAZINE VOLUME 1</h2>
-                <p>ISSUE 01 - ISSUE 02</p>
+                <p>ISSUE 01 - ISSUE 03</p>
             </div>
             <div class="magazine-grid">
                 <a href="https://thekachoo.github.io/Home/kazinevol1.html" class="magazine-card">
@@ -1311,6 +1287,15 @@
                         <div class="magazine-title">Be My Valentine</div>
                     </div>
                 </a>
+                <a href="https://thekachoo.github.io/KAZINE/vol1issue3.html" class="magazine-card" target="_blank">
+                    <div class="magazine-cover">
+                        <img src="issue3.png" alt="Issue 3">
+                    </div>
+                    <div class="magazine-info">
+                        <div class="magazine-issue">ISSUE 03</div>
+                        <div class="magazine-title">Time to Heal</div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -1329,9 +1314,9 @@
                             <div class="product-slide"><img src="CGB1.png" alt="Headphone Front"></div>
                             <div class="product-slide"><img src="CW1.png" alt="Headphone Back"></div>
                         </div>
-                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
-                        <div class="limited-edition-label">POPULAR</div>
+                        <button type="button" class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button type="button" class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
+                        <div class="limited-edition-label">BEST SELLER</div>
                     </div>
                     <div class="product-info">
                         <div class="product-name">Choosic Headphone</div>
@@ -1339,7 +1324,7 @@
                             <div class="brand-name">CHOOSIC</div>
                             <div class="product-price">$400</div>
                         </div>
-                        <button class="add-to-cart-btn" onclick="openVariantModal('choosic')">Add to Bag</button>
+                        <button type="button" class="add-to-cart-btn" data-variant="choosic">Add to Bag</button>
                     </div>
                 </div>
 
@@ -1349,8 +1334,8 @@
                             <div class="product-slide"><img src="MUGB1.png" alt="Mug Front"></div>
                             <div class="product-slide"><img src="MUGW1.png" alt="Mug Back"></div>
                         </div>
-                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
+                        <button type="button" class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button type="button" class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
                         <div class="limited-edition-label">POPULAR</div>
                     </div>
                     <div class="product-info">
@@ -1359,7 +1344,7 @@
                             <div class="brand-name">CHOZY</div>
                             <div class="product-price">$10</div>
                         </div>
-                        <button class="add-to-cart-btn" onclick="openVariantModal('chozy')">Add to Bag</button>
+                        <button type="button" class="add-to-cart-btn" data-variant="chozy">Add to Bag</button>
                     </div>
                 </div>
 
@@ -1369,17 +1354,17 @@
                             <div class="product-slide"><img src="Chool1.png" alt="Cho°L Large Front"></div>
                             <div class="product-slide"><img src="Chool2.png" alt="Cho°L Large Back"></div>
                         </div>
-                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
-                            <div class="limited-edition-label">SOON</div>
+                        <button type="button" class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button type="button" class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
+                        <div class="limited-edition-label">NEW</div>
                     </div>
                     <div class="product-info">
                         <div class="product-name">Large Tumbler</div>
                         <div class="product-info-bottom">
                             <div class="brand-name">Cho°L</div>
-                            <div class="product-price">$</div>
+                            <div class="product-price">$10</div>
                         </div>
-                        <button class="coming-soon-btn">Coming Soon</button>
+                        <button type="button" class="add-to-cart-btn" data-variant="large">Add to Bag</button>
                     </div>
                 </div>
 
@@ -1389,17 +1374,17 @@
                             <div class="product-slide"><img src="Chool3.png" alt="Cho°L Stainless Front"></div>
                             <div class="product-slide"><img src="Chool4.png" alt="Cho°L Stainless Back"></div>
                         </div>
-                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
-                        <div class="limited-edition-label">Soon</div>
+                        <button type="button" class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button type="button" class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
+                        <div class="limited-edition-label">NEW</div>
                     </div>
                     <div class="product-info">
                         <div class="product-name">Stainless Tumbler</div>
                         <div class="product-info-bottom">
                             <div class="brand-name">Cho°L</div>
-                            <div class="product-price">$</div>
+                            <div class="product-price">$6</div>
                         </div>
-                        <button class="coming-soon-btn">Coming Soon</button>
+                        <button type="button" class="add-to-cart-btn" data-variant="stainless">Add to Bag</button>
                     </div>
                 </div>
 
@@ -1410,17 +1395,17 @@
                             <div class="product-slide"><img src="Choffee2.png" alt="Original Choffee 2"></div>
                             <div class="product-slide"><img src="Choffee3.png" alt="Original Choffee 3"></div>
                         </div>
-                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
-                        <div class="limited-edition-label">Soon</div>
+                        <button type="button" class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button type="button" class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
+                        <div class="limited-edition-label">NEW</div>
                     </div>
                     <div class="product-info">
                         <div class="product-name">Original Choffee</div>
                         <div class="product-info-bottom">
                             <div class="brand-name">CHOFFEE</div>
-                            <div class="product-price">$</div>
+                            <div class="product-price">$4</div>
                         </div>
-                        <button class="coming-soon-btn">Coming Soon</button>
+                        <button type="button" class="add-to-cart-btn" data-variant="original">Add to Bag</button>
                     </div>
                 </div>
 
@@ -1430,17 +1415,17 @@
                             <div class="product-slide"><img src="Choffee4.png" alt="Choffee 1"></div>
                             <div class="product-slide"><img src="Choffee5.png" alt="Choffee 2"></div>
                         </div>
-                        <button class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
-                        <div class="limited-edition-label">Soon</div>
+                        <button type="button" class="slide-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <button type="button" class="slide-btn next"><i class="fas fa-chevron-right"></i></button>
+                        <div class="limited-edition-label">NEW</div>
                     </div>
                     <div class="product-info">
                         <div class="product-name">Capsule Choffee</div>
                         <div class="product-info-bottom">
                             <div class="brand-name">CHOFFEE</div>
-                            <div class="product-price">$</div>
+                            <div class="product-price">$4</div>
                         </div>
-                        <button class="coming-soon-btn">Coming Soon</button>
+                        <button type="button" class="add-to-cart-btn" data-variant="capsule">Add to Bag</button>
                     </div>
                 </div>
             </div>
@@ -1487,7 +1472,13 @@
     </footer>
 
     <script>
-    var cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
+    // ========== STATE ==========
+    var cart = [];
+    try {
+        cart = JSON.parse(localStorage.getItem('kazineCart')) || [];
+    } catch (e) {
+        cart = [];
+    }
     var currentVariantData = null;
 
     var variantConfigs = {
@@ -1506,12 +1497,48 @@
                 { id: 'B1', label: 'Black', price: 10 },
                 { id: 'B2', label: 'White', price: 10 }
             ]
+        },
+        large: {
+            title: 'Large Tumbler',
+            subtitle: 'Select your color',
+            options: [
+                { id: 'C1', label: 'Black', price: 10 },
+                { id: 'C2', label: 'White', price: 10 }
+            ]
+        },
+        stainless: {
+            title: 'Stainless Tumbler',
+            subtitle: 'Select your color',
+            options: [
+                { id: 'C3', label: 'Black', price: 6 },
+                { id: 'C4', label: 'White', price: 6 }
+            ]
+        },
+        original: {
+            title: 'Original Choffee',
+            subtitle: 'Select your flavor',
+            options: [
+                { id: 'D1', label: 'Robusta Strong', price: 3 },
+                { id: 'D2', label: 'Perfect Latte', price: 4 },
+                { id: 'D3', label: 'Arabica Prime', price: 4 }
+            ]
+        },
+        capsule: {
+            title: 'Capsule Choffee',
+            subtitle: 'Select your variant',
+            options: [
+                { id: 'D4', label: 'Espresso', price: 4 }
+            ]
         }
     };
 
+    // ========== VARIANT MODAL ==========
     function openVariantModal(variantKey) {
         var config = variantConfigs[variantKey];
-        if (!config) return;
+        if (!config) {
+            console.warn('Variant config not found:', variantKey);
+            return;
+        }
 
         currentVariantData = {
             key: variantKey,
@@ -1519,8 +1546,13 @@
             selectedId: config.options[0].id
         };
 
-        document.getElementById('variantTitle').textContent = config.title;
-        document.getElementById('variantSubtitle').textContent = config.subtitle;
+        var titleEl = document.getElementById('variantTitle');
+        var subtitleEl = document.getElementById('variantSubtitle');
+        var optionsEl = document.getElementById('variantOptions');
+        var modalEl = document.getElementById('variantModal');
+
+        if (titleEl) titleEl.textContent = config.title;
+        if (subtitleEl) subtitleEl.textContent = config.subtitle;
 
         var html = '';
         for (var i = 0; i < config.options.length; i++) {
@@ -1532,11 +1564,11 @@
             html += '<span class="variant-price">$' + opt.price + '</span>';
             html += '</div>';
         }
-        document.getElementById('variantOptions').innerHTML = html;
+        if (optionsEl) optionsEl.innerHTML = html;
 
         var options = document.querySelectorAll('.variant-option');
         for (var i = 0; i < options.length; i++) {
-            options[i].onclick = function() {
+            options[i].addEventListener('click', function() {
                 var allOptions = document.querySelectorAll('.variant-option');
                 for (var j = 0; j < allOptions.length; j++) {
                     allOptions[j].classList.remove('selected');
@@ -1544,16 +1576,19 @@
                 this.classList.add('selected');
                 var radio = this.querySelector('input[type="radio"]');
                 if (radio) radio.checked = true;
-                currentVariantData.selectedId = this.getAttribute('data-id');
-            };
+                if (currentVariantData) {
+                    currentVariantData.selectedId = this.getAttribute('data-id');
+                }
+            });
         }
 
-        document.getElementById('variantModal').classList.add('active');
+        if (modalEl) modalEl.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 
     function closeVariantModal() {
-        document.getElementById('variantModal').classList.remove('active');
+        var modalEl = document.getElementById('variantModal');
+        if (modalEl) modalEl.classList.remove('active');
         document.body.style.overflow = 'auto';
         currentVariantData = null;
     }
@@ -1609,25 +1644,30 @@
         closeVariantModal();
     }
 
+    // ========== CART ==========
     function updateCartDisplay() {
         var totalItems = 0;
         for (var i = 0; i < cart.length; i++) {
             totalItems = totalItems + (cart[i].quantity || 1);
         }
-        document.getElementById('cartCount').textContent = totalItems;
+        
+        var countEl = document.getElementById('cartCount');
+        if (countEl) countEl.textContent = totalItems;
         
         var cartItems = document.getElementById('cartItems');
         var checkoutBtn = document.getElementById('checkoutBtn');
         var cartTotal = document.getElementById('cartTotal');
         
+        if (!cartItems) return;
+        
         if (cart.length === 0) {
             cartItems.innerHTML = '<div class="empty-cart"><i class="fas fa-shopping-bag"></i><p>Your bag is empty</p></div>';
-            checkoutBtn.style.display = 'none';
-            cartTotal.textContent = '$0.00';
+            if (checkoutBtn) checkoutBtn.style.display = 'none';
+            if (cartTotal) cartTotal.textContent = '$0.00';
             return;
         }
         
-        checkoutBtn.style.display = 'block';
+        if (checkoutBtn) checkoutBtn.style.display = 'block';
         
         var total = 0;
         var itemsHTML = '';
@@ -1640,22 +1680,22 @@
             itemsHTML = itemsHTML + '<div class="cart-item">';
             itemsHTML = itemsHTML + '<div class="item-info"><h4>' + item.title + '</h4><p>Quantity: ' + (item.quantity || 1) + '</p></div>';
             itemsHTML = itemsHTML + '<div class="item-price">$' + itemTotal.toFixed(2) + '</div>';
-            itemsHTML = itemsHTML + '<button class="remove-item" data-index="' + i + '" aria-label="Remove item"><i class="fas fa-trash-alt"></i></button>';
+            itemsHTML = itemsHTML + '<button type="button" class="remove-item" data-index="' + i + '" aria-label="Remove item"><i class="fas fa-trash-alt"></i></button>';
             itemsHTML = itemsHTML + '</div>';
         }
         
         cartItems.innerHTML = itemsHTML;
-        cartTotal.textContent = '$' + total.toFixed(2);
+        if (cartTotal) cartTotal.textContent = '$' + total.toFixed(2);
         
         var removeButtons = document.querySelectorAll('.remove-item');
         for (var i = 0; i < removeButtons.length; i++) {
-            removeButtons[i].onclick = function() {
+            removeButtons[i].addEventListener('click', function() {
                 var index = parseInt(this.getAttribute('data-index'));
                 cart.splice(index, 1);
                 localStorage.setItem('kazineCart', JSON.stringify(cart));
                 updateCartDisplay();
                 showNotification('Item removed from cart');
-            };
+            });
         }
     }
 
@@ -1673,157 +1713,209 @@
         }, 2000);
     }
 
-    // ========== SLIDER ==========
-    function initSliders() {
-        document.querySelectorAll('.product-card').forEach(function(card) {
-            var slides = card.querySelector('.product-slides');
-            var prevBtn = card.querySelector('.slide-btn.prev');
-            var nextBtn = card.querySelector('.slide-btn.next');
-            
-            if (!slides || !prevBtn || !nextBtn) return;
-            
-            var total = slides.querySelectorAll('.product-slide').length;
-            var current = 0;
-            
-            slides.style.width = (total * 100) + '%';
-            slides.querySelectorAll('.product-slide').forEach(function(slide) {
-                slide.style.width = (100 / total) + '%';
-            });
-            
-            function goTo(index) {
-                if (index < 0) index = 0;
-                if (index >= total) index = total - 1;
-                current = index;
-                slides.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
-                prevBtn.disabled = (current === 0);
-                nextBtn.disabled = (current === total - 1);
-            }
-            
-            prevBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                goTo(current - 1);
-            });
-            
-            nextBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                goTo(current + 1);
-            });
-            
-            goTo(0);
-        });
-    }
-
     function openCart() {
-        document.getElementById('cartModal').classList.add('active');
-        document.getElementById('cartOverlay').classList.add('active');
+        var modalEl = document.getElementById('cartModal');
+        var overlayEl = document.getElementById('cartOverlay');
+        if (modalEl) modalEl.classList.add('active');
+        if (overlayEl) overlayEl.classList.add('active');
         document.body.style.overflow = 'hidden';
         updateCartDisplay();
     }
 
     function closeCart() {
-        document.getElementById('cartModal').classList.remove('active');
-        document.getElementById('cartOverlay').classList.remove('active');
+        var modalEl = document.getElementById('cartModal');
+        var overlayEl = document.getElementById('cartOverlay');
+        if (modalEl) modalEl.classList.remove('active');
+        if (overlayEl) overlayEl.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
 
-    document.getElementById('openCart').onclick = function(e) {
-        e.preventDefault();
-        openCart();
-    };
-    
-    document.getElementById('closeCart').onclick = function(e) {
-        e.preventDefault();
-        closeCart();
-    };
-    
-    document.getElementById('cartOverlay').onclick = function() {
-        closeCart();
-    };
-
-    var mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    var mainNav = document.getElementById('mainNav');
-    
-    if (mobileMenuBtn && mainNav) {
-        mobileMenuBtn.onclick = function(e) {
-            e.preventDefault();
-            mainNav.classList.toggle('active');
-            this.innerHTML = mainNav.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : 
-                '<i class="fas fa-bars"></i>';
-        };
-        
-        document.onclick = function(e) {
-            if (mainNav.classList.contains('active') && 
-                !mainNav.contains(e.target) && 
-                !mobileMenuBtn.contains(e.target)) {
-                mainNav.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-        };
-    }
-
-    document.getElementById('variantModalClose').onclick = closeVariantModal;
-    
-    document.getElementById('variantModal').onclick = function(e) {
-        if (e.target === this) closeVariantModal();
-    };
-
-    document.getElementById('checkoutBtn').onclick = function(e) {
-        e.preventDefault();
-        if (cart.length === 0) {
-            showNotification('Your cart is empty');
-            return;
-        }
-        
-        var subtotal = 0;
-        for (var i = 0; i < cart.length; i++) {
-            subtotal = subtotal + parseFloat(cart[i].price) * (cart[i].quantity || 1);
-        }
-        
-        var orderData = {
-            items: cart,
-            subtotal: subtotal,
-            total: subtotal + 2.50,
-            store: 'KAZINE',
-            orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
-        };
-        
-        localStorage.setItem('kazineOrder', JSON.stringify(orderData));
-        closeCart();
-        
-        setTimeout(function() {
-            window.location.href = 'payment-kazine.html';
-        }, 300);
-    };
-
-    var links = document.querySelectorAll('a[href^="#"]');
-    for (var i = 0; i < links.length; i++) {
-        links[i].onclick = function(e) {
-            var href = this.getAttribute('href');
-            if (href === '#' || href.includes('.html')) return;
-            
-            e.preventDefault();
-            var targetId = href.substring(1);
-            var targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                var headerHeight = document.querySelector('header').offsetHeight;
-                window.scrollTo({
-                    top: targetElement.offsetTop - headerHeight,
-                    behavior: 'smooth'
+    // ========== SLIDER ==========
+    function initSliders() {
+        var cards = document.querySelectorAll('.product-card');
+        for (var c = 0; c < cards.length; c++) {
+            (function(card) {
+                var slides = card.querySelector('.product-slides');
+                var prevBtn = card.querySelector('.slide-btn.prev');
+                var nextBtn = card.querySelector('.slide-btn.next');
+                
+                if (!slides || !prevBtn || !nextBtn) return;
+                
+                var slideEls = slides.querySelectorAll('.product-slide');
+                var total = slideEls.length;
+                if (total === 0) return;
+                var current = 0;
+                
+                slides.style.width = (total * 100) + '%';
+                for (var s = 0; s < slideEls.length; s++) {
+                    slideEls[s].style.width = (100 / total) + '%';
+                }
+                
+                function goTo(index) {
+                    if (index < 0) index = 0;
+                    if (index >= total) index = total - 1;
+                    current = index;
+                    slides.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
+                    prevBtn.disabled = (current === 0);
+                    nextBtn.disabled = (current === total - 1);
+                }
+                
+                prevBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    goTo(current - 1);
                 });
                 
-                if (mainNav && mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            }
-        };
+                nextBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    goTo(current + 1);
+                });
+                
+                goTo(0);
+            })(cards[c]);
+        }
     }
 
+    // ========== INIT ==========
     function init() {
         initSliders();
         updateCartDisplay();
+
+        // Open cart
+        var openCartEl = document.getElementById('openCart');
+        if (openCartEl) {
+            openCartEl.addEventListener('click', function(e) {
+                e.preventDefault();
+                openCart();
+            });
+        }
+
+        // Close cart
+        var closeCartEl = document.getElementById('closeCart');
+        if (closeCartEl) {
+            closeCartEl.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeCart();
+            });
+        }
+
+        // Cart overlay
+        var overlayEl = document.getElementById('cartOverlay');
+        if (overlayEl) {
+            overlayEl.addEventListener('click', closeCart);
+        }
+
+        // Variant modal close
+        var variantModalClose = document.getElementById('variantModalClose');
+        if (variantModalClose) {
+            variantModalClose.addEventListener('click', closeVariantModal);
+        }
+
+        // Variant modal click outside
+        var variantModal = document.getElementById('variantModal');
+        if (variantModal) {
+            variantModal.addEventListener('click', function(e) {
+                if (e.target === this) closeVariantModal();
+            });
+        }
+
+        // Variant add button
+        var variantAddBtn = document.getElementById('variantAddBtn');
+        if (variantAddBtn) {
+            variantAddBtn.addEventListener('click', addVariantToCart);
+        }
+
+        // Add to Bag buttons (data-variant)
+        var addBtns = document.querySelectorAll('.add-to-cart-btn[data-variant]');
+        for (var i = 0; i < addBtns.length; i++) {
+            addBtns[i].addEventListener('click', function(e) {
+                e.preventDefault();
+                var variantKey = this.getAttribute('data-variant');
+                openVariantModal(variantKey);
+            });
+        }
+
+        // Checkout button
+        var checkoutBtn = document.getElementById('checkoutBtn');
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (cart.length === 0) {
+                    showNotification('Your cart is empty');
+                    return;
+                }
+                
+                var subtotal = 0;
+                for (var i = 0; i < cart.length; i++) {
+                    subtotal = subtotal + parseFloat(cart[i].price) * (cart[i].quantity || 1);
+                }
+                
+                var orderData = {
+                    items: cart,
+                    subtotal: subtotal,
+                    total: subtotal + 2.50,
+                    store: 'KAZINE',
+                    orderId: 'KZ-' + Date.now().toString(36).toUpperCase()
+                };
+                
+                localStorage.setItem('kazineOrder', JSON.stringify(orderData));
+                closeCart();
+                
+                setTimeout(function() {
+                    window.location.href = 'payment-kazine.html';
+                }, 300);
+            });
+        }
+
+        // Mobile menu
+        var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        var mainNav = document.getElementById('mainNav');
+        
+        if (mobileMenuBtn && mainNav) {
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
+                this.innerHTML = mainNav.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : 
+                    '<i class="fas fa-bars"></i>';
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (mainNav.classList.contains('active') && 
+                    !mainNav.contains(e.target) && 
+                    !mobileMenuBtn.contains(e.target)) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        }
+
+        // Smooth scroll
+        var links = document.querySelectorAll('a[href^="#"]');
+        for (var i = 0; i < links.length; i++) {
+            links[i].addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                if (href === '#' || href.includes('.html')) return;
+                
+                e.preventDefault();
+                var targetId = href.substring(1);
+                var targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    var headerEl = document.querySelector('header');
+                    var headerHeight = headerEl ? headerEl.offsetHeight : 0;
+                    window.scrollTo({
+                        top: targetElement.offsetTop - headerHeight,
+                        behavior: 'smooth'
+                    });
+                    
+                    if (mainNav && mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        if (mobileMenuBtn) mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        }
     }
 
     if (document.readyState === 'loading') {
@@ -1833,4 +1925,4 @@
     }
     </script>
 </body>
-</html>
+    </html>
