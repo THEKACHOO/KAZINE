@@ -613,6 +613,50 @@
             height: 18px;
         }
 
+        /* NEW: Address required indicator */
+        .address-send-label {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #000000;
+            background: #f0f0f0;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .address-send-label.active {
+            display: inline-flex;
+        }
+
+        .address-required-badge {
+            display: none;
+            font-size: 11px;
+            font-weight: 700;
+            color: #dc3545;
+            background: #fff5f5;
+            padding: 3px 8px;
+            border-radius: 6px;
+            margin-left: 8px;
+            border: 1px solid #dc3545;
+        }
+
+        .address-required-badge.active {
+            display: inline-block;
+        }
+
+        .form-input.address-required-error {
+            border-color: #dc3545;
+            background: #fff5f5;
+        }
+
+        .form-input.address-required-error:focus {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+        }
+
         @media (max-width: 480px) {
             .container { padding: 0 12px; }
             .header-container { gap: 10px; }
@@ -703,19 +747,8 @@
                         <label class="form-label" for="twitterUsername">Twitter/X Username *</label>
                         <input type="text" class="form-input" id="twitterUsername" placeholder="@username" required>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label" for="address">Address (Optional)</label>
-                        <input type="text" class="form-input" id="address" placeholder="Enter your address">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="email">Email (Optional)</label>
-                        <input type="email" class="form-input" id="email" placeholder="Enter your email">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="otherRequest">Other Request (Optional / As gift)</label>
-                        <textarea class="form-input" id="otherRequest" placeholder="Any special requests?" rows="3"></textarea>
-                    </div>
 
+                    <!-- Delivery Method - dipindah ke atas address agar bisa toggle -->
                     <div class="form-group">
                         <label class="form-label">Delivery Method *</label>
                         <div class="delivery-option-group">
@@ -726,6 +759,30 @@
                                 <input type="radio" name="deliveryMethod" value="pickup"> Pickup In Store
                             </label>
                         </div>
+                    </div>
+
+                    <!-- Address - dengan label "Send to" dan required indicator -->
+                    <div class="form-group" id="addressGroup">
+                        <div class="address-send-label active" id="sendToLabel">
+                            <i class="fas fa-paper-plane"></i> Send to
+                        </div>
+                        <label class="form-label" for="address">
+                            Address
+                            <span class="address-required-badge active" id="addressRequiredBadge">Wajib diisi</span>
+                        </label>
+                        <input type="text" class="form-input" id="address" placeholder="Enter your full address" required>
+                        <div style="font-size: 12px; color: #dc3545; margin-top: 6px; display: none;" id="addressHelper">
+                            <i class="fas fa-exclamation-circle"></i> Address wajib diisi untuk pengiriman
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email (Optional)</label>
+                        <input type="email" class="form-input" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="otherRequest">Other Request (Optional / As gift)</label>
+                        <textarea class="form-input" id="otherRequest" placeholder="Any special requests?" rows="3"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -941,6 +998,44 @@
             localStorage.setItem('kazineTotals', JSON.stringify({ subtotal, discount, serviceFee, total, voucherCode }));
         }
 
+        /* ===== NEW: Handle delivery method change - toggle address requirement ===== */
+        function setupDeliveryMethodToggle() {
+            const deliveryRadios = document.querySelectorAll('input[name="deliveryMethod"]');
+            const sendToLabel = document.getElementById('sendToLabel');
+            const addressRequiredBadge = document.getElementById('addressRequiredBadge');
+            const addressInput = document.getElementById('address');
+            const addressHelper = document.getElementById('addressHelper');
+
+            function updateAddressRequirement() {
+                const selected = document.querySelector('input[name="deliveryMethod"]:checked');
+                const isShipping = selected && selected.value === 'shipping';
+
+                if (isShipping) {
+                    // Wajib diisi - tampilkan label "Send to" dan badge required
+                    sendToLabel.classList.add('active');
+                    addressRequiredBadge.classList.add('active');
+                    addressInput.setAttribute('required', 'required');
+                    addressInput.placeholder = 'Enter your full address (wajib diisi)';
+                    addressHelper.style.display = 'block';
+                } else {
+                    // Pickup - tidak wajib
+                    sendToLabel.classList.remove('active');
+                    addressRequiredBadge.classList.remove('active');
+                    addressInput.removeAttribute('required');
+                    addressInput.placeholder = 'Enter your address (optional for pickup)';
+                    addressHelper.style.display = 'none';
+                    addressInput.classList.remove('address-required-error');
+                }
+            }
+
+            deliveryRadios.forEach(radio => {
+                radio.addEventListener('change', updateAddressRequirement);
+            });
+
+            // Initial state
+            updateAddressRequirement();
+        }
+
         function setupPaymentMethods() {
             const methods = document.querySelectorAll('input[name="paymentMethod"]');
             const chobankSel = document.getElementById('chobankSelection');
@@ -961,7 +1056,6 @@
             // CHOBANK card press - hold 3 seconds
             const cardArea = document.getElementById('cardPressArea');
             let pressTimer = null;
-            let pressTimeout = null;
 
             function startPress() {
                 pressTimer = setTimeout(() => {
@@ -1001,19 +1095,36 @@
         function validateForm() {
             const fullName = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
+            const address = document.getElementById('address').value.trim();
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked')?.value || 'shipping';
             const chobankAcc = document.getElementById('chobankAccountNumber')?.value.replace(/\s/g, '');
             const otherAcc = document.getElementById('otherAccountNumber')?.value.replace(/\D/g, '');
 
-            document.querySelectorAll('.form-input').forEach(i => i.style.borderColor = '');
+            document.querySelectorAll('.form-input').forEach(i => {
+                i.style.borderColor = '';
+                i.classList.remove('address-required-error');
+            });
             let isValid = true, error = '';
 
-            if (!fullName) { document.getElementById('fullName').style.borderColor = '#dc3545'; isValid = false; error = 'Full name required'; }
+            if (!fullName) { 
+                document.getElementById('fullName').style.borderColor = '#dc3545'; 
+                isValid = false; error = 'Full name required'; 
+            }
             if (!paymentMethod) {
                 document.querySelectorAll('.payment-label').forEach(l => l.style.borderColor = '#dc3545');
                 isValid = false; error = error || 'Select a payment method';
             } else {
                 document.querySelectorAll('.payment-label').forEach(l => l.style.borderColor = '');
+            }
+
+            /* ===== NEW: Address wajib diisi jika Ship to Address ===== */
+            if (deliveryMethod === 'shipping' && !address) {
+                const addressInput = document.getElementById('address');
+                addressInput.style.borderColor = '#dc3545';
+                addressInput.classList.add('address-required-error');
+                isValid = false; 
+                error = error || 'Address wajib diisi untuk pengiriman (Ship to Address)';
             }
 
             if (paymentMethod && paymentMethod.value === 'chobank') {
@@ -1127,6 +1238,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             if (!loadCartItems()) return;
+            setupDeliveryMethodToggle();  // NEW
             setupPaymentMethods();
             document.getElementById('applyVoucher').addEventListener('click', applyVoucher);
             document.getElementById('voucherCode').addEventListener('keypress', e => { if (e.key === 'Enter') applyVoucher(); });
@@ -1134,4 +1246,4 @@
         });
     </script>
 </body>
-                            </html>
+    </html>
