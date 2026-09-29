@@ -1,1 +1,1118 @@
-Temp
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAZINE SPECIAL VOLUME — Noona & Kazine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
+    <style>
+        /* ===== ROOT ===== */
+        :root {
+            --batik-cream: #f5e6d3;
+            --batik-brown: #4a2c1a;
+            --batik-dark: #2e1a0f;
+            --batik-mid: #6b4226;
+            --batik-soft: #d4b896;
+            --batik-pale: #faf3ea;
+            --batik-white: #ffffff;
+            --batik-offwhite: #fdf8f2;
+            --batik-gray: #e0cdb8;
+            --batik-gold: #c9a84c;
+            --batik-shadow: 0 8px 24px rgba(74, 44, 26, 0.15);
+            --batik-shadow-hover: 0 12px 32px rgba(74, 44, 26, 0.25);
+            --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--batik-offwhite) 0%, var(--batik-white) 100%);
+            color: var(--batik-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(201, 168, 76, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(107, 66, 38, 0.04) 0%, transparent 50%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== ORNAMENT (DIHAPUS) ===== */
+        .batik-ornament {
+            display: none;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(74, 44, 26, 0.08);
+            text-align: center;
+        }
+
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(18px, 3vw, 24px);
+            font-weight: 700;
+            color: var(--batik-dark);
+            letter-spacing: 0.5px;
+        }
+
+        .header-title span {
+            color: var(--batik-gold);
+        }
+
+        /* ===== HERO ===== */
+        .hero-section {
+            padding: 45px 0 30px;
+            background: linear-gradient(135deg, var(--batik-pale) 0%, var(--batik-white) 50%, var(--batik-offwhite) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(74, 44, 26, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(201, 168, 76, 0.12) 0%, transparent 50%);
+        }
+
+        .volume-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--batik-brown) 0%, var(--batik-mid) 100%);
+            color: var(--batik-cream);
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            box-shadow: var(--batik-shadow);
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(26px, 5.5vw, 46px);
+            font-weight: 800;
+            color: var(--batik-dark);
+            margin-bottom: 12px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 0 rgba(201, 168, 76, 0.15);
+            position: relative;
+            z-index: 2;
+            padding: 0 10px;
+        }
+
+        .hero-title span {
+            color: var(--batik-mid);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(15px, 2.2vw, 18px);
+            color: var(--batik-mid);
+            max-width: 600px;
+            margin: 0 auto 24px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            font-weight: 500;
+            padding: 0 15px;
+        }
+
+        .issue-info {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+            padding: 0 10px;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 14px 12px;
+            background: var(--batik-white);
+            border-radius: 14px;
+            box-shadow: var(--batik-shadow);
+            border: 2px solid var(--batik-soft);
+            min-width: 110px;
+            flex: 1;
+            max-width: 150px;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--batik-brown);
+        }
+
+        .info-item:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--batik-shadow-hover);
+            border-color: var(--batik-brown);
+        }
+
+        .info-item .number {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--batik-brown) 0%, var(--batik-mid) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .info-item .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            color: var(--batik-mid);
+            font-weight: 600;
+        }
+
+        /* ===== HEYZINE ===== */
+        .heyzine-section {
+            padding: 40px 0;
+            background: var(--batik-white);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 3.5vw, 36px);
+            font-weight: 700;
+            color: var(--batik-dark);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+            padding: 0 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: var(--batik-brown);
+            border-radius: 4px;
+        }
+
+        .section-title p {
+            color: var(--batik-mid);
+            max-width: 600px;
+            margin: 18px auto 0;
+            font-size: clamp(15px, 1.8vw, 17px);
+            font-weight: 500;
+            padding: 0 15px;
+        }
+
+        .heyzine-container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: var(--batik-offwhite);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--batik-shadow-hover);
+            border: 3px solid var(--batik-soft);
+            position: relative;
+        }
+
+        .heyzine-header {
+            background: linear-gradient(135deg, var(--batik-brown) 0%, var(--batik-mid) 100%);
+            padding: 12px 20px;
+            border-bottom: 3px solid var(--batik-soft);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heyzine-title {
+            color: var(--batik-cream);
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .heyzine-title i {
+            color: var(--batik-gold);
+            font-size: 17px;
+        }
+
+        .heyzine-frame {
+            width: 100%;
+            height: 0;
+            padding-bottom: 65%;
+            background: var(--batik-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heyzine-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: var(--batik-white);
+        }
+
+        .loading-container {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--batik-dark);
+            background: var(--batik-white);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .loading-spinner {
+            font-size: 34px;
+            color: var(--batik-brown);
+            margin-bottom: 14px;
+            display: block;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ===== CONTRIBUTORS ===== */
+        .contributors-section {
+            padding: 40px 0;
+            background: var(--batik-white);
+        }
+
+        .contributors-section:nth-of-type(even) {
+            background: linear-gradient(135deg, var(--batik-pale) 0%, var(--batik-offwhite) 100%);
+        }
+
+        .contributors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 28px;
+        }
+
+        .contributor-category {
+            background: linear-gradient(135deg, var(--batik-pale) 0%, var(--batik-offwhite) 100%);
+            border-radius: 18px;
+            padding: 22px;
+            border: 3px solid var(--batik-soft);
+            transition: var(--transition-smooth);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contributor-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--batik-brown);
+        }
+
+        .contributor-category:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--batik-shadow-hover);
+            border-color: var(--batik-brown);
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--batik-dark);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--batik-brown);
+            position: relative;
+        }
+
+        .contributor-list {
+            list-style: none;
+        }
+
+        .contributor-item {
+            padding: 10px 0;
+            border-bottom: 2px dashed var(--batik-soft);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            transition: var(--transition-smooth);
+        }
+
+        .contributor-item:hover {
+            transform: translateX(6px);
+            border-bottom-color: var(--batik-brown);
+        }
+
+        .contributor-item:last-child {
+            border-bottom: none;
+        }
+
+        .contributor-item span {
+            color: var(--batik-mid);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .contributor-item a {
+            color: var(--batik-brown);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+
+        .contributor-item a:hover {
+            color: var(--batik-gold);
+            text-decoration: underline;
+        }
+
+        /* ===== SPONSORS ===== */
+        .sponsors-section {
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--batik-pale) 0%, var(--batik-offwhite) 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 24px;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .sponsor-item {
+            background: var(--batik-white);
+            padding: 16px 10px;
+            border-radius: 14px;
+            box-shadow: var(--batik-shadow);
+            transition: var(--transition-smooth);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 65px;
+        }
+
+        .sponsor-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--batik-brown);
+        }
+
+        .sponsor-item:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: var(--batik-shadow-hover);
+            border-color: var(--batik-brown);
+        }
+
+        .sponsor-name {
+            font-weight: 700;
+            color: var(--batik-dark);
+            font-size: 14px;
+            letter-spacing: 0.3px;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, var(--batik-dark) 0%, var(--batik-brown) 100%);
+            color: var(--batik-cream);
+            padding: 45px 0 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--batik-gold);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-section h3 {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--batik-gold);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--batik-gold);
+        }
+
+        .footer-section p {
+            color: rgba(245, 230, 211, 0.9);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: var(--batik-gold);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: var(--batik-cream);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--batik-cream);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            font-size: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-links a:hover {
+            background: var(--batik-gold);
+            color: var(--batik-dark);
+            transform: translateY(-3px) rotate(4deg);
+            box-shadow: 0 6px 15px rgba(201, 168, 76, 0.3);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(245, 230, 211, 0.1);
+            color: rgba(245, 230, 211, 0.7);
+            font-size: 13px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            header { padding: 12px 0; }
+            .header-title { font-size: 18px; }
+            .hero-section { padding: 35px 0 24px; }
+            .volume-badge { font-size: 11px; padding: 7px 16px; }
+            .info-item { min-width: 95px; padding: 11px 9px; }
+            .info-item .number { font-size: 22px; }
+            .info-item .label { font-size: 10px; letter-spacing: 1px; }
+            .heyzine-section { padding: 32px 0; }
+            .heyzine-header { padding: 10px 14px; }
+            .heyzine-title { font-size: 13px; }
+            .heyzine-frame { padding-bottom: 78%; }
+            .contributors-section, .sponsors-section { padding: 32px 0; }
+            .contributors-grid { grid-template-columns: 1fr; gap: 16px; }
+            .sponsors-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+                max-width: 100%;
+            }
+            .sponsor-item {
+                padding: 12px 7px;
+                min-height: 55px;
+            }
+            .sponsor-name { font-size: 12px; }
+            .footer-content { grid-template-columns: 1fr; gap: 24px; }
+            footer { padding: 35px 0 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 14px; }
+            .header-title { font-size: 16px; }
+            .hero-title { font-size: 22px; padding: 0 5px; }
+            .hero-subtitle { font-size: 14px; padding: 0 8px; }
+            .issue-info { gap: 8px; }
+            .info-item { min-width: calc(50% - 8px); max-width: calc(50% - 8px); padding: 9px 7px; }
+            .section-title h2 { font-size: 20px; }
+            .section-title p { font-size: 13px; }
+            .heyzine-frame { padding-bottom: 88%; }
+            .contributor-category { padding: 18px; }
+            .category-title { font-size: 19px; }
+            .contributor-item span { font-size: 13px; }
+            .social-links a { width: 34px; height: 34px; font-size: 13px; }
+            .sponsors-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 7px;
+            }
+            .sponsor-item {
+                padding: 11px 5px;
+                min-height: 50px;
+                border-radius: 11px;
+            }
+            .sponsor-name { font-size: 11.5px; }
+        }
+
+        @media (max-width: 380px) {
+            .sponsors-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6px;
+            }
+            .sponsor-item {
+                padding: 9px 4px;
+                min-height: 46px;
+                border-radius: 10px;
+            }
+            .sponsor-name { font-size: 11px; }
+        }
+
+        @media (min-width: 1024px) {
+            .heyzine-frame { padding-bottom: 60%; }
+        }
+
+        @media (min-width: 1200px) {
+            .heyzine-frame { padding-bottom: 56%; }
+        }
+
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero-section { padding: 24px 0 16px; }
+            .heyzine-frame { padding-bottom: 48%; }
+            .contributors-section, .sponsors-section { padding: 24px 0; }
+        }
+
+        /* ===== TAMBAHAN MOTIF BATIK (versi tipis) — hanya dekorasi, satu warna coklat ===== */
+        :root {
+            --mandala: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%234a2c1a' stroke-opacity='.35' stroke-width='1.5'%3E%3Ccircle cx='120' cy='120' r='110'/%3E%3Ccircle cx='120' cy='120' r='90' stroke-dasharray='3 6'/%3E%3Ccircle cx='120' cy='120' r='60'/%3E%3Cg id='p'%3E%3Cellipse cx='120' cy='50' rx='14' ry='34'/%3E%3Cellipse cx='120' cy='22' rx='6' ry='10'/%3E%3C/g%3E%3Cuse href='%23p' transform='rotate(45 120 120)'/%3E%3Cuse href='%23p' transform='rotate(90 120 120)'/%3E%3Cuse href='%23p' transform='rotate(135 120 120)'/%3E%3Cuse href='%23p' transform='rotate(180 120 120)'/%3E%3Cuse href='%23p' transform='rotate(225 120 120)'/%3E%3Cuse href='%23p' transform='rotate(270 120 120)'/%3E%3Cuse href='%23p' transform='rotate(315 120 120)'/%3E%3C/g%3E%3Ccircle cx='120' cy='120' r='9' fill='%234a2c1a' fill-opacity='.45'/%3E%3C/svg%3E");
+        }
+
+        .container { position: relative; z-index: 2; }
+
+        /* mandala samar di dua sudut hero */
+        .batik-ornament {
+            display: block;
+            position: absolute;
+            width: clamp(120px, 20vw, 200px);
+            height: clamp(120px, 20vw, 200px);
+            background: var(--mandala) center / contain no-repeat;
+            opacity: .45;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .batik-ornament.top-left { top: -50px; left: -50px; }
+        .batik-ornament.bottom-right { bottom: -50px; right: -50px; transform: rotate(22deg); }
+
+        /* kawung sangat halus hanya di header majalah */
+        .heyzine-header {
+            background-image:
+                var(--kawung-brown),
+                linear-gradient(135deg, var(--batik-brown) 0%, var(--batik-mid) 100%);
+            background-size: 36px 36px, auto;
+            background-blend-mode: soft-light, normal;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-title">Noona Magz <span>&amp;</span> Kazine</div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="batik-ornament top-left"></div>
+        <div class="batik-ornament bottom-right"></div>
+        <div class="container">
+            <div class="volume-badge">Hari Batik</div>
+            <h1 class="hero-title">SPECIAL VOLUME</h1>
+            <p class="hero-subtitle">Merayakan Warisan Budaya</p>
+
+            <div class="issue-info">
+                <div class="info-item">
+                    <span class="number">41</span>
+                    <span class="label">HALAMAN</span>
+                </div>
+                <div class="info-item">
+                    <span class="number">5</span>
+                    <span class="label">VISUAL TERBAIK</span>
+                </div>
+                <div class="info-item">
+                    <span class="number">6</span>
+                    <span class="label">MITRA &amp; DUKUNGAN</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="heyzine-section" id="read-magazine">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hari Batik bersama Noona &amp; Kazine Magazine</h2>
+            </div>
+
+            <div class="heyzine-container">
+                <div class="heyzine-header">
+                    <div class="heyzine-title">
+                    SPECIAL VOLUME
+                    </div>
+                </div>
+
+                <div class="heyzine-frame" id="heyzineFrame">
+                    <div class="loading-container" id="loadingContainer">
+                        <i class="fas fa-spinner fa-spin loading-spinner"></i>
+                        <h3>Memuat...</h3>
+                        <p>Menyiapkan momen</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="contributors-section">
+        <div class="container">
+         <div class="section-title">
+                <h2>Tangan Berbakat</h2>
+            </div>
+            <div class="contributors-grid">
+                <div class="contributor-category">
+                    <h3 class="category-title">Tim Editor pada Edisi Spesial ini</h3>
+                    <ul class="contributor-list">
+                        <li class="contributor-item">
+                            <span><strong>Logan Romanov</strong> sebagai Web Designer</span>
+                        </li>
+                        <li class="contributor-item">
+                            <span><strong>Ashraffi Yudha</strong> sebagai Editor</span>
+                        </li>
+                        <li class="contributor-item">
+                            <span><strong>Nona Rengganis Kinandari P.</strong> sebagai Editor</span>
+                        </li>
+                        <li class="contributor-item">
+                            <span><strong>Gadis Nada Cinta P.</strong> sebagai Pemateri</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contributors-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Wajah Nusantara</h2>
+            </div>
+
+            <div class="contributors-grid">
+    <div class="contributor-category">
+        <h3 class="category-title">Model</h3>
+        <ul class="contributor-list">
+            <li class="contributor-item">
+                <span><a href="https://x.com/arbitlara" target="_blank"><strong>R.A Nona Rengganis Kinandari Panchakarma</strong></a></span>
+            </li>
+            <li class="contributor-item">
+                <span><a href="https://x.com/mustikampal" target="_blank"><strong>R.A Nawang Wulan</strong></a></span>
+            </li>
+            <li class="contributor-item">
+                <span><a href="https://x.com/rekaanpalsu" target="_blank"><strong>Bening Kemuning Adhyaksa</strong></a></span>
+            </li>
+            <li class="contributor-item">
+                <span><a href="https://x.com/sayupnada" target="_blank"><strong>R.A Gadis Nada Cinta Panchakarma</strong></a></span>
+            </li>
+            <li class="contributor-item">
+                <span><a href="https://x.com/buaikasih" target="_blank"><strong>Bunga A. Wilhelmina van Nassau</strong></a></span>
+            </li>
+        </ul>
+    </div>
+
+<div class="contributor-category">
+    <h3 class="category-title">MUA &amp; Stylist</h3>
+    <ul class="contributor-list">
+        <li class="contributor-item">
+            <span><a href="https://x.com/rayuansima" target="_blank"><strong>Luh Dewi Sima</strong></a> dari Ayu Merona</span>
+        </li>
+        <li class="contributor-item">
+            <span><a href="https://x.com/thegoddxss" target="_blank"><strong>Sayangku Manis Merona</strong></a> dari Ayu Merona</span>
+        </li>
+        <li class="contributor-item">
+            <span><a href="https://x.com/sumsetbloom" target="_blank"><strong>Chanti Naladhipa Mada</strong></a> dari The Mada Project</span>
+        </li>
+    </ul>
+</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sponsors-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pihak Kerjasama</h2>
+                <p>Berkolaborasi dengan mereka yang mencintai Batik</p>
+            </div>
+
+            <div class="sponsors-grid">
+                 <div class="sponsor-item" onclick="window.open('https://x.com/by_ayumerona', '_blank')">
+                    <div class="sponsor-name">Ayu Merona</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('https://x.com/thekachoo', '_blank')">
+                    <div class="sponsor-name">The Kachoo</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('https://x.com/Hanford_HnR', '_blank')">
+                    <div class="sponsor-name">Hanford Hotel</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('https://x.com/sumsetbloom', '_blank')">
+                    <div class="sponsor-name">The Mada Project</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('https://x.com/BOSTANASWA', '_blank')">
+                    <div class="sponsor-name">Bostan Aswa</div>
+                </div>
+                <div class="sponsor-item" onclick="window.open('#', '_blank')">
+                    <div class="sponsor-name">Swarna Sundari</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tentang Special Volume</h3>
+                    <p>Special Volume: Noona &amp; Kazine. Hari Batik menjadi momentum untuk kembali mengenal, menghargai, dan menrayakan warisan budaya yang telah menjadi bagian dari perjalanan bangsa. Marilah mencintai produk dari tangan-tangan bangsa kita sendiri.</p>
+                    <p>Diterbitkan oleh Noona Magazine &amp; The Kachoo • © 2026 Copyright</p>
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                <p>Publikasi ini untuk kebutuhan permainan roleplay.</p>
+                <p style="margin-top: 15px; font-weight: 600; color: var(--batik-gold);">
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const heyzineFrame = document.getElementById('heyzineFrame');
+        const loadingContainer = document.getElementById('loadingContainer');
+        const HEYZINE_URL = '#';
+
+        function loadHeyzine() {
+            loadingContainer.style.display = 'flex';
+            heyzineFrame.innerHTML = '';
+            heyzineFrame.appendChild(loadingContainer);
+
+            setTimeout(() => {
+                loadingContainer.style.display = 'none';
+
+                if (HEYZINE_URL === '#') {
+                    heyzineFrame.innerHTML = `
+                        <div class="loading-container" style="display:flex;">
+                            <h3>Sebentar ya</h3>
+                            <p>Nanti muncul sndiri pas udh dimasukin link, ya sabar2in ajalah</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const iframe = document.createElement('iframe');
+                iframe.className = 'heyzine-iframe';
+                iframe.src = HEYZINE_URL + '#view=book';
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('scrolling', 'no');
+                iframe.setAttribute('allowfullscreen', 'true');
+                iframe.setAttribute('allow', 'autoplay; fullscreen');
+                iframe.setAttribute('title', 'KAZINE Special Volume Digital Magazine');
+                iframe.setAttribute('loading', 'lazy');
+
+                iframe.onload = () => {
+                    iframe.style.opacity = '0';
+                    iframe.style.transform = 'scale(0.95)';
+
+                    setTimeout(() => {
+                        iframe.style.transition = 'all 0.5s ease';
+                        iframe.style.opacity = '1';
+                        iframe.style.transform = 'scale(1)';
+                    }, 100);
+                };
+
+                iframe.onerror = () => {
+                    heyzineFrame.innerHTML = `
+                        <div class="loading-container">
+                            <i class="fas fa-exclamation-triangle loading-spinner"></i>
+                            <h3>Maaf sedang terjadi kesalahan sistem</h3>
+                            <p>Silakan coba salah satu opsi berikut:</p>
+                            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                                <a href="${HEYZINE_URL}" target="_blank"
+                                   style="background: var(--batik-brown); color: white; padding: 10px 15px; border-radius: 30px; text-decoration: none; font-weight: 600;">
+                                    <i class="fas fa-external-link-alt"></i> Buka di tab baru
+                                </a>
+                                <a href="#"
+                                   style="background: var(--batik-brown); color: white; padding: 10px 15px; border-radius: 30px; text-decoration: none; font-weight: 600;">
+                                    <i class="fas fa-download"></i> Unduh Versi PDF
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                };
+
+                heyzineFrame.innerHTML = '';
+                heyzineFrame.appendChild(iframe);
+
+            }, 1000);
+        }
+
+        window.addEventListener('load', () => {
+            loadHeyzine();
+
+            const heroElements = document.querySelectorAll('.volume-badge, .hero-title, .hero-subtitle, .info-item');
+            heroElements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(15px)';
+
+                setTimeout(() => {
+                    el.style.transition = 'all 0.6s ease-out';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 200 + (index * 80));
+            });
+
+            adjustHeyzineHeight();
+        });
+
+        function adjustHeyzineHeight() {
+            const frame = document.querySelector('.heyzine-frame');
+            const container = document.querySelector('.heyzine-container');
+
+            if (!frame || !container) return;
+
+            const width = container.offsetWidth;
+            const isMobile = window.innerWidth <= 768;
+            const isSmallMobile = window.innerWidth <= 480;
+
+            if (isSmallMobile) {
+                frame.style.paddingBottom = '100%';
+            } else if (isMobile) {
+                frame.style.paddingBottom = '85%';
+            } else {
+                frame.style.paddingBottom = '65%';
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            adjustHeyzineHeight();
+        });
+
+        document.querySelectorAll('.team-card').forEach((card, index) => {
+            card.addEventListener('mouseenter', () => {
+                card.style.zIndex = '100';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.zIndex = '1';
+            });
+
+            setTimeout(() => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 300 + (index * 100));
+            }, 600);
+        });
+
+        document.querySelectorAll('.contributor-item').forEach((item, index) => {
+            setTimeout(() => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-15px)';
+
+                setTimeout(() => {
+                    item.style.transition = 'all 0.4s ease-out';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, 400 + (index * 50));
+            }, 800);
+        });
+
+        document.querySelectorAll('.sponsor-item').forEach((item, index) => {
+            setTimeout(() => {
+                item.style.opacity = '0';
+                item.style.transform = 'scale(0.8) rotate(-2deg)';
+
+                setTimeout(() => {
+                    item.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    item.style.opacity = '1';
+                    item.style.transform = 'scale(1) rotate(0)';
+                }, 900 + (Math.floor(index / 3) * 150));
+            }, 1000);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    e.preventDefault();
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.hero-section');
+
+            if (heroSection && window.innerWidth > 768) {
+                const rate = scrolled * -0.3;
+                heroSection.style.backgroundPosition = `center ${rate}px`;
+            }
+        });
+
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const swipeDistance = touchStartY - touchEndY;
+
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                // logika swipe opsional
+            }
+        }
+
+        window.addEventListener('load', () => {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (img.complete) {
+                    img.style.opacity = '1';
+                } else {
+                    img.addEventListener('load', () => {
+                        img.style.transition = 'opacity 0.3s ease';
+                        img.style.opacity = '1';
+                    });
+                    img.style.opacity = '0';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
