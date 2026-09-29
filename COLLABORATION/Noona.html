@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAZINE SPECIAL VOLUME — Noona & Kazine</title>
+    <title>SPECIAL VOLUME: Noona & Kazine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
     <style>
-        /* ===== ROOT ===== */
         :root {
             --batik-cream: #f5e6d3;
             --batik-brown: #4a2c1a;
@@ -51,12 +50,6 @@
             padding: 0 20px;
         }
 
-        /* ===== ORNAMENT (DIHAPUS) ===== */
-        .batik-ornament {
-            display: none;
-        }
-
-        /* ===== HEADER ===== */
         header {
             background: rgba(255, 255, 255, 0.96);
             padding: 14px 0;
@@ -80,7 +73,6 @@
             color: var(--batik-gold);
         }
 
-        /* ===== HERO ===== */
         .hero-section {
             padding: 45px 0 30px;
             background: linear-gradient(135deg, var(--batik-pale) 0%, var(--batik-white) 50%, var(--batik-offwhite) 100%);
@@ -209,7 +201,6 @@
             font-weight: 600;
         }
 
-        /* ===== HEYZINE ===== */
         .heyzine-section {
             padding: 40px 0;
             background: var(--batik-white);
@@ -339,7 +330,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* ===== CONTRIBUTORS ===== */
         .contributors-section {
             padding: 40px 0;
             background: var(--batik-white);
@@ -434,7 +424,6 @@
             text-decoration: underline;
         }
 
-        /* ===== SPONSORS ===== */
         .sponsors-section {
             padding: 40px 0;
             background: linear-gradient(135deg, var(--batik-pale) 0%, var(--batik-offwhite) 100%);
@@ -493,7 +482,6 @@
             text-align: center;
         }
 
-        /* ===== FOOTER ===== */
         footer {
             background: linear-gradient(135deg, var(--batik-dark) 0%, var(--batik-brown) 100%);
             color: var(--batik-cream);
@@ -598,7 +586,6 @@
             z-index: 2;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             header { padding: 12px 0; }
             .header-title { font-size: 18px; }
@@ -680,14 +667,12 @@
             .contributors-section, .sponsors-section { padding: 24px 0; }
         }
 
-        /* ===== TAMBAHAN MOTIF BATIK (versi tipis) — hanya dekorasi, satu warna coklat ===== */
         :root {
             --mandala: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%234a2c1a' stroke-opacity='.35' stroke-width='1.5'%3E%3Ccircle cx='120' cy='120' r='110'/%3E%3Ccircle cx='120' cy='120' r='90' stroke-dasharray='3 6'/%3E%3Ccircle cx='120' cy='120' r='60'/%3E%3Cg id='p'%3E%3Cellipse cx='120' cy='50' rx='14' ry='34'/%3E%3Cellipse cx='120' cy='22' rx='6' ry='10'/%3E%3C/g%3E%3Cuse href='%23p' transform='rotate(45 120 120)'/%3E%3Cuse href='%23p' transform='rotate(90 120 120)'/%3E%3Cuse href='%23p' transform='rotate(135 120 120)'/%3E%3Cuse href='%23p' transform='rotate(180 120 120)'/%3E%3Cuse href='%23p' transform='rotate(225 120 120)'/%3E%3Cuse href='%23p' transform='rotate(270 120 120)'/%3E%3Cuse href='%23p' transform='rotate(315 120 120)'/%3E%3C/g%3E%3Ccircle cx='120' cy='120' r='9' fill='%234a2c1a' fill-opacity='.45'/%3E%3C/svg%3E");
         }
 
         .container { position: relative; z-index: 2; }
 
-        /* mandala samar di dua sudut hero */
         .batik-ornament {
             display: block;
             position: absolute;
@@ -729,7 +714,7 @@
                 </div>
                 <div class="info-item">
                     <span class="number">6</span>
-                    <span class="label">MITRA &amp; DUKUNGAN</span>
+                    <span class="label">PARTNERSHIP</span>
                 </div>
             </div>
         </div>
@@ -738,7 +723,7 @@
     <section class="heyzine-section" id="read-magazine">
         <div class="container">
             <div class="section-title">
-                <h2>Hari Batik bersama Noona &amp; Kazine Magazine</h2>
+                <h2>Hari Batik bersama Noona Magazine &amp; Kazine</h2>
             </div>
 
             <div class="heyzine-container">
@@ -885,7 +870,7 @@
     <script>
         const heyzineFrame = document.getElementById('heyzineFrame');
         const loadingContainer = document.getElementById('loadingContainer');
-        const HEYZINE_URL = '#';
+        const HEYZINE_URL = 'https://heyzine.com/flip-book/13bb9ec675.html';
 
         function loadHeyzine() {
             loadingContainer.style.display = 'flex';
