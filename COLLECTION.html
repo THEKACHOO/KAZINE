@@ -205,22 +205,27 @@
             object-fit: cover;
         }
 
+        /* ===== PERUBAHAN: CONTAINER GRID JADI HITAM ===== */
         .fashion-grid-section {
             padding: 80px 0;
-            background: var(--pure-white);
+            background: var(--pure-black);
         }
 
+        /* ===== PERUBAHAN: TANPA JARAK ===== */
         .fashion-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            gap: 0;
         }
 
+        /* ===== PERUBAHAN: BORDER HITAM PER KOTAK ===== */
         .grid-item {
             aspect-ratio: 1 / 1;
             overflow: hidden;
             position: relative;
             width: 100%;
+            border: 1px solid var(--pure-black);
+            box-sizing: border-box;
         }
 
         .grid-item img {
@@ -929,8 +934,9 @@
                 padding: 60px 0;
             }
 
+            /* ===== PERUBAHAN: TANPA JARAK ===== */
             .fashion-grid {
-                gap: 12px;
+                gap: 0;
             }
 
             .magazine-volume-section {
@@ -1122,16 +1128,18 @@
                 padding: 50px 0;
             }
             
+            /* ===== PERUBAHAN: TANPA JARAK + BORDER ===== */
             .fashion-grid {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
+                gap: 0;
             }
             
             .grid-item {
                 aspect-ratio: 1 / 1 !important;
                 width: 100%;
-                border-radius: 4px;
+                border: 1px solid var(--pure-black);
+                box-sizing: border-box;
                 overflow: hidden;
             }
             
@@ -1368,26 +1376,26 @@
     <section class="hero-ambassador">
         <div class="container">
             <div class="ambassador-image">
-                <img src="kazinebanner2.png" alt="Brand Ambassador - Elevated Style">
+                <img src="HeadKazine.png" alt="Brand Ambassador">
             </div>
         </div>
     </section>
 
-    <section class="fashion-grid-section">
-        <div class="container">
-            <div class="fashion-grid">
-                <div class="grid-item"><img src="Grid1.png" alt="Fashion Editorial 1"></div>
-                <div class="grid-item"><img src="Grid2.png" alt="Fashion Editorial 2"></div>
-                <div class="grid-item"><img src="Grid3.png" alt="Fashion Editorial 3"></div>
-                <div class="grid-item"><img src="Grid4.png" alt="Fashion Editorial 4"></div>
-                <div class="grid-item"><img src="Grid5.png" alt="Fashion Editorial 5"></div>
-                <div class="grid-item"><img src="Grid6.png" alt="Fashion Editorial 6"></div>
-                <div class="grid-item"><img src="Grid7.png" alt="Fashion Editorial 7"></div>
-                <div class="grid-item"><img src="Grid8.png" alt="Fashion Editorial 8"></div>
-                <div class="grid-item"><img src="Grid9.png" alt="Fashion Editorial 9"></div>
-            </div>
+<section class="fashion-grid-section">
+    <div class="container">
+        <div class="fashion-grid">
+            <div class="grid-item"><img src="Grid/1.png" alt="Fashion Editorial 1"></div>
+            <div class="grid-item"><img src="Grid/2.png" alt="Fashion Editorial 2"></div>
+            <div class="grid-item"><img src="Grid/3.png" alt="Fashion Editorial 3"></div>
+            <div class="grid-item"><img src="Grid/4.png" alt="Fashion Editorial 4"></div>
+            <div class="grid-item"><img src="Grid/5.png" alt="Fashion Editorial 5"></div>
+            <div class="grid-item"><img src="Grid/6.png" alt="Fashion Editorial 6"></div>
+            <div class="grid-item"><img src="Grid/7.png" alt="Fashion Editorial 7"></div>
+            <div class="grid-item"><img src="Grid/8.png" alt="Fashion Editorial 8"></div>
+            <div class="grid-item"><img src="Grid/9.png" alt="Fashion Editorial 9"></div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section class="magazine-volume-section" id="magazine">
         <div class="container">
