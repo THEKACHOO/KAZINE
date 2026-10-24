@@ -183,40 +183,8 @@
             z-index: 1001;
         }
 
-        /* ===== PERUBAHAN: CONTAINER GRID JADI HITAM ===== */
-        .fashion-grid-section {
-            padding: 100px 0 80px;
-            background: var(--pure-black);
-        }
-
-        .fashion-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-        }
-
-        .grid-item {
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-            border: 1px solid var(--pure-black);
-            box-sizing: border-box;
-        }
-
-        .grid-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .grid-item:hover img {
-            transform: scale(1.05);
-        }
-
         .magazine-volume-section {
-            padding: 60px 0;
+            padding: 100px 0 60px;
             background: var(--pure-white);
         }
 
@@ -897,16 +865,8 @@
                 padding: 0 30px;
             }
 
-            .fashion-grid-section {
-                padding: 90px 0 60px;
-            }
-
-            .fashion-grid {
-                gap: 0;
-            }
-
             .magazine-volume-section {
-                padding: 50px 0;
+                padding: 100px 0 50px;
             }
 
             .magazine-section-title {
@@ -1076,28 +1036,17 @@
         }
 
         @media (max-width: 768px) {
-            .fashion-grid-section {
-                padding: 90px 0 50px;
+            .magazine-volume-section {
+                padding: 90px 0 40px;
             }
 
-            .fashion-grid {
-                display: grid;
+            .magazine-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 0;
+                gap: 15px;
             }
 
-            .grid-item {
-                aspect-ratio: 1 / 1 !important;
-                width: 100%;
-                border: 1px solid var(--pure-black);
-                box-sizing: border-box;
-                overflow: hidden;
-            }
-
-            .grid-item img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
+            .magazine-section-title h2 {
+                font-size: 22px;
             }
 
             .products-grid {
@@ -1200,19 +1149,6 @@
             .disclaimer {
                 padding-top: 30px;
                 font-size: 10px;
-            }
-
-            .magazine-volume-section {
-                padding: 40px 0;
-            }
-
-            .magazine-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 15px;
-            }
-
-            .magazine-section-title h2 {
-                font-size: 22px;
             }
 
             .add-to-cart-btn:hover {
@@ -1324,22 +1260,46 @@
         </div>
     </header>
 
-    <section class="fashion-grid-section">
+    <!-- MAGAZINE SECTION (langsung setelah header) -->
+    <section class="magazine-volume-section" id="magazine">
         <div class="container">
-            <div class="fashion-grid">
-                <div class="grid-item"><img src="Grid/1.png" alt="Fashion Editorial 1"></div>
-                <div class="grid-item"><img src="Grid/2.png" alt="Fashion Editorial 2"></div>
-                <div class="grid-item"><img src="Grid/3.png" alt="Fashion Editorial 3"></div>
-                <div class="grid-item"><img src="Grid/4.png" alt="Fashion Editorial 4"></div>
-                <div class="grid-item"><img src="Grid/5.png" alt="Fashion Editorial 5"></div>
-                <div class="grid-item"><img src="Grid/6.png" alt="Fashion Editorial 6"></div>
-                <div class="grid-item"><img src="Grid/7.png" alt="Fashion Editorial 7"></div>
-                <div class="grid-item"><img src="Grid/8.png" alt="Fashion Editorial 8"></div>
-                <div class="grid-item"><img src="Grid/9.png" alt="Fashion Editorial 9"></div>
+            <div class="magazine-section-title">
+                <h2>KAZINE VOLUME 1</h2>
+                <p>ISSUE 01 - ISSUE 03</p>
+            </div>
+            <div class="magazine-grid">
+                <a href="https://thekachoo.github.io/Home/kazinevol1.html" class="magazine-card">
+                    <div class="magazine-cover">
+                        <img src="issue1.png" alt="Issue 1">
+                    </div>
+                    <div class="magazine-info">
+                        <div class="magazine-issue">ISSUE 01</div>
+                        <div class="magazine-title">New Year New Vibes</div>
+                    </div>
+                </a>
+                <a href="https://thekachoo.github.io/KAZINE/vol1issue2.html" class="magazine-card" target="_blank">
+                    <div class="magazine-cover">
+                        <img src="issue2.png" alt="Issue 2">
+                    </div>
+                    <div class="magazine-info">
+                        <div class="magazine-issue">ISSUE 02</div>
+                        <div class="magazine-title">Be My Valentine</div>
+                    </div>
+                </a>
+                <a href="https://thekachoo.github.io/KAZINE/vol1issue3.html" class="magazine-card" target="_blank">
+                    <div class="magazine-cover">
+                        <img src="issue3.png" alt="Issue 3">
+                    </div>
+                    <div class="magazine-info">
+                        <div class="magazine-issue">ISSUE 03</div>
+                        <div class="magazine-title">Time to Heal</div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
+    <!-- KAZINE MOOD (SHOP) -->
     <section class="shop-section" id="shop">
         <div class="container">
             <div class="section-title">
@@ -1473,45 +1433,6 @@
             <div class="checkout-container">
                 <a href="payment-kazine.html" class="coming-soon-tag">
                     <span>PROCEED TO CHECKOUT</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- MAGAZINE DIPINDAH KE BAWAH SETELAH SHOP/PROCESSED -->
-    <section class="magazine-volume-section" id="magazine">
-        <div class="container">
-            <div class="magazine-section-title">
-                <h2>KAZINE VOLUME 1</h2>
-                <p>ISSUE 01 - ISSUE 03</p>
-            </div>
-            <div class="magazine-grid">
-                <a href="https://thekachoo.github.io/Home/kazinevol1.html" class="magazine-card">
-                    <div class="magazine-cover">
-                        <img src="issue1.png" alt="Issue 1">
-                    </div>
-                    <div class="magazine-info">
-                        <div class="magazine-issue">ISSUE 01</div>
-                        <div class="magazine-title">New Year New Vibes</div>
-                    </div>
-                </a>
-                <a href="https://thekachoo.github.io/KAZINE/vol1issue2.html" class="magazine-card" target="_blank">
-                    <div class="magazine-cover">
-                        <img src="issue2.png" alt="Issue 2">
-                    </div>
-                    <div class="magazine-info">
-                        <div class="magazine-issue">ISSUE 02</div>
-                        <div class="magazine-title">Be My Valentine</div>
-                    </div>
-                </a>
-                <a href="https://thekachoo.github.io/KAZINE/vol1issue3.html" class="magazine-card" target="_blank">
-                    <div class="magazine-cover">
-                        <img src="issue3.png" alt="Issue 3">
-                    </div>
-                    <div class="magazine-info">
-                        <div class="magazine-issue">ISSUE 03</div>
-                        <div class="magazine-title">Time to Heal</div>
-                    </div>
                 </a>
             </div>
         </div>
